@@ -5,12 +5,14 @@
         .module('achilles')
         .controller('MainController', MainController);
 
-    MainController.$inject = ['$http'];
+    MainController.$inject = ['$http', '$scope'];
 
-    function MainController($http){
+    function MainController($http, $scope){
         var vm = this;
 
-
+        $scope.$on('somethingChanged', function(){
+            console.log('event caught', 'something', something);
+        });
 
         vm.test = function(){
             $http.get('http://date.jsontest.com/');
