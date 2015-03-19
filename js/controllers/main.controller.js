@@ -13,7 +13,7 @@
 
 
         vm.test = function(){
-            $http.get('http://ngAchilles/Hans/Meier');
+            $http.get('http://date.jsontest.com/');
         }
     }
 })();
