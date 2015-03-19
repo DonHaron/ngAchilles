@@ -9,6 +9,7 @@
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -28,16 +29,33 @@
 
 <div class="container-fluid" ng-controller="MainController as vm">
     <h1>Behandlungseinträge</h1>
-    <a ng-click="vm.loadEntries()">Einträge laden</a>
     <div class="row">
-        <div class="col-xs-12 entry" ng-repeat="entry in vm.entries">
-            <div class="row">
-                <span>{{entry.date}}</span>
-                <span>{{entry.user}}</span>
-                <span>F:{{entry.case}}</span>
-                <ul>
-                    <li ng-repeat="attribute in entry.attributes">{{attribute.name}}: {{attribute.content}}</li>
-                </ul>
+        <div class="col-xs-12">
+            <div class="btn-group">
+                <a class="btn btn-default" ng-click="vm.loadEntries()">Einträge laden</a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12" ng-repeat="entry in vm.entries">
+            <div class="panel" ng-class="entry.type=='success' ? 'panel-success' : 'panel-default'">
+                <div class="panel-heading">
+                    <h4 class="row">
+                        <span class="col-xs-4">{{entry.date}}</span>
+                        <span class="col-xs-4">{{entry.user}}</span>
+                        <span class="col-xs-4">F:{{entry.case}}</span>
+                    </h4>
+                </div>
+                <div class="panel-body">
+                    <ul class="list-group">
+                        <li class="list-group-item" ng-repeat="attribute in entry.attributes">
+                            <div class="row">
+                                <span class="col-xs-4">{{attribute.name}}:</span><span class="col-xs-8">{{attribute.content}}</span>
+                            </div>
+                        </li>
+                    </ul>
+
+                </div>
             </div>
             <!--a class="btn" ng-click="vm.test()">Make "Request"</a-->
         </div>

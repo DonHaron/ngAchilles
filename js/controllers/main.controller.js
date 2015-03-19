@@ -44,6 +44,7 @@
                     date: '2015-03-19 14:20',
                     user: 'bha',
                     case: '???',
+                    type: 'success',
                     attributes: [
                         {
                             name: 'Subjektiv',
