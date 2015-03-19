@@ -11,6 +11,15 @@
         var vm = this;
         vm.entries = [];
 
+        vm.addAttribute = function(entry){
+            entry.attributes.push({
+                name: '',
+                content: '',
+                editNameEnabled: true,
+                editContentEnabled: true
+            });
+        }
+
         vm.loadEntries = function () {
             vm.entries = [
                 {
