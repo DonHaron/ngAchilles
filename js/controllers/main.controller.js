@@ -5,19 +5,89 @@
         .module('achilles')
         .controller('MainController', MainController);
 
-    MainController.$inject = ['$http', '$scope', '$timeout', '$q'];
+    MainController.$inject = ['$http'];
 
-    function MainController($http, $scope, $timeout, $q) {
+    function MainController($http) {
         var vm = this;
-        $scope.somethingElse = 0;
+        vm.entries = [];
 
-        $scope.$on('somethingChanged', function () {
-            console.log('event caught', 'something', something);
-            $scope.somethingElse++;
-        });
-
-        vm.test = function () {
-            $http.get('http://date.jsontest.com/');
+        vm.loadEntries = function () {
+            vm.entries = [
+                {
+                    date: '2015-03-19 14:21',
+                    user: 'bha',
+                    case: '???',
+                    attributes: [
+                        {
+                            name: 'Subjektiv',
+                            content: ''
+                        },
+                        {
+                            name: 'Objektiv',
+                            content: ''
+                        },
+                        {
+                            name: 'Lokalbefund',
+                            content: ''
+                        },
+                        {
+                            name: 'Beurteilung/Diag',
+                            content: ''
+                        },
+                        {
+                            name: 'Procedere',
+                            content: ''
+                        }
+                    ]
+                },
+                {
+                    date: '2015-03-19 14:20',
+                    user: 'bha',
+                    case: '???',
+                    attributes: [
+                        {
+                            name: 'Subjektiv',
+                            content: ''
+                        },
+                        {
+                            name: 'Objektiv',
+                            content: ''
+                        },
+                        {
+                            name: 'Beurteilung/Diag',
+                            content: ''
+                        },
+                        {
+                            name: 'Procedere',
+                            content: ''
+                        }
+                    ]
+                }
+                ,
+                {
+                    date: '2013-08-06 09:06',
+                    user: 'afr',
+                    case: 'Krankheit',
+                    attributes: [
+                        {
+                            name: 'Subjektiv',
+                            content: ''
+                        },
+                        {
+                            name: 'Objektiv',
+                            content: ''
+                        },
+                        {
+                            name: 'Beurteilung/Diag',
+                            content: ''
+                        },
+                        {
+                            name: 'Procedere',
+                            content: ''
+                        }
+                    ]
+                }
+            ];
         }
 
     }

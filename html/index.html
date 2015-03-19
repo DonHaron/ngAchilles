@@ -27,10 +27,19 @@
 </div>
 
 <div class="container-fluid" ng-controller="MainController as vm">
-    <h1>Hello, world!</h1>
+    <h1>Behandlungseinträge</h1>
+    <a ng-click="vm.loadEntries()">Einträge laden</a>
     <div class="row">
-        <div class="col-xs-12">
-            <a class="btn" ng-click="vm.test()">Make "Request"</a>
+        <div class="col-xs-12 entry" ng-repeat="entry in vm.entries">
+            <div class="row">
+                <span>{{entry.date}}</span>
+                <span>{{entry.user}}</span>
+                <span>F:{{entry.case}}</span>
+                <ul>
+                    <li ng-repeat="attribute in entry.attributes">{{attribute.name}}: {{attribute.content}}</li>
+                </ul>
+            </div>
+            <!--a class="btn" ng-click="vm.test()">Make "Request"</a-->
         </div>
     </div>
 </div>
