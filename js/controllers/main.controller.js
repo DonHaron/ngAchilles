@@ -5,11 +5,15 @@
         .module('achilles')
         .controller('MainController', MainController);
 
-    //MainController.$inject = ['$scope'];
+    MainController.$inject = ['$http'];
 
-    function MainController(){
+    function MainController($http){
         var vm = this;
 
-        vm.test = "Hello World";
+
+
+        vm.test = function(){
+            $http.get('/ngAchilles/Hans/Meier');
+        }
     }
 })();
