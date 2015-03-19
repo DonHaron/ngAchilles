@@ -13,7 +13,7 @@
 
 
         vm.test = function(){
-            $http.get('/ngAchilles/Hans/Meier');
+            $http.get('http://ngAchilles/Hans/Meier');
         }
     }
 })();
