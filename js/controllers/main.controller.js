@@ -20,7 +20,7 @@
                     attributes: [
                         {
                             name: 'Subjektiv',
-                            content: ''
+                            content: 'Bla bla'
                         },
                         {
                             name: 'Objektiv',

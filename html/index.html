@@ -22,6 +22,7 @@
 
 <div>
     <p>This is outside of the AngularJS-Scope</p>
+
     <div>
         <a href="javascript:callMe()">Something++</a>
     </div>
@@ -29,6 +30,7 @@
 
 <div class="container-fluid" ng-controller="MainController as vm">
     <h1>Behandlungseinträge</h1>
+
     <div class="row">
         <div class="col-xs-12">
             <div class="btn-group">
@@ -52,12 +54,24 @@
                             <div class="row">
                                 <div class="col-xs-4">
                                     <div ng-hide="attribute.editNameEnabled">
-                                        <a ng-click="attribute.editNameEnabled=!attribute.editNameEnabled">{{attribute.name}}:</a>
+                                        <span ng-click="attribute.editNameEnabled=!attribute.editNameEnabled">{{attribute.name}}:</span>
                                     </div>
                                     <div ng-show="attribute.editNameEnabled">
-                                        <input type="text" ng-model="attribute.name" ng-blur="attribute.editNameEnabled=!attribute.editNameEnabled">
+                                        <input type="text" ng-model="attribute.name"
+                                               ng-blur="attribute.editNameEnabled=!attribute.editNameEnabled">
                                     </div>
-                                </div><span class="col-xs-8">{{attribute.content}}</span>
+                                </div>
+                                <div class="col-xs-8">
+                                    <div ng-hide="attribute.editContentEnabled" class="well"
+                                         ng-click="attribute.editContentEnabled=!attribute.editContentEnabled">
+                                        <p>{{attribute.content}}</p>
+                                    </div>
+                                    <div ng-show="attribute.editContentEnabled">
+                                        <textarea ng-model="attribute.content"
+                                                  ng-blur="attribute.editContentEnabled=!attribute.editContentEnabled">
+                                        </textarea>
+                                    </div>
+                                </div>
                             </div>
                         </li>
                     </ul>
