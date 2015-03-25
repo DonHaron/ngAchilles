@@ -12,8 +12,10 @@ directive with other directives inside
 		invoiceCase: {name: 'Krankheit', id: 123} // id or name? --> F:Krankheit
 		entries: [
 			{
-				type: 123, //id of the type
-				title: 'Diagnose'
+				type: {
+				    id: 123,
+				    name: 'Diagnose'
+				},
 				columns: [
 					{
 						width: 3

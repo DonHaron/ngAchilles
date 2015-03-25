@@ -53,8 +53,11 @@
                         <li class="list-group-item" ng-repeat="attribute in entry.attributes">
                             <div class="row">
                                 <div class="col-xs-4 col-sm-3 col-md-2">
-                                    <div>
-                                        <span>{{attribute.name}}:</span>
+                                    <div class="form-group">
+                                        <span ng-show="attribute.type">{{attribute.type.name}}:</span>
+                                        <select class="form-control" ng-hide="attribute.type"
+                                                ng-model="attribute.type"
+                                                ng-options="type as type.name for type in vm.entryTypes"></select>
                                     </div>
                                 </div>
                                 <div class="col-xs-8 col-sm-9 col-md-10">

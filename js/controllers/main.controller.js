@@ -10,6 +10,20 @@
     function MainController($http) {
         var vm = this;
         vm.entries = [];
+        vm.entryTypes = [
+            {
+                id: 1,
+                name: 'Diagnose'
+            },
+            {
+                id: 2,
+                name: 'Behandlung'
+            },
+            {
+                id: 3,
+                name: 'Lokalbefund'
+            },
+        ];
 
         vm.addAttribute = function(entry){
             entry.attributes.push({
@@ -28,9 +42,10 @@
                     case: '???',
                     attributes: [
                         {
-                            type: 123, //id of the type
-                            title: 'Diagnose',
-                            name: 'Diagnose',
+                            type: {
+                                id: 123,
+                                name: 'Diagnose'
+                            }, //id of the type
                             columns: [
                                 {
                                     width: 10,
