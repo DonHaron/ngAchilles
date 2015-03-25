@@ -2,6 +2,8 @@
     position: fixed;
 }
 
-.pointer {
-    cursor: pointer;
+.form-control {
+    border-width: 0;
+    box-shadow: none;
+    border-radius: 0;
 }
