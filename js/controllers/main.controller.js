@@ -28,12 +28,52 @@
                     case: '???',
                     attributes: [
                         {
-                            name: 'Subjektiv',
-                            content: 'Bla bla'
+                            type: 123, //id of the type
+                            title: 'Diagnose',
+                            name: 'Diagnose',
+                            columns: [
+                                {
+                                    width: 10,
+                                    content: 'Hypochonder',
+                                    readonly: false,
+                                    wysiwyg: false,
+                                    validation: 'numeric'
+                                },
+                                {
+                                    width: 2,
+                                    content: 'asdf',
+                                    readonly: true,
+                                    wysiwyg: false,
+                                    validation: 'numeric'
+                                }
+                            ]
                         },
                         {
                             name: 'Objektiv',
-                            content: ''
+                            content: '',
+                            columns: [
+                                {
+                                    width: 2,
+                                    content: '2',
+                                    readonly: false,
+                                    wysiwyg: false,
+                                    validation: 'numeric'
+                                },
+                                {
+                                    width: 4,
+                                    content: '4',
+                                    readonly: false,
+                                    wysiwyg: false,
+                                    validation: 'numeric'
+                                },
+                                {
+                                    width: 6,
+                                    content: '6',
+                                    readonly: false,
+                                    wysiwyg: false,
+                                    validation: 'numeric'
+                                }
+                            ]
                         },
                         {
                             name: 'Lokalbefund',

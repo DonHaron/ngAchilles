@@ -1,0 +1,43 @@
+directive with other directives inside
+
+<dir>
+	ng-repeat=col in columns template=col.tpl content=col.content
+</dir>
+
+//Behandlungen
+[
+	{
+		date: 1234567, //Unix timestamp or date?
+		user: 'fha', //id or name?
+		invoiceCase: {name: 'Krankheit', id: 123} // id or name? --> F:Krankheit
+		entries: [
+			{
+				type: 123, //id of the type
+				title: 'Diagnose'
+				columns: [
+					{
+						width: 3
+						content: 'Hypochonder',
+						readonly: false,
+						wysiwyg: false,
+						validation: numeric,
+					},
+					{
+						...
+					}
+				]
+			},
+			{
+				...
+			}
+		],
+		medication: [
+			... //here or further up?
+		],
+		laboratory: [...], 
+		documents: [...], 
+		disability: [...], 
+		biometricData: [...], 
+		services: [...]
+	},
+]
