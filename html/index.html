@@ -21,49 +21,9 @@
     <![endif]-->
 </head>
 <body>
-
-<div>
-    <p>This is outside of the AngularJS-Scope</p>
-
-    <div>
-        <a href="javascript:callMe()">Something++</a>
-    </div>
-</div>
-
 <div class="container-fluid" ng-controller="MainController as vm">
-    <h1>Testfunktionen http-Server</h1>
-
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="btn-group">
-                <a class="btn btn-default" ng-click="vm.test()">Get Some F**in JSON</a>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="btn-group">
-                <a class="btn btn-default" ng-click="vm.test1()">Goto Patient</a>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="btn-group">
-                <a class="btn btn-default" ng-click="vm.test2()">Goto Appointments</a>
-            </div>
-        </div>
-    </div>
-
     <h1>Behandlungseinträge</h1>
 
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="btn-group">
-                <a class="btn btn-default" ng-click="vm.loadEntries()">Einträge laden</a>
-            </div>
-        </div>
-    </div>
     <div class="row">
         <div class="col-xs-12" ng-repeat="entry in vm.entries">
             <div class="panel" ng-class="entry.type=='success' ? 'panel-success' : 'panel-default'">
@@ -76,14 +36,17 @@
 
                         <div class="col-xs-3">
                             <div class="pull-right">
+                                <span class="dropdown" dropdown>
+                                    <a href class="dropdown-toggle" dropdown-toggle><i class="fa fa-medkit"></i></a>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li><a href>Hallo</a></li>
+                                        <li><a href>Welt</a></li>
+                                    </ul>
+                                </span>
                                 <i context-menu
-                                   data-target="med-menu-{{ $index }}"
-                                   class="fa fa-medkit"></i
+                                        data-target="lab-menu-{{ $index }}"
+                                        class="fa fa-line-chart"></i
                                         > <i
-                                    context-menu
-                                    data-target="lab-menu-{{ $index }}"
-                                    class="fa fa-line-chart"></i
-                                    > <i
                                     context-menu
                                     data-target="doc-menu-{{ $index }}"
                                     class="fa fa-file-text-o"></i></div>
@@ -187,6 +150,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
 <script type="text/javascript" src="../bower_components/ng-context-menu/dist/ng-context-menu.js"></script>
+<script type="text/javascript" src="../bower_components/angular-bootstrap/ui-bootstrap.js"></script>
 <script type="text/javascript" src="../js/achilles.js"></script>
 <script type="text/javascript" src="../js/controllers/main.controller.js"></script>
 <script type="text/javascript" src="../js/directives/treatment.directives.js"></script>

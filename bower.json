@@ -15,6 +15,7 @@
     "tests"
   ],
   "dependencies": {
-    "ng-context-menu": "~1.0.1"
+    "ng-context-menu": "~1.0.1",
+    "angular-bootstrap": "~0.12.1"
   }
 }
