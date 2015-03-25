@@ -1,0 +1,20 @@
+{
+  "name": "ngAchilles",
+  "version": "0.0.0",
+  "homepage": "https://github.com/DonHaron/ngAchilles",
+  "authors": [
+    "Ramon Wenger <ramon.wenger@comvation.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ng-context-menu": "~1.0.1"
+  }
+}
