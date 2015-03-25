@@ -10,6 +10,7 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -67,9 +68,11 @@
             <div class="panel" ng-class="entry.type=='success' ? 'panel-success' : 'panel-default'">
                 <div class="panel-heading">
                     <h4 class="row">
-                        <span class="col-xs-4">{{entry.date}}</span>
-                        <span class="col-xs-4">{{entry.user}}</span>
-                        <span class="col-xs-4">F:{{entry.case}}</span>
+                        <span class="col-xs-3">{{entry.date}}</span>
+                        <span class="col-xs-1">{{entry.user}}</span>
+                        <span class="col-xs-2"></span>
+                        <span class="col-xs-3">F:{{entry.case}}</span>
+                        <span class="col-xs-3"><i class="fa fa-medkit"></i> <i class="fa fa-medkit"></i> <i class="fa fa-medkit"></i></span>
                     </h4>
                 </div>
                 <div class="panel-body">
