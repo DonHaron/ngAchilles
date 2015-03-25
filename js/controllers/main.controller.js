@@ -27,10 +27,7 @@
 
         vm.addAttribute = function(entry){
             entry.attributes.push({
-                name: '',
-                content: '',
-                editNameEnabled: true,
-                editContentEnabled: true
+                content: ''
             });
         }
 

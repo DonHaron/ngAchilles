@@ -53,12 +53,8 @@
                         <li class="list-group-item" ng-repeat="attribute in entry.attributes">
                             <div class="row">
                                 <div class="col-xs-4 col-sm-3 col-md-2">
-                                    <div class="form-group">
-                                        <span ng-show="attribute.type">{{attribute.type.name}}:</span>
-                                        <select class="form-control" ng-hide="attribute.type"
-                                                ng-model="attribute.type"
-                                                ng-options="type as type.name for type in vm.entryTypes"></select>
-                                    </div>
+                                    <treatment-type entry="attribute" types="vm.entryTypes">
+                                    </treatment-type>
                                 </div>
                                 <div class="col-xs-8 col-sm-9 col-md-10">
                                     <treatment-column ng-repeat="column in attribute.columns"
@@ -86,6 +82,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
 <script type="text/javascript" src="../bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+<script type="text/javascript" src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 <script type="text/javascript" src="../js/achilles.js"></script>
 <script type="text/javascript" src="../js/controllers/main.controller.js"></script>
 <script type="text/javascript" src="../js/directives/treatment.directives.js"></script>
