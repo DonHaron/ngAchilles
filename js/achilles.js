@@ -2,5 +2,5 @@
     "use strict";
 
     angular
-        .module('achilles', []);
+        .module('achilles', ['ng-context-menu']);
 })();
