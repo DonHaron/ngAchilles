@@ -10,3 +10,21 @@ GET: treatmententrytype/<query> #Einschränkungen per Query
 Katalog
 
 GET: catalog/treatmententrytype/<treatmententrytype id>/column/<column #>/query/<query>
+
+Behandlunstyp bearbeiten:
+
+POST: treatmententry/ -- <entry data>
+PUT: treatmententry/<entry id> -- <entry data>
+DELETE: treatmententry/<entry id>
+
+Behandlung bearbeiten:
+
+POST: /treatment/ -- <treatment data> #Behandlung erstellen
+PUT: /treatment/<treatment id> -- <treatment data> #Behandlung updaten
+DELETE: /treatment/<treatment id> #Behandlung löschen
+
+Lock abfragen & setzen, lösen
+
+PUT: treatmententry/lock/<entry id>
+GET: treatmententry/lock/<entry id>
+DELETE: treatmententry/lock/<entry id>
