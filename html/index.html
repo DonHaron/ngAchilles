@@ -25,16 +25,16 @@
 <body>
 <div class="container-fluid" ng-controller="MainController as vm">
     <h1>Behandlungseinträge</h1>
-
+    <a ng-click="vm.testPost()">Test</a>
     <div class="row">
-        <div class="col-xs-12" ng-repeat="entry in vm.entries">
-            <div class="panel" ng-class="entry.type=='success' ? 'panel-success' : 'panel-default'">
+        <div class="col-xs-12" ng-repeat="treatment in vm.treatments">
+            <div class="panel" ng-class="treatment.type=='success' ? 'panel-success' : 'panel-default'">
                 <div class="panel-heading">
                     <h4 class="row">
-                        <span class="col-xs-3">{{entry.date}}</span>
-                        <span class="col-xs-1">{{entry.user}}</span>
+                        <span class="col-xs-3">{{treatment.date}}</span>
+                        <span class="col-xs-1">{{treatment.user}}</span>
                         <span class="col-xs-2"></span>
-                        <span class="col-xs-3">F:{{entry.case}}</span>
+                        <span class="col-xs-3">F:{{treatment.case}}</span>
 
                         <div class="col-xs-3">
                             <div class="pull-right">
@@ -52,24 +52,24 @@
                 </div>
                 <div class="panel-body">
                     <ul class="list-group">
-                        <li class="list-group-item" ng-repeat="attribute in entry.attributes">
+                        <li class="list-group-item" ng-repeat="entry in treatment.entries">
                             <div class="row">
-                                <pre>{{attribute.type|json}}</pre>
                                 <div class="col-xs-4 col-sm-3 col-md-2">
-                                    <treatment-type entry="attribute" types="vm.entryTypes">
+                                    <treatment-type entry="entry" types="vm.entryTypes">
                                     </treatment-type>
                                 </div>
                                 <div class="col-xs-8 col-sm-9 col-md-10">
-                                    <treatment-column ng-repeat="column in attribute.columns"
+                                    <treatment-column ng-repeat="column in entry.columns"
                                                       content="column.content"
                                                       width="{{column.width}}"
-                                                      readonly="{{column.readonly}}"></treatment-column>
+                                                      readonly="{{column.readonly}}"
+                                                      parent="entry"></treatment-column>
                                 </div>
                             </div>
                         </li>
                     </ul>
                     <div class="btn-group">
-                        <a ng-click="vm.addAttribute(entry)">Neues Feld hinzufügen</a>
+                        <a ng-click="vm.addAttribute(treatment)">Neues Feld hinzufügen</a>
                     </div>
                 </div>
             </div>
