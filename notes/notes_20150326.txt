@@ -1,0 +1,12 @@
+Alle Behandlungen für aktuellen Patienten:
+
+GET: patient/<patient id>/treatmentlist
+
+Alle möglichen Behandlungstypen:
+
+GET: treatmententrytype/
+GET: treatmententrytype/<query> #Einschränkungen per Query
+
+Katalog
+
+GET: catalog/treatmententrytype/<treatmententrytype id>/column/<column #>/query/<query>
