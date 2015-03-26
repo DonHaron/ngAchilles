@@ -10,7 +10,7 @@
     function MainController($http) {
         var vm = this;
         vm.entries = [];
-        vm.entryTypes = [
+        /*vm.entryTypes = [
             {
                 id: 1,
                 name: 'Diagnose',
@@ -23,18 +23,28 @@
                 id: 3,
                 name: 'Lokalbefund',
             },
-        ];
+        ];*/
 
-        /*
-         * this is ugly, but need to do this with an open issue in the angular-select2 lib
-         * https://github.com/rubenv/angular-select2/issues/15
-         * TODO: change once the issue is resolved
-         * */
-        for (var i = 0; i < vm.entryTypes.length; i++) {
-            vm.entryTypes[i].toString = function () {
-                return this.id;
-            }
-        }
+        vm.entryTypes = [];
+
+        //$http.get('/treatmententrytype/')
+        $http.get('http://localhost/ngachilles/json/demo.treatmententrytype.json')
+            .then(function(response){
+                vm.entryTypes = response.data;
+
+                /*
+                 * this is ugly, but need to do this with an open issue in the angular-select2 lib
+                 * https://github.com/rubenv/angular-select2/issues/15
+                 * TODO: change once the issue is resolved
+                 * */
+                for (var i = 0; i < vm.entryTypes.length; i++) {
+                    vm.entryTypes[i].toString = function () {
+                        return this.id;
+                    }
+                }
+            });
+
+
 
         vm.addAttribute = function (treatment) {
             treatment.entries.push({
@@ -44,7 +54,8 @@
         }
 
         vm.loadEntries = function () {
-            $http.get('http://192.168.1.145:37115/patient/70220/treatmentlist')
+            //$http.get('http://192.168.1.145:37115/patient/70220/treatmentlist')
+            $http.get('http://localhost/ngachilles/json/demo.treatment.json')
                 .then(function (response) {
                     vm.treatments = response.data;
                 });

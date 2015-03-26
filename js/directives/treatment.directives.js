@@ -39,11 +39,13 @@
         var directive = {
             restrict: 'E',
             link: link,
+            controller: controller,
+            controllerAs: 'dm',
             scope: {
                 entry: '=',
                 types: '='
             },
-            template: '<div class="form-group"><span ng-show="entry.type">{{entry.type.name}}</span><select2 class="form-control" ng-hide="entry.type" ng-model="entry.type" ng-options="type as type.name for type in types track by type.id"></select2></div>'
+            template: '<div class="form-group"><span ng-show="entry.type">{{entry.type.name}}</span><select2 class="form-control" ng-change="dm.store(entry)" ng-hide="entry.type" ng-model="entry.type" ng-options="type as type.name for type in types track by type.id"></select2></div>'
         };
 
         return directive;
@@ -54,9 +56,25 @@
                     element.find('input').select2('open');
                 }
             },50);
+        }
 
-            element.find('input').on("select2-select", function (e) { console.log("select2:select", e); });
-            element.find('input').on("select2:select", function (e) { console.log("select2:select", e); });
+        controller.$inject = ['$http', '$scope'];
+
+        function controller($http, $scope){
+            var dm = this;
+
+            //user selected a type, send a POST request to the server, then wait for the response with the column data
+            dm.store = function(entry){
+                //TODO: replace the url
+                $http.post('http://127.0.0.1/', entry)
+                    .then(function(response){
+                        $scope.entry = response.data;
+                    }, function(error){
+                        console.error(error);
+                        $scope.entry = {};
+                    });
+                //console.log('send bla', bla);
+            }
         }
     }
 
