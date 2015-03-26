@@ -27,7 +27,7 @@
 
         vm.entryTypes = [];
 
-        //$http.get('/treatmententrytype/')
+        //$http.get('http://192.168.1.145:37115/treatmententrytype/')
         $http.get('http://localhost/ngachilles/json/demo.treatmententrytype.json')
             .then(function(response){
                 vm.entryTypes = response.data;

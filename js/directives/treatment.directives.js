@@ -65,15 +65,14 @@
 
             //user selected a type, send a POST request to the server, then wait for the response with the column data
             dm.store = function(entry){
-                //TODO: replace the url
-                $http.post('http://127.0.0.1/', entry)
+                //TODO: maybe replace the url?
+                $http.post('http://http://192.168.1.145:37115/treatmententry/', entry)
                     .then(function(response){
                         $scope.entry = response.data;
                     }, function(error){
                         console.error(error);
                         $scope.entry = {};
                     });
-                //console.log('send bla', bla);
             }
         }
     }
