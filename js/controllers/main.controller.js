@@ -13,17 +13,22 @@
         vm.entryTypes = [
             {
                 id: 1,
-                name: 'Diagnose'
+                name: 'Diagnose',
+
             },
             {
                 id: 2,
-                name: 'Behandlung'
+                name: 'Behandlung',
             },
             {
                 id: 3,
-                name: 'Lokalbefund'
+                name: 'Lokalbefund',
             },
         ];
+
+        for(var i=0;i<vm.entryTypes.length;i++){
+            vm.entryTypes[i].toString = function(){ return this.id; }
+        }
 
         vm.addAttribute = function(entry){
             entry.attributes.push({

@@ -54,6 +54,7 @@
                     <ul class="list-group">
                         <li class="list-group-item" ng-repeat="attribute in entry.attributes">
                             <div class="row">
+                                <pre>{{attribute.type|json}}</pre>
                                 <div class="col-xs-4 col-sm-3 col-md-2">
                                     <treatment-type entry="attribute" types="vm.entryTypes">
                                     </treatment-type>

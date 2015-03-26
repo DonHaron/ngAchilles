@@ -34,7 +34,7 @@
                 entry: '=',
                 types: '='
             },
-            template: '<div class="form-group"><span ng-show="entry.type">{{entry.type.name}}:</span><select2 class="form-control" ng-hide="entry.type" ng-model="entry.type" ng-options="type as type.name for type in types"></select2></div>'
+            template: '<div class="form-group"><span ng-show="entry.type">{{entry.type.name}}:</span><select2 class="form-control" ng-hide="entry.type" ng-model="entry.type" ng-options="type as type.name for type in types track by type.id"></select2></div>'
         };
 
         return directive;
@@ -45,6 +45,9 @@
                     element.find('input').select2('open');
                 }
             },50);
+
+            element.find('input').on("select2-select", function (e) { console.log("select2:select", e); });
+            element.find('input').on("select2:select", function (e) { console.log("select2:select", e); });
         }
     }
 
