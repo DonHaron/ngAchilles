@@ -93,6 +93,7 @@ angular.module("rt.select2", [])
                     var valueName = match[4] || match[6];
                     var valueFn = $parse(match[2] ? match[1] : valueName);
                     var keyName = match[5];
+                    var indexFn = $parse(match[8]);
 
                     getOptions = function (callback) {
                         optionItems = {};
@@ -111,6 +112,22 @@ angular.module("rt.select2", [])
 
                             var value = valueFn(scope, locals);
                             var label = displayFn(scope, locals) || "";
+                            var index = indexFn(scope, locals);
+
+                            console.log('match', match);
+                            console.log('index', index);
+                            console.log('value', value);
+                            console.log('text', label);
+                            console.log('values', values);
+                            console.log('key', key);
+                            console.log('valueFn', match[2] ? match[1] : valueName);
+                            console.log('valueFn', valueFn);
+                            console.log('keyName', keyName);
+                            console.log('valueName', valueName);
+                            console.log('scope', scope);
+                            console.log('locals', locals);
+                            console.log('fn call scope local', valueFn(scope, locals));
+                            console.log('fn call local', valueFn(locals));
 
                             // Select2 returns strings, we use a dictionary to get
                             // back to the original value.
@@ -119,6 +136,7 @@ angular.module("rt.select2", [])
                                 text: label,
                                 obj: values[key]
                             };
+                            console.log('optionItems', optionItems);
 
                             options.push(optionItems[value]);
                         }
@@ -259,6 +277,7 @@ angular.module("rt.select2", [])
                                 }
                                 controller.$setViewValue(vals);
                             } else {
+                                console.log(optionItems);
                                 val = optionItems[e.val];
                                 controller.$setViewValue(val ? val.id : null);
                             }
@@ -275,6 +294,8 @@ angular.module("rt.select2", [])
 
                         scope.$apply(controller.$setTouched);
                     });
+
+                    element.on("select2-open", function (e) { console.log("select2:open", e); });
 
                     controller.$render();
                 });
