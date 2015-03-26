@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "Diagnose"
+    },
+    {
+        "id": 2,
+        "name": "Behandlung"
+    },
+    {
+        "id": 3,
+        "name": "Lokalbefund"
+    },
+    {
+        "id": 4,
+        "name": "Vermicelles"
+    },
+    {
+        "id": 5,
+        "name": "Baumschule"
+    },
+    {
+        "id": 6,
+        "name": "Sibene"
+    }
+]
