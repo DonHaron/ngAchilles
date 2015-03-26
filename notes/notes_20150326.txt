@@ -13,7 +13,7 @@ GET: catalog/treatmententrytype/<treatmententrytype id>/column/<column #>/query/
 
 Behandlunstyp bearbeiten:
 
-POST: treatmententry/ -- <entry data>
+POST: treatmententry/ -- <entry data> #entry data contains type id, and the response contains all the columns for that type
 PUT: treatmententry/<entry id> -- <entry data>
 DELETE: treatmententry/<entry id>
 
