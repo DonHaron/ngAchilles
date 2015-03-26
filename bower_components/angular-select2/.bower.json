@@ -1,0 +1,31 @@
+{
+  "name": "angular-select2",
+  "version": "1.3.9",
+  "main": "dist/angular-select2.js",
+  "ignore": [
+    "**/.*",
+    "src",
+    "node_modules",
+    "bower_components",
+    "test",
+    "Gruntfile.js"
+  ],
+  "dependencies": {
+    "angular": "~1.2.4",
+    "select2": "~3.5.1"
+  },
+  "devDependencies": {
+    "angular-mocks": "~1.2.4"
+  },
+  "homepage": "https://github.com/rubenv/angular-select2",
+  "_release": "1.3.9",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.3.9",
+    "commit": "e0159a8ca620ff0b3cf0c050523d35f3fa7b6db8"
+  },
+  "_source": "git://github.com/rubenv/angular-select2.git",
+  "_target": "~1.3.9",
+  "_originalSource": "angular-select2",
+  "_direct": true
+}
