@@ -27,7 +27,8 @@
 
         vm.addAttribute = function(entry){
             entry.attributes.push({
-                content: ''
+                content: '',
+                new: true
             });
         }
 

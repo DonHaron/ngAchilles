@@ -2,5 +2,5 @@
     "use strict";
 
     angular
-        .module('achilles', ['ui.bootstrap']);
+        .module('achilles', ['ui.bootstrap', 'rt.select2']);
 })();

@@ -34,15 +34,15 @@
                 entry: '=',
                 types: '='
             },
-            template: '<div class="form-group"><span ng-show="entry.type">{{entry.type.name}}:</span><select class="form-control" ng-hide="entry.type" ng-model="entry.type" ng-options="type as type.name for type in types"></select><input type="text" ng-model="entry.type" typeahead="type as type.name for type in types | filter:$viewValue | limitTo:25" typeahead-min-length="0" class="form-control"></div>'
+            template: '<div class="form-group"><span ng-show="entry.type">{{entry.type.name}}:</span><select2 class="form-control" ng-hide="entry.type" ng-model="entry.type" ng-options="type as type.name for type in types"></select2></div>'
         };
 
         return directive;
 
         function link(scope, element, attrs){
             $timeout(function(){
-                if(!scope.entry.type){
-                    element.find('select').focus();
+                if(!scope.entry.type && scope.entry.new){
+                    element.find('input').select2('open');
                 }
             },50);
         }
