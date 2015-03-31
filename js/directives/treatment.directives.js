@@ -67,13 +67,8 @@
             var input = element.find('input');
             input.on('blur', function (e) {
                 if (input.hasClass('ng-dirty')) {
-                    //$http.put('http://192.168.1.145:37114/treatmententry/' + scope.parent.id, scope.parent).then(function (response) {
-                    //$http.put('http://localhost:37114/treatmententry/' + scope.parent.id, scope.parent).then(function (response) {
                     $http.put(urls.treatmentEntry() + scope.parent.id, scope.parent).then(function (response) {
-                        console.log(response.data);
-                        var entry = response.data;
-                        /*entry.columns = [{content: 'aaa', width: '6'}, {content: 'bbb', width: '6', readonly: 'true'}]*/
-                        entryCtrl.setEntry(entry);
+                        entryCtrl.setEntry(response.data);
                     });
                 }
             });

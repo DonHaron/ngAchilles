@@ -19,7 +19,8 @@
         var factory = {
             treatmentList: treatmentList,
             treatmentEntryTypeList: treatmentEntryTypeList,
-            treatmentEntry: treatmentEntry
+            treatmentEntry: treatmentEntry,
+            treatment: treatment
         };
 
         return factory;
