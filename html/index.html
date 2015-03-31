@@ -52,24 +52,11 @@
                 </div>
                 <div class="panel-body">
                     <ul class="list-group">
-                        <li class="list-group-item" ng-repeat="entry in treatment.entries">
-                            <div class="row">
-                                <div class="col-xs-4 col-sm-3 col-md-2">
-                                    <treatment-type entry="entry" types="vm.entryTypes">
-                                    </treatment-type>
-                                </div>
-                                <div class="col-xs-8 col-sm-9 col-md-10">
-                                    <treatment-column ng-repeat="column in entry.columns"
-                                                      content="column.content"
-                                                      width="{{column.width}}"
-                                                      readonly="{{column.readonly}}"
-                                                      parent="entry"></treatment-column>
-                                </div>
-                            </div>
-                        </li>
+                        <treatment-entry entry="entry" ng-repeat="entry in treatment.entries" types="vm.entryTypes">
+                        </treatment-entry>
                     </ul>
                     <div class="btn-group">
-                        <a ng-click="vm.addAttribute(treatment)">Neues Feld hinzufügen</a>
+                        <a class="btn btn-default" ng-click="vm.addAttribute(treatment)">Neues Feld hinzufügen</a>
                     </div>
                 </div>
             </div>

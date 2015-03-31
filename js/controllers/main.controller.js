@@ -11,25 +11,26 @@
         var vm = this;
         vm.entries = [];
         /*vm.entryTypes = [
-            {
-                id: 1,
-                name: 'Diagnose',
-            },
-            {
-                id: 2,
-                name: 'Behandlung',
-            },
-            {
-                id: 3,
-                name: 'Lokalbefund',
-            },
-        ];*/
+         {
+         id: 1,
+         name: 'Diagnose',
+         },
+         {
+         id: 2,
+         name: 'Behandlung',
+         },
+         {
+         id: 3,
+         name: 'Lokalbefund',
+         },
+         ];*/
 
         vm.entryTypes = [];
 
-        //$http.get('http://192.168.1.145:37115/treatmententrytype/')
-        $http.get('http://localhost/ngachilles/json/demo.treatmententrytype.json')
-            .then(function(response){
+        //$http.get('http://192.168.1.145:37114/treatmententrytype/')
+        $http.get('http://localhost:37114/treatmententrytype/')
+            //$http.get('http://localhost/ngachilles/json/demo.treatmententrytype.json')
+            .then(function (response) {
                 vm.entryTypes = response.data;
 
                 /*
@@ -45,17 +46,19 @@
             });
 
 
-
         vm.addAttribute = function (treatment) {
+            console.log(treatment);
+            if (!treatment.entries) treatment.entries = [];
             treatment.entries.push({
-                content: '',
-                new: true
+                treatmentId: treatment.id
             });
+            console.log(treatment);
         }
 
         vm.loadEntries = function () {
-            //$http.get('http://192.168.1.145:37115/patient/70220/treatmentlist')
-            $http.get('http://localhost/ngachilles/json/demo.treatment.json')
+            //$http.get('http://192.168.1.145:37114/patient/70220/treatmentlist')
+            $http.get('http://localhost:37114/patient/70220/treatmentlist')
+                //$http.get('http://localhost/ngachilles/json/demo.treatment.json')
                 .then(function (response) {
                     vm.treatments = response.data;
                 });
@@ -181,31 +184,31 @@
 
         var count = 0;
 
-        vm.testPost = function () {
-            count++;
-
-            var treatmentEntry = {
-                "id": 31620,
-                "type": {
-                    "id": 6,
-                    "name": "Therapie Edited :"+count
-                },
-                "columns": [
-                    {
-                        "content": "",
-                        "width": 12,
-                        "readonly": false,
-                        "wysiwyg": false,
-                        "validation": "none"
-                    }
-                ]
-            };
-
-            $http.put('http://192.168.1.145:37115/treatmententry/31620', treatmentEntry)
-                .then(function(response){
-                    console.log(response);
-                });
-        }
+//        vm.testPost = function () {
+//            count++;
+//
+//            var treatmentEntry = {
+//                "id": 31620,
+//                "type": {
+//                    "id": 6,
+//                    "name": "Therapie Edited :"+count
+//                },
+//                "columns": [
+//                    {
+//                        "content": "",
+//                        "width": 12,
+//                        "readonly": false,
+//                        "wysiwyg": false,
+//                        "validation": "none"
+//                    }
+//                ]
+//            };
+//
+//            $http.put('http://192.168.1.145:37114/treatmententry/31620', treatmentEntry)
+//                .then(function(response){
+//                    console.log(response);
+//                });
+//        }
 
         vm.loadEntries();
 
