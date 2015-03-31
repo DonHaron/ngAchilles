@@ -29,26 +29,41 @@
 
 
         vm.addAttribute = function (treatment) {
-            console.log(treatment);
             if (!treatment.entries) treatment.entries = [];
             treatment.entries.push({
                 treatmentId: treatment.id
             });
-            console.log(treatment);
         }
-
+;
         vm.loadEntries = function () {
             $http.get(urls.treatmentList(70220))
                 .then(function (response) {
                     vm.treatments = response.data;
                 });
-        }
+        };
 
         vm.loadEntries();
 
         vm.addTreatment = function (treatments) {
-            $http.post('');
-            treatments.push({});
-        }
+            $http.post(urls.treatment, {
+                patient: 0, //TODO: get the patient id here
+                date: 0 //TODO: get the current date in the correct format here
+            }).then(function(response){
+                treatments.push(response.data);
+            });
+        };
+        vm.copyTreatment = function(treatment, treatments){
+            var copy = angular.copy(treatment);
+            delete copy.id;
+            $http.post(urls.treatment, copy).then(function(response){
+                treatments.push(response.data);
+            });
+        };
+        vm.deleteTreatment = function(treatment, treatments){
+            //TODO: insert prompt here, then uncomment lines below
+            //$http.delete(urls.treatment, treatment).then(function(response){
+            // TODO: remove from treatments
+            // });
+        };
     }
 })();

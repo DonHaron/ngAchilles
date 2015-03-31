@@ -30,10 +30,12 @@
         }
 
         function treatmentList(patientId){
+            return 'http://localhost/ngachilles/json/demo.treatment.json';
             return baseUrlComponent()+routes.treatmentlist.replace(/:([a-z]\w*)/gi, patientId)+'/';
         }
 
         function treatmentEntryTypeList(){
+            return 'http://localhost/ngachilles/json/demo.treatmententrytype.json';
             return baseUrlComponent()+routes.treatmententrytype+'/';
         }
 
