@@ -43,9 +43,9 @@
         }
     }
 
-    treatmentColumn.$inject = ['$http'];
+    treatmentColumn.$inject = ['$http', 'urls'];
 
-    function treatmentColumn($http) {
+    function treatmentColumn($http, urls) {
         var directive = {
             restrict: 'E',
             scope: {
@@ -68,7 +68,8 @@
             input.on('blur', function (e) {
                 if (input.hasClass('ng-dirty')) {
                     //$http.put('http://192.168.1.145:37114/treatmententry/' + scope.parent.id, scope.parent).then(function (response) {
-                    $http.put('http://localhost:37114/treatmententry/' + scope.parent.id, scope.parent).then(function (response) {
+                    //$http.put('http://localhost:37114/treatmententry/' + scope.parent.id, scope.parent).then(function (response) {
+                    $http.put(urls.treatmentEntry() + scope.parent.id, scope.parent).then(function (response) {
                         console.log(response.data);
                         var entry = response.data;
                         /*entry.columns = [{content: 'aaa', width: '6'}, {content: 'bbb', width: '6', readonly: 'true'}]*/
@@ -104,16 +105,16 @@
             }, 50);
         }
 
-        controller.$inject = ['$http', '$scope'];
+        controller.$inject = ['$http', '$scope', 'urls'];
 
-        function controller($http, $scope) {
+        function controller($http, $scope, urls) {
             var dm = this;
 
             //user selected a type, send a POST request to the server, then wait for the response with the column data
             dm.store = function (entry) {
                 //TODO: maybe replace the url?
                 //$http.post('http://192.168.1.145:37114/treatmententry/', entry)
-                $http.post('http://localhost:37114/treatmententry/', entry)
+                $http.post(urls.treatmentEntry(), entry)
                     .then(function (response) {
                         $scope.entry = response.data;
                     }, function (error) {

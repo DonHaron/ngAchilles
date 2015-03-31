@@ -5,9 +5,9 @@
         .module('achilles')
         .controller('MainController', MainController);
 
-    MainController.$inject = ['$http'];
+    MainController.$inject = ['$http', 'urls'];
 
-    function MainController($http) {
+    function MainController($http, urls) {
         var vm = this;
         vm.entries = [];
         /*vm.entryTypes = [
@@ -28,7 +28,8 @@
         vm.entryTypes = [];
 
         //$http.get('http://192.168.1.145:37114/treatmententrytype/')
-        $http.get('http://localhost:37114/treatmententrytype/')
+        //$http.get('http://localhost:37114/treatmententrytype/')
+        $http.get(urls.treatmentEntryTypeList())
             //$http.get('http://localhost/ngachilles/json/demo.treatmententrytype.json')
             .then(function (response) {
                 vm.entryTypes = response.data;
@@ -57,7 +58,8 @@
 
         vm.loadEntries = function () {
             //$http.get('http://192.168.1.145:37114/patient/70220/treatmentlist')
-            $http.get('http://localhost:37114/patient/70220/treatmentlist')
+            //$http.get('http://localhost:37114/patient/70220/treatmentlist')
+            $http.get(urls.treatmentList(70220))
                 //$http.get('http://localhost/ngachilles/json/demo.treatment.json')
                 .then(function (response) {
                     vm.treatments = response.data;
@@ -212,5 +214,9 @@
 
         vm.loadEntries();
 
+        vm.addTreatment = function(treatments){
+            $http.post('');
+            treatments.push({});
+        }
     }
 })();
