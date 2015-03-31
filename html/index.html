@@ -26,7 +26,10 @@
 <div class="container-fluid" ng-controller="MainController as vm">
     <h1>Behandlungseinträge</h1>
     <a ng-click="vm.testPost()">Test</a>
-    <div class="row">
+    <!--<div class="row">-->
+        <!--<treatment ng-repeat="treatment in vm.treatments" treatment="treatment">-->
+
+        <!--</treatment>-->
         <div class="col-xs-12" ng-repeat="treatment in vm.treatments">
             <div class="panel" ng-class="treatment.type=='success' ? 'panel-success' : 'panel-default'">
                 <div class="panel-heading">
