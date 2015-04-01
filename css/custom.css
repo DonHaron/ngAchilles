@@ -24,10 +24,14 @@
 
 .treatment .panel-heading {
     background-image: none;
-    background-color: #e6e6e6;
+    background-color: #fff;
     padding-top: 1px;
     padding-bottom: 0;
     font-weight: bold;
+}
+
+.treatment.closed .panel-heading {
+    background-color: #e6e6e6;
 }
 
 .treatment .panel-heading .btn {
@@ -56,4 +60,8 @@
 
 .icon-dropdown {
     display: inline-block;
+}
+
+.margin-bottom-10 {
+    margin-bottom: 10px;
 }
