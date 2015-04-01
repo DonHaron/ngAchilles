@@ -86,6 +86,15 @@
                     treatment.entries.push(entry);
                 }
             };
+
+            dc.removeEntry = function(entry){
+                var entries = $scope.treatment.entries;
+                for(var i=0;i<entries.length;i++){
+                    if(entry.type.id == entries[i].type.id){
+                        entries.splice(i,1);
+                    }
+                }
+            }
         }
     }
 
@@ -97,18 +106,40 @@
             restrict: 'E',
             templateUrl: '../js/templates/treatment-entry.tpl.html',
             require: '^treatment',
-            controller: controller
+            controller: controller,
+            link: link
         };
 
         return directive;
 
-        controller.$inject = ['$scope'];
-        function controller($scope) {
+        controller.$inject = ['$scope', '$http', 'urls'];
+        function controller($scope, $http, urls) {
             var dc = this;
 
             dc.makePristine = function () {
                 $scope.entryform.$setPristine();
             }
+
+            dc.removeRow = function (row) {
+                var rows = $scope.entry.rows;
+                $http.delete(urls.treatmentEntryRow() + row.id)
+                    .then(function () {
+                        for (var i = 0; i < rows.length; i++) {
+                            if (rows[i].id == row.id) {
+                                rows.splice(i, 1);
+                                break;
+                            }
+                        }
+                        if(rows.length==0){
+                            //There are now more rows left, delete the entry now
+                            $scope.removeEntry($scope.entry)
+                        }
+                    });
+            }
+        }
+
+        function link(scope, element, attrs, treatmentCtrl){
+            scope.removeEntry = treatmentCtrl.removeEntry;
         }
     }
 
@@ -146,13 +177,21 @@
                         //now, find the row in the rows and replace it
                         var row = response.data,
                             rows = scope.parent.rows;
-                        for (var i=0;i<rows.length;i++){
-                            if(rows[i].id==row.id){
+                        for (var i = 0; i < rows.length; i++) {
+                            if (rows[i].id == row.id) {
                                 rows[i] = row;
+                                break;
                             }
-                        };
+                        }
+                        ;
                         //treatmentCtrl.setEntry(response.data);
                     });
+                }
+            });
+
+            input.on('keydown', function (e) {
+                if (e.ctrlKey && e.shiftKey && e.which == 8) {
+                    entryCtrl.removeRow(scope.row);
                 }
             });
         }
