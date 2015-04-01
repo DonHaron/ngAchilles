@@ -12,7 +12,7 @@
         vm.entries = [];
 
         vm.loadEntries = function () {
-            $http.get(urls.treatmentList(70220))
+            $http.get(urls.treatmentList(achillesConfig.patient))
                 .then(function (response) {
                     vm.treatments = response.data;
                 });
