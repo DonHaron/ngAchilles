@@ -101,7 +101,7 @@
                 <a class="btn btn-default" ng-click="addAttribute(treatment, 'first')">+</a>
             </div>
             <ul class="list-group">
-                <treatment-entry entry="entry" ng-repeat="entry in treatment.entries">
+                <treatment-entry entry="entry" ng-repeat="entry in treatment.entries | orderBy:'type.name'">
                 </treatment-entry>
             </ul>
             <div class="btn-group">

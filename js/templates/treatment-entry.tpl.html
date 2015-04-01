@@ -6,7 +6,7 @@
         </div>
         <div class="col-xs-8 col-sm-9 col-md-10">
             <form name="entryform">
-                <div class="row" row ng-repeat="row in entry.rows">
+                <div class="row" treatment-row ng-repeat="row in entry.rows | orderBy:'id'">
                     <treatment-column ng-repeat="column in row.columns" content="column.content"
                                       width="{{column.width}}"
                                       readonly="{{column.readonly}}" parent="entry" row="row"></treatment-column>

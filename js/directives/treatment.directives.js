@@ -5,6 +5,7 @@
         .module('achilles')
         .directive('treatment', treatment)
         .directive('treatmentEntry', treatmentEntry)
+        .directive('treatmentRow', treatmentRow)
         .directive('treatmentColumn', treatmentColumn)
         .directive('treatmentType', treatmentType);
 
@@ -25,22 +26,17 @@
         controller.$inject = ['$scope', '$http', 'urls'];
         function controller($scope, $http, urls) {
             var dc = this;
-            $scope.pre = {
-                entry: null
-            };
-            dc.setEntry = function (entry) {
-                console.log('entry', entry);
-                var entries = $scope.treatment.entries;
-                console.log('entries', entries);
 
-                for (var i = 0; i < entries.length; i++) {
-                    console.log('type', entries[i].type);
+            dc.setEntry = function (entry) {
+                dc.removeEntry(entry);
+//
+                for (var i = 0, entries = $scope.treatment.entries; i < entries.length; i++) {
                     if (entry.type.id == entries[i].type.id) {
-                        console.log('returning', i);
                         entries[i] = entry;
-                        break;
+                        return;
                     }
                 }
+                entries.push(entry);
                 //cannot just set the entry to be the new entry, otherwise we lose the association to the parent element
                 //TODO: look for an entry with the same type ID and replace it
                 //TODO: handle an empty entry or one with invalid data
@@ -87,11 +83,12 @@
                 }
             };
 
-            dc.removeEntry = function(entry){
+            dc.removeEntry = function (entry) {
                 var entries = $scope.treatment.entries;
-                for(var i=0;i<entries.length;i++){
-                    if(entry.type.id == entries[i].type.id){
-                        entries.splice(i,1);
+                for (var i = 0; i < entries.length; i++) {
+                    if (entry.type.id == entries[i].type.id) {
+                        entries.splice(i, 1);
+                        break;
                     }
                 }
             }
@@ -130,7 +127,7 @@
                                 break;
                             }
                         }
-                        if(rows.length==0){
+                        if (rows.length == 0) {
                             //There are now more rows left, delete the entry now
                             $scope.removeEntry($scope.entry)
                         }
@@ -138,14 +135,32 @@
             }
         }
 
-        function link(scope, element, attrs, treatmentCtrl){
+        function link(scope, element, attrs, treatmentCtrl) {
             scope.removeEntry = treatmentCtrl.removeEntry;
         }
     }
 
-    treatmentColumn.$inject = ['$http', 'urls'];
+    treatmentRow.$inject = ['$timeout'];
+    function treatmentRow($timeout){
+        var directive = {
+            link: link
+        };
 
-    function treatmentColumn($http, urls) {
+        return directive;
+
+        function link(scope, element){
+            if(scope.row.new == true){
+                $timeout(function(){
+                    var input = element.find('input').eq(0);
+                    input.focus();
+                },50);
+            }
+        }
+    }
+
+    treatmentColumn.$inject = ['$http', 'urls', '$timeout'];
+
+    function treatmentColumn($http, urls, $timeout) {
         //TODO: include rows for the entries, there can be multiple
         var directive = {
             restrict: 'E',
@@ -191,6 +206,18 @@
 
             input.on('keydown', function (e) {
                 if (e.ctrlKey && e.shiftKey && e.which == 8) {
+                    //see if there is a previous input element in the same entry. If there is, focus on it
+                    $timeout(function(){
+                        var prev = element.parent().prev().find('input');
+                        console.log(prev.length);
+                        if(prev.length){
+                            prev.eq(0).focus();
+                        }else{
+                            //if no previous element is found, look for the next one
+                            element.parent().next().find('input').eq(0).focus()
+                        }
+
+                    },150);
                     entryCtrl.removeRow(scope.row);
                 }
             });
