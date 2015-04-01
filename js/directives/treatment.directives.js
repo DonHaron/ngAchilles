@@ -3,43 +3,100 @@
 
     angular
         .module('achilles')
-        //.directive('treatment', treatment)
+        .directive('treatment', treatment)
         .directive('treatmentEntry', treatmentEntry)
         .directive('treatmentColumn', treatmentColumn)
         .directive('treatmentType', treatmentType);
 
-//    function treatment(){
-//        var directive = {
-//            scope:{
-//                treatment: '='
-//            },
-//            restrict: 'E',
-//            template: ''
-//        };
-//
-//        return directive;
-//    }
+    function treatment() {
+        var directive = {
+            scope: {
+                treatment: '=',
+                treatments: '=treatmentlist'
+            },
+            restrict: 'A',
+            controller: controller,
+            controllerAs: 'dc',
+            templateUrl: '../js/templates/treatment.tpl.html'
+        };
+
+        return directive;
+
+        controller.$inject = ['$scope', '$http', 'urls'];
+        function controller($scope, $http, urls) {
+            var dc = this;
+            $scope.pre = {
+                entry: null
+            };
+            dc.setEntry = function (entry) {
+                console.log('entry', entry);
+                var entries = $scope.treatment.entries;
+                console.log('entries', entries);
+
+                for (var i = 0; i < entries.length; i++) {
+                    console.log('type', entries[i].type);
+                    if (entry.type.id == entries[i].type.id) {
+                        console.log('returning', i);
+                        entries[i] = entry;
+                        break;
+                    }
+                }
+                //cannot just set the entry to be the new entry, otherwise we lose the association to the parent element
+                //TODO: look for an entry with the same type ID and replace it
+                //TODO: handle an empty entry or one with invalid data
+//                $scope.entry.treatmentId = entry.treatmentId;
+//                $scope.entry.id = entry.id;
+//                $scope.entry.type = entry.type;
+//                $scope.entry.columns = entry.columns;
+                //TODO: make this work on the child
+                // $scope.entryform.$setPristine();
+            }
+            $scope.addTreatment = function (treatments) {
+                console.log('here');
+                $http.post(urls.treatment(), {
+                    patient: 0, //TODO: get the patient id here
+                    date: 0 //TODO: get the current date in the correct format here
+                }).then(function (response) {
+                    treatments.push(response.data);
+                });
+            };
+            $scope.copyTreatment = function (treatment, treatments) {
+                var copy = angular.copy(treatment);
+                delete copy.id;
+                $http.post(urls.treatment(), copy).then(function (response) {
+                    treatments.push(response.data);
+                });
+            };
+            $scope.deleteTreatment = function (treatment, treatments) {
+                //TODO: insert prompt here, then uncomment lines below
+                //$http.delete(urls.treatment, treatment).then(function(response){
+                // TODO: remove from treatments
+                // });
+            };
+
+            $scope.addAttribute = function (treatment, position) {
+                console.log('called');
+                if (!treatment.entries) treatment.entries = [];
+                var entry = {
+                    treatmentId: treatment.id
+                };
+                if (position == 'first') {
+                    treatment.entries.unshift(entry);
+                } else {
+                    treatment.entries.push(entry);
+                }
+            };
+        }
+    }
 
     function treatmentEntry() {
         var directive = {
             scope: {
-                entry: '=',
-                types: '='
+                entry: '='
             },
             restrict: 'E',
-            template: '<li class="list-group-item">' +
-                '<div class="row">' +
-                '<div class="col-xs-4 col-sm-3 col-md-2">' +
-                '<treatment-type entry="entry" types="types"></treatment-type>' +
-                '</div>' +
-                '<div class="col-xs-8 col-sm-9 col-md-10">' +
-                '<form name="entryform">' +
-                '<treatment-column ng-repeat="column in entry.columns" content="column.content" width="{{column.width}}"' +
-                'readonly="{{column.readonly}}" parent="entry"></treatment-column>' +
-                '</form>' +
-                '</div>' +
-                '</div>' +
-                '</li>',
+            templateUrl: '../js/templates/treatment-entry.tpl.html',
+            require: '^treatment',
             controller: controller
         };
 
@@ -49,12 +106,7 @@
         function controller($scope) {
             var dc = this;
 
-            dc.setEntry = function (entry) {
-                //cannot just set the entry to be the new entry, otherwise we lose the association to the parent element
-                $scope.entry.treatmentId = entry.treatmentId;
-                $scope.entry.id = entry.id;
-                $scope.entry.type = entry.type;
-                $scope.entry.columns = entry.columns;
+            dc.makePristine = function () {
                 $scope.entryform.$setPristine();
             }
         }
@@ -63,29 +115,43 @@
     treatmentColumn.$inject = ['$http', 'urls'];
 
     function treatmentColumn($http, urls) {
+        //TODO: include rows for the entries, there can be multiple
         var directive = {
             restrict: 'E',
             scope: {
                 width: '@',
                 content: '=',
                 readonly: '@',
-                parent: '='
+                parent: '=',
+                row: '='
             },
-            require: '^treatmentEntry',
+            require: ['^treatment', '^treatmentEntry'],
             template: '<div ng-class="columnClass"><div class="form-group"><input class="form-control" ng-model="content" ng-disabled="{{readonly}}"></div></div>',
             link: link
         };
 
         return directive;
 
-        function link(scope, element, attrs, entryCtrl) {
+        function link(scope, element, attrs, ctrls) {
+            var treatmentCtrl = ctrls[0];
+            var entryCtrl = ctrls[1];
             scope.columnClass = 'col-xs-' + attrs.width;
 
             var input = element.find('input');
             input.on('blur', function (e) {
                 if (input.hasClass('ng-dirty')) {
-                    $http.put(urls.treatmentEntry() + scope.parent.id, scope.parent).then(function (response) {
-                        entryCtrl.setEntry(response.data);
+                    console.log(scope.row);
+                    $http.put(urls.treatmentEntryRow(), scope.row).then(function (response) {
+                        //response.data is a row
+                        //now, find the row in the rows and replace it
+                        var row = response.data,
+                            rows = scope.parent.rows;
+                        for (var i=0;i<rows.length;i++){
+                            if(rows[i].id==row.id){
+                                rows[i] = row;
+                            }
+                        };
+                        //treatmentCtrl.setEntry(response.data);
                     });
                 }
             });
@@ -100,46 +166,40 @@
             link: link,
             controller: controller,
             controllerAs: 'dm',
-            require: '^treatmentEntry',
+            require: '^treatment',
             scope: {
-                entry: '=',
-                types: '='
+                entry: '='
             },
             template: '<div class="form-group"><span ng-show="entry.type">{{entry.type.name}}</span><select2 class="form-control" ng-change="store(entry)" ng-hide="entry.type" ng-model="entry.type" ng-options="type as type.name for type in types track by type.id"></select2></div>'
         };
 
         return directive;
 
-        function link(scope, element, attrs, entryCtrl) {
+        function link(scope, element, attrs, treatmentCtrl) {
             $timeout(function () {
                 if (scope.entry && !scope.entry.type && !scope.entry.id) {
                     element.find('input').select2('open');
                 }
             }, 50);
 
-            scope.store = function(entry){
+            //user selected a type, send a POST request to the server, then wait for the response with the column data
+            scope.store = function (entry) {
                 $http.post(urls.treatmentEntry(), entry)
                     .then(function (response) {
-                        entryCtrl.setEntry(response.data);
+                        treatmentCtrl.setEntry(response.data);
                     }, function (error) {
                         console.error(error);
-                        entryCtrl.setEntry({});
                     });
             }
         }
 
-        controller.$inject = ['$http', '$scope', 'urls'];
+        controller.$inject = ['$http', '$scope', 'urls', 'getEntryTypes'];
 
-        function controller($http, $scope, urls) {
+        function controller($http, $scope, urls, getEntryTypes) {
             var dm = this;
-
-            //user selected a type, send a POST request to the server, then wait for the response with the column data
-            dm.store = function (entry) {
-                //TODO: maybe replace the url?
-                //$http.post('http://192.168.1.145:37114/treatmententry/', entry)
-
-            }
+            $scope.types = getEntryTypes();
         }
     }
 
-})();
+})
+    ();

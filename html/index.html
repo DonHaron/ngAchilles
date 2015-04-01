@@ -24,123 +24,7 @@
 </head>
 <body>
 <div class="container-fluid" ng-controller="MainController as vm">
-    <!--<h1>Behandlungseinträge</h1>-->
-    <!--<a ng-click="vm.testPost()">Test</a>-->
-    <!--<div class="row">-->
-    <!--<treatment ng-repeat="treatment in vm.treatments" treatment="treatment">-->
-
-    <!--</treatment>-->
-    <div class="col-xs-12 treatment" ng-repeat="treatment in vm.treatments">
-        <div class="panel" ng-class="treatment.type=='success' ? 'panel-success' : 'panel-default'">
-            <div class="panel-heading">
-                <h4 class="row">
-                    <div class="col-xs-3" dropdown>
-                        <a class="btn btn-default dropdown-toggle" dropdown-toggle id="dropdown-{{$index}}">{{treatment.date
-                            | date:short}}</a>
-                        <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdown-{{index}}">
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href
-                                                       ng-click="vm.addTreatment(vm.treatments)">Neue Behandlung</a>
-                            </li>
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href
-                                                       ng-click="vm.copyTreatment(treatment, vm.treatments)">Neue
-                                Behandlung (Kopie)</a></li>
-                            <li role="presentation" class="divider"></li>
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href
-                                                       ng-click="vm.deleteTreatment(treatment, vm.treatments)">Löschen</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-xs-1">
-                        <a class="btn btn-default dropdown-toggle">{{treatment.user}}</a>
-                    </div>
-                    <div class="col-xs-2">
-                        <a class="btn btn-default dropdown-toggle">&nbsp;</a>
-                    </div>
-                    <div class="col-xs-3">
-                        <a class="btn btn-default dropdown-toggle">F:{{treatment.case}}</a>
-                    </div>
-
-                    <div class="col-xs-3">
-                        <div class="pull-right">
-                                <div class="dropdown icon-dropdown" dropdown>
-                                <a class="btn btn-default dropdown-toggle" dropdown-toggle>
-                                    <i class="fa fa-medkit"></i>
-                                </a>
-                                    <ul class="dropdown-menu dropdown-menu-right">
-                                        <li><a href>Medikamente</a></li>
-                                        <li role="presentation" class="divider"></li>
-                                        <li><a href>Abgeben</a></li>
-                                        <li><a href>Rezept</a></li>
-                                        <li><a href>Fremd</a></li>
-                                        <li role="presentation" class="divider"></li>
-                                        <li><a href>Zu Medi-Listen</a></li>
-                                    </ul>
-                                </div>
-                            <div class="dropdown icon-dropdown" dropdown>
-                                <a class="btn btn-default dropdown-toggle" dropdown-toggle>
-                                    <i class="fa fa-line-chart"></i>
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-right">
-                                    <li><a href>Labor-Resultate</a></li>
-                                    <li role="presentation" class="divider"></li>
-                                    <li><a href>Gehe zu Labor</a></li>
-                                </ul>
-                            </div>
-                            <div class="dropdown icon-dropdown" dropdown>
-                                <a class="btn btn-default dropdown-toggle" dropdown-toggle>
-                                    <i class="fa fa-file-text-o"></i>
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-right">
-                                    <li><a href>Briefe & Dokumente</a></li>
-                                    <li role="presentation" class="divider"></li>
-                                    <li><a href>25.03.15 123</a></li>
-                                    <li role="presentation" class="divider"></li>
-                                    <li><a href>Neuer Brief an</a></li>
-                                    <li><a href>Neuer Brief von</a></li>
-                                    <li><a href>Neues Dokument</a></li>
-                                    <li role="presentation" class="divider"></li>
-                                    <li><a href>Gehe zu Briefe & Dokumente</a></li>
-                                </ul>
-                            </div>
-                            <div class="dropdown icon-dropdown" dropdown>
-                                <a class="btn btn-default dropdown-toggle" dropdown-toggle>
-                                    <i class="fa fa-line-chart"></i>
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-right">
-                                    <li><a href>Arbeitsunfähigkeit</a></li>
-                                    <li role="presentation" class="divider"></li>
-                                    <li><a href>Neue Arbeitsunfähigkeit</a></li>
-                                </ul>
-                            </div>
-                            <div class="dropdown icon-dropdown" dropdown>
-                                <a class="btn btn-default dropdown-toggle" dropdown-toggle>
-                                    <i class="fa fa-line-chart"></i>
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-right">
-                                    <li><a href>Biomertrische Daten</a></li>
-                                    <li role="presentation" class="divider"></li>
-                                    <li><a href>Neue Biometrische Daten</a></li>
-                                    <li role="presentation" class="divider"></li>
-                                    <li><a href>Gehe zu Biometrische Daten</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </h4>
-            </div>
-            <div class="panel-body">
-                <ul class="list-group">
-                    <treatment-entry entry="entry" ng-repeat="entry in treatment.entries" types="vm.entryTypes">
-                    </treatment-entry>
-                </ul>
-                <div class="btn-group">
-                    <a class="btn btn-default" ng-click="vm.addAttribute(treatment)">Neues Feld hinzufügen</a>
-                </div>
-            </div>
-        </div>
-        <!--a class="btn" ng-click="vm.test()">Make "Request"</a-->
-    </div>
-</div>
+    <treatment treatment="treatment" ng-repeat="treatment in vm.treatments" treatmentlist="treatments"></treatment>
 </div>
 
 <!-- Placed at the end of the document so the pages load faster -->
@@ -157,6 +41,7 @@
 <script type="text/javascript" src="../js/controllers/main.controller.js"></script>
 <script type="text/javascript" src="../js/directives/treatment.directives.js"></script>
 <script type="text/javascript" src="../js/services/utility.services.js"></script>
+<script type="text/javascript" src="../js/services/entry.services.js"></script>
 <script type="text/javascript" src="../js/independent.js"></script>
 
 </body>
