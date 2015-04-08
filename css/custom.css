@@ -37,6 +37,7 @@
 .treatment .panel-heading .btn {
     font-weight: bold;
     text-shadow: none;
+    text-align: left;
 }
 
 .treatment .btn-default {

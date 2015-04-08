@@ -7,8 +7,8 @@
 
     function urls(){
         var protocol = "http://";
-        //var baseUrl = "localhost";
-        var baseUrl = "192.168.1.145";
+        var baseUrl = "localhost";
+        //var baseUrl = "192.168.1.145";
         var port = "37114";
         var routes = {
             treatmentlist: 'patient/:patient/treatmentlist',
@@ -33,8 +33,8 @@
         }
 
         function treatmentList(patientId){
-            //return 'http://localhost/ngachilles/json/demo.treatment.json';
-            return baseUrlComponent()+routes.treatmentlist.replace(/:([a-z]\w*)/gi, patientId)+'/';
+            return 'http://localhost/ngachilles/json/demo.treatment.json';
+            //return baseUrlComponent()+routes.treatmentlist.replace(/:([a-z]\w*)/gi, patientId)+'/';
         }
 
         function treatmentEntryTypeList(){

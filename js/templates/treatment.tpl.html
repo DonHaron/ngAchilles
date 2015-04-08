@@ -4,7 +4,7 @@
             <h4 class="row">
                 <div class="col-xs-3" dropdown>
                     <a class="btn btn-default dropdown-toggle" dropdown-toggle id="dropdown-{{$index}}">{{treatment.date
-                        | date:short}}</a>
+                        | date:'EEE dd.MM.yyyy HH:mm'}}</a>
                     <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdown-{{index}}">
                         <li role="presentation"><a role="menuitem" tabindex="-1" href
                                                    ng-click="addTreatment(treatments)">Neue Behandlung</a>
