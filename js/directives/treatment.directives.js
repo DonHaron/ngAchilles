@@ -117,7 +117,7 @@
 
         function link(scope, element, attribute){
             element.on('keydown', function(e){
-                console.log(e.which);
+                //console.log(e.which);
                 //F9
                 if(e.which==120){
                     element.find('.type-select input').select2('open');
