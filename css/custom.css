@@ -18,8 +18,8 @@
 }
 
 .treatment.secondary:before {
-    margin-left: 25%;
-    width: 75%;
+    margin-left: 27%;
+    width: 73%;
 }
 
 .treatment .panel {
@@ -33,6 +33,11 @@
     padding-top: 1px;
     padding-bottom: 0;
     font-weight: bold;
+}
+
+.treatment .panel-heading > .row {
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .treatment.closed .panel-heading {
@@ -50,6 +55,24 @@
     box-shadow: none;
     display: block;
     border-color: #ddd;
+}
+
+.treatment .heading-label {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    text-align: left;
+    white-space: nowrap;
+    vertical-align: middle;
+    background-image: none;
+}
+
+.treatment .btn-icon {
+    display: inline-block;
+}
+
+.treatment .treatment-user {
+    margin-left: 10px;
 }
 
 .treatment .list-group-item {
