@@ -7,15 +7,16 @@
 
     function urls(){
         var protocol = "http://";
-        var baseUrl = "localhost";
-        //var baseUrl = "192.168.1.145";
+        //var baseUrl = "localhost";
+        var baseUrl = "192.168.1.145";
         var port = "37114";
         var routes = {
             treatmentlist: 'patient/:patient/treatmentlist',
             treatmententry: 'treatmententry',
             treatmententryrow: 'treatmententryrow',
             treatmententrytype: 'treatmententrytype',
-            treatment: 'treatment'
+            treatment: 'treatment',
+            copyTreatment: 'treatment/copy',
         };
 
         var factory = {
@@ -23,7 +24,8 @@
             treatmentEntryTypeList: treatmentEntryTypeList,
             treatmentEntry: treatmentEntry,
             treatmentEntryRow: treatmentEntryRow,
-            treatment: treatment
+            treatment: treatment,
+            copyTreatment: copyTreatment
         };
 
         return factory;
@@ -33,8 +35,8 @@
         }
 
         function treatmentList(patientId){
-            return 'http://localhost/ngachilles/json/demo.treatment.json';
-            //return baseUrlComponent()+routes.treatmentlist.replace(/:([a-z]\w*)/gi, patientId)+'/';
+            //return 'http://localhost/ngachilles/json/demo.treatment.json';
+            return baseUrlComponent()+routes.treatmentlist.replace(/:([a-z]\w*)/gi, patientId)+'/';
         }
 
         function treatmentEntryTypeList(){
@@ -46,12 +48,20 @@
             return baseUrlComponent()+routes.treatmententry+'/';
         }
 
-        function treatmentEntryRow(){
-            return baseUrlComponent()+routes.treatmententryrow+'/';
+        function treatmentEntryRow(verb){
+            var verbComponent = '';
+            if(verb){
+                verbComponent = verb + '/';
+            }
+            return baseUrlComponent()+verbComponent+routes.treatmententryrow+'/';
         }
 
         function treatment(){
             return baseUrlComponent()+routes.treatment+'/';
+        }
+
+        function copyTreatment(){
+            return baseUrlComponent()+routes.copyTreatment+'/';
         }
     }
 })();

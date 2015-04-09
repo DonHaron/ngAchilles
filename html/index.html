@@ -24,7 +24,7 @@
 </head>
 <body>
 <div class="container-fluid" ng-controller="MainController as vm">
-    <treatment treatment="treatment" ng-repeat="treatment in vm.treatments" treatmentlist="treatments"></treatment>
+    <treatment treatment="treatment" ng-repeat="treatment in vm.treatments" treatmentlist="vm.treatments"></treatment>
 </div>
 
 <!-- Placed at the end of the document so the pages load faster -->
@@ -45,6 +45,7 @@
 <script type="text/javascript" src="../js/directives/treatment.directives.js"></script>
 <script type="text/javascript" src="../js/services/utility.services.js"></script>
 <script type="text/javascript" src="../js/services/entry.services.js"></script>
+<script type="text/javascript" src="../js/services/treatment-context.service.js"></script>
 <script type="text/javascript" src="../js/independent.js"></script>
 
 </body>

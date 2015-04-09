@@ -5,16 +5,32 @@
                 <div class="col-xs-3" dropdown>
                     <a class="btn btn-default dropdown-toggle" dropdown-toggle id="dropdown-{{$index}}">{{treatment.date
                         | date:'EEE dd.MM.yyyy HH:mm'}}</a>
-                    <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdown-{{index}}">
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdown-{{index}}">
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href
+                                                   ng-click="">Behandlung einstellen</a>
+                        </li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href
+                                                   ng-click="deleteTreatment(treatment, treatments)">Behandlung löschen</a>
+                        </li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href
+                                                   ng-click="">Behandlung schliessen</a>
+                        </li>
+                        <li role="presentation" class="divider"></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href
                                                    ng-click="addTreatment(treatments)">Neue Behandlung</a>
                         </li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href
                                                    ng-click="copyTreatment(treatment, treatments)">Neue
                             Behandlung (Kopie)</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href
+                                                   ng-click="">Neue
+                            Nebenbehandlung</a></li>
                         <li role="presentation" class="divider"></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href
-                                                   ng-click="deleteTreatment(treatment, treatments)">Löschen</a>
+                                                   ng-click="deleteTreatment(treatment, treatments)">Neue Nichtmandanten-Behandlung</a>
+                        </li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href
+                                                   ng-click="deleteTreatment(treatment, treatments)">Neue Nichtmandanten-Nebenbehandlung</a>
                         </li>
                     </ul>
                 </div>
@@ -97,16 +113,22 @@
             </h4>
         </div>
         <div class="panel-body">
-            <div class="btn-group margin-bottom-10">
-                <a class="btn btn-default" ng-click="addAttribute(treatment, 'first')">+</a>
-            </div>
+            <!--<div class="btn-group margin-bottom-10">-->
+                <!--<a class="btn btn-default" ng-click="addAttribute(treatment, 'first')">+</a>-->
+            <!--</div>-->
             <ul class="list-group">
                 <treatment-entry entry="entry" ng-repeat="entry in treatment.entries | orderBy:'type.name'">
                 </treatment-entry>
             </ul>
-            <div class="btn-group">
-                <a class="btn btn-default" ng-click="addAttribute(treatment)">+</a>
+            <div class="row">
+                <div class="col-xs-12">
+                    <select2 class="form-control" ng-change="addEntry(dc.newEntry.type)" ng-model="dc.newEntry.type"
+                             ng-options="type as type.name for type in dc.types track by type.id"></select2>
+                </div>
             </div>
+            <!--<div class="btn-group">-->
+                <!--<a class="btn btn-default" ng-click="addAttribute(treatment)">+</a>-->
+            <!--</div>-->
         </div>
     </div>
 </div>
