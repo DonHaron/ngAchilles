@@ -19,7 +19,7 @@
             controller: controller,
             controllerAs: 'dc',
             templateUrl: '../js/templates/treatment.tpl.html',
-            link: link
+            //link: link
         };
 
         return directive;
@@ -57,9 +57,9 @@
 //                //TODO: make this work on the child
 //                // $scope.entryform.$setPristine();
 //            }
-            $scope.addTreatment = TreatmentContext.addTreatment;
-            $scope.copyTreatment = TreatmentContext.copyTreatment;
-            $scope.deleteTreatment = TreatmentContext.deleteTreatment;
+            dc.addTreatment = TreatmentContext.addTreatment;
+            dc.copyTreatment = TreatmentContext.copyTreatment;
+            dc.deleteTreatment = TreatmentContext.deleteTreatment;
 
 //            $scope.addAttribute = function (treatment, position) {
 //                console.log('called');
@@ -83,18 +83,33 @@
                     }
                 }
             }
-        }
 
-//        function link(scope, element, attributes) {
-//            scope.addEntry = function (type) {
-////                $http.post(urls.treatmentEntry(), entry)
-////                    .then(function (response) {
-////                        treatmentCtrl.setEntry(response.data);
-////                    }, function (error) {
-////                        console.error(error);
-////                    });
-//            }
-//        }
+            // add an entry to a treatment, and add it to the list of entries or replace
+            // the existing one with the same type id
+            dc.addEntry = function(treatmentId, type, entries) {
+                //entry: {treatmentId: <id>, type: <type object>}
+                $http.post(urls.treatmentEntry(), {
+                    treatmentId: treatmentId,
+                    type: type
+                }).then(function(response){
+                    var entry = response.data,
+                        replaced = false;
+                    for(var i=0;i<entries.length;i++){
+                        if(entry.type.id == entries[i].type.id){
+                            console.log('already in list');
+                            entries[i] = entry;
+                            replaced = true;
+                            break;
+                        }
+                    }
+                    if(!replaced){
+                        entries.push(entry);
+                    }
+                    dc.newEntry = {};
+                });
+            }
+
+        }
     }
 
     function treatmentEntry() {

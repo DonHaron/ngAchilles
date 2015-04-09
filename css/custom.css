@@ -17,6 +17,11 @@
     margin-bottom: 2px;
 }
 
+.treatment.secondary:before {
+    margin-left: 25%;
+    width: 75%;
+}
+
 .treatment .panel {
     border: 0;
     border-radius: 0;

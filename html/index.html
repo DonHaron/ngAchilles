@@ -24,7 +24,7 @@
 </head>
 <body>
 <div class="container-fluid" ng-controller="MainController as vm">
-    <treatment treatment="treatment" ng-repeat="treatment in vm.treatments" treatmentlist="vm.treatments"></treatment>
+    <treatment treatment="treatment" ng-repeat="treatment in vm.treatments | orderBy:['-date', 'id']" treatmentlist="vm.treatments"></treatment>
 </div>
 
 <!-- Placed at the end of the document so the pages load faster -->

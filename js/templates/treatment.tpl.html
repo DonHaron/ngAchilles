@@ -1,8 +1,8 @@
-<div class="col-xs-12 treatment">
+<div class="col-xs-12 treatment" ng-class="!treatment.isMainTreatment ? 'secondary' : ''">
     <div class="panel" ng-class="treatment.type=='success' ? 'panel-success' : 'panel-default'">
         <div class="panel-heading">
             <h4 class="row">
-                <div class="col-xs-3" dropdown>
+                <div class="col-xs-3" ng-show="treatment.isMainTreatment" dropdown>
                     <a class="btn btn-default dropdown-toggle" dropdown-toggle id="dropdown-{{$index}}">{{treatment.date
                         | date:'EEE dd.MM.yyyy HH:mm'}}</a>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdown-{{index}}">
@@ -10,31 +10,31 @@
                                                    ng-click="">Behandlung einstellen</a>
                         </li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href
-                                                   ng-click="deleteTreatment(treatment, treatments)">Behandlung löschen</a>
+                                                   ng-click="dc.deleteTreatment(treatment, treatments)">Behandlung löschen</a>
                         </li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href
                                                    ng-click="">Behandlung schliessen</a>
                         </li>
                         <li role="presentation" class="divider"></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href
-                                                   ng-click="addTreatment(treatments)">Neue Behandlung</a>
+                                                   ng-click="dc.addTreatment(treatment, true, true, treatments)">Neue Behandlung</a>
                         </li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href
-                                                   ng-click="copyTreatment(treatment, treatments)">Neue
+                                                   ng-click="dc.copyTreatment(treatment, treatments)">Neue
                             Behandlung (Kopie)</a></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href
-                                                   ng-click="">Neue
+                                                   ng-click="dc.addTreatment(treatment, true, false, treatments)">Neue
                             Nebenbehandlung</a></li>
                         <li role="presentation" class="divider"></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href
-                                                   ng-click="deleteTreatment(treatment, treatments)">Neue Nichtmandanten-Behandlung</a>
+                                                   ng-click="dc.addTreatment(treatment, false, true, treatments)">Neue Nichtmandanten-Behandlung</a>
                         </li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href
-                                                   ng-click="deleteTreatment(treatment, treatments)">Neue Nichtmandanten-Nebenbehandlung</a>
+                                                   ng-click="dc.addTreatment(treatment, false, false, treatments)">Neue Nichtmandanten-Nebenbehandlung</a>
                         </li>
                     </ul>
                 </div>
-                <div class="col-xs-1">
+                <div class="col-xs-1" ng-class="!treatment.isMainTreatment ? 'col-xs-offset-3' : ''">
                     <a class="btn btn-default dropdown-toggle">{{treatment.user}}</a>
                 </div>
                 <div class="col-xs-2">
@@ -122,7 +122,7 @@
             </ul>
             <div class="row">
                 <div class="col-xs-12">
-                    <select2 class="form-control" ng-change="addEntry(dc.newEntry.type)" ng-model="dc.newEntry.type"
+                    <select2 class="form-control" ng-change="dc.addEntry(treatment.id, dc.newEntry.type, treatment.entries)" ng-model="dc.newEntry.type"
                              ng-options="type as type.name for type in dc.types track by type.id"></select2>
                 </div>
             </div>

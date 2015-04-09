@@ -17,7 +17,8 @@
         return EntryType;
 
         function all(){
-            //we don't need to have this updated, the list almost never changes, so we save a lot of requests
+            // we don't need to have this updated all the time, the list almost never changes,
+            // so we rather save a lot of requests
             if (entryTypes.length) {
                 var deferred = $q.defer();
                 deferred.resolve(entryTypes);
