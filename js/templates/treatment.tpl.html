@@ -1,4 +1,4 @@
-<div class="col-xs-12 treatment" ng-class="!treatment.isMainTreatment ? 'secondary' : ''">
+<div class="col-xs-12 treatment" ng-class="{secondary: !treatment.isMainTreatment, closed: treatment.closed}" tabindex="-1">
     <div class="panel" ng-class="treatment.type=='success' ? 'panel-success' : 'panel-default'">
         <div class="panel-heading clearfix">
             <div class="row">
@@ -17,7 +17,9 @@
                                 löschen</a>
                             </li>
                             <li role="presentation"><a role="menuitem" tabindex="-1" href
-                                                       ng-click="">Behandlung schliessen</a>
+                                                       ng-click="dc.changeStatus(treatment)">Behandlung <span
+                                    ng-hide="treatment.closed">schliessen</span>
+                                <span ng-show="treatment.closed">wieder öffnen</span></a>
                             </li>
                             <li role="presentation" class="divider"></li>
                             <li role="presentation"><a role="menuitem" tabindex="-1" href
@@ -49,10 +51,22 @@
                 </div>
 
 
-
                 <div class="col-xs-2">
-                    <a class="btn btn-default dropdown-toggle">&nbsp;</a>
+                    <!--<a class="btn btn-default dropdown-toggle">&nbsp;</a>-->
+                    <div class="dropdown" dropdown>
+                        <a class="btn btn-default dropdown-toggle" dropdown-toggle>
+                            {{ treatment.subject }} &nbsp;
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li role="presentation" ng-repeat="subject in dc.subjects">
+                                <a role="menuitem" tabindex="-1" href
+                                                       ng-click="dc.changeSubject(treatment, subject)">{{subject}}</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
+
+
                 <div class="col-xs-3">
                     <a class="btn btn-default dropdown-toggle">F:{{treatment.case}}</a>
                 </div>
@@ -60,8 +74,8 @@
                 <div class="col-xs-3">
                     <div class="pull-right">
                         <div class="dropdown icon-dropdown" dropdown>
-                            <a class="btn btn-default dropdown-toggle" dropdown-toggle>
-                                <i class="fa fa-medkit"></i>
+                            <a class="btn dropdown-toggle achilles-icon achilles-medication" dropdown-toggle>
+                                &nbsp;
                             </a>
                             <ul class="dropdown-menu dropdown-menu-right">
                                 <li><a href>Medikamente</a></li>
@@ -74,8 +88,8 @@
                             </ul>
                         </div>
                         <div class="dropdown icon-dropdown" dropdown>
-                            <a class="btn btn-default dropdown-toggle" dropdown-toggle>
-                                <i class="fa fa-line-chart"></i>
+                            <a class="btn dropdown-toggle achilles-icon achilles-laboratory" dropdown-toggle>
+                                &nbsp;
                             </a>
                             <ul class="dropdown-menu dropdown-menu-right">
                                 <li><a href>Labor-Resultate</a></li>
@@ -84,8 +98,8 @@
                             </ul>
                         </div>
                         <div class="dropdown icon-dropdown" dropdown>
-                            <a class="btn btn-default dropdown-toggle" dropdown-toggle>
-                                <i class="fa fa-file-text-o"></i>
+                            <a class="btn dropdown-toggle achilles-icon achilles-document" dropdown-toggle>
+                                &nbsp;
                             </a>
                             <ul class="dropdown-menu dropdown-menu-right">
                                 <li><a href>Briefe & Dokumente</a></li>
@@ -100,8 +114,8 @@
                             </ul>
                         </div>
                         <div class="dropdown icon-dropdown" dropdown>
-                            <a class="btn btn-default dropdown-toggle" dropdown-toggle>
-                                <i class="fa fa-line-chart"></i>
+                            <a class="btn dropdown-toggle achilles-icon achilles-auf" dropdown-toggle>
+                                &nbsp;
                             </a>
                             <ul class="dropdown-menu dropdown-menu-right">
                                 <li><a href>Arbeitsunfähigkeit</a></li>
@@ -110,8 +124,8 @@
                             </ul>
                         </div>
                         <div class="dropdown icon-dropdown" dropdown>
-                            <a class="btn btn-default dropdown-toggle" dropdown-toggle>
-                                <i class="fa fa-line-chart"></i>
+                            <a class="btn dropdown-toggle achilles-icon achilles-biometric" dropdown-toggle>
+                                &nbsp;
                             </a>
                             <ul class="dropdown-menu dropdown-menu-right">
                                 <li><a href>Biomertrische Daten</a></li>
@@ -121,32 +135,37 @@
                                 <li><a href>Gehe zu Biometrische Daten</a></li>
                             </ul>
                         </div>
+                        <div class="dropdown icon-dropdown" dropdown>
+                            <a class="btn dropdown-toggle achilles-icon achilles-benefit" dropdown-toggle>
+                                &nbsp;
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li><a href>Leistungen</a></li>
+                                <li role="presentation" class="divider"></li>
+                                <li><a href>Neue Leistung</a></li>
+                                <li role="presentation" class="divider"></li>
+                                <li><a href>Gehe zu Leistungen</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="panel-body">
-            <!--<div class="btn-group margin-bottom-10">-->
-            <!--<a class="btn btn-default" ng-click="addAttribute(treatment, 'first')">+</a>-->
-            <!--</div>-->
             <ul class="list-group">
                 <treatment-entry entry="entry" ng-repeat="entry in treatment.entries | orderBy:'type.name'">
                 </treatment-entry>
                 <li class="list-group-item">
                     <div class="row">
-                        <div class="col-xs-9 col-xs-offset-3">
+                        <div class="col-xs-9 col-xs-offset-3 type-select">
                             <select2 class="form-control"
                                      ng-change="dc.addEntry(treatment.id, dc.newEntry.type, treatment.entries)"
                                      ng-model="dc.newEntry.type"
-                                     ng-options="type as type.name for type in dc.types track by type.id"></select2>
+                                     ng-options="type as type.name group by type.name.substr(0,1) for type in dc.types track by type.id"></select2>
                         </div>
                     </div>
                 </li>
             </ul>
-
-            <!--<div class="btn-group">-->
-            <!--<a class="btn btn-default" ng-click="addAttribute(treatment)">+</a>-->
-            <!--</div>-->
         </div>
     </div>
 </div>
