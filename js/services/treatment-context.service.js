@@ -6,18 +6,19 @@
         .service('TreatmentContext', TreatmentContext);
 
 
-    TreatmentContext.$inject = ['$http', 'urls'];
-    function TreatmentContext($http, urls) {
-        TreatmentContext = {
+    TreatmentContext.$inject = ['$http', '$modal', 'urls'];
+    function TreatmentContext($http, $modal, urls) {
+        var TreatmentContext = {
             addTreatment: addTreatment,
             copyTreatment: copyTreatment,
-            deleteTreatment: deleteTreatment
+            deleteTreatment: deleteTreatment,
+            changeStatus: changeStatus,
+            changeSubject: changeSubject
         };
 
         return TreatmentContext;
 
         function addTreatment(treatment, isMandatorTreatment, isMainTreatment, treatments) {
-            console.log('here');
             var date = new Date();
             $http.post(urls.treatment(), {
                 patient: achillesConfig.patient,
@@ -44,10 +45,39 @@
         }
 
         function deleteTreatment(treatment, treatments) {
-            //TODO: insert prompt here, then uncomment lines below
-            //$http.delete(urls.treatment, treatment).then(function(response){
-            // TODO: remove from treatments
-            // });
+            var modalInstance = $modal.open({
+                templateUrl: '../js/templates/modal.tpl.html',
+                controller: 'ModalController',
+                controllerAs: 'mc',
+                size: 'sm'
+            });
+
+            modalInstance.result.then(function(){
+                $http.post(urls.treatment('delete'), treatment).then(function(response){
+                // TODO: remove from treatments
+                 });
+            });
+        }
+
+        function changeStatus(treatment){
+            treatment.closed = !treatment.closed;
+            $http.post(urls.treatment('put'), treatment).then(function(response){
+                treatment.closed = response.data.closed;
+                console.log('treatment status changed');
+            }, function(error){
+                //did not work, reverse again
+                treatment.closed = !treatment.closed;
+            });
+        }
+
+        function changeSubject(treatment, subject){
+            var oldSubject = treatment.subject;
+            treatment.subject = subject;
+            $http.post(urls.treatment('put'), treatment).then(function(response){
+                treatment.subject = response.data.subject;
+            }, function(error){
+                treatment.subject = oldSubject;
+            });
         }
     }
 })();

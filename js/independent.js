@@ -1,3 +1,4 @@
+//this file is not used anymore, but it's a demonstration of how to $broadcast to angular if needed
 //here everything is global, for a reason
 
 var something = 0;

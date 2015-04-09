@@ -19,13 +19,13 @@
             controller: controller,
             controllerAs: 'dc',
             templateUrl: '../js/templates/treatment.tpl.html',
-            //link: link
+            link: link
         };
 
         return directive;
 
-        controller.$inject = ['$scope', '$http', 'urls', 'EntryType', 'TreatmentContext'];
-        function controller($scope, $http, urls, EntryType, TreatmentContext) {
+        controller.$inject = ['$scope', '$http', 'urls', 'EntryType', 'TreatmentContext', 'Subject'];
+        function controller($scope, $http, urls, EntryType, TreatmentContext, Subject) {
             var dc = this;
 
             dc.newEntry = {
@@ -34,6 +34,9 @@
 
             EntryType.all().then(function (types) {
                 dc.types = types;
+            });
+            Subject.all().then(function(subjects){
+                dc.subjects = subjects;
             });
 
             //rather ugly code, doesn't do anything anymore anyway
@@ -60,6 +63,8 @@
             dc.addTreatment = TreatmentContext.addTreatment;
             dc.copyTreatment = TreatmentContext.copyTreatment;
             dc.deleteTreatment = TreatmentContext.deleteTreatment;
+            dc.changeStatus = TreatmentContext.changeStatus;
+            dc.changeSubject = TreatmentContext.changeSubject;
 
 //            $scope.addAttribute = function (treatment, position) {
 //                console.log('called');
@@ -108,6 +113,18 @@
                     dc.newEntry = {};
                 });
             }
+        }
+
+        function link(scope, element, attribute){
+            element.on('keydown', function(e){
+                console.log(e.which);
+                //F9
+                if(e.which==120){
+                    element.find('.type-select input').select2('open');
+                }
+            });
+            //console.log(element.find('.type-select input').select2('open'));
+            //element.find('.type-select input').select2('open');
         }
     }
 

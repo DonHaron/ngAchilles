@@ -15,6 +15,7 @@
             treatmententry: 'treatmententry',
             treatmententryrow: 'treatmententryrow',
             treatmententrytype: 'treatmententrytype',
+            treatmentsubject: 'treatmentsubject',
             treatment: 'treatment',
             copyTreatment: 'treatment/copy',
         };
@@ -24,6 +25,7 @@
             treatmentEntryTypeList: treatmentEntryTypeList,
             treatmentEntry: treatmentEntry,
             treatmentEntryRow: treatmentEntryRow,
+            treatmentSubject: treatmentSubject,
             treatment: treatment,
             copyTreatment: copyTreatment
         };
@@ -56,8 +58,16 @@
             return baseUrlComponent()+verbComponent+routes.treatmententryrow+'/';
         }
 
-        function treatment(){
-            return baseUrlComponent()+routes.treatment+'/';
+        function treatmentSubject(){
+            return baseUrlComponent()+routes.treatmentsubject+'/';
+        }
+
+        function treatment(verb){
+            var verbComponent = '';
+            if(verb){
+                verbComponent = verb + '/';
+            }
+            return baseUrlComponent()+verbComponent+routes.treatment+'/';
         }
 
         function copyTreatment(){

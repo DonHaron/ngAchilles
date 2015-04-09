@@ -19,6 +19,5 @@
         };
 
         vm.loadEntries();
-
     }
 })();
