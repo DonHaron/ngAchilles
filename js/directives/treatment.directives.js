@@ -24,8 +24,8 @@
 
         return directive;
 
-        controller.$inject = ['$scope', '$http', 'urls', 'EntryType', 'TreatmentContext', 'Subject'];
-        function controller($scope, $http, urls, EntryType, TreatmentContext, Subject) {
+        controller.$inject = ['$scope', '$http', '$modal', 'urls', 'EntryType', 'TreatmentContext', 'Subject'];
+        function controller($scope, $http, $modal, urls, EntryType, TreatmentContext, Subject) {
             var dc = this;
 
             dc.newEntry = {
@@ -113,14 +113,27 @@
                     dc.newEntry = {};
                 });
             }
+
+            dc.testModal = function(){
+                var modalInstance = $modal.open({
+                    templateUrl: '../js/templates/preset-modal.tpl.html',
+                    controller: 'PresetModalController',
+                    controllerAs: 'mc',
+                    size: 'lg'
+
+                });
+            }
         }
 
-        function link(scope, element, attribute){
+        function link(scope, element, attribute, ctrl){
             element.on('keydown', function(e){
-                //console.log(e.which);
+                console.log(e.which);
                 //F9
                 if(e.which==120){
                     element.find('.type-select input').select2('open');
+                }
+                if(e.which==121){
+                   ctrl.testModal();
                 }
             });
             //console.log(element.find('.type-select input').select2('open'));

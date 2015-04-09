@@ -46,8 +46,8 @@
 
         function deleteTreatment(treatment, treatments) {
             var modalInstance = $modal.open({
-                templateUrl: '../js/templates/modal.tpl.html',
-                controller: 'ModalController',
+                templateUrl: '../js/templates/delete-modal.tpl.html',
+                controller: 'DeleteModalController',
                 controllerAs: 'mc',
                 size: 'sm'
             });
