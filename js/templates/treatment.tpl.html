@@ -9,8 +9,8 @@
                         </a>
                         <span class="heading-label" ng-show="treatment.isMainTreatment ">{{treatment.date | date:'EEE dd.MM.yyyy HH:mm'}}</span>
                         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdown-{{index}}">
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href
-                                                       href="/set/treatment">Behandlung einstellen</a>
+                            <li role="presentation"><a role="menuitem" tabindex="-1"
+                                                       href="http://localhost/set/treatment/{{treatment.id}}">Behandlung einstellen</a>
                             </li>
                             <li role="presentation"><a role="menuitem" tabindex="-1" href
                                                        ng-click="dc.deleteTreatment(treatment, treatments)">Behandlung
@@ -84,7 +84,7 @@
                                 <li><a href>Rezept</a></li>
                                 <li><a href>Fremd</a></li>
                                 <li role="presentation" class="divider"></li>
-                                <li><a href>Zu Medi-Listen</a></li>
+                                <li><a href="http://localhost/goto/drug/">Gehe zu Medi-Listen</a></li>
                             </ul>
                         </div>
                         <div class="dropdown icon-dropdown" dropdown>
@@ -94,7 +94,7 @@
                             <ul class="dropdown-menu dropdown-menu-right">
                                 <li><a href>Labor-Resultate</a></li>
                                 <li role="presentation" class="divider"></li>
-                                <li><a href>Gehe zu Labor</a></li>
+                                <li><a href="http://localhost/goto/laboratory/">Gehe zu Labor</a></li>
                             </ul>
                         </div>
                         <div class="dropdown icon-dropdown" dropdown>
@@ -110,7 +110,7 @@
                                 <li><a href>Neuer Brief von</a></li>
                                 <li><a href>Neues Dokument</a></li>
                                 <li role="presentation" class="divider"></li>
-                                <li><a href>Gehe zu Briefe & Dokumente</a></li>
+                                <li><a href="http://localhost/goto/document/">Gehe zu Briefe & Dokumente</a></li>
                             </ul>
                         </div>
                         <div class="dropdown icon-dropdown" dropdown>
@@ -132,7 +132,7 @@
                                 <li role="presentation" class="divider"></li>
                                 <li><a href>Neue Biometrische Daten</a></li>
                                 <li role="presentation" class="divider"></li>
-                                <li><a href>Gehe zu Biometrische Daten</a></li>
+                                <li><a href="http://localhost/goto/biometric/">Gehe zu Biometrische Daten</a></li>
                             </ul>
                         </div>
                         <div class="dropdown icon-dropdown" dropdown>
@@ -144,7 +144,7 @@
                                 <li role="presentation" class="divider"></li>
                                 <li><a href>Neue Leistung</a></li>
                                 <li role="presentation" class="divider"></li>
-                                <li><a href>Gehe zu Leistungen</a></li>
+                                <li><a href="http://localhost/goto/invoice/">Gehe zu Leistungen</a></li>
                             </ul>
                         </div>
                     </div>
