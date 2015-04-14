@@ -25,6 +25,69 @@ DELETE: /treatment/<treatment id> #Behandlung löschen
 
 Lock abfragen & setzen, lösen
 
-PUT: treatmententry/lock/<entry id>
-GET: treatmententry/lock/<entry id>
-DELETE: treatmententry/lock/<entry id>
+PUT: treatmententryrow/lock/<entry id>/process/<process id>
+GET: treatmententryrow/lock/<entry id>/process/<process id>
+DELETE: treatmententryrow/lock/<entry id>/process/<process id>
+
+
+Listen für die Popupmenus der Behandlungen
+
+GET: treatment/<treatment id>/laboratorylist
+GET:  "                      /biometriclist
+GET:  "                      /documentlist
+GET:  "                      /disabilitylist
+GET:  "                      /caselist
+
+
+-----------------------------------------------------------------------------------------------------------------------------
+URLS für Location Changes
+
+Einstellungen auf bestehenden Entities (PUT)
+
+Behandlung einstellen:              http://localhost/set/treatment/{{treatment.id}}/
+Labor bearbeiten:                   http://localhost/set/laboratory/{{laboratory.id}}/
+Dokument bearbeiten:                http://localhost/set/document/{{document.id}}/
+Biometrische Daten bearbeiten:      http://localhost/set/biometric/{{biometric.id}}/
+AUF bearbeiten:                     http://localhost/set/disability/{{disability.id}}/
+
+
+Entity neu erstellen (POST)
+
+Neue Mediliste:                     http://localhost/treatment/{{treatment.id}}/drug/given/
+Neues Rezept:                       http://localhost/treatment/{{treatment.id}}/drug/prescription/
+Neue Fremdmedikation:               http://localhost/treatment/{{treatment.id}}/drug/foreign/
+
+Neuer Brief an:                     http://localhost/treatment/{{treatment.id}}/document/letterto/
+Neuer Brief von:                    http://localhost/treatment/{{treatment.id}}/document/letterfrom/
+Neues Dokument:                     http://localhost/treatment/{{treatment.id}}/document/document/
+
+Neue AUF:                           http://localhost/treatment/{{treatment.id}}/disability/
+Neue biometrische:                  http://localhost/treatment/{{treatment.id}}/biometric/
+
+Neue Leist. zu Behandlung:          http://localhost/treatment/{{treatment.id}}/service/treatment/
+Neue Leistungen:                    http://localhost/treatment/{{treatment.id}}/service/generic/
+
+Fall zuweisen:                      http://localhost/treatment/{{treatment.id}}/case/
+
+
+
+Entity zeigen in Popup (GET)
+
+Leistungen zeigen:                  http://localhost/show/service/{{treatment.id}}/
+Fall zeigen:                        http://localhost/show/case/{{case.id}}/
+Rechnung zeigen:                    http://localhost/show/invoice/{{invoice.id}}/
+
+
+Entity löschen (DELETE)
+
+Fall entfernen:                     http://localhost/delete/case/{{case.id}}/
+
+
+
+Tab Change:
+http://localhost/goto/drug
+http://localhost/goto/laboratory
+http://localhost/goto/document
+http://localhost/goto/disability
+http://localhost/goto/biometric
+http://localhost/goto/invoice
