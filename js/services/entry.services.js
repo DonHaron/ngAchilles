@@ -3,7 +3,7 @@
 
     angular
         .module('achilles')
-        .service('EntryType', EntryType);
+        .factory('EntryType', EntryType);
 
     EntryType.$inject = ['$http', '$q', 'urls'];
     function EntryType($http, $q, urls) {
@@ -12,7 +12,8 @@
             all: all
         };
 
-        var entryTypes = [];
+        var entryTypes = [],
+            deferred;
 
         return EntryType;
 

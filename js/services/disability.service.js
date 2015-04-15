@@ -3,15 +3,15 @@
 
     angular
         .module('achilles')
-        .service('Disability', Disability);
+        .service('DisabilityCertificate', DisabilityCertificate);
 
-    Disability.$inject = ['$http', 'urls'];
-    function Disability($http, urls){
-        var Disability = {
+    DisabilityCertificate.$inject = ['$http', 'urls'];
+    function DisabilityCertificate($http, urls){
+        var DisabilityCertificate = {
             list: list
         };
 
-        return Disability;
+        return DisabilityCertificate;
 
         /* list by treatment */
         function list(treatmentId){

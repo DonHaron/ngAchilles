@@ -94,7 +94,7 @@
                             <ul class="dropdown-menu dropdown-menu-right">
                                 <li><a href>Labor-Resultate</a></li>
                                 <li role="presentation" class="divider" ng-show="dc.laboratoryReports.length"></li>
-                                <li ng-repeat="laboratoryReport in dc.laboratoryReports"><a href>{{laboratoryReport.title}}</a></li>
+                                <li ng-repeat="laboratoryReport in dc.laboratoryReports"><a href>{{laboratoryReport.name}}</a></li>
                                 <li role="presentation" class="divider"></li>
                                 <li><a ng-href="{{baseUrl}}goto/laboratory/">Gehe zu Labor</a></li>
                             </ul>
@@ -115,12 +115,14 @@
                                 <li><a ng-href="{{baseUrl}}goto/document/">Gehe zu Briefe & Dokumente</a></li>
                             </ul>
                         </div>
-                        <div class="dropdown icon-dropdown" dropdown>
+                        <div class="dropdown icon-dropdown" dropdown on-toggle="dc.loadDisability(open)">
                             <a class="btn dropdown-toggle achilles-icon achilles-auf" dropdown-toggle>
                                 &nbsp;
                             </a>
                             <ul class="dropdown-menu dropdown-menu-right">
                                 <li><a href>Arbeitsunfähigkeit</a></li>
+                                <li role="presentation" class="divider" ng-show="dc.disabilityCertificates.length"></li>
+                                <li ng-repeat="disabilityCertificate in dc.disabilityCertificates"><a href>{{disabilityCertificate.name}}</a></li>
                                 <li role="presentation" class="divider"></li>
                                 <li><a ng-href="{{baseUrl}}treatment/{{treatment.id}}/disability/">Neue Arbeitsunfähigkeit</a></li>
                             </ul>
@@ -132,7 +134,7 @@
                             <ul class="dropdown-menu dropdown-menu-right">
                                 <li><a href>Biometrische Daten</a></li>
                                 <li role="presentation" class="divider" ng-show="dc.biometrics.length"></li>
-                                <li ng-repeat="biometric in dc.biometrics"><a href>{{biometric.date}}</a></li>
+                                <li ng-repeat="biometric in dc.biometrics"><a href>{{biometric.name}}</a></li>
                                 <li role="presentation" class="divider"></li>
                                 <li><a ng-href="{{baseUrl}}treatment/{{treatment.id}}/biometric/">Neue Biometrische Daten</a></li>
                                 <li role="presentation" class="divider"></li>

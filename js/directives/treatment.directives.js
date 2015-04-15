@@ -25,9 +25,9 @@
         return directive;
 
         controller.$inject = ['$scope', '$http', '$modal', 'urls', 'EntryType',
-            'TreatmentContext', 'Subject', 'Document', 'LaboratoryReport', 'Biometric'];
+            'TreatmentContext', 'Subject', 'Document', 'LaboratoryReport', 'Biometric', 'DisabilityCertificate'];
         function controller($scope, $http, $modal, urls, EntryType,
-                            TreatmentContext, Subject, Document, LaboratoryReport, Biometric) {
+                            TreatmentContext, Subject, Document, LaboratoryReport, Biometric, DisabilityCertificate) {
             var dc = this,
                 treatmentId = $scope.treatment.id;
 
@@ -47,6 +47,7 @@
             dc.loadDocuments = loadDocuments;
             dc.loadLaboratoryReports = loadLaboratoryReports;
             dc.loadBiometrics = loadBiometrics;
+            dc.loadDisability = loadDisability;
 
             $scope.baseUrl = urls.baseUrl();
 
@@ -153,11 +154,21 @@
                         .then(function (biometrics) {
                             dc.biometrics = biometrics;
                         }, function () {
-                            //TODO: remove after testing
-                            dc.biometrics = [
-                                {id:1, date:'12.03.2013'},
-                                {id:2, date:'19.11.2013'}
-                            ];
+                            //TODO: handle this case
+
+                        });
+
+                }
+            }
+
+            function loadDisability(open) {
+                //only load the disability if the dropdown was opened, and the disability were not already loaded before
+                if (open && !dc.disabilityCertificates) {
+                    DisabilityCertificate.list(treatmentId)
+                        .then(function (disabilityCertificates) {
+                            dc.disabilityCertificates = disabilityCertificates;
+                        }, function () {
+                            //TODO: handle this case
                         });
 
                 }

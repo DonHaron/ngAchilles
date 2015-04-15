@@ -1,4 +1,4 @@
-(function(){
+(function () {
     "use strict";
 
     angular
@@ -7,10 +7,10 @@
         .factory('SpinnerHttpInterceptor', SpinnerHttpInterceptor);
 
     ProviderConfig.$inject = ['$httpProvider'];
-    function ProviderConfig($httpProvider){
-        $httpProvider.responseInterceptors.push('SpinnerHttpInterceptor');
+    function ProviderConfig($httpProvider) {
+        $httpProvider.interceptors.push('SpinnerHttpInterceptor');
 
-        function spinnerFunction(data, headersGetter){
+        function spinnerFunction(data, headersGetter) {
             $('#loading-overlay').css('display', 'flex');
             return data;
         }
@@ -18,16 +18,23 @@
         $httpProvider.defaults.transformRequest.push(spinnerFunction);
     }
 
-    SpinnerHttpInterceptor.$inject = ['$q', '$window'];
-    function SpinnerHttpInterceptor($q, $window){
-        function SpinnerHttpInterceptor(promise) {
-            return promise.then(function(response){
-                $('#loading-overlay').css('display', 'none');
+    SpinnerHttpInterceptor.$inject = ['$q', '$timeout'];
+    function SpinnerHttpInterceptor($q, $timeout) {
+        var SpinnerHttpInterceptor = {
+            'response': function (response) {
+                //do this with a delay, otherwise it just flashes too quickly if the request is too quick
+                $timeout(function () {
+                    $('#loading-overlay').css('display', 'none');
+                }, 150);
                 return response;
-            }, function(response){
-                $('#loading-overlay').css('display', 'none');
+            },
+            'responseError': function (response) {
+                //do this with a delay, otherweise it just flashes too quickly if the request is too quick
+                $timeout(function () {
+                    $('#loading-overlay').css('display', 'none');
+                }, 150);
                 return $q.reject(response);
-            });
+            }
         }
 
         return SpinnerHttpInterceptor;
