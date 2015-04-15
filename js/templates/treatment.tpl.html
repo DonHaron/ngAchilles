@@ -74,7 +74,7 @@
                 <div class="col-xs-3">
                     <div class="pull-right">
                         <div class="dropdown icon-dropdown" dropdown>
-                            <a class="btn dropdown-toggle achilles-icon achilles-medication" dropdown-toggle>
+                            <a class="btn dropdown-toggle achilles-icon achilles-medication" ng-class="{'empty': !treatment.hasMedication}" dropdown-toggle>
                                 &nbsp;
                             </a>
                             <ul class="dropdown-menu dropdown-menu-right">
@@ -88,7 +88,7 @@
                             </ul>
                         </div>
                         <div class="dropdown icon-dropdown" dropdown on-toggle="dc.loadLaboratoryReports(open)">
-                            <a class="btn dropdown-toggle achilles-icon achilles-laboratory" dropdown-toggle>
+                            <a class="btn dropdown-toggle achilles-icon achilles-laboratory"  ng-class="{'empty': !treatment.hasLaboratory}" dropdown-toggle>
                                 &nbsp;
                             </a>
                             <ul class="dropdown-menu dropdown-menu-right">
@@ -100,7 +100,7 @@
                             </ul>
                         </div>
                         <div class="dropdown icon-dropdown" dropdown on-toggle="dc.loadDocuments(open, dc.documents)">
-                            <a class="btn dropdown-toggle achilles-icon achilles-document" dropdown-toggle>
+                            <a class="btn dropdown-toggle achilles-icon achilles-document"  ng-class="{'empty': !treatment.hasDocument}" dropdown-toggle>
                                 &nbsp;
                             </a>
                             <ul class="dropdown-menu dropdown-menu-right">
@@ -116,7 +116,7 @@
                             </ul>
                         </div>
                         <div class="dropdown icon-dropdown" dropdown on-toggle="dc.loadDisability(open)">
-                            <a class="btn dropdown-toggle achilles-icon achilles-auf" dropdown-toggle>
+                            <a class="btn dropdown-toggle achilles-icon achilles-auf"  ng-class="{'empty': !treatment.hasDisability}" dropdown-toggle>
                                 &nbsp;
                             </a>
                             <ul class="dropdown-menu dropdown-menu-right">
@@ -128,7 +128,7 @@
                             </ul>
                         </div>
                         <div class="dropdown icon-dropdown" dropdown on-toggle="dc.loadBiometrics(open)">
-                            <a class="btn dropdown-toggle achilles-icon achilles-biometric" dropdown-toggle>
+                            <a class="btn dropdown-toggle achilles-icon achilles-biometric"  ng-class="{'empty': !treatment.hasBiometric}" dropdown-toggle>
                                 &nbsp;
                             </a>
                             <ul class="dropdown-menu dropdown-menu-right">
@@ -142,7 +142,7 @@
                             </ul>
                         </div>
                         <div class="dropdown icon-dropdown" dropdown>
-                            <a class="btn dropdown-toggle achilles-icon achilles-benefit" dropdown-toggle>
+                            <a class="btn dropdown-toggle achilles-icon achilles-benefit"  ng-class="{'empty': !treatment.hasService}" dropdown-toggle>
                                 &nbsp;
                             </a>
                             <ul class="dropdown-menu dropdown-menu-right">

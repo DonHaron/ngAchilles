@@ -137,9 +137,19 @@
     background-image: url('../images/icons/medi.png');
 }
 
+.achilles-medication.empty,
+.achilles-medication.empty:active {
+    background-image: url('../images/icons/medi_g.png');
+}
+
 .achilles-laboratory,
 .achilles-laboratory:active {
     background-image: url('../images/icons/labor.png');
+}
+
+.achilles-laboratory.empty,
+.achilles-laboratory.empty:active {
+    background-image: url('../images/icons/labor_g.png');
 }
 
 .achilles-document,
@@ -147,9 +157,19 @@
     background-image: url('../images/icons/dokumente.png');
 }
 
+.achilles-document.empty,
+.achilles-document.empty:active {
+    background-image: url('../images/icons/dokumente_g.png');
+}
+
 .achilles-auf,
 .achilles-auf:active {
     background-image: url('../images/icons/auf.png');
+}
+
+.achilles-auf.empty,
+.achilles-auf.empty:active {
+    background-image: url('../images/icons/auf_g.png');
 }
 
 .achilles-biometric,
@@ -157,7 +177,17 @@
     background-image: url('../images/icons/biodaten.png');
 }
 
+.achilles-biometric.empty,
+.achilles-biometric.empty:active {
+    background-image: url('../images/icons/biodaten_g.png');
+}
+
 .achilles-benefit,
 .achilles-benefit:active {
     background-image: url('../images/icons/leistung.png');
+}
+
+.achilles-benefit.empty,
+.achilles-benefit.empty:active {
+    background-image: url('../images/icons/leistung_g.png');
 }

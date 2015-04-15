@@ -10,8 +10,12 @@
     function ProviderConfig($httpProvider) {
         $httpProvider.interceptors.push('SpinnerHttpInterceptor');
 
-        function spinnerFunction(data, headersGetter) {
-            $('#loading-overlay').css('display', 'flex');
+        function spinnerFunction(data, headersGetter, status) {
+            if(data == undefined){
+                //only do this on non-payload data
+                //TODO: find a way to restrict this to only GET-requests
+                $('#loading-overlay').css('display', 'flex');
+            }
             return data;
         }
 
