@@ -94,7 +94,7 @@
                             <ul class="dropdown-menu dropdown-menu-right">
                                 <li><a href>Labor-Resultate</a></li>
                                 <li role="presentation" class="divider" ng-show="dc.laboratoryReports.length"></li>
-                                <li ng-repeat="laboratoryReport in dc.laboratoryReports"><a href>{{laboratoryReport.name}}</a></li>
+                                <li ng-repeat="laboratoryReport in dc.laboratoryReports"><a ng-href="{{baseUrl}}set/laboratory/{{laboratoryReport.id}}/">{{laboratoryReport.name}}</a></li>
                                 <li role="presentation" class="divider"></li>
                                 <li><a ng-href="{{baseUrl}}goto/laboratory/">Gehe zu Labor</a></li>
                             </ul>
@@ -106,7 +106,7 @@
                             <ul class="dropdown-menu dropdown-menu-right">
                                 <li><a href>Briefe & Dokumente</a></li>
                                 <li role="presentation" class="divider" ng-show="dc.documents.length"></li>
-                                <li ng-repeat="document in dc.documents"><a href>{{document.name}}</a></li>
+                                <li ng-repeat="document in dc.documents"><a ng-href="{{baseUrl}}set/document/{{document.id}}/">{{document.name}}</a></li>
                                 <li role="presentation" class="divider"></li>
                                 <li><a ng-href="{{baseUrl}}treatment/{{treatment.id}}/document/letterto/">Neuer Brief an</a></li>
                                 <li><a ng-href="{{baseUrl}}treatment/{{treatment.id}}/document/letterfrom/">Neuer Brief von</a></li>
@@ -122,7 +122,7 @@
                             <ul class="dropdown-menu dropdown-menu-right">
                                 <li><a href>Arbeitsunfähigkeit</a></li>
                                 <li role="presentation" class="divider" ng-show="dc.disabilityCertificates.length"></li>
-                                <li ng-repeat="disabilityCertificate in dc.disabilityCertificates"><a href>{{disabilityCertificate.name}}</a></li>
+                                <li ng-repeat="disabilityCertificate in dc.disabilityCertificates"><a ng-href="{{baseUrl}}set/disability/{{disabilityCertificate.id}}/">{{disabilityCertificate.name}}</a></li>
                                 <li role="presentation" class="divider"></li>
                                 <li><a ng-href="{{baseUrl}}treatment/{{treatment.id}}/disability/">Neue Arbeitsunfähigkeit</a></li>
                             </ul>
@@ -134,7 +134,7 @@
                             <ul class="dropdown-menu dropdown-menu-right">
                                 <li><a href>Biometrische Daten</a></li>
                                 <li role="presentation" class="divider" ng-show="dc.biometrics.length"></li>
-                                <li ng-repeat="biometric in dc.biometrics"><a href>{{biometric.name}}</a></li>
+                                <li ng-repeat="biometric in dc.biometrics"><a ng-href="{{baseUrl}}set/biometric/{{biometric.id}}/">{{biometric.name}}</a></li>
                                 <li role="presentation" class="divider"></li>
                                 <li><a ng-href="{{baseUrl}}treatment/{{treatment.id}}/biometric/">Neue Biometrische Daten</a></li>
                                 <li role="presentation" class="divider"></li>
@@ -155,7 +155,7 @@
                                 <li><a ng-href="{{baseUrl}}show/service/{{treatment.id}}/">Leistungen zeigen</a></li>
 
                                 <li role="presentation" class="divider"></li>
-                                <li><a ng-href="{{baseUrl}}goto/invoice/">Gehe zu Leistungen</a></li>
+                                <li><a ng-href="{{baseUrl}}goto/invoice/">Gehe zu Rechnungen</a></li>
                             </ul>
                         </div>
                     </div>
