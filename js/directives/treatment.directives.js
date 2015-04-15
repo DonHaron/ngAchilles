@@ -49,7 +49,7 @@
             dc.loadBiometrics = loadBiometrics;
             dc.loadDisability = loadDisability;
 
-            $scope.baseUrl = urls.baseUrl();
+            dc.baseUrl = urls.baseUrl();
 
 
             dc.addTreatment = TreatmentContext.addTreatment;
@@ -249,8 +249,8 @@
         function link(scope, element) {
             if (scope.row.new == true) {
                 $timeout(function () {
-                    var input = element.find('input').eq(0);
-                    input.focus();
+                    var textarea = element.find('textarea').eq(0);
+                    textarea.focus();
                 }, 50);
             }
         }
@@ -270,7 +270,8 @@
                 row: '='
             },
             require: ['^treatment', '^treatmentEntry'],
-            template: '<div ng-class="columnClass"><div class="form-group"><input class="form-control" ng-model="content" ng-disabled="{{readonly}}"></div></div>',
+            templateUrl: '../js/templates/treatment-column.tpl.html',
+//            template: '<div ng-class="columnClass"><div class="form-group"><input class="form-control" ng-model="content" ng-disabled="{{readonly}}"></div></div>',
             link: link
         };
 
@@ -281,9 +282,9 @@
             var entryCtrl = ctrls[1];
             scope.columnClass = 'col-xs-' + attrs.width;
 
-            var input = element.find('input');
-            input.on('blur', function (e) {
-                if (input.hasClass('ng-dirty')) {
+            var textarea = element.find('textarea');
+            textarea.on('blur', function (e) {
+                if (textarea.hasClass('ng-dirty')) {
                     console.log(scope.row);
                     //$http.put(urls.treatmentEntryRow(), scope.row).then(function (response) {
                     //PUT/POST-workaround
@@ -304,23 +305,24 @@
                 }
             });
 
-            input.on('keydown', function (e) {
+            textarea.on('keydown', function (e) {
                 if (e.ctrlKey && e.shiftKey && e.which == 8) {
-                    //see if there is a previous input element in the same entry. If there is, focus on it
+                    //see if there is a previous textarea element in the same entry. If there is, focus on it
                     $timeout(function () {
-                        var prev = element.parent().prev().find('input');
+                        var prev = element.parent().prev().find('textarea');
                         console.log(prev.length);
                         if (prev.length) {
                             prev.eq(0).focus();
                         } else {
                             //if no previous element is found, look for the next one
-                            element.parent().next().find('input').eq(0).focus()
+                            element.parent().next().find('textarea').eq(0).focus()
                         }
 
                     }, 150);
                     entryCtrl.removeRow(scope.row);
                 }
             });
+
         }
     }
 
