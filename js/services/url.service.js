@@ -18,6 +18,11 @@
             treatmentsubject: 'treatmentsubject',
             treatment: 'treatment',
             copyTreatment: 'treatment/copy',
+            documentList: 'treatment/:treatment/documentlist',
+            laboratoryList: 'treatment/:treatment/laboratorylist',
+            biometricList: 'treatment/:treatment/biometriclist',
+            disabilityList: 'treatment/:treatment/disabilitylist',
+            caseList: 'treatment/:treatment/caselist'
         };
 
         var factory = {
@@ -27,7 +32,13 @@
             treatmentEntryRow: treatmentEntryRow,
             treatmentSubject: treatmentSubject,
             treatment: treatment,
-            copyTreatment: copyTreatment
+            copyTreatment: copyTreatment,
+            baseUrl: baseUrlComponent,
+            documentList: documentList,
+            laboratoryList: laboratoryList,
+            biometricList: biometricList,
+            disabilityList: disabilityList,
+            caseList: caseList
         };
 
         return factory;
@@ -73,5 +84,26 @@
         function copyTreatment(){
             return baseUrlComponent()+routes.copyTreatment+'/';
         }
+
+        function documentList(treatmentId){
+            return baseUrlComponent()+routes.documentList.replace(/:([a-z]\w*)/gi, treatmentId)+'/';
+        }
+
+        function laboratoryList(treatmentId){
+            return baseUrlComponent()+routes.laboratoryList.replace(/:([a-z]\w*)/gi, treatmentId)+'/';
+        }
+
+        function biometricList(treatmentId){
+            return baseUrlComponent()+routes.biometricList.replace(/:([a-z]\w*)/gi, treatmentId)+'/';
+        }
+
+        function disabilityList(treatmentId){
+            return baseUrlComponent()+routes.disabilityList.replace(/:([a-z]\w*)/gi, treatmentId)+'/';
+        }
+
+        function caseList(treatmentId){
+            return baseUrlComponent()+routes.caseList.replace(/:([a-z]\w*)/gi, treatmentId)+'/';
+        }
+
     }
 })();

@@ -10,7 +10,7 @@
                         <span class="heading-label" ng-show="treatment.isMainTreatment ">{{treatment.date | date:'EEE dd.MM.yyyy HH:mm'}}</span>
                         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdown-{{index}}">
                             <li role="presentation"><a role="menuitem" tabindex="-1"
-                                                       href="http://localhost/set/treatment/{{treatment.id}}">Behandlung einstellen</a>
+                                                       ng-href="{{baseUrl}}set/treatment/{{treatment.id}}">Behandlung einstellen</a>
                             </li>
                             <li role="presentation"><a role="menuitem" tabindex="-1" href
                                                        ng-click="dc.deleteTreatment(treatment, treatments)">Behandlung
@@ -80,11 +80,11 @@
                             <ul class="dropdown-menu dropdown-menu-right">
                                 <li><a href>Medikamente</a></li>
                                 <li role="presentation" class="divider"></li>
-                                <li><a href="http://localhost/treatment/{{treatment.id}}/drug/given/">Abgeben</a></li>
-                                <li><a href="http://localhost/treatment/{{treatment.id}}/drug/prescription/">Rezept</a></li>
-                                <li><a href="http://localhost/treatment/{{treatment.id}}/drug/foreign/">Fremd</a></li>
+                                <li><a ng-href="{{baseUrl}}treatment/{{treatment.id}}/drug/given/">Abgeben</a></li>
+                                <li><a ng-href="{{baseUrl}}treatment/{{treatment.id}}/drug/prescription/">Rezept</a></li>
+                                <li><a ng-href="{{baseUrl}}treatment/{{treatment.id}}/drug/foreign/">Fremd</a></li>
                                 <li role="presentation" class="divider"></li>
-                                <li><a href="http://localhost/goto/drug/">Gehe zu Medi-Listen</a></li>
+                                <li><a ng-href="{{baseUrl}}goto/drug/">Gehe zu Medi-Listen</a></li>
                             </ul>
                         </div>
                         <div class="dropdown icon-dropdown" dropdown>
@@ -94,7 +94,7 @@
                             <ul class="dropdown-menu dropdown-menu-right">
                                 <li><a href>Labor-Resultate</a></li>
                                 <li role="presentation" class="divider"></li>
-                                <li><a href="http://localhost/goto/laboratory/">Gehe zu Labor</a></li>
+                                <li><a ng-href="{{baseUrl}}goto/laboratory/">Gehe zu Labor</a></li>
                             </ul>
                         </div>
                         <div class="dropdown icon-dropdown" dropdown>
@@ -104,13 +104,13 @@
                             <ul class="dropdown-menu dropdown-menu-right">
                                 <li><a href>Briefe & Dokumente</a></li>
                                 <li role="presentation" class="divider"></li>
-                                <li><a href>25.03.15 123</a></li>
+                                <li ng-repeat="document in dc.documents"><a href>{{document.name}}</a></li>
                                 <li role="presentation" class="divider"></li>
-                                <li><a href="http://localhost/treatment/{{treatment.id}}/document/letterto/">Neuer Brief an</a></li>
-                                <li><a href="http://localhost/treatment/{{treatment.id}}/document/letterfrom/">Neuer Brief von</a></li>
-                                <li><a href="http://localhost/treatment/{{treatment.id}}/document/document/">Neues Dokument</a></li>
+                                <li><a ng-href="{{baseUrl}}treatment/{{treatment.id}}/document/letterto/">Neuer Brief an</a></li>
+                                <li><a ng-href="{{baseUrl}}treatment/{{treatment.id}}/document/letterfrom/">Neuer Brief von</a></li>
+                                <li><a ng-href="{{baseUrl}}treatment/{{treatment.id}}/document/document/">Neues Dokument</a></li>
                                 <li role="presentation" class="divider"></li>
-                                <li><a href="http://localhost/goto/document/">Gehe zu Briefe & Dokumente</a></li>
+                                <li><a ng-href="{{baseUrl}}goto/document/">Gehe zu Briefe & Dokumente</a></li>
                             </ul>
                         </div>
                         <div class="dropdown icon-dropdown" dropdown>
@@ -120,7 +120,7 @@
                             <ul class="dropdown-menu dropdown-menu-right">
                                 <li><a href>Arbeitsunfähigkeit</a></li>
                                 <li role="presentation" class="divider"></li>
-                                <li><a href="http://localhost/treatment/{{treatment.id}}/disability/">Neue Arbeitsunfähigkeit</a></li>
+                                <li><a ng-href="{{baseUrl}}treatment/{{treatment.id}}/disability/">Neue Arbeitsunfähigkeit</a></li>
                             </ul>
                         </div>
                         <div class="dropdown icon-dropdown" dropdown>
@@ -130,9 +130,9 @@
                             <ul class="dropdown-menu dropdown-menu-right">
                                 <li><a href>Biomertrische Daten</a></li>
                                 <li role="presentation" class="divider"></li>
-                                <li><a href="http://localhost/treatment/{{treatment.id}}/biometric/">Neue Biometrische Daten</a></li>
+                                <li><a ng-href="{{baseUrl}}treatment/{{treatment.id}}/biometric/">Neue Biometrische Daten</a></li>
                                 <li role="presentation" class="divider"></li>
-                                <li><a href="http://localhost/goto/biometric/">Gehe zu Biometrische Daten</a></li>
+                                <li><a ng-href="{{baseUrl}}goto/biometric/">Gehe zu Biometrische Daten</a></li>
                             </ul>
                         </div>
                         <div class="dropdown icon-dropdown" dropdown>
@@ -142,14 +142,14 @@
                             <ul class="dropdown-menu dropdown-menu-right">
                                 <li><a href>Leistungen</a></li>
                                 <li role="presentation" class="divider"></li>
-                                <li><a href="http://localhost/treatment/{{treatment.id}}/service/treatment/">Neue Leistungen zu Behandlung</a></li>
-                                <li><a href="http://localhost/treatment/{{treatment.id}}/service/generic/">Neue Leistungen</a></li>
+                                <li><a ng-href="{{baseUrl}}treatment/{{treatment.id}}/service/treatment/">Neue Leistungen zu Behandlung</a></li>
+                                <li><a ng-href="{{baseUrl}}treatment/{{treatment.id}}/service/generic/">Neue Leistungen</a></li>
 
                                 <!-- TODO show 2 Menus above if Treatment is NOT billed, show following Menu if Treatment is billed -->
-                                <li><a href="http://localhost/show/service/{{treatment.id}}/">Leistungen zeigen</a></li>
+                                <li><a ng-href="{{baseUrl}}show/service/{{treatment.id}}/">Leistungen zeigen</a></li>
 
                                 <li role="presentation" class="divider"></li>
-                                <li><a href="http://localhost/goto/invoice/">Gehe zu Leistungen</a></li>
+                                <li><a ng-href="{{baseUrl}}goto/invoice/">Gehe zu Leistungen</a></li>
                             </ul>
                         </div>
                     </div>

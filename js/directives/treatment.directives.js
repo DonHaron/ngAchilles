@@ -24,42 +24,37 @@
 
         return directive;
 
-        controller.$inject = ['$scope', '$http', '$modal', 'urls', 'EntryType', 'TreatmentContext', 'Subject'];
-        function controller($scope, $http, $modal, urls, EntryType, TreatmentContext, Subject) {
+        controller.$inject = ['$scope', '$http', '$modal', 'urls', 'EntryType', 'TreatmentContext', 'Subject', 'Document'];
+        function controller($scope, $http, $modal, urls, EntryType, TreatmentContext, Subject, Document) {
             var dc = this;
 
             dc.newEntry = {
                 type: null
             }
 
-            EntryType.all().then(function (types) {
-                dc.types = types;
-            });
-            Subject.all().then(function(subjects){
-                dc.subjects = subjects;
-            });
+            EntryType.all()
+                .then(function (types) {
+                    dc.types = types;
+                });
+            Subject.all()
+                .then(function (subjects) {
+                    dc.subjects = subjects;
+                });
+            Document.list($scope.treatment.id)
+                .then(function (documents) {
+                    dc.documents = documents;
+                }, function(error){
+                    //TODO: remove after testing
+                    console.error(error.statusText);
+                    dc.documents = [
+                        {id: 1, name:'War & Peace'},
+                        {id: 2, name:'Skin Game'}
+                    ];
+                })
 
-            //rather ugly code, doesn't do anything anymore anyway
-//            dc.setEntry = function (entry) {
-//                dc.removeEntry(entry);
-////
-//                for (var i = 0, entries = $scope.treatment.entries; i < entries.length; i++) {
-//                    if (entry.type.id == entries[i].type.id) {
-//                        entries[i] = entry;
-//                        return;
-//                    }
-//                }
-//                entries.push(entry);
-//                //cannot just set the entry to be the new entry, otherwise we lose the association to the parent element
-//                //TODO: look for an entry with the same type ID and replace it
-//                //TODO: handle an empty entry or one with invalid data
-////                $scope.entry.treatmentId = entry.treatmentId;
-////                $scope.entry.id = entry.id;
-////                $scope.entry.type = entry.type;
-////                $scope.entry.columns = entry.columns;
-//                //TODO: make this work on the child
-//                // $scope.entryform.$setPristine();
-//            }
+            $scope.baseUrl = urls.baseUrl();
+
+
             dc.addTreatment = TreatmentContext.addTreatment;
             dc.copyTreatment = TreatmentContext.copyTreatment;
             dc.deleteTreatment = TreatmentContext.deleteTreatment;
@@ -91,30 +86,30 @@
 
             // add an entry to a treatment, and add it to the list of entries or replace
             // the existing one with the same type id
-            dc.addEntry = function(treatmentId, type, entries) {
+            dc.addEntry = function (treatmentId, type, entries) {
                 //entry: {treatmentId: <id>, type: <type object>}
                 $http.post(urls.treatmentEntry(), {
                     treatmentId: treatmentId,
                     type: type
-                }).then(function(response){
+                }).then(function (response) {
                     var entry = response.data,
                         replaced = false;
-                    for(var i=0;i<entries.length;i++){
-                        if(entry.type.id == entries[i].type.id){
+                    for (var i = 0; i < entries.length; i++) {
+                        if (entry.type.id == entries[i].type.id) {
                             console.log('already in list');
                             entries[i] = entry;
                             replaced = true;
                             break;
                         }
                     }
-                    if(!replaced){
+                    if (!replaced) {
                         entries.push(entry);
                     }
                     dc.newEntry = {};
                 });
             }
 
-            dc.testModal = function(){
+            dc.testModal = function () {
                 var modalInstance = $modal.open({
                     templateUrl: '../js/templates/preset-modal.tpl.html',
                     controller: 'PresetModalController',
@@ -123,17 +118,19 @@
 
                 });
             }
+
+
         }
 
-        function link(scope, element, attribute, ctrl){
-            element.on('keydown', function(e){
-                console.log(e.which);
+        function link(scope, element, attribute, ctrl) {
+            element.on('keydown', function (e) {
+                //console.log(e.which);
                 //F9
-                if(e.which==120){
+                if (e.which == 120) {
                     element.find('.type-select input').select2('open');
                 }
-                if(e.which==121){
-                   ctrl.testModal();
+                if (e.which == 121) {
+                    ctrl.testModal();
                 }
             });
             //console.log(element.find('.type-select input').select2('open'));
