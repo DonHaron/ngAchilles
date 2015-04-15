@@ -87,23 +87,25 @@
                                 <li><a ng-href="{{baseUrl}}goto/drug/">Gehe zu Medi-Listen</a></li>
                             </ul>
                         </div>
-                        <div class="dropdown icon-dropdown" dropdown>
+                        <div class="dropdown icon-dropdown" dropdown on-toggle="dc.loadLaboratoryReports(open)">
                             <a class="btn dropdown-toggle achilles-icon achilles-laboratory" dropdown-toggle>
                                 &nbsp;
                             </a>
                             <ul class="dropdown-menu dropdown-menu-right">
                                 <li><a href>Labor-Resultate</a></li>
+                                <li role="presentation" class="divider" ng-show="dc.laboratoryReports.length"></li>
+                                <li ng-repeat="laboratoryReport in dc.laboratoryReports"><a href>{{laboratoryReport.title}}</a></li>
                                 <li role="presentation" class="divider"></li>
                                 <li><a ng-href="{{baseUrl}}goto/laboratory/">Gehe zu Labor</a></li>
                             </ul>
                         </div>
-                        <div class="dropdown icon-dropdown" dropdown>
+                        <div class="dropdown icon-dropdown" dropdown on-toggle="dc.loadDocuments(open, dc.documents)">
                             <a class="btn dropdown-toggle achilles-icon achilles-document" dropdown-toggle>
                                 &nbsp;
                             </a>
                             <ul class="dropdown-menu dropdown-menu-right">
                                 <li><a href>Briefe & Dokumente</a></li>
-                                <li role="presentation" class="divider"></li>
+                                <li role="presentation" class="divider" ng-show="dc.documents.length"></li>
                                 <li ng-repeat="document in dc.documents"><a href>{{document.name}}</a></li>
                                 <li role="presentation" class="divider"></li>
                                 <li><a ng-href="{{baseUrl}}treatment/{{treatment.id}}/document/letterto/">Neuer Brief an</a></li>
@@ -123,12 +125,14 @@
                                 <li><a ng-href="{{baseUrl}}treatment/{{treatment.id}}/disability/">Neue Arbeitsunfähigkeit</a></li>
                             </ul>
                         </div>
-                        <div class="dropdown icon-dropdown" dropdown>
+                        <div class="dropdown icon-dropdown" dropdown on-toggle="dc.loadBiometrics(open)">
                             <a class="btn dropdown-toggle achilles-icon achilles-biometric" dropdown-toggle>
                                 &nbsp;
                             </a>
                             <ul class="dropdown-menu dropdown-menu-right">
-                                <li><a href>Biomertrische Daten</a></li>
+                                <li><a href>Biometrische Daten</a></li>
+                                <li role="presentation" class="divider" ng-show="dc.biometrics.length"></li>
+                                <li ng-repeat="biometric in dc.biometrics"><a href>{{biometric.date}}</a></li>
                                 <li role="presentation" class="divider"></li>
                                 <li><a ng-href="{{baseUrl}}treatment/{{treatment.id}}/biometric/">Neue Biometrische Daten</a></li>
                                 <li role="presentation" class="divider"></li>

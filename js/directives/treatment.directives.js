@@ -24,9 +24,12 @@
 
         return directive;
 
-        controller.$inject = ['$scope', '$http', '$modal', 'urls', 'EntryType', 'TreatmentContext', 'Subject', 'Document'];
-        function controller($scope, $http, $modal, urls, EntryType, TreatmentContext, Subject, Document) {
-            var dc = this;
+        controller.$inject = ['$scope', '$http', '$modal', 'urls', 'EntryType',
+            'TreatmentContext', 'Subject', 'Document', 'LaboratoryReport', 'Biometric'];
+        function controller($scope, $http, $modal, urls, EntryType,
+                            TreatmentContext, Subject, Document, LaboratoryReport, Biometric) {
+            var dc = this,
+                treatmentId = $scope.treatment.id;
 
             dc.newEntry = {
                 type: null
@@ -40,17 +43,10 @@
                 .then(function (subjects) {
                     dc.subjects = subjects;
                 });
-            Document.list($scope.treatment.id)
-                .then(function (documents) {
-                    dc.documents = documents;
-                }, function(error){
-                    //TODO: remove after testing
-                    console.error(error.statusText);
-                    dc.documents = [
-                        {id: 1, name:'War & Peace'},
-                        {id: 2, name:'Skin Game'}
-                    ];
-                })
+
+            dc.loadDocuments = loadDocuments;
+            dc.loadLaboratoryReports = loadLaboratoryReports;
+            dc.loadBiometrics = loadBiometrics;
 
             $scope.baseUrl = urls.baseUrl();
 
@@ -119,7 +115,53 @@
                 });
             }
 
+            function loadDocuments(open) {
+                //only load the documents if the dropdown was opened, and the documents were not already loaded before
+                if (open && !dc.documents) {
+                    Document.list(treatmentId)
+                        .then(function (documents) {
+                            dc.documents = documents;
+                        }, function (error) {
+                            //TODO: remove after testing
+                            console.error(error.statusText);
+                            dc.documents = [
+                                {id: 1, name: 'War & Peace'},
+                                {id: 2, name: 'Skin Game'}
+                            ];
+                        });
 
+                }
+            }
+
+            function loadLaboratoryReports(open) {
+                //only load the lab reports if the dropdown was opened, and the lab reports were not already loaded before
+                if (open && !dc.laboratoryReports) {
+                    LaboratoryReport.list(treatmentId)
+                        .then(function (laboratoryReports) {
+                            dc.laboratoryReports = laboratoryReports;
+                        }, function () {
+                            //dc.laboratoryReports = [];
+                        });
+
+                }
+            }
+
+            function loadBiometrics(open) {
+                //only load the biometrics if the dropdown was opened, and the biometrics were not already loaded before
+                if (open && !dc.biometrics) {
+                    Biometric.list(treatmentId)
+                        .then(function (biometrics) {
+                            dc.biometrics = biometrics;
+                        }, function () {
+                            //TODO: remove after testing
+                            dc.biometrics = [
+                                {id:1, date:'12.03.2013'},
+                                {id:2, date:'19.11.2013'}
+                            ];
+                        });
+
+                }
+            }
         }
 
         function link(scope, element, attribute, ctrl) {
