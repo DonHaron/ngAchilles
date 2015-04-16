@@ -80,7 +80,7 @@ Rechnung zeigen:                    http://localhost/show/invoice/{{invoice.id}}
 
 Entity löschen (DELETE)
 
-Fall entfernen:                     http://localhost/delete/case/{{case.id}}/
+Fall entfernen: DELETE              /treatment/{{treatment.id}}/case/{{case.id}}/
 
 
 
@@ -103,9 +103,9 @@ GDT ausführen:  POST    /gdt/{{gdtDevice.id}}/patient/{{patient.id}}/code/{{gdt
 
 Behandlung neu mit Dialog: Location Change: /treatment/
 
-Laborreport: GET        /biometricreport/
-Biometric Report: GET   /laboratoryreport/
-Treatmentreport:  POST  /treatmenreport/  Body = [ {"id" : treatment1.id, rows : [ "id" = 1, "id" = 2, ]}]
+Laborreport: GET        /biometricreport/process/{{processnr}}
+Biometric Report: GET   /laboratoryreport/process/{{processnr}}
+Treatmentreport:  POST  /treatmenreport/process/{{processnr}}  Body = [ {"id" : treatment1.id, rows : [ "id" = 1, "id" = 2, ]}]
 
 Neuer Termin: Location Change: /appointment/
 Neuer Recall: Location Change: /recall/
