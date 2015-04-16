@@ -99,7 +99,7 @@ URL's für Toolbar
 
 GDT
 Liste abfragen: GET     /gdt/list
-GDT ausführen:  POST    /gdt/{{gdtDevice.id}}/code/{{gdtTest.code}}
+GDT ausführen:  POST    /gdt/{{gdtDevice.id}}/patient/{{patient.id}}/code/{{gdtTest.code}}
 
 Behandlung neu mit Dialog: Location Change: /treatment/
 
