@@ -30,6 +30,81 @@
     padding-right: 0;
 }
 
+.toolbar {
+    margin: 5px 15px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    padding: 5px 15px;
+}
+
+.toolbar p {
+    margin-bottom: 0;
+}
+
+.toolbar .btn {
+    width: 27px;
+}
+
+.toolbar:hover,
+.toolbar:active {
+    background-position: 0% 33%;
+}
+
+.toolbar .gdt {
+    background-image: url('../images/icons/toolbar/j429.png');
+}
+
+.toolbar .new-treatment {
+    background-image: url('../images/icons/toolbar/435.png');
+}
+
+.toolbar .new-treatment-dialog {
+    background-image: url('../images/icons/toolbar/j434.png');
+}
+
+.toolbar .biometric-report {
+    background-image: url('../images/icons/toolbar/bio_print.png');
+}
+
+.toolbar .treatment-report {
+    background-image: url('../images/icons/toolbar/j436.png');
+}
+
+.toolbar .laboratory-report {
+    background-image: url('../images/icons/toolbar/lab_print.png');
+}
+
+.toolbar .search {
+    background-image: url('../images/icons/toolbar/j424.png');
+}
+
+.toolbar .sort {
+    background-image: url('../images/icons/toolbar/sortDirection.png');
+}
+
+.toolbar .appointment {
+    background-image: url('../images/icons/toolbar/j402.png');
+}
+
+.toolbar .recall {
+    background-image: url('../images/icons/toolbar/j428.png');
+}
+
+.toolbar .todo {
+    background-image: url('../images/icons/toolbar/j430.png');
+}
+
+.toolbar .refresh {
+    background-image: url('../images/icons/toolbar/refresh.png');
+}
+
+.toolbar .icon-dropdown {
+    margin-bottom: -5px;
+}
+
 /*.form-control {
     border-width: 0;
     box-shadow: none;
