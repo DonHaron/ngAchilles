@@ -91,3 +91,22 @@ http://localhost/goto/document
 http://localhost/goto/disability
 http://localhost/goto/biometric
 http://localhost/goto/invoice
+
+
+
+--------------------------------------------------------------------------------------------------------------------
+URL's für Toolbar
+
+GDT
+Liste abfragen: GET     /gdt/list
+GDT ausführen:  POST    /gdt/{{gdtDevice.id}}/code/{{gdtTest.code}}
+
+Behandlung neu mit Dialog: Location Change: /treatment/
+
+Laborreport: GET        /biometricreport/
+Biometric Report: GET   /laboratoryreport/
+Treatmentreport:  POST  /treatmenreport/  Body = [ {"id" : treatment1.id, rows : [ "id" = 1, "id" = 2, ]}]
+
+Neuer Termin: Location Change: /appointment/
+Neuer Recall: Location Change: /recall/
+Neue Aufgabe: Location Change: /todo/
