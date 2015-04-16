@@ -78,7 +78,7 @@
                             <li ng-show="treatment.invoiceCase.name"><a ng-href="{{dc.baseUrl}}show/case/{{treatment.invoiceCase.id}}/">Fall: {{treatment.invoiceCase.name}} anzeigen</a></li>
                             <li ng-show="treatment.invoice.id"><a ng-href="{{dc.baseUrl}}show/invoice/{{treatment.invoice.id}}/">Rechnung: {{treatment.invoice.id}} anzeigen</a></li>
                             <li role="presentation" class="divider" ng-show="treatment.invoice.id || treatment.invoiceCase.name"></li>
-                            <li><a ng-href="{{vm.baseUrl}}treatment/{{treatment.id}}/case/">Fall zuweisen...</a></li>
+                            <li><a ng-href="{{dc.baseUrl}}treatment/{{treatment.id}}/case/">Fall zuweisen...</a></li>
                             <li ng-show="treatment.invoiceCase.name"><a href ng-click="dc.removeCase(treatment)">Ohne Fall</a></li>
                             <li role="presentation" class="divider"></li>
                             <li><a href>Gehe zu Fälle & Garanten</a></li>
