@@ -56,6 +56,7 @@
             dc.deleteTreatment = TreatmentContext.deleteTreatment;
             dc.changeStatus = TreatmentContext.changeStatus;
             dc.changeSubject = TreatmentContext.changeSubject;
+            dc.removeCase = removeCase;
 
 
             dc.removeEntry = function (entry) {
@@ -159,6 +160,17 @@
                         });
 
                 }
+            }
+
+            function removeCase(treatment){
+                var oldCase = treatment.invoiceCase;
+                treatment.invoiceCase = {id:0,name:''};
+                $http.post(urls.treatment('put'), treatment)
+                    .then(function(response){
+                        treatment.invoiceCase = response.data.invoiceCase;
+                    }, function(){
+                        treatment.invoiceCase = oldCase;
+                    });
             }
         }
 

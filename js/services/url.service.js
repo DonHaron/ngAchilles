@@ -22,7 +22,8 @@
             laboratoryList: 'treatment/:treatment/laboratorylist',
             biometricList: 'treatment/:treatment/biometriclist',
             disabilityList: 'treatment/:treatment/disabilitylist',
-            caseList: 'treatment/:treatment/caselist'
+            caseList: 'treatment/:treatment/caselist',
+            removeCase: 'treatment/:treatment/case/:case'
         };
 
         var factory = {
@@ -38,7 +39,8 @@
             laboratoryList: laboratoryList,
             biometricList: biometricList,
             disabilityList: disabilityList,
-            caseList: caseList
+            caseList: caseList,
+            removeCase: removeCase
         };
 
         return factory;
@@ -105,5 +107,10 @@
             return baseUrlComponent()+routes.caseList.replace(/:([a-z]\w*)/gi, treatmentId)+'/';
         }
 
+        function removeCase(treatment){
+            return baseUrlComponent()+routes.removeCase
+                .replace(/:treatment/gi, treatment.id)
+                .replace(/:case/gi, treatment.invoiceCase.id)+'/';
+        }
     }
 })();
