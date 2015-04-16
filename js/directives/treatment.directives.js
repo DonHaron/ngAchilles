@@ -48,8 +48,6 @@
             dc.loadBiometrics = loadBiometrics;
             dc.loadDisability = loadDisability;
 
-            dc.focusDropdown = focusDropdown;
-
             dc.baseUrl = urls.baseUrl();
 
 
@@ -59,18 +57,6 @@
             dc.changeStatus = TreatmentContext.changeStatus;
             dc.changeSubject = TreatmentContext.changeSubject;
 
-//            $scope.addAttribute = function (treatment, position) {
-//                console.log('called');
-//                if (!treatment.entries) treatment.entries = [];
-//                var entry = {
-//                    treatmentId: treatment.id
-//                };
-//                if (position == 'first') {
-//                    treatment.entries.unshift(entry);
-//                } else {
-//                    treatment.entries.push(entry);
-//                }
-//            };
 
             dc.removeEntry = function (entry) {
                 var entries = $scope.treatment.entries;
@@ -173,10 +159,6 @@
                         });
 
                 }
-            }
-
-            function focusDropdown(open){
-                console.log(open);
             }
         }
 

@@ -10,7 +10,7 @@
     <!-- Latest compiled and minified CSS -->
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">-->
     <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+    <!--<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css">-->
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../bower_components/select2/select2.css">
@@ -36,6 +36,50 @@
     </div>
 </div>
 <div class="container-fluid" ng-controller="MainController as vm">
+    <div class="toolbar">
+        <div class="row">
+            <div class="col-xs-4">
+                <p>Behandlungseinträge</p>
+            </div>
+            <div class="col-xs-2">
+                <p ng-show="vm.treatments.length">{{vm.treatments.length}} von {{vm.treatments.length}}</p>
+            </div>
+            <div class="col-xs-6">
+
+
+                <div class="btn-toolbar pull-right">
+                    <div class="dropdown icon-dropdown" toggle-focus dropdown>
+
+                        <div class="btn-group">
+                            <a class="btn btn-default btn-xs gdt dropdown-toggle" dropdown-toggle>&nbsp;</a>
+
+                            <a class="btn btn-default btn-xs new-treatment">&nbsp;</a>
+                            <a class="btn btn-default btn-xs new-treatment-dialog" href="{{vm.baseUrl}}treatment/">&nbsp;</a>
+                            <a class="btn btn-default btn-xs biometric-report">&nbsp;</a>
+                            <a class="btn btn-default btn-xs laboratory-report">&nbsp;</a>
+                            <a class="btn btn-default btn-xs treatment-report">&nbsp;</a>
+                            <a class="btn btn-default btn-xs search">&nbsp;</a>
+                            <a class="btn btn-default btn-xs sort">&nbsp;</a>
+                        </div>
+
+
+                        <div class="btn-group">
+                            <a class="btn btn-default btn-xs appointment" href="{{vm.baseUrl}}appointment/">&nbsp;</a>
+                            <a class="btn btn-default btn-xs recall" href="{{vm.baseUrl}}recall/">&nbsp;</a>
+                            <a class="btn btn-default btn-xs todo" href="{{vm.baseUrl}}todo/">&nbsp;</a>
+                        </div>
+                        <div class="btn-group">
+                            <a class="btn btn-default btn-xs refresh">&nbsp;</a>
+                        </div>
+                        <ul class="dropdown-menu">
+                            <li><a href>bla</a></li>
+                            <li><a href>rhabarber</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <treatment treatment="treatment" ng-repeat="treatment in vm.treatments | orderBy:['-date', 'id']"
                treatmentlist="vm.treatments"></treatment>
 </div>
