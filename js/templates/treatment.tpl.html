@@ -13,7 +13,7 @@
                         <span class="heading-label" ng-show="treatment.isMainTreatment ">{{treatment.date | date:'EEE dd.MM.yyyy HH:mm':'UTC'}}</span>
                         <ul class="dropdown-menu">
                             <li role="presentation"><a role="menuitem"
-                                                       ng-href="{{baseUrl}}set/treatment/{{treatment.id}}">Behandlung einstellen</a>
+                                                       ng-href="{{dc.baseUrl}}set/treatment/{{treatment.id}}">Behandlung einstellen</a>
                             </li>
                             <li role="presentation"><a role="menuitem"  href
                                                        ng-click="dc.deleteTreatment(treatment, treatments)">Behandlung
