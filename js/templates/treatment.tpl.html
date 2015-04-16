@@ -3,41 +3,41 @@
         <div class="panel-heading clearfix">
             <div class="row">
                 <div class="col-xs-3">
-                    <div class="dropdown icon-dropdown" dropdown>
-                        <a class="btn btn-default btn-icon dropdown-toggle" dropdown-toggle id="dropdown-{{$index}}">
+                    <div class="dropdown icon-dropdown" toggle-focus dropdown>
+                        <a class="btn btn-default btn-icon dropdown-toggle" dropdown-toggle>
                             <i class="fa fa-cog"></i>
                         </a>
                         <span class="heading-label" ng-show="treatment.isMainTreatment ">{{treatment.date | date:'EEE dd.MM.yyyy HH:mm'}}</span>
-                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdown-{{index}}">
-                            <li role="presentation"><a role="menuitem" tabindex="-1"
+                        <ul class="dropdown-menu">
+                            <li role="presentation"><a role="menuitem"
                                                        ng-href="{{baseUrl}}set/treatment/{{treatment.id}}">Behandlung einstellen</a>
                             </li>
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href
+                            <li role="presentation"><a role="menuitem"  href
                                                        ng-click="dc.deleteTreatment(treatment, treatments)">Behandlung
                                 löschen</a>
                             </li>
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href
+                            <li role="presentation"><a role="menuitem"  href
                                                        ng-click="dc.changeStatus(treatment)">Behandlung <span
                                     ng-hide="treatment.closed">schliessen</span>
                                 <span ng-show="treatment.closed">wieder öffnen</span></a>
                             </li>
                             <li role="presentation" class="divider"></li>
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href
+                            <li role="presentation"><a role="menuitem"  href
                                                        ng-click="dc.addTreatment(treatment, true, true, treatments)">Neue
                                 Behandlung</a>
                             </li>
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href
+                            <li role="presentation"><a role="menuitem"  href
                                                        ng-click="dc.copyTreatment(treatment, treatments)">Neue
                                 Behandlung (Kopie)</a></li>
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href
+                            <li role="presentation"><a role="menuitem"  href
                                                        ng-click="dc.addTreatment(treatment, true, false, treatments)">Neue
                                 Nebenbehandlung</a></li>
                             <li role="presentation" class="divider"></li>
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href
+                            <li role="presentation"><a role="menuitem"  href
                                                        ng-click="dc.addTreatment(treatment, false, true, treatments)">Neue
                                 Nichtmandanten-Behandlung</a>
                             </li>
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href
+                            <li role="presentation"><a role="menuitem"  href
                                                        ng-click="dc.addTreatment(treatment, false, false, treatments)">Neue
                                 Nichtmandanten-Nebenbehandlung</a>
                             </li>
@@ -53,14 +53,13 @@
 
                 <div class="col-xs-2">
                     <!--<a class="btn btn-default dropdown-toggle">&nbsp;</a>-->
-                    <div class="dropdown" dropdown>
+                    <div class="dropdown" toggle-focus dropdown>
                         <a class="btn btn-default dropdown-toggle" dropdown-toggle>
                             {{ treatment.subject }} &nbsp;
                         </a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li role="presentation" ng-repeat="subject in dc.subjects">
-                                <a role="menuitem" tabindex="-1" href
-                                                       ng-click="dc.changeSubject(treatment, subject)">{{subject}}</a>
+                        <ul class="dropdown-menu">
+                            <li ng-repeat="subject in dc.subjects">
+                                <a href ng-click="dc.changeSubject(treatment, subject)">{{subject}}</a>
                             </li>
                         </ul>
                     </div>
@@ -73,21 +72,21 @@
 
                 <div class="col-xs-3">
                     <div class="pull-right">
-                        <div class="dropdown icon-dropdown" dropdown>
+                        <div class="dropdown icon-dropdown" toggle-focus dropdown>
                             <a class="btn dropdown-toggle achilles-icon achilles-medication" ng-class="{'empty': !treatment.hasMedication}" dropdown-toggle>
                                 &nbsp;
                             </a>
                             <ul class="dropdown-menu dropdown-menu-right">
                                 <li><a href>Medikamente</a></li>
                                 <li role="presentation" class="divider"></li>
-                                <li><a ng-href="{{baseUrl}}treatment/{{treatment.id}}/drug/given/">Abgeben</a></li>
-                                <li><a ng-href="{{baseUrl}}treatment/{{treatment.id}}/drug/prescription/">Rezept</a></li>
-                                <li><a ng-href="{{baseUrl}}treatment/{{treatment.id}}/drug/foreign/">Fremd</a></li>
+                                <li><a ng-href="{{dc.baseUrl}}treatment/{{treatment.id}}/drug/given/">Abgeben</a></li>
+                                <li><a ng-href="{{dc.baseUrl}}treatment/{{treatment.id}}/drug/prescription/">Rezept</a></li>
+                                <li><a ng-href="{{dc.baseUrl}}treatment/{{treatment.id}}/drug/foreign/">Fremd</a></li>
                                 <li role="presentation" class="divider"></li>
-                                <li><a ng-href="{{baseUrl}}goto/drug/">Gehe zu Medi-Listen</a></li>
+                                <li><a ng-href="{{dc.baseUrl}}goto/drug/">Gehe zu Medi-Listen</a></li>
                             </ul>
                         </div>
-                        <div class="dropdown icon-dropdown" dropdown on-toggle="dc.loadLaboratoryReports(open)">
+                        <div class="dropdown icon-dropdown" dropdown toggle-focus on-toggle="dc.loadLaboratoryReports(open)">
                             <a class="btn dropdown-toggle achilles-icon achilles-laboratory"  ng-class="{'empty': !treatment.hasLaboratory}" dropdown-toggle>
                                 &nbsp;
                             </a>
@@ -99,7 +98,7 @@
                                 <li><a ng-href="{{dc.baseUrl}}goto/laboratory/">Gehe zu Labor</a></li>
                             </ul>
                         </div>
-                        <div class="dropdown icon-dropdown" dropdown on-toggle="dc.loadDocuments(open, dc.documents)">
+                        <div class="dropdown icon-dropdown" dropdown toggle-focus on-toggle="dc.loadDocuments(open)">
                             <a class="btn dropdown-toggle achilles-icon achilles-document"  ng-class="{'empty': !treatment.hasDocument}" dropdown-toggle>
                                 &nbsp;
                             </a>
@@ -115,7 +114,7 @@
                                 <li><a ng-href="{{dc.baseUrl}}goto/document/">Gehe zu Briefe & Dokumente</a></li>
                             </ul>
                         </div>
-                        <div class="dropdown icon-dropdown" dropdown on-toggle="dc.loadDisability(open)">
+                        <div class="dropdown icon-dropdown" dropdown toggle-focus on-toggle="dc.loadDisability(open)">
                             <a class="btn dropdown-toggle achilles-icon achilles-auf"  ng-class="{'empty': !treatment.hasDisability}" dropdown-toggle>
                                 &nbsp;
                             </a>
@@ -127,7 +126,7 @@
                                 <li><a ng-href="{{dc.baseUrl}}treatment/{{treatment.id}}/disability/">Neue Arbeitsunfähigkeit</a></li>
                             </ul>
                         </div>
-                        <div class="dropdown icon-dropdown" dropdown on-toggle="dc.loadBiometrics(open)">
+                        <div class="dropdown icon-dropdown" dropdown toggle-focus on-toggle="dc.loadBiometrics(open)">
                             <a class="btn dropdown-toggle achilles-icon achilles-biometric"  ng-class="{'empty': !treatment.hasBiometric}" dropdown-toggle>
                                 &nbsp;
                             </a>
@@ -141,7 +140,7 @@
                                 <li><a ng-href="{{dc.baseUrl}}goto/biometric/">Gehe zu Biometrische Daten</a></li>
                             </ul>
                         </div>
-                        <div class="dropdown icon-dropdown" dropdown>
+                        <div class="dropdown icon-dropdown" toggle-focus dropdown>
                             <a class="btn dropdown-toggle achilles-icon achilles-benefit"  ng-class="{'empty': !treatment.hasService}" dropdown-toggle>
                                 &nbsp;
                             </a>

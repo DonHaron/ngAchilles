@@ -48,6 +48,8 @@
             dc.loadBiometrics = loadBiometrics;
             dc.loadDisability = loadDisability;
 
+            dc.focusDropdown = focusDropdown;
+
             dc.baseUrl = urls.baseUrl();
 
 
@@ -171,6 +173,10 @@
                         });
 
                 }
+            }
+
+            function focusDropdown(open){
+                console.log(open);
             }
         }
 
