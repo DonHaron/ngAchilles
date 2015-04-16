@@ -28,6 +28,15 @@
 .container-fluid {
     padding-left: 0;
     padding-right: 0;
+    padding-top: 50px;
+}
+
+.toolbar-wrapper {
+    top: 0;
+    position: fixed;
+    width: 100%;
+    z-index: 99;
+    background-color: white;
 }
 
 .toolbar {
