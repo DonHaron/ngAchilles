@@ -24,7 +24,6 @@
             });
 
             element.on('keydown', 'li a', function(e){
-                console.log(e.which);
                 //keycode 40: cursor down
                 if(e.which == 40) {
                     e.preventDefault();
