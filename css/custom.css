@@ -25,6 +25,11 @@
     position: fixed;
 }
 
+.container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+}
+
 /*.form-control {
     border-width: 0;
     box-shadow: none;
@@ -33,6 +38,8 @@
 
 .treatment {
     outline: 0;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .treatment:before {
