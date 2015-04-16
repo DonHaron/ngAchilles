@@ -7,7 +7,10 @@
                         <a class="btn btn-default btn-icon dropdown-toggle" dropdown-toggle>
                             <i class="fa fa-cog"></i>
                         </a>
-                        <span class="heading-label" ng-show="treatment.isMainTreatment ">{{treatment.date | date:'EEE dd.MM.yyyy HH:mm'}}</span>
+                        <!--
+                        TODO: change the fixed timezone here to a dynamic one once the backend supports this (4D doesn't)
+                        -->
+                        <span class="heading-label" ng-show="treatment.isMainTreatment ">{{treatment.date | date:'EEE dd.MM.yyyy HH:mm':'UTC'}}</span>
                         <ul class="dropdown-menu">
                             <li role="presentation"><a role="menuitem"
                                                        ng-href="{{baseUrl}}set/treatment/{{treatment.id}}">Behandlung einstellen</a>
