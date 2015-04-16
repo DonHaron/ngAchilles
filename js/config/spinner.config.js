@@ -9,17 +9,17 @@
     ProviderConfig.$inject = ['$httpProvider'];
     function ProviderConfig($httpProvider) {
         $httpProvider.interceptors.push('SpinnerHttpInterceptor');
-
-        function spinnerFunction(data, headersGetter, status) {
-            if(data == undefined){
-                //only do this on non-payload data
-                //TODO: find a way to restrict this to only GET-requests
-                $('#loading-overlay').css('display', 'flex');
-            }
-            return data;
-        }
-
-        $httpProvider.defaults.transformRequest.push(spinnerFunction);
+//
+//        function spinnerFunction(data, headersGetter, status) {
+//            if(data == undefined){
+//                //only do this on non-payload data
+//                //TODO: find a way to restrict this to only GET-requests
+//                $('#loading-overlay').css('display', 'flex');
+//            }
+//            return data;
+//        }
+//
+//        $httpProvider.defaults.transformRequest.push(spinnerFunction);
     }
 
     SpinnerHttpInterceptor.$inject = ['$q', '$timeout'];
@@ -38,6 +38,13 @@
                     $('#loading-overlay').css('display', 'none');
                 }, 150);
                 return $q.reject(response);
+            },
+            'request': function(config){
+                console.log(config);
+                if(config.method == 'GET'){
+                    $('#loading-overlay').css('display', 'block');
+                }
+                return config;
             }
         }
 

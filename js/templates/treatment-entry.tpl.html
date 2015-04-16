@@ -10,7 +10,7 @@
             <form name="entryform">
                 <div class="row" treatment-row ng-repeat="row in entry.rows | orderBy:'id'">
                     <treatment-column ng-repeat="column in row.columns" content="column.content"
-                                      width="{{column.width}}"
+                                      width="{{column.width}}" unique-id="{{row.id}}-{{$index}}"
                                       readonly="{{column.readonly}}" parent="entry" row="row"></treatment-column>
                 </div>
             </form>

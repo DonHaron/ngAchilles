@@ -26,8 +26,7 @@
 
         controller.$inject = ['$scope', '$http', '$modal', 'urls', 'EntryType',
             'TreatmentContext', 'Subject', 'Document', 'LaboratoryReport', 'Biometric', 'DisabilityCertificate'];
-        function controller($scope, $http, $modal, urls, EntryType,
-                            TreatmentContext, Subject, Document, LaboratoryReport, Biometric, DisabilityCertificate) {
+        function controller($scope, $http, $modal, urls, EntryType, TreatmentContext, Subject, Document, LaboratoryReport, Biometric, DisabilityCertificate) {
             var dc = this,
                 treatmentId = $scope.treatment.id;
 
@@ -259,7 +258,6 @@
     treatmentColumn.$inject = ['$http', 'urls', '$timeout'];
 
     function treatmentColumn($http, urls, $timeout) {
-        //TODO: include rows for the entries, there can be multiple
         var directive = {
             restrict: 'E',
             scope: {
@@ -267,7 +265,8 @@
                 content: '=',
                 readonly: '@',
                 parent: '=',
-                row: '='
+                row: '=',
+                uniqueId: '@'
             },
             require: ['^treatment', '^treatmentEntry'],
             templateUrl: '../js/templates/treatment-column.tpl.html',
@@ -323,50 +322,21 @@
                 }
             });
 
+//            var editor,
+//                toolbar = element.find('.wysihtml-toolbar');
+//
+//
+//            textarea.on('focus', function () {
+//                if (!editor) {
+//                    console.log(textarea.attr('id'));
+//                    console.log(toolbar.attr('id'));
+//                    var editor = new wysihtml5.Editor(textarea.attr('id'), {
+//                        toolbar: toolbar.attr('id'),
+//                        parserRules: wysihtml5ParserRules
+//                    });
+//                }
+//            });
         }
     }
-
-//    treatmentType.$inject = ['$timeout', '$http', 'urls'];
-//
-//    function treatmentType($timeout, $http, urls) {
-//        var directive = {
-//            restrict: 'E',
-//            link: link,
-//            controller: controller,
-//            controllerAs: 'dm',
-//            require: '^treatment',
-//            scope: {
-//                entry: '='
-//            },
-//            template: '<div class="form-group"><span ng-show="entry.type">{{entry.type.name}}</span><select2 class="form-control" ng-change="store(entry)" ng-hide="entry.type" ng-model="entry.type" ng-options="type as type.name for type in types track by type.id"></select2></div>'
-//        };
-//
-//        return directive;
-//
-//        function link(scope, element, attrs, treatmentCtrl) {
-//            $timeout(function () {
-//                if (scope.entry && !scope.entry.type && !scope.entry.id) {
-//                    element.find('input').select2('open');
-//                }
-//            }, 50);
-//
-//            //user selected a type, send a POST request to the server, then wait for the response with the column data
-//            scope.store = function (entry) {
-//                $http.post(urls.treatmentEntry(), entry)
-//                    .then(function (response) {
-//                        treatmentCtrl.setEntry(response.data);
-//                    }, function (error) {
-//                        console.error(error);
-//                    });
-//            }
-//        }
-//
-//        controller.$inject = ['$http', '$scope', 'urls', 'getEntryTypes'];
-//
-//        function controller($http, $scope, urls, getEntryTypes) {
-//            var dm = this;
-//            $scope.types = getEntryTypes();
-//        }
-//    }
 
 })();

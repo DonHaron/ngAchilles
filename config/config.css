@@ -5,3 +5,7 @@
 .patient-123 {
     background-color: #789ABC;
 }
+
+.mandator-0:before {
+    background-color: pink;
+}

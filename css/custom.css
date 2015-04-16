@@ -12,6 +12,12 @@
 .loading-icon {
     display: flex;
     margin: 0 auto;
+    position: relative;
+    top: calc(50% - 30px);
+}
+
+.loading-icon div {
+    margin: 0 auto !important;
 }
 
 .position-fixed {
@@ -33,7 +39,6 @@
     content: ' ';
     width: 100%;
     height: 5px;
-    background-color: #e1ee7e;
     margin-bottom: 2px;
 }
 
