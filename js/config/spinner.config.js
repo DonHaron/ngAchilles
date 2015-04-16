@@ -40,7 +40,6 @@
                 return $q.reject(response);
             },
             'request': function(config){
-                console.log(config);
                 if(config.method == 'GET'){
                     $('#loading-overlay').css('display', 'block');
                 }
