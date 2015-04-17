@@ -18,9 +18,19 @@
             var dc = this;
 
             dc.addTreatment = addTreatment;
+            dc.asteriskSearch = asteriskSearch;
             dc.openBiometricReport = openBiometricReport;
             dc.openLaboratoryReport = openLaboratoryReport;
             dc.openTreatmentReport = openTreatmentReport;
+
+            function addTreatment(treatments){
+                var firstTreatment = treatments.length ? $filter('orderBy')(treatments, ['-date', 'id'])[0] : {id:0};
+                Treatment.addTreatment(firstTreatment, true, true, treatments);
+            }
+
+            function asteriskSearch(){
+                //TODO: look for the next entry with an asterisk, starting from the current focus
+            }
 
             function openBiometricReport(process){
                 $http.get(urls.biometricReport(process));
@@ -49,10 +59,6 @@
                 $http.post(urls.treatmentReport(process), payload);
             }
 
-            function addTreatment(treatments){
-                var firstTreatment = treatments.length ? $filter('orderBy')(treatments, ['-date', 'id'])[0] : {id:0};
-                Treatment.addTreatment(firstTreatment, true, true, treatments);
-            }
         }
     }
 })();

@@ -64,7 +64,8 @@
                                    ng-click="dc.openLaboratoryReport(vm.process)">&nbsp;</a>
                                 <a class="btn btn-default btn-xs treatment-report"
                                    ng-click="dc.openTreatmentReport(vm.process, vm.treatments)">&nbsp;</a>
-                                <a class="btn btn-default btn-xs search">&nbsp;</a>
+                                <a class="btn btn-default btn-xs search"
+                                        ng-click="dc.asteriskSearch()">&nbsp;</a>
                                 <a class="btn btn-default btn-xs sort"
                                    ng-click="vm.reverse=!vm.reverse">&nbsp;</a>
                             </div>
@@ -76,7 +77,7 @@
                                 <a class="btn btn-default btn-xs todo" href="{{vm.baseUrl}}todo/">&nbsp;</a>
                             </div>
                             <div class="btn-group">
-                                <a class="btn btn-default btn-xs refresh">&nbsp;</a>
+                                <a class="btn btn-default btn-xs refresh" ng-click="vm.loadEntries()">&nbsp;</a>
                             </div>
                             <ul class="dropdown-menu">
                                 <li><a href>Item 1</a></li>
@@ -115,6 +116,7 @@
 <script type="text/javascript" src="../js/controllers/main.controller.js"></script>
 <script type="text/javascript" src="../js/controllers/modal.controllers.js"></script>
 <script type="text/javascript" src="../js/directives/treatment.directives.js"></script>
+<script type="text/javascript" src="../js/directives/treatment-column.directive.js"></script>
 <script type="text/javascript" src="../js/directives/modal.directives.js"></script>
 <script type="text/javascript" src="../js/directives/toggle-focus.directive.js"></script>
 <script type="text/javascript" src="../js/directives/treatment-toolbar.directive.js"></script>

@@ -5,9 +5,7 @@
         .module('achilles')
         .directive('treatment', treatment)
         .directive('treatmentEntry', treatmentEntry)
-        .directive('treatmentRow', treatmentRow)
-        .directive('treatmentColumn', treatmentColumn);
-//        .directive('treatmentType', treatmentType);
+        .directive('treatmentRow', treatmentRow);
 
     function treatment() {
         var directive = {
@@ -252,90 +250,6 @@
                     textarea.focus();
                 }, 50);
             }
-        }
-    }
-
-    treatmentColumn.$inject = ['$http', 'urls', '$timeout'];
-
-    function treatmentColumn($http, urls, $timeout) {
-        var directive = {
-            restrict: 'E',
-            scope: {
-                width: '@',
-                content: '=',
-                readonly: '@',
-                parent: '=',
-                row: '=',
-                uniqueId: '@'
-            },
-            require: ['^treatment', '^treatmentEntry'],
-            templateUrl: '../js/templates/treatment-column.tpl.html',
-//            template: '<div ng-class="columnClass"><div class="form-group"><input class="form-control" ng-model="content" ng-disabled="{{readonly}}"></div></div>',
-            link: link
-        };
-
-        return directive;
-
-        function link(scope, element, attrs, ctrls) {
-            var treatmentCtrl = ctrls[0];
-            var entryCtrl = ctrls[1];
-            scope.columnClass = 'col-xs-' + attrs.width;
-
-            var textarea = element.find('textarea');
-            textarea.on('blur', function (e) {
-                if (textarea.hasClass('ng-dirty')) {
-                    console.log(scope.row);
-                    //$http.put(urls.treatmentEntryRow(), scope.row).then(function (response) {
-                    //PUT/POST-workaround
-                    $http.post(urls.treatmentEntryRow('put'), scope.row).then(function (response) {
-                        //response.data is a row
-                        //now, find the row in the rows and replace it
-                        var row = response.data,
-                            rows = scope.parent.rows;
-                        for (var i = 0; i < rows.length; i++) {
-                            if (rows[i].id == row.id) {
-                                rows[i] = row;
-                                break;
-                            }
-                        }
-                        ;
-                        //treatmentCtrl.setEntry(response.data);
-                    });
-                }
-            });
-
-            textarea.on('keydown', function (e) {
-                if (e.ctrlKey && e.shiftKey && e.which == 8) {
-                    //see if there is a previous textarea element in the same entry. If there is, focus on it
-                    $timeout(function () {
-                        var prev = element.parent().prev().find('textarea');
-                        console.log(prev.length);
-                        if (prev.length) {
-                            prev.eq(0).focus();
-                        } else {
-                            //if no previous element is found, look for the next one
-                            element.parent().next().find('textarea').eq(0).focus()
-                        }
-
-                    }, 150);
-                    entryCtrl.removeRow(scope.row);
-                }
-            });
-
-//            var editor,
-//                toolbar = element.find('.wysihtml-toolbar');
-//
-//
-//            textarea.on('focus', function () {
-//                if (!editor) {
-//                    console.log(textarea.attr('id'));
-//                    console.log(toolbar.attr('id'));
-//                    var editor = new wysihtml5.Editor(textarea.attr('id'), {
-//                        toolbar: toolbar.attr('id'),
-//                        parserRules: wysihtml5ParserRules
-//                    });
-//                }
-//            });
         }
     }
 
