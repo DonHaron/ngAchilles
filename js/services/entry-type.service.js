@@ -23,10 +23,10 @@
             // we don't need to have this updated all the time, the list almost never changes,
             // so we rather save a lot of requests by caching the result
             if (entryTypes.length) {
-                //if the entryTypes array already was filled, all is good and we resolve
+                // if the entryTypes array already was filled, all is good and we resolve
                 deferred.resolve(entryTypes);
             }else if(!loading){
-                //if there isn't already a request running, start one
+                // if there isn't already a request running, start one
                 loading = true;
 
                 $http.get(urls.treatmentEntryTypeList()).then(function(response){
@@ -42,17 +42,17 @@
                         }
                     }
 
-                    //loading is done
+                    // loading is done
                     loading = false;
-                    //resolve the current promise
+                    //r esolve the current promise
                     deferred.resolve(entryTypes);
-                    //also resolve all the waiting promises
+                    // also resolve all the waiting promises
                    waiting.forEach(function(promise){
                        promise.resolve(entryTypes);
                    });
                 });
             }else{
-                //else wait with the other requests
+                // else wait with the other requests
                 waiting.push(deferred);
             }
 

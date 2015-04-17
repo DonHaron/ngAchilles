@@ -32,10 +32,8 @@
                     var next = $(this).parent().nextAll(':not(.divider)').first().find('a'),
                         first = $(this).parent().siblings().first().find('a');
                     if(next.length){
-                        console.log(next.length);
                         next.focus();
                     }else{
-                        console.log(first);
                         first.focus();
                     }
                 }
