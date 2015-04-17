@@ -5,7 +5,7 @@
         .module('achilles')
         .factory('urls', urls)
 
-    function urls(){
+    function urls() {
         var protocol = "http://";
         //var baseUrl = "localhost";
         var baseUrl = "192.168.1.145";
@@ -23,7 +23,10 @@
             biometricList: 'treatment/:treatment/biometriclist',
             disabilityList: 'treatment/:treatment/disabilitylist',
             caseList: 'treatment/:treatment/caselist',
-            removeCase: 'treatment/:treatment/case/:case'
+            removeCase: 'treatment/:treatment/case/:case',
+            biometricReport: 'biometricreport/process/:process',
+            laboratoryReport: 'laboratoryreport/process/:process',
+            treatmentReport: 'treatmentreport/process/:process'
         };
 
         var factory = {
@@ -40,77 +43,95 @@
             biometricList: biometricList,
             disabilityList: disabilityList,
             caseList: caseList,
-            removeCase: removeCase
+            removeCase: removeCase,
+            biometricReport: biometricReport,
+            laboratoryReport: laboratoryReport,
+            treatmentReport: treatmentReport
         };
 
         return factory;
 
-        function baseUrlComponent(){
-            return protocol+baseUrl+':'+port+'/';
+        function baseUrlComponent() {
+            return protocol + baseUrl + ':' + port + '/';
         }
 
-        function treatmentList(patientId){
+        function treatmentList(patientId) {
             //return 'http://localhost/ngachilles/json/demo.treatment.json';
-            return baseUrlComponent()+routes.treatmentlist.replace(/:([a-z]\w*)/gi, patientId)+'/';
+            return baseUrlComponent() + routes.treatmentlist.replace(/:([a-z]\w*)/gi, patientId) + '/';
         }
 
-        function treatmentEntryTypeList(){
+        function treatmentEntryTypeList() {
             //return 'http://localhost/ngachilles/json/demo.treatmententrytype.json';
-            return baseUrlComponent()+routes.treatmententrytype+'/';
+            return baseUrlComponent() + routes.treatmententrytype + '/';
         }
 
-        function treatmentEntry(){
-            return baseUrlComponent()+routes.treatmententry+'/';
+        function treatmentEntry() {
+            return baseUrlComponent() + routes.treatmententry + '/';
         }
 
-        function treatmentEntryRow(verb){
+        function treatmentEntryRow(verb) {
             var verbComponent = '';
-            if(verb){
+            if (verb) {
                 verbComponent = verb + '/';
             }
-            return baseUrlComponent()+verbComponent+routes.treatmententryrow+'/';
+            return baseUrlComponent() + verbComponent + routes.treatmententryrow + '/';
         }
 
-        function treatmentSubject(){
-            return baseUrlComponent()+routes.treatmentsubject+'/';
+        function treatmentSubject() {
+            return baseUrlComponent() + routes.treatmentsubject + '/';
         }
 
-        function treatment(verb){
+        function treatment(verb) {
             var verbComponent = '';
-            if(verb){
+            if (verb) {
                 verbComponent = verb + '/';
             }
-            return baseUrlComponent()+verbComponent+routes.treatment+'/';
+            return baseUrlComponent() + verbComponent + routes.treatment + '/';
         }
 
-        function copyTreatment(){
-            return baseUrlComponent()+routes.copyTreatment+'/';
+        function copyTreatment() {
+            return baseUrlComponent() + routes.copyTreatment + '/';
         }
 
-        function documentList(treatmentId){
-            return baseUrlComponent()+routes.documentList.replace(/:([a-z]\w*)/gi, treatmentId)+'/';
+        function documentList(treatmentId) {
+            return baseUrlComponent() + routes.documentList.replace(/:([a-z]\w*)/gi, treatmentId) + '/';
         }
 
-        function laboratoryList(treatmentId){
-            return baseUrlComponent()+routes.laboratoryList.replace(/:([a-z]\w*)/gi, treatmentId)+'/';
+        function laboratoryList(treatmentId) {
+            return baseUrlComponent() + routes.laboratoryList.replace(/:([a-z]\w*)/gi, treatmentId) + '/';
         }
 
-        function biometricList(treatmentId){
-            return baseUrlComponent()+routes.biometricList.replace(/:([a-z]\w*)/gi, treatmentId)+'/';
+        function biometricList(treatmentId) {
+            return baseUrlComponent() + routes.biometricList.replace(/:([a-z]\w*)/gi, treatmentId) + '/';
         }
 
-        function disabilityList(treatmentId){
-            return baseUrlComponent()+routes.disabilityList.replace(/:([a-z]\w*)/gi, treatmentId)+'/';
+        function disabilityList(treatmentId) {
+            return baseUrlComponent() + routes.disabilityList.replace(/:([a-z]\w*)/gi, treatmentId) + '/';
         }
 
-        function caseList(treatmentId){
-            return baseUrlComponent()+routes.caseList.replace(/:([a-z]\w*)/gi, treatmentId)+'/';
+        function caseList(treatmentId) {
+            return baseUrlComponent() + routes.caseList.replace(/:([a-z]\w*)/gi, treatmentId) + '/';
         }
 
-        function removeCase(treatment){
-            return baseUrlComponent()+routes.removeCase
+        function removeCase(treatment) {
+            return baseUrlComponent() + routes.removeCase
                 .replace(/:treatment/gi, treatment.id)
-                .replace(/:case/gi, treatment.invoiceCase.id)+'/';
+                .replace(/:case/gi, treatment.invoiceCase.id) + '/';
+        }
+
+        function biometricReport(process) {
+            return baseUrlComponent() + routes.biometricReport
+                .replace(/:process/gi, process)
+        }
+
+        function laboratoryReport(process) {
+            return baseUrlComponent() + routes.laboratoryReport
+                .replace(/:process/gi, process)
+        }
+
+        function treatmentReport(process) {
+            return baseUrlComponent() + routes.treatmentReport
+                .replace(/:process/gi, process)
         }
     }
 })();

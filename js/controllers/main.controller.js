@@ -13,7 +13,7 @@
         vm.baseUrl = urls.baseUrl();
         vm.entries = [];
         vm.loadEntries = loadEntries;
-
+        vm.process = achillesConfig.process;
 
         vm.loadEntries();
 
