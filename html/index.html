@@ -45,7 +45,7 @@
                     <p ng-show="vm.treatments.length">Behandlungseinträge</p>
                 </div>
                 <div class="col-xs-2">
-                    <p ng-show="vm.treatments.length">{{vm.treatments.length}} von {{vm.treatments.length}}</p>
+                    <p ng-show="vm.treatments.length" ng-bind="vm.treatments.length + ' von ' + vm.treatments.length"></p>
                 </div>
                 <div class="col-xs-6">
                     <div class="btn-toolbar pull-right">
@@ -65,7 +65,8 @@
                                 <a class="btn btn-default btn-xs treatment-report"
                                    ng-click="dc.openTreatmentReport(vm.process, vm.treatments)">&nbsp;</a>
                                 <a class="btn btn-default btn-xs search">&nbsp;</a>
-                                <a class="btn btn-default btn-xs sort">&nbsp;</a>
+                                <a class="btn btn-default btn-xs sort"
+                                   ng-click="vm.reverse=!vm.reverse">&nbsp;</a>
                             </div>
 
                             <div class="btn-group">
@@ -88,7 +89,7 @@
         </div>
     </div>
 
-    <treatment treatment="treatment" ng-repeat="treatment in vm.treatments | orderBy:['-date', 'id']"
+    <treatment treatment="treatment" ng-repeat="treatment in vm.treatments | orderBy:[(vm.reverse?'':'-')+'date', 'id']"
                treatmentlist="vm.treatments"></treatment>
 </div>
 

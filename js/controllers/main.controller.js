@@ -13,6 +13,7 @@
         vm.entries = [];
         vm.loadEntries = loadEntries;
         vm.process = achillesConfig.process;
+        vm.reverse = false;
 
         vm.loadEntries();
 
