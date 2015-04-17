@@ -5,11 +5,10 @@
         .module('achilles')
         .controller('MainController', MainController);
 
-    MainController.$inject = ['$http',  '$filter', 'urls', 'TreatmentContext'];
+    MainController.$inject = ['$http',  '$filter', 'urls'];
 
-    function MainController($http, $filter, urls, TreatmentContext) {
+    function MainController($http, $filter, urls) {
         var vm = this;
-        vm.addTreatment = addTreatment;
         vm.baseUrl = urls.baseUrl();
         vm.entries = [];
         vm.loadEntries = loadEntries;
@@ -23,9 +22,5 @@
                     vm.treatments = response.data;
                 });
         };
-        function addTreatment(treatments){
-            var firstTreatment = treatments.length ? $filter('orderBy')(treatments, ['-date', 'id'])[0] : {id:0};
-            TreatmentContext.addTreatment(firstTreatment, true, true, treatments);
-        }
     }
 })();

@@ -11,41 +11,41 @@
         var baseUrl = "192.168.1.145";
         var port = "37117";
         var routes = {
-            treatmentlist: 'patient/:patient/treatmentlist',
+            biometricList: 'treatment/:treatment/biometriclist',
+            biometricReport: 'biometricreport/process/:process',
+            caseList: 'treatment/:treatment/caselist',
+            copyTreatment: 'treatment/copy',
+            disabilityList: 'treatment/:treatment/disabilitylist',
+            documentList: 'treatment/:treatment/documentlist',
+            laboratoryList: 'treatment/:treatment/laboratorylist',
+            laboratoryReport: 'laboratoryreport/process/:process',
+            removeCase: 'treatment/:treatment/case/:case',
             treatmententry: 'treatmententry',
             treatmententryrow: 'treatmententryrow',
             treatmententrytype: 'treatmententrytype',
+            treatmentlist: 'patient/:patient/treatmentlist',
+            treatmentReport: 'treatmentreport/process/:process',
             treatmentsubject: 'treatmentsubject',
-            treatment: 'treatment',
-            copyTreatment: 'treatment/copy',
-            documentList: 'treatment/:treatment/documentlist',
-            laboratoryList: 'treatment/:treatment/laboratorylist',
-            biometricList: 'treatment/:treatment/biometriclist',
-            disabilityList: 'treatment/:treatment/disabilitylist',
-            caseList: 'treatment/:treatment/caselist',
-            removeCase: 'treatment/:treatment/case/:case',
-            biometricReport: 'biometricreport/process/:process',
-            laboratoryReport: 'laboratoryreport/process/:process',
-            treatmentReport: 'treatmentreport/process/:process'
+            treatment: 'treatment'
         };
 
         var factory = {
-            treatmentList: treatmentList,
+            baseUrl: baseUrlComponent,
+            biometricList: biometricList,
+            biometricReport: biometricReport,
+            caseList: caseList,
+            copyTreatment: copyTreatment,
+            disabilityList: disabilityList,
+            documentList: documentList,
+            laboratoryList: laboratoryList,
+            laboratoryReport: laboratoryReport,
+            removeCase: removeCase,
             treatmentEntryTypeList: treatmentEntryTypeList,
             treatmentEntry: treatmentEntry,
             treatmentEntryRow: treatmentEntryRow,
+            treatmentList: treatmentList,
             treatmentSubject: treatmentSubject,
             treatment: treatment,
-            copyTreatment: copyTreatment,
-            baseUrl: baseUrlComponent,
-            documentList: documentList,
-            laboratoryList: laboratoryList,
-            biometricList: biometricList,
-            disabilityList: disabilityList,
-            caseList: caseList,
-            removeCase: removeCase,
-            biometricReport: biometricReport,
-            laboratoryReport: laboratoryReport,
             treatmentReport: treatmentReport
         };
 
@@ -53,6 +53,10 @@
 
         function baseUrlComponent() {
             return protocol + baseUrl + ':' + port + '/';
+        }
+
+        function caseList(treatmentId) {
+            return baseUrlComponent() + routes.caseList.replace(/:([a-z]\w*)/gi, treatmentId) + '/';
         }
 
         function treatmentList(patientId) {
@@ -107,10 +111,6 @@
 
         function disabilityList(treatmentId) {
             return baseUrlComponent() + routes.disabilityList.replace(/:([a-z]\w*)/gi, treatmentId) + '/';
-        }
-
-        function caseList(treatmentId) {
-            return baseUrlComponent() + routes.caseList.replace(/:([a-z]\w*)/gi, treatmentId) + '/';
         }
 
         function removeCase(treatment) {

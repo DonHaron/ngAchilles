@@ -13,10 +13,11 @@
 
         return directive;
 
-        controller.$inject = ['$http', 'urls'];
-        function controller($http, urls){
+        controller.$inject = ['$http', 'urls', 'Treatment'];
+        function controller($http, urls, Treatment){
             var dc = this;
 
+            dc.addTreatment = addTreatment;
             dc.openBiometricReport = openBiometricReport;
             dc.openLaboratoryReport = openLaboratoryReport;
             dc.openTreatmentReport = openTreatmentReport;
@@ -46,6 +47,11 @@
                         payload.push(payloadEntry);
                     });
                 $http.post(urls.treatmentReport(process), payload);
+            }
+
+            function addTreatment(treatments){
+                var firstTreatment = treatments.length ? $filter('orderBy')(treatments, ['-date', 'id'])[0] : {id:0};
+                Treatment.addTreatment(firstTreatment, true, true, treatments);
             }
         }
     }

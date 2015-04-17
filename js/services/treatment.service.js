@@ -3,12 +3,12 @@
 
     angular
         .module('achilles')
-        .service('TreatmentContext', TreatmentContext);
+        .service('Treatment', Treatment);
 
 
-    TreatmentContext.$inject = ['$http', '$modal', 'urls'];
-    function TreatmentContext($http, $modal, urls) {
-        var TreatmentContext = {
+    Treatment.$inject = ['$http', '$modal', 'urls'];
+    function Treatment($http, $modal, urls) {
+        var Treatment = {
             addTreatment: addTreatment,
             copyTreatment: copyTreatment,
             deleteTreatment: deleteTreatment,
@@ -16,7 +16,7 @@
             changeSubject: changeSubject
         };
 
-        return TreatmentContext;
+        return Treatment;
 
         function addTreatment(treatment, isMandatorTreatment, isMainTreatment, treatments) {
             var date = new Date();

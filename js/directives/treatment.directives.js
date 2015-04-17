@@ -25,8 +25,8 @@
         return directive;
 
         controller.$inject = ['$scope', '$http', '$modal', 'urls', 'EntryType',
-            'TreatmentContext', 'Subject', 'Document', 'LaboratoryReport', 'Biometric', 'DisabilityCertificate'];
-        function controller($scope, $http, $modal, urls, EntryType, TreatmentContext, Subject, Document, LaboratoryReport, Biometric, DisabilityCertificate) {
+            'Treatment', 'Subject', 'Document', 'LaboratoryReport', 'Biometric', 'DisabilityCertificate'];
+        function controller($scope, $http, $modal, urls, EntryType, Treatment, Subject, Document, LaboratoryReport, Biometric, DisabilityCertificate) {
             var dc = this,
                 treatmentId = $scope.treatment.id;
 
@@ -51,11 +51,11 @@
             dc.baseUrl = urls.baseUrl();
 
 
-            dc.addTreatment = TreatmentContext.addTreatment;
-            dc.copyTreatment = TreatmentContext.copyTreatment;
-            dc.deleteTreatment = TreatmentContext.deleteTreatment;
-            dc.changeStatus = TreatmentContext.changeStatus;
-            dc.changeSubject = TreatmentContext.changeSubject;
+            dc.addTreatment = Treatment.addTreatment;
+            dc.copyTreatment = Treatment.copyTreatment;
+            dc.deleteTreatment = Treatment.deleteTreatment;
+            dc.changeStatus = Treatment.changeStatus;
+            dc.changeSubject = Treatment.changeSubject;
             dc.removeCase = removeCase;
 
 
