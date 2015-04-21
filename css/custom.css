@@ -53,12 +53,16 @@
     margin-bottom: 0;
 }
 
-.toolbar .btn {
+.toolbar .form-group {
+    margin-bottom: 0;
+}
+
+.toolbar .btn-xs {
     width: 27px;
 }
 
-.toolbar:hover,
-.toolbar:active {
+.toolbar a:hover,
+.toolbar a:active {
     background-position: 0% 33%;
 }
 
@@ -145,6 +149,10 @@
     margin-bottom: 5px;
 }
 
+.large-margins .treatment .panel {
+    margin-bottom: 15px;
+}
+
 .treatment .panel-heading {
     background-image: none;
     background-color: #fff;
@@ -156,6 +164,11 @@
 .treatment .panel-heading > .row {
     margin-top: 0px;
     margin-bottom: 3px;
+}
+
+.large-margins .treatment .panel-heading > .row {
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .treatment.closed .panel-heading {
@@ -170,6 +183,10 @@
 
 .treatment .panel-body {
     padding: 3px 15px;
+}
+
+.large-margins .treatment .panel-body {
+    padding: 15px;
 }
 
 .treatment .btn-default {
@@ -202,6 +219,10 @@
     padding: 3px 15px;
 }
 
+.large-margins .treatment .list-group-item {
+    padding: 5px 15px;
+}
+
 .treatment .form-group {
     margin-bottom: 7px;
 }
@@ -209,6 +230,11 @@
 .treatment .list-group {
     box-shadow: none;
     margin-bottom: 0;
+}
+
+.treatment .list-group {
+    /*margin-bottom: 15px;*/
+    margin-bottom: 5px;
 }
 
 .treatment .form-control {
@@ -301,4 +327,31 @@
 .achilles-benefit.empty,
 .achilles-benefit.empty:active {
     background-image: url('../images/icons/leistung_g.png');
+}
+
+.large-fonts,
+.large-fonts .panel-heading .btn,
+.large-fonts .form-control {
+    font-size: 18px;
+}
+
+.large-fonts .panel-heading .btn,
+.large-fonts .form-control {
+    height: 36px;
+}
+
+.small-fonts,
+.small-fonts .panel-heading .btn,
+.small-fonts .form-control {
+    font-size: 12px;
+}
+
+.small-fonts .panel-heading .btn,
+.small-fonts .form-control {
+    height: 30px;
+}
+
+span.checkmark {
+    display: inline-block;
+    width: 15px;
 }

@@ -37,7 +37,7 @@
         </div>
     </div>
 </div>
-<div class="container-fluid" ng-controller="MainController as vm">
+<div class="container-fluid" ng-class="[marginSetting, fontSetting]" ng-controller="MainController as vm">
     <div class="toolbar-wrapper" ng-show="vm.treatments.length">
         <div class="toolbar" treatment-toolbar ng-cloak>
             <div class="row">
@@ -45,9 +45,10 @@
                     <p ng-show="vm.treatments.length">Behandlungseinträge</p>
                 </div>
                 <div class="col-xs-2">
-                    <p ng-show="vm.treatments.length" ng-bind="vm.treatments.length + ' von ' + vm.treatments.length"></p>
+                    <p ng-show="vm.treatments.length"
+                       ng-bind="vm.treatments.length + ' von ' + vm.treatments.length"></p>
                 </div>
-                <div class="col-xs-6">
+                <div class="col-xs-5">
                     <div class="btn-toolbar pull-right">
                         <div class="dropdown icon-dropdown" toggle-focus dropdown>
 
@@ -56,7 +57,8 @@
 
                                 <a class="btn btn-default btn-xs new-treatment" title="Neue Behandlung"
                                    ng-click="dc.addTreatment(vm.treatments)">&nbsp;</a>
-                                <a class="btn btn-default btn-xs new-treatment-dialog" title="" href="{{vm.baseUrl}}treatment/">
+                                <a class="btn btn-default btn-xs new-treatment-dialog" title=""
+                                   href="{{vm.baseUrl}}treatment/">
                                     &nbsp;</a>
                                 <a class="btn btn-default btn-xs biometric-report"
                                    ng-click="dc.openBiometricReport(vm.process)">&nbsp;</a>
@@ -65,7 +67,7 @@
                                 <a class="btn btn-default btn-xs treatment-report"
                                    ng-click="dc.openTreatmentReport(vm.process, vm.treatments)">&nbsp;</a>
                                 <a class="btn btn-default btn-xs search"
-                                        ng-click="dc.asteriskSearch()">&nbsp;</a>
+                                   ng-click="dc.asteriskSearch()">&nbsp;</a>
                                 <a class="btn btn-default btn-xs sort"
                                    ng-click="vm.reverse=!vm.reverse">&nbsp;</a>
                             </div>
@@ -82,6 +84,22 @@
                             <ul class="dropdown-menu">
                                 <li><a href>Item 1</a></li>
                                 <li><a href>Item 2</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-1">
+                    <div class="btn-group pull-right">
+                        <div class="dropdown" toggle-focus dropdown>
+
+                            <a class="btn btn-default dropdown-toggle" dropdown-toggle><i class="fa fa-cogs"></i></a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li><a ng-click="marginSetting='large-margins'" href><span class="checkmark"><i class="fa fa-check" ng-show="marginSetting=='large-margins'">&nbsp;</i></span> Grosse Abstände</a></li>
+                                <li><a ng-click="marginSetting='small-margins'" href><span class="checkmark"><i class="fa fa-check" ng-show="marginSetting=='small-margins' || !marginSetting">&nbsp;</i></span> Kleine Abstände</a></li>
+                                <li role="presentation" class="divider"></li>
+                                <li><a ng-click="fontSetting='small-fonts'" href><span class="checkmark"><i class="fa fa-check" ng-show="fontSetting=='small-fonts'">&nbsp;</i></span> Kleine Schrift</a></li>
+                                <li><a ng-click="fontSetting='medium-fonts'" href><span class="checkmark"><i class="fa fa-check" ng-show="fontSetting=='medium-fonts' || !fontSetting">&nbsp;</i></span> Mittlere Schrift</a></li>
+                                <li><a ng-click="fontSetting='large-fonts'" href><span class="checkmark"><i class="fa fa-check" ng-show="fontSetting=='large-fonts'">&nbsp;</i></span> Grosse Schrift</a></li>
                             </ul>
                         </div>
                     </div>
