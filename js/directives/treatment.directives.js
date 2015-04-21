@@ -7,7 +7,8 @@
         .directive('treatmentEntry', treatmentEntry)
         .directive('treatmentRow', treatmentRow);
 
-    function treatment() {
+    treatment.$inject = ['$timeout'];
+    function treatment($timeout) {
         var directive = {
             scope: {
                 treatment: '=',
@@ -173,6 +174,9 @@
         }
 
         function link(scope, element, attribute, ctrl) {
+            var promise;
+
+
             element.on('keydown', function (e) {
                 //console.log(e.which);
                 //F9
@@ -183,8 +187,29 @@
                     ctrl.testModal();
                 }
             });
-            //console.log(element.find('.type-select input').select2('open'));
-            //element.find('.type-select input').select2('open');
+
+
+            element.on('focusin mouseenter', function(){
+                console.log('focus gained');
+                scope.treatment.focused = true;
+                $timeout.cancel(promise);
+            });
+            element.on('focusout mouseleave', function(){
+                console.log('focus lost');
+                promise = $timeout(function(){
+                    scope.treatment.focused = false;
+                }, 300);
+            });
+            // Prevent the element losing focus when the select2 is opened. Technically it DOES lose focus,
+            // but in the actual use case the select2 still counts as belonging to the treatment
+            element.on('select2-open', function(){
+                console.log('opened');
+                scope.select2Open = true;
+            });
+            element.on('select2-blur', function(){
+                console.log('blurred');
+                scope.select2Open = false;
+            });
         }
     }
 
@@ -244,11 +269,12 @@
         return directive;
 
         function link(scope, element) {
+
             if (scope.row.new == true) {
                 $timeout(function () {
-                    var textarea = element.find('textarea').eq(0);
+                    var textarea = element.find('textarea:not(:disabled)').eq(0);
                     textarea.focus();
-                }, 50);
+                }, 150);
             }
         }
     }

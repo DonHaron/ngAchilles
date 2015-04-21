@@ -5,9 +5,9 @@
         .module('achilles')
         .directive('treatmentColumn', treatmentColumn);
 
-    treatmentColumn.$inject = ['$http', 'urls', '$timeout'];
+    treatmentColumn.$inject = ['$http', 'urls', '$timeout', '$rootScope'];
 
-    function treatmentColumn($http, urls, $timeout) {
+    function treatmentColumn($http, urls, $timeout, $rootScope) {
         var directive = {
             restrict: 'E',
             scope: {
@@ -34,7 +34,6 @@
             var textarea = element.find('textarea');
             textarea.on('blur', function (e) {
                 if (textarea.hasClass('ng-dirty')) {
-                    console.log(scope.row);
                     //$http.put(urls.treatmentEntryRow(), scope.row).then(function (response) {
                     //PUT/POST-workaround
                     $http.post(urls.treatmentEntryRow('put'), scope.row).then(function (response) {
@@ -48,7 +47,12 @@
                                 break;
                             }
                         }
-                        ;
+                        //hacky solution, there has to be a better way
+//                        $timeout(function(){
+//                            console.log('adjusting...');
+//                            $rootScope.$broadcast('elastic:adjust');
+//
+//                        },1500);
                         //treatmentCtrl.setEntry(response.data);
                     });
                 }

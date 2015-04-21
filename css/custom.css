@@ -142,6 +142,7 @@
 .treatment .panel {
     border: 0;
     border-radius: 0;
+    margin-bottom: 5px;
 }
 
 .treatment .panel-heading {
@@ -153,8 +154,8 @@
 }
 
 .treatment .panel-heading > .row {
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 0px;
+    margin-bottom: 3px;
 }
 
 .treatment.closed .panel-heading {
@@ -167,11 +168,15 @@
     text-align: left;
 }
 
+.treatment .panel-body {
+    padding: 3px 15px;
+}
+
 .treatment .btn-default {
     background: 0;
     box-shadow: none;
     display: block;
-    border-color: #ddd;
+    border-color: #f3f3f3;
 }
 
 .treatment .heading-label {
@@ -194,7 +199,7 @@
 
 .treatment .list-group-item {
     border: 0;
-    padding: 5px 15px;
+    padding: 3px 15px;
 }
 
 .treatment .form-group {
@@ -203,10 +208,18 @@
 
 .treatment .list-group {
     box-shadow: none;
+    margin-bottom: 0;
 }
 
 .treatment .form-control {
-    border-color: #efefef;
+    border-color: #f3f3f3;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.025);
+}
+
+.select2-container .select2-choices .select2-search-field input,
+.select2-container .select2-choice,
+.select2-container .select2-choices {
+    border-color: #f9f9f9;
 }
 
 .icon-dropdown {
@@ -223,6 +236,7 @@
     vertical-align: middle;
     background-repeat: no-repeat;
     background-position: center center;
+    background-size: 20px 20px;
 }
 
 .treatment .achilles-icon:active {
