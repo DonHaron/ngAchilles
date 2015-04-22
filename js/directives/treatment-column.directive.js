@@ -15,7 +15,7 @@
 //                '<a data-wysihtml5-command="bold">bold</a>' +
 //                '<a data-wysihtml5-command="italic">italic</a>' +
 //                '</div>' +
-                '<div ng-model="content" text-angular></div>'+
+                '<div ng-model="content" text-angular ta-target-toolbars="toolbar-{{treatmentId}}"></div>'+
 //                '<textarea rows="1" class="form-control wysihtml-textarea" text-angular toolbar="wysihtml-toolbar-{{uniqueId}}" ng-model="content" amsd-elastic id="wysihtml-{{uniqueId}}" ng-disabled="{{readonly}}"></textarea>' +
                 '</div>' +
                 '</div>',
@@ -30,7 +30,8 @@
                 readonly: '@',
                 parent: '=',
                 row: '=',
-                uniqueId: '@'
+                uniqueId: '@',
+                treatmentId: '@'
             },
             require: ['^treatment', '^treatmentEntry'],
             link: link
@@ -73,13 +74,6 @@
                                 break;
                             }
                         }
-                        //hacky solution, there has to be a better way
-//                        $timeout(function(){
-//                            console.log('adjusting...');
-//                            $rootScope.$broadcast('elastic:adjust');
-//
-//                        },1500);
-                        //treatmentCtrl.setEntry(response.data);
                     });
                 }
             }

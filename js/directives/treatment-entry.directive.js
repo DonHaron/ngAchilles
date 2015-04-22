@@ -9,7 +9,8 @@
         var directive = {
             scope: {
                 entry: '=',
-                editable: '@'
+                editable: '@',
+                treatmentId: '@'
             },
             restrict: 'E',
             templateUrl: '../js/templates/treatment-entry.tpl.html',

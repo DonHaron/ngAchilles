@@ -99,7 +99,6 @@
                     controller: 'PresetModalController',
                     controllerAs: 'mc',
                     size: 'lg'
-
                 });
             }
 
@@ -117,7 +116,6 @@
                                 {id: 2, name: 'Skin Game'}
                             ];
                         });
-
                 }
             }
 

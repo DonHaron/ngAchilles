@@ -360,6 +360,15 @@ span.checkmark {
  * textAngular custom CSS
  */
 
+.ta-toolbar.btn-toolbar {
+    margin-left: 0;
+}
+
+.ta-toolbar .btn-group {
+    float: right;
+    margin-right: 15px;
+}
+
 .ta-editor.ta-html, .ta-scroll-window.form-control {
     min-height: 34px;
 }
