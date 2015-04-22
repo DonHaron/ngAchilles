@@ -355,3 +355,19 @@ span.checkmark {
     display: inline-block;
     width: 15px;
 }
+
+/*
+ * textAngular custom CSS
+ */
+
+.ta-editor.ta-html, .ta-scroll-window.form-control {
+    min-height: 34px;
+}
+
+.ta-editor p {
+    margin-bottom: 0;
+}
+
+.ta-scroll-window > .ta-bind {
+    min-height: 34px;
+}

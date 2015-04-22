@@ -11,11 +11,12 @@
         var templates = {
             editable: '<div ng-class="columnClass">' +
                 '<div class="form-group">' +
-                '<div id="wysihtml-toolbar-{{uniqueId}}" class="wysihtml-toolbar" style="display: none;">' +
-                '<a data-wysihtml5-command="bold">bold</a>' +
-                '<a data-wysihtml5-command="italic">italic</a>' +
-                '</div>' +
-                '<textarea rows="1" class="form-control wysihtml-textarea" ng-model="content" msd-elastic id="wysihtml-{{uniqueId}}" ng-disabled="{{readonly}}"></textarea>' +
+//                '<div id="wysihtml-toolbar-{{uniqueId}}" class="wysihtml-toolbar" style="display: none;">' +
+//                '<a data-wysihtml5-command="bold">bold</a>' +
+//                '<a data-wysihtml5-command="italic">italic</a>' +
+//                '</div>' +
+                '<div ng-model="content" text-angular></div>'+
+//                '<textarea rows="1" class="form-control wysihtml-textarea" text-angular toolbar="wysihtml-toolbar-{{uniqueId}}" ng-model="content" amsd-elastic id="wysihtml-{{uniqueId}}" ng-disabled="{{readonly}}"></textarea>' +
                 '</div>' +
                 '</div>',
             readonly: '<div ng-class="columnClass"><p>{{::content}}</p></div>'
@@ -32,9 +33,6 @@
                 uniqueId: '@'
             },
             require: ['^treatment', '^treatmentEntry'],
-            //template: '<div ng-include="contentUrl"></div>',
-            templateUrl: '../js/templates/treatment-column.tpl.html',
-//            template: '<div ng-class="columnClass"><div class="form-group"><input class="form-control" ng-model="content" ng-disabled="{{readonly}}"></div></div>',
             link: link
         };
 
@@ -49,21 +47,18 @@
             var entryCtrl = ctrls[1];
             scope.columnClass = 'col-xs-' + attrs.width;
 
-            element.html(getTemplate(attrs.editable)).show();
-            $compile(element.contents())(scope);
+            element.on('blur', '.ta-bind', blur);
+            element.on('keydown', '.ta-bind', keydown);
+            attrs.$observe("editable", setTemplate);
+            // change the template if the 'editable' attribute changes
+            setTemplate(attrs.editable);
 
-            attrs.$observe("editable", function (e) {
-                element.html(getTemplate(e)).show();
+            function setTemplate(editable){
+                element.html(getTemplate(editable)).show();
                 $compile(element.contents())(scope);
-            });
-//
-//            if (attrs.editable == 'true') {
-//                scope.contentUrl = '../js/templates/treatment-column.tpl.html';
-//            } else {
-//                scope.contentUrl = '../js/templates/treatment-column-readonly.tpl.html';
-//            }
+            }
 
-            element.on('blur', 'textarea', function (e) {
+            function blur(e){
                 if (angular.element(this).hasClass('ng-dirty')) {
                     //$http.put(urls.treatmentEntryRow(), scope.row).then(function (response) {
                     //PUT/POST-workaround
@@ -87,9 +82,9 @@
                         //treatmentCtrl.setEntry(response.data);
                     });
                 }
-            });
+            }
 
-            element.on('keydown', 'textarea', function (e) {
+            function keydown(e){
                 // Ctrl + Shirt + Backspace
                 if (e.ctrlKey && e.shiftKey && e.which == 8) {
                     //see if there is a previous textarea element in the same entry. If there is, focus on it
@@ -110,15 +105,8 @@
                     }, 150);
                     entryCtrl.removeRow(scope.row);
                 }
-            });
+            }
         }
 
-//        function templateUrl(element, attrs) {
-//            if (attrs.editable == 'true') {
-//                return '../js/templates/treatment-column.tpl.html';
-//            } else {
-//                return '../js/templates/treatment-column-readonly.tpl.html';
-//            }
-//        }
     }
 })();

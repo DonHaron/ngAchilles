@@ -7,6 +7,7 @@
                 'ngResource',
                 'ui.bootstrap',
                 'rt.select2',
-                'monospaced.elastic'
+                'monospaced.elastic',
+                'textAngular'
             ]);
 })();
