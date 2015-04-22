@@ -5,9 +5,22 @@
         .module('achilles')
         .directive('treatmentColumn', treatmentColumn);
 
-    treatmentColumn.$inject = ['$http', 'urls', '$timeout', '$rootScope'];
+    treatmentColumn.$inject = ['$http', 'urls', '$timeout', '$compile'];
 
-    function treatmentColumn($http, urls, $timeout, $rootScope) {
+    function treatmentColumn($http, urls, $timeout, $compile) {
+        var templates = {
+            editable: '<div ng-class="columnClass">' +
+                '<div class="form-group">' +
+                '<div id="wysihtml-toolbar-{{uniqueId}}" class="wysihtml-toolbar" style="display: none;">' +
+                '<a data-wysihtml5-command="bold">bold</a>' +
+                '<a data-wysihtml5-command="italic">italic</a>' +
+                '</div>' +
+                '<textarea rows="1" class="form-control wysihtml-textarea" ng-model="content" msd-elastic id="wysihtml-{{uniqueId}}" ng-disabled="{{readonly}}"></textarea>' +
+                '</div>' +
+                '</div>',
+            readonly: '<div ng-class="columnClass"><p>{{::content}}</p></div>'
+        };
+
         var directive = {
             restrict: 'E',
             scope: {
@@ -19,6 +32,7 @@
                 uniqueId: '@'
             },
             require: ['^treatment', '^treatmentEntry'],
+            //template: '<div ng-include="contentUrl"></div>',
             templateUrl: '../js/templates/treatment-column.tpl.html',
 //            template: '<div ng-class="columnClass"><div class="form-group"><input class="form-control" ng-model="content" ng-disabled="{{readonly}}"></div></div>',
             link: link
@@ -26,14 +40,31 @@
 
         return directive;
 
+        function getTemplate(editable){
+            return editable == 'true' ? templates.editable : templates.readonly;
+        }
+
         function link(scope, element, attrs, ctrls) {
             var treatmentCtrl = ctrls[0];
             var entryCtrl = ctrls[1];
             scope.columnClass = 'col-xs-' + attrs.width;
 
-            var textarea = element.find('textarea');
-            textarea.on('blur', function (e) {
-                if (textarea.hasClass('ng-dirty')) {
+            element.html(getTemplate(attrs.editable)).show();
+            $compile(element.contents())(scope);
+
+            attrs.$observe("editable", function (e) {
+                element.html(getTemplate(e)).show();
+                $compile(element.contents())(scope);
+            });
+//
+//            if (attrs.editable == 'true') {
+//                scope.contentUrl = '../js/templates/treatment-column.tpl.html';
+//            } else {
+//                scope.contentUrl = '../js/templates/treatment-column-readonly.tpl.html';
+//            }
+
+            element.on('blur', 'textarea', function (e) {
+                if (angular.element(this).hasClass('ng-dirty')) {
                     //$http.put(urls.treatmentEntryRow(), scope.row).then(function (response) {
                     //PUT/POST-workaround
                     $http.post(urls.treatmentEntryRow('put'), scope.row).then(function (response) {
@@ -58,7 +89,7 @@
                 }
             });
 
-            textarea.on('keydown', function (e) {
+            element.on('keydown', 'textarea', function (e) {
                 // Ctrl + Shirt + Backspace
                 if (e.ctrlKey && e.shiftKey && e.which == 8) {
                     //see if there is a previous textarea element in the same entry. If there is, focus on it
@@ -69,11 +100,11 @@
                     $timeout(function () {
                         if (prevRow.length) {
                             prevRow.eq(0).focus();
-                        } else if(prevEntry.length){
+                        } else if (prevEntry.length) {
                             prevEntry.eq(0).focus();
-                        }else if(nextRow.length){
+                        } else if (nextRow.length) {
                             nextRow.eq(0).focus();
-                        }else{
+                        } else {
                             nextEntry.eq(0).focus();
                         }
                     }, 150);
@@ -81,5 +112,13 @@
                 }
             });
         }
+
+//        function templateUrl(element, attrs) {
+//            if (attrs.editable == 'true') {
+//                return '../js/templates/treatment-column.tpl.html';
+//            } else {
+//                return '../js/templates/treatment-column-readonly.tpl.html';
+//            }
+//        }
     }
 })();

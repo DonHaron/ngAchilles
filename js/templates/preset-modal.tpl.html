@@ -7,6 +7,8 @@
             <div modal-select2 class="col-xs-9 col-xs-offset-3">
                 <select2 class="form-control" ng-model="chosenPreset" ng-change="close(chosenPreset)"
                          ng-options="preset as preset.name for preset in presets"></select2>
+                <textarea id="test"></textarea>
+                <a href ng-click="focus()">Focus()</a>
             </div>
         </div>
     </div>

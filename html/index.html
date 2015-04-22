@@ -92,7 +92,7 @@
                     <div class="btn-group pull-right">
                         <div class="dropdown" toggle-focus dropdown>
 
-                            <a class="btn btn-default dropdown-toggle" dropdown-toggle><i class="fa fa-cogs"></i></a>
+                            <a class="btn btn-default btn-xs dropdown-toggle" dropdown-toggle><i class="fa fa-cogs"></i></a>
                             <ul class="dropdown-menu dropdown-menu-right">
                                 <li><a ng-click="marginSetting='large-margins'" href><span class="checkmark"><i class="fa fa-check" ng-show="marginSetting=='large-margins'">&nbsp;</i></span> Grosse Abstände</a></li>
                                 <li><a ng-click="marginSetting='small-margins'" href><span class="checkmark"><i class="fa fa-check" ng-show="marginSetting=='small-margins' || !marginSetting">&nbsp;</i></span> Kleine Abstände</a></li>
@@ -108,7 +108,7 @@
         </div>
     </div>
 
-    <treatment treatment="treatment" ng-repeat="treatment in vm.treatments | orderBy:[(vm.reverse?'':'-')+'date', 'id']"
+    <treatment treatment="treatment" editable="{{$index<3}}" ng-repeat="treatment in vm.treatments | orderBy:[(vm.reverse?'':'-')+'date', 'id']"
                treatmentlist="vm.treatments"></treatment>
 </div>
 
@@ -133,9 +133,11 @@
 <script type="text/javascript" src="../js/achilles.js"></script>
 <script type="text/javascript" src="../js/controllers/main.controller.js"></script>
 <script type="text/javascript" src="../js/controllers/modal.controllers.js"></script>
-<script type="text/javascript" src="../js/directives/treatment.directives.js"></script>
+<script type="text/javascript" src="../js/directives/treatment.directive.js"></script>
+<script type="text/javascript" src="../js/directives/treatment-entry.directive.js"></script>
+<script type="text/javascript" src="../js/directives/treatment-row.directive.js"></script>
 <script type="text/javascript" src="../js/directives/treatment-column.directive.js"></script>
-<script type="text/javascript" src="../js/directives/modal.directives.js"></script>
+<script type="text/javascript" src="../js/directives/modal-select2.directive.js"></script>
 <script type="text/javascript" src="../js/directives/toggle-focus.directive.js"></script>
 <script type="text/javascript" src="../js/directives/treatment-toolbar.directive.js"></script>
 <script type="text/javascript" src="../js/services/url.service.js"></script>

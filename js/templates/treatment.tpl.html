@@ -209,7 +209,7 @@
         </div>
         <div class="panel-body">
             <ul class="list-group">
-                <treatment-entry entry="entry" ng-repeat="entry in treatment.entries | orderBy:'type.name'">
+                <treatment-entry entry="entry" editable="{{editable}}" ng-repeat="entry in treatment.entries | orderBy:'type.name'">
                 </treatment-entry>
                 <li class="list-group-item" ng-show="treatment.focused || select2Open">
                     <div class="row">

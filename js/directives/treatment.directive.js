@@ -3,16 +3,16 @@
 
     angular
         .module('achilles')
-        .directive('treatment', treatment)
-        .directive('treatmentEntry', treatmentEntry)
-        .directive('treatmentRow', treatmentRow);
+        .directive('treatment', treatment);
+        //.directive('treatmentEntry', treatmentEntry)
 
     treatment.$inject = ['$timeout'];
     function treatment($timeout) {
         var directive = {
             scope: {
                 treatment: '=',
-                treatments: '=treatmentlist'
+                treatments: '=treatmentlist',
+                editable: '@'
             },
             restrict: 'A',
             controller: controller,
@@ -173,9 +173,8 @@
             }
         }
 
-        function link(scope, element, attribute, ctrl) {
+        function link(scope, element, attrs, ctrl) {
             var promise;
-
 
             element.on('keydown', function (e) {
                 //console.log(e.which);
@@ -188,14 +187,12 @@
                 }
             });
 
-
-            element.on('focusin mouseenter', function(){
-                console.log('focus gained');
+            element.on('focusin', function(){
                 scope.treatment.focused = true;
+                scope.editable = true;
                 $timeout.cancel(promise);
             });
-            element.on('focusout mouseleave', function(){
-                console.log('focus lost');
+            element.on('focusout', function(){
                 promise = $timeout(function(){
                     scope.treatment.focused = false;
                 }, 300);
@@ -213,70 +210,6 @@
         }
     }
 
-    function treatmentEntry() {
-        var directive = {
-            scope: {
-                entry: '='
-            },
-            restrict: 'E',
-            templateUrl: '../js/templates/treatment-entry.tpl.html',
-            require: '^treatment',
-            controller: controller,
-            link: link
-        };
 
-        return directive;
-
-        controller.$inject = ['$scope', '$http', 'urls'];
-        function controller($scope, $http, urls) {
-            var dc = this;
-
-            dc.makePristine = function () {
-                $scope.entryform.$setPristine();
-            }
-
-            dc.removeRow = function (row) {
-                var rows = $scope.entry.rows;
-                //$http.delete(urls.treatmentEntryRow() + row.id)
-                //PUT/DELETE-workaround
-                $http.post(urls.treatmentEntryRow('delete') + row.id)
-                    .then(function () {
-                        for (var i = 0; i < rows.length; i++) {
-                            if (rows[i].id == row.id) {
-                                rows.splice(i, 1);
-                                break;
-                            }
-                        }
-                        if (rows.length == 0) {
-                            //There are now more rows left, delete the entry now
-                            $scope.removeEntry($scope.entry)
-                        }
-                    });
-            }
-        }
-
-        function link(scope, element, attrs, treatmentCtrl) {
-            scope.removeEntry = treatmentCtrl.removeEntry;
-        }
-    }
-
-    treatmentRow.$inject = ['$timeout'];
-    function treatmentRow($timeout) {
-        var directive = {
-            link: link
-        };
-
-        return directive;
-
-        function link(scope, element) {
-
-            if (scope.row.new == true) {
-                $timeout(function () {
-                    var textarea = element.find('textarea:not(:disabled)').eq(0);
-                    textarea.focus();
-                }, 150);
-            }
-        }
-    }
 
 })();
