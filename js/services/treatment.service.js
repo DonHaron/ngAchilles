@@ -52,30 +52,35 @@
                 size: 'sm'
             });
 
-            modalInstance.result.then(function(){
-                $http.post(urls.treatment('delete'), treatment).then(function(response){
-                // TODO: remove from treatments
-                 });
+            modalInstance.result.then(function () {
+                $http.post(urls.treatment('delete'), treatment).then(function (response) {
+                    for (var i = 0; i < treatments.length; i++) {
+                        if (treatments[i].id == treatment.id) {
+                            treatments.splice(i, 1);
+                            break;
+                        }
+                    }
+                });
             });
         }
 
-        function changeStatus(treatment){
+        function changeStatus(treatment) {
             treatment.closed = !treatment.closed;
-            $http.post(urls.treatment('put'), treatment).then(function(response){
+            $http.post(urls.treatment('put'), treatment).then(function (response) {
                 treatment.closed = response.data.closed;
                 console.log('treatment status changed');
-            }, function(error){
+            }, function (error) {
                 //did not work, reverse again
                 treatment.closed = !treatment.closed;
             });
         }
 
-        function changeSubject(treatment, subject){
+        function changeSubject(treatment, subject) {
             var oldSubject = treatment.subject;
             treatment.subject = subject;
-            $http.post(urls.treatment('put'), treatment).then(function(response){
+            $http.post(urls.treatment('put'), treatment).then(function (response) {
                 treatment.subject = response.data.subject;
-            }, function(error){
+            }, function (error) {
                 treatment.subject = oldSubject;
             });
         }
