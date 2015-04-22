@@ -1,14 +1,15 @@
 #loading-overlay {
     position: fixed;
     width: 100%;
-    height:100%;
+    height: 100%;
     display: flex;
     align-items: center;
     top: 0;
     z-index: 9998;
     display: none;
-    background-color: rgba(255,255,255,0.5);
+    background-color: rgba(255, 255, 255, 0.5);
 }
+
 .loading-icon {
     display: flex;
     margin: 0 auto;
@@ -239,7 +240,7 @@
 
 .treatment .form-control {
     border-color: #f3f3f3;
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.025);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .025);
 }
 
 .select2-container .select2-choices .select2-search-field input,
@@ -335,8 +336,7 @@
     font-size: 18px;
 }
 
-.large-fonts .panel-heading .btn,
-.large-fonts .form-control {
+.large-fonts .panel-heading .btn {
     height: 36px;
 }
 
@@ -346,8 +346,7 @@
     font-size: 12px;
 }
 
-.small-fonts .panel-heading .btn,
-.small-fonts .form-control {
+.small-fonts .panel-heading .btn {
     height: 30px;
 }
 
@@ -360,13 +359,20 @@ span.checkmark {
  * textAngular custom CSS
  */
 
+/*.ta-toolbar {*/
+    /*display: none;*/
+/*}*/
+
+/*.ta-toolbar.focussed {*/
+    /*display: block;*/
+/*}*/
+
 .ta-toolbar.btn-toolbar {
     margin-left: 0;
 }
 
 .ta-toolbar .btn-group {
     float: right;
-    margin-right: 15px;
 }
 
 .ta-editor.ta-html, .ta-scroll-window.form-control {

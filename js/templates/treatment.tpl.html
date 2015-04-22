@@ -208,15 +208,17 @@
 </div>
 </div>
 <div class="panel-body">
-    <div class="row">
-        <div class="col-xs-6 col-xs-offset-6">
-            <text-angular-toolbar name="toolbar-{{treatment.id}}"></text-angular-toolbar>
-        </div>
-    </div>
     <ul class="list-group">
         <treatment-entry entry="entry" editable="{{editable}}" treatment-id="{{treatment.id}}"
                          ng-repeat="entry in treatment.entries | orderBy:'type.name'">
         </treatment-entry>
+        <li class="list-group-item" ng-show="treatment.focused">
+            <div class="row">
+                <div class="col-xs-6 col-xs-offset-6">
+                    <text-angular-toolbar name="toolbar-{{treatment.id}}"></text-angular-toolbar>
+                </div>
+            </div>
+        </li>
         <li class="list-group-item" ng-show="treatment.focused || select2Open">
             <div class="row">
                 <div class="col-xs-12 type-select">

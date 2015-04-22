@@ -15,11 +15,11 @@
 //                '<a data-wysihtml5-command="bold">bold</a>' +
 //                '<a data-wysihtml5-command="italic">italic</a>' +
 //                '</div>' +
-                '<div ng-model="content" text-angular ta-target-toolbars="toolbar-{{treatmentId}}"></div>'+
+                '<div ng-model="content" ta-disabled="{{readonly}}" text-angular ta-target-toolbars="toolbar-{{treatmentId}}"></div>'+
 //                '<textarea rows="1" class="form-control wysihtml-textarea" text-angular toolbar="wysihtml-toolbar-{{uniqueId}}" ng-model="content" amsd-elastic id="wysihtml-{{uniqueId}}" ng-disabled="{{readonly}}"></textarea>' +
                 '</div>' +
                 '</div>',
-            readonly: '<div ng-class="columnClass"><p>{{::content}}</p></div>'
+            readonly: '<div ng-class="columnClass"><p ng-bind-html="readonlyContent"></p></div>'
         };
 
         var directive = {
@@ -34,6 +34,7 @@
                 treatmentId: '@'
             },
             require: ['^treatment', '^treatmentEntry'],
+            controller: controller,
             link: link
         };
 
@@ -41,6 +42,12 @@
 
         function getTemplate(editable){
             return editable == 'true' ? templates.editable : templates.readonly;
+        }
+
+        cntroller.$inject = ['$scope', '$sce'];
+        function controller($scope, $sce){
+            // we have to sanitize the content if we just want to display it with html tags
+            $scope.readonlyContent = $sce.trustAsHtml($scope.content);
         }
 
         function link(scope, element, attrs, ctrls) {
