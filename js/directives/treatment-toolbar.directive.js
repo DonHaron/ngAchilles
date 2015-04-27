@@ -22,6 +22,10 @@
             dc.openBiometricReport = openBiometricReport;
             dc.openLaboratoryReport = openLaboratoryReport;
             dc.openTreatmentReport = openTreatmentReport;
+            dc.executeGDT = executeGDT;
+
+            loadGDT();
+
 
             function addTreatment(treatments){
                 var firstTreatment = treatments.length ? $filter('orderBy')(treatments, ['-date', 'id'])[0] : {id:0};
@@ -57,6 +61,23 @@
                         payload.push(payloadEntry);
                     });
                 $http.post(urls.treatmentReport(process), payload);
+            }
+
+            function executeGDT(device, patient, test){
+                $http.post(urls.executeGDT(device, patient, test))
+                    .then(function(){
+                        console.log('that worked');
+                    })
+                    .catch(function(){
+                        console.log("that didn't");
+                    });
+            }
+
+            function loadGDT(){
+                $http.get(urls.gdtList())
+                    .then(function(response){
+                        dc.gdtDevices = response.data;
+                    });
             }
 
         }

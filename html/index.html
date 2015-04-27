@@ -83,9 +83,10 @@
                             <div class="btn-group">
                                 <a class="btn btn-default btn-xs refresh" ng-click="vm.loadEntries()">&nbsp;</a>
                             </div>
-                            <ul class="dropdown-menu">
-                                <li><a href>Item 1</a></li>
-                                <li><a href>Item 2</a></li>
+                            <ul class="dropdown-menu gdt-list">
+                                <li ng-repeat-start="device in dc.gdtDevices"><a href ng-click="dc.executeGDT(device, vm.patient)"><strong>{{device.name}}</strong></a></li>
+                                <li ng-repeat="test in device.gdtTests"><a href ng-click="dc.executeGDT(device, vm.patient, test)">{{test.name}}</a></li>
+                                <li ng-repeat-end class="divider"></li>
                             </ul>
                         </div>
                     </div>

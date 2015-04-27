@@ -119,6 +119,10 @@
     margin-bottom: -5px;
 }
 
+.gdt-list li.divider:last-child {
+    display: none;
+}
+
 /*.form-control {
     border-width: 0;
     box-shadow: none;

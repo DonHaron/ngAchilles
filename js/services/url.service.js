@@ -26,7 +26,10 @@
             treatmentlist: 'patient/:patient/treatmentlist',
             treatmentReport: 'treatmentreport/process/:process',
             treatmentsubject: 'treatmentsubject',
-            treatment: 'treatment'
+            treatment: 'treatment',
+            gdtList: 'gdt/list',
+            executeGDT: 'gdt/:device/patient/:patient',
+            executeGDTTest: 'gdt/:device/patient/:patient/code/:test'
         };
 
         var factory = {
@@ -46,7 +49,9 @@
             treatmentList: treatmentList,
             treatmentSubject: treatmentSubject,
             treatment: treatment,
-            treatmentReport: treatmentReport
+            treatmentReport: treatmentReport,
+            gdtList: gdtList,
+            executeGDT: executeGDT
         };
 
         return factory;
@@ -57,6 +62,13 @@
 
         function caseList(treatmentId) {
             return baseUrlComponent() + routes.caseList.replace(/:([a-z]\w*)/gi, treatmentId) + '/';
+        }
+
+        function executeGDT(device, patient, test){
+            return baseUrlComponent() + (test ? routes.executeGDTTest : routes.executeGDT)
+                .replace(/:device/, device.id)
+                .replace(/:patient/, patient)
+                .replace(/:test/, test ? test.code : '') + '/';
         }
 
         function treatmentList(patientId) {
@@ -99,6 +111,10 @@
 
         function documentList(treatmentId) {
             return baseUrlComponent() + routes.documentList.replace(/:([a-z]\w*)/gi, treatmentId) + '/';
+        }
+
+        function gdtList() {
+            return baseUrlComponent() + routes.gdtList + '/';
         }
 
         function laboratoryList(treatmentId) {

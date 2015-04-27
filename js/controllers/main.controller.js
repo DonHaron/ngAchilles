@@ -13,6 +13,7 @@
         vm.entries = [];
         vm.loadEntries = loadEntries;
         vm.process = achillesConfig.process;
+        vm.patient = achillesConfig.patient;
         vm.reverse = false;
         vm.marginOptions = [
             {class: 'large-margins', label: 'Grosse Abstände'},
@@ -23,6 +24,7 @@
             {class: 'medium-fonts', label: 'Mittel'},
             {class: 'small-fonts', label: 'Klein'},
         ];
+
 
 
         vm.loadEntries();
