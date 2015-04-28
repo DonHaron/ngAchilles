@@ -5,9 +5,9 @@
         .module('achilles')
         .directive('treatmentColumn', treatmentColumn);
 
-    treatmentColumn.$inject = ['$http', 'urls', '$timeout', '$compile'];
+    treatmentColumn.$inject = ['$http', 'urls', '$timeout', '$compile', 'CurrentFocus'];
 
-    function treatmentColumn($http, urls, $timeout, $compile) {
+    function treatmentColumn($http, urls, $timeout, $compile, CurrentFocus) {
         var templates = {
             editable: '<div ng-class="columnClass">' +
                 '<div class="form-group">' +
@@ -57,9 +57,39 @@
 
             element.on('blur', '.ta-bind', blur);
             element.on('keydown', '.ta-bind', keydown);
+            element.on('focus', '.ta-bind', focus);
             attrs.$observe("editable", setTemplate);
             // change the template if the 'editable' attribute changes
             setTemplate(attrs.editable);
+
+            scope.$watch(CurrentFocus.getNewFocus, function(val){
+                if(val && scope.row.id == val.id){
+                    //console.log('yes!', val);
+                    // TODO: make editable if not already so
+//                    if(attrs.editable!='true'){
+//                        console.log('not true');
+//                        attrs.editable = true;
+//                        setTemplate(true);
+//                    }
+                    var input = element.find('.ta-bind');
+                    input.focus();
+                    // TODO: make a selection, select the asterisk
+//                    console.log(input.setSelectionRange);
+//                    console.log(input.createTextRange);
+//                    if(input.setSelectionRange){
+//                        console.log('setSelectionRange');
+//                        input.focus();
+//                        input.setSelectionRange(0,1);
+//                    }else if(input.createTextRange){
+//                        console.log('createTextRange');
+//                        var range = input.createTextRange();
+//                        range.collapse(true);
+//                        range.moveEnd('character', 1);
+//                        range.moveStart('character', 0);
+//                        range.select();
+//                    }
+                }
+            });
 
             function setTemplate(editable){
                 element.html(getTemplate(editable)).show();
@@ -106,6 +136,10 @@
                     }, 150);
                     entryCtrl.removeRow(scope.row);
                 }
+            }
+
+            function focus(e){
+                CurrentFocus.setCurrentFocus(scope.row);
             }
         }
 

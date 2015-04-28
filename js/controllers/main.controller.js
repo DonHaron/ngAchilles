@@ -5,9 +5,9 @@
         .module('achilles')
         .controller('MainController', MainController);
 
-    MainController.$inject = ['$http',  '$filter', 'urls'];
+    MainController.$inject = ['$http', 'urls'];
 
-    function MainController($http, $filter, urls) {
+    function MainController($http, urls) {
         var vm = this;
         vm.baseUrl = urls.baseUrl();
         vm.entries = [];
@@ -24,8 +24,6 @@
             {class: 'medium-fonts', label: 'Mittel'},
             {class: 'small-fonts', label: 'Klein'},
         ];
-
-
 
         vm.loadEntries();
 
