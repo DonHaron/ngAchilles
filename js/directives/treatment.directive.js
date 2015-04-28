@@ -188,6 +188,7 @@
             element.on('focusin', function(){
                 scope.treatment.focused = true;
                 scope.editable = true;
+                scope.$apply();
                 $timeout.cancel(promise);
             });
             element.on('focusout', function(){
