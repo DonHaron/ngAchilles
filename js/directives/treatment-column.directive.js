@@ -71,7 +71,7 @@
 //                        attrs.editable = true;
 //                        //setTemplate(true);
 //                        //scope.$apply();
-//                    }   
+//                    }
                     var input = element.find('.ta-bind');
                     input.focus();
                     // TODO: make a selection, select the asterisk

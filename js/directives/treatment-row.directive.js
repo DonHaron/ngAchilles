@@ -16,8 +16,9 @@
         function link(scope, element) {
 
             if (scope.row.new == true) {
+
                 $timeout(function () {
-                    var textarea = element.find('textarea:not(:disabled)').eq(0);
+                    var textarea = element.find('.ta-bind:not(.ta-readonly)').eq(0);
                     textarea.focus();
                 }, 150);
             }
