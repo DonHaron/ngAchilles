@@ -30,8 +30,7 @@
             gdtList: 'gdt/list',
             executeGDT: 'gdt/:device/patient/:patient',
             executeGDTTest: 'gdt/:device/patient/:patient/code/:test',
-            checkLock: 'treatmententryrow/lock/:row/process/:process',
-
+            lock: 'treatmententryrow/lock/:row/process/:process',
         };
 
         var factory = {
@@ -54,7 +53,7 @@
             treatmentReport: treatmentReport,
             gdtList: gdtList,
             executeGDT: executeGDT,
-            checkLock: checkLock
+            lock: lock
         };
 
         return factory;
@@ -67,8 +66,8 @@
             return baseUrlComponent() + routes.caseList.replace(/:([a-z]\w*)/gi, treatmentId) + '/';
         }
 
-        function checkLock(row, process){
-            return baseUrlComponent() + routes.checkLock
+        function lock(row, process){
+            return baseUrlComponent() + routes.lock
                 .replace(/:row/, row.id)
                 .replace(/:process/, process)
                 + '/';

@@ -95,7 +95,7 @@
             }
 
             function blur(e) {
-                if (angular.element(this).hasClass('ng-dirty')) {
+                if (angular.element(this).hasClass('ng-dirty') && !scope.row.locked) {
                     //$http.put(urls.treatmentEntryRow(), scope.row).then(function (response) {
                     //PUT/POST-workaround
                     $http.post(urls.treatmentEntryRow('put'), scope.row).then(function (response) {
@@ -109,6 +109,9 @@
                                 break;
                             }
                         }
+
+                        scope.row.locked = false;
+                        scope.row.hasOwnLock = false;
                     });
                 }
 
@@ -154,6 +157,10 @@
                         }
                     }, 150);
                     entryCtrl.removeRow(scope.row);
+                }else{
+                    if(!scope.row.hasOwnLock){
+                        Locking.lock(scope.row);
+                    }
                 }
             }
 

@@ -9,7 +9,7 @@
         <div class="col-xs-8 col-sm-9 col-lg-10">
             <form name="entryform">
                 <div class="row" treatment-row ng-repeat="row in entry.rows | orderBy:'id'" ng-class="{locked: row.locked}">
-                    <span class="label label-warning locked-warning" ng-show="row.locked">Gesperrt von {{row.lockedBy}}</span>
+                    <span class="label locked-warning" ng-class="'mandator-' + row.lockedBy.id + '-warning'" ng-show="row.locked">Gesperrt von {{row.lockedBy.name}}</span>
 
                     <treatment-column ng-repeat="column in row.columns" content="column.content"
                                       width="{{column.width}}" unique-id="{{row.id}}-{{$index}}"
