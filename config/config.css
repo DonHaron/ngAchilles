@@ -6,6 +6,7 @@
     background-color: #789ABC;
 }
 
+.mandator-0-warning,
 .mandator-0:before {
     background-color: pink;
 }
