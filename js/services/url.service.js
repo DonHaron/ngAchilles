@@ -3,7 +3,7 @@
 
     angular
         .module('achilles')
-        .factory('urls', urls)
+        .factory('urls', urls);
 
     function urls() {
         var protocol = "http://";
@@ -29,7 +29,9 @@
             treatment: 'treatment',
             gdtList: 'gdt/list',
             executeGDT: 'gdt/:device/patient/:patient',
-            executeGDTTest: 'gdt/:device/patient/:patient/code/:test'
+            executeGDTTest: 'gdt/:device/patient/:patient/code/:test',
+            checkLock: 'treatmententryrow/lock/:row/process/:process',
+
         };
 
         var factory = {
@@ -51,7 +53,8 @@
             treatment: treatment,
             treatmentReport: treatmentReport,
             gdtList: gdtList,
-            executeGDT: executeGDT
+            executeGDT: executeGDT,
+            checkLock: checkLock
         };
 
         return factory;
@@ -62,6 +65,13 @@
 
         function caseList(treatmentId) {
             return baseUrlComponent() + routes.caseList.replace(/:([a-z]\w*)/gi, treatmentId) + '/';
+        }
+
+        function checkLock(row, process){
+            return baseUrlComponent() + routes.checkLock
+                .replace(/:row/, row.id)
+                .replace(/:process/, process)
+                + '/';
         }
 
         function executeGDT(device, patient, test){

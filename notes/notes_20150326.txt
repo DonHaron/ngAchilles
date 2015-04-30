@@ -25,9 +25,9 @@ DELETE: /treatment/<treatment id> #Behandlung löschen
 
 Lock abfragen & setzen, lösen
 
-PUT: treatmententryrow/lock/<entry id>/process/<process id>
-GET: treatmententryrow/lock/<entry id>/process/<process id>
-DELETE: treatmententryrow/lock/<entry id>/process/<process id>
+PUT: treatmententryrow/lock/<row id>/process/<process id>
+GET: treatmententryrow/lock/<row id>/process/<process id>
+DELETE: treatmententryrow/lock/<row id>/process/<process id>
 
 
 Listen für die Popupmenus der Behandlungen

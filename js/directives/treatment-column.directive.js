@@ -5,18 +5,13 @@
         .module('achilles')
         .directive('treatmentColumn', treatmentColumn);
 
-    treatmentColumn.$inject = ['$http', 'urls', '$timeout', '$compile', 'CurrentFocus'];
+    treatmentColumn.$inject = ['$http', 'urls', '$timeout', '$compile', 'CurrentFocus', 'Locking'];
 
-    function treatmentColumn($http, urls, $timeout, $compile, CurrentFocus) {
+    function treatmentColumn($http, urls, $timeout, $compile, CurrentFocus, Locking) {
         var templates = {
             editable: '<div ng-class="columnClass">' +
                 '<div class="form-group">' +
-//                '<div id="wysihtml-toolbar-{{uniqueId}}" class="wysihtml-toolbar" style="display: none;">' +
-//                '<a data-wysihtml5-command="bold">bold</a>' +
-//                '<a data-wysihtml5-command="italic">italic</a>' +
-//                '</div>' +
-                '<div ng-model="content" ta-disabled="{{readonly}}" text-angular ta-target-toolbars="toolbar-{{treatmentId}}"></div>'+
-//                '<textarea rows="1" class="form-control wysihtml-textarea" text-angular toolbar="wysihtml-toolbar-{{uniqueId}}" ng-model="content" amsd-elastic id="wysihtml-{{uniqueId}}" ng-disabled="{{readonly}}"></textarea>' +
+                '<div ng-model="content" ta-disabled="{{readonly}}" text-angular ta-target-toolbars="toolbar-{{treatmentId}}"></div>' +
                 '</div>' +
                 '</div>',
             readonly: '<div ng-class="columnClass"><p ng-bind-html="readonlyContent"></p></div>'
@@ -38,14 +33,16 @@
             link: link
         };
 
+        var promise;
+
         return directive;
 
-        function getTemplate(editable){
+        function getTemplate(editable) {
             return editable == 'true' ? templates.editable : templates.readonly;
         }
 
         cntroller.$inject = ['$scope', '$sce'];
-        function controller($scope, $sce){
+        function controller($scope, $sce) {
             // we have to sanitize the content if we just want to display it with html tags
             $scope.readonlyContent = $sce.trustAsHtml($scope.content);
         }
@@ -62,8 +59,8 @@
             // change the template if the 'editable' attribute changes
             setTemplate(attrs.editable);
 
-            scope.$watch(CurrentFocus.getNewFocus, function(val){
-                if(val && scope.row.id == val.id){
+            scope.$watch(CurrentFocus.getNewFocus, function (val) {
+                if (val && scope.row.id == val.id) {
                     //console.log('yes!', val);
                     // TODO: make editable if not already so
 //                    if(attrs.editable!='true'){
@@ -92,12 +89,12 @@
                 }
             });
 
-            function setTemplate(editable){
+            function setTemplate(editable) {
                 element.html(getTemplate(editable)).show();
                 $compile(element.contents())(scope);
             }
 
-            function blur(e){
+            function blur(e) {
                 if (angular.element(this).hasClass('ng-dirty')) {
                     //$http.put(urls.treatmentEntryRow(), scope.row).then(function (response) {
                     //PUT/POST-workaround
@@ -114,9 +111,30 @@
                         }
                     });
                 }
+
+                $timeout.cancel(promise);
             }
 
-            function keydown(e){
+            function keydown(e) {
+                // if the row is locked, prevent the action of every key except for some key combinations
+                if (scope.row.locked &&
+                    (
+                        // allow tab key
+                            e.which != 9
+                            &&
+                            // allow cursor keys
+                            !(e.which >= 37 && e.which <= 40)
+                            &&
+                            // allow Ctrl + A
+                            !(e.ctrlKey && e.which == 65 )
+                            &&
+                            // allow Ctrl + C
+                            !(e.ctrlKey && e.which == 67 )
+                        )
+
+                    ) {
+                    e.preventDefault();
+                } else
                 // Ctrl + Shirt + Backspace
                 if (e.ctrlKey && e.shiftKey && e.which == 8) {
                     //see if there is a previous textarea element in the same entry. If there is, focus on it
@@ -139,8 +157,13 @@
                 }
             }
 
-            function focus(e){
+            function focus(e) {
                 CurrentFocus.setCurrentFocus(scope.row);
+
+                promise = $timeout(function () {
+                    Locking.check(scope.row);
+                    console.log('checking lock');
+                }, 450);
             }
         }
 

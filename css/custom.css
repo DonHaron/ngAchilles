@@ -390,3 +390,14 @@ span.checkmark {
 .ta-scroll-window > .ta-bind {
     min-height: 34px;
 }
+
+.locked .ta-editor {
+    background-color: #eeeeee;
+}
+
+.locked-warning {
+    position: absolute;
+    z-index: 99;
+    right: 5%;
+    bottom: 15px;
+}
