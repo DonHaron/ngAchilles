@@ -14,7 +14,7 @@
         return service;
 
         function check(row){
-            $http.get(urls.checkLock(row, 0)).then(function(response){
+            $http.get(urls.checkLock(row, achillesConfig.process)).then(function(response){
                 //console.log(response);
                 var data = response.data;
                 if(data.lock){
