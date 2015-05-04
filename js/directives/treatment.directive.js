@@ -190,6 +190,7 @@
             element.on('focusin', function(){
                 scope.treatment.focused = true;
                 scope.editable = true;
+                scope.treatment.editable = true;
                 //scope.$apply();
                 $timeout.cancel(promise);
             });

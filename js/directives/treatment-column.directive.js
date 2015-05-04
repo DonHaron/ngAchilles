@@ -172,9 +172,9 @@
                             return currentNode;
                         }
                     }else{
-                        var subRoutine = recursiveGetAsteriskNode(currentNode)
-                        if(subRoutine){
-                            return subRoutine;
+                        var subResult = recursiveGetAsteriskNode(currentNode)
+                        if(subResult){
+                            return subResult;
                         }
                     }
                 }
