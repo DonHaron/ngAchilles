@@ -71,21 +71,18 @@
 //                    }
                     var input = element.find('.ta-bind');
                     input.focus();
-                    // TODO: make a selection, select the asterisk
-//                    console.log(input.setSelectionRange);
-//                    console.log(input.createTextRange);
-//                    if(input.setSelectionRange){
-//                        console.log('setSelectionRange');
-//                        input.focus();
-//                        input.setSelectionRange(0,1);
-//                    }else if(input.createTextRange){
-//                        console.log('createTextRange');
-//                        var range = input.createTextRange();
-//                        range.collapse(true);
-//                        range.moveEnd('character', 1);
-//                        range.moveStart('character', 0);
-//                        range.select();
-//                    }
+                    //console.log('focusing', input);
+                    var node = getAsteriskNode(input);
+                    if(node){
+                        //console.log(node);
+                        var range = document.createRange();
+                        var index = node.nodeValue.indexOf('*');
+                        range.setStart(node, index);
+                        range.setEnd(node, index+1);
+                        var selection = window.getSelection();
+                        selection.removeAllRanges();
+                        selection.addRange(range);
+                    }
                 }
             });
 
@@ -121,20 +118,7 @@
             function keydown(e) {
                 // if the row is locked, prevent the action of every key except for some key combinations
                 if (scope.row.locked &&
-                    (
-                        // allow tab key
-                            e.which != 9
-                            &&
-                            // allow cursor keys
-                            !(e.which >= 37 && e.which <= 40)
-                            &&
-                            // allow Ctrl + A
-                            !(e.ctrlKey && e.which == 65 )
-                            &&
-                            // allow Ctrl + C
-                            !(e.ctrlKey && e.which == 67 )
-                        )
-
+                    isModifyingInput(e)
                     ) {
                     e.preventDefault();
                 } else
@@ -158,7 +142,7 @@
                     }, 150);
                     entryCtrl.removeRow(scope.row);
                 }else{
-                    if(!scope.row.hasOwnLock){
+                    if(!scope.row.hasOwnLock && isModifyingInput(e)){
                         Locking.lock(scope.row);
                     }
                 }
@@ -171,6 +155,48 @@
                     Locking.check(scope.row);
                     console.log('checking lock');
                 }, 450);
+            }
+
+            function getAsteriskNode(jElement){
+                if(!jElement.length){
+                    return null;
+                }
+                var htmlElement = jElement[0];
+                return recursiveGetAsteriskNode(htmlElement);
+            }
+
+            function recursiveGetAsteriskNode(node){
+                for(var i = 0;i<node.childNodes.length;i++){
+                    var currentNode = node.childNodes[i];
+                    if(currentNode.nodeType == 3){
+                        if(currentNode.nodeValue.indexOf('*')>=0){
+                            return currentNode;
+                        }
+                    }else{
+                        var subRoutine = recursiveGetAsteriskNode(currentNode)
+                        if(subRoutine){
+                            return subRoutine;
+                        }
+                    }
+                }
+                return null;
+            }
+
+            // detect whether the pressed key modifies the input field
+            function isModifyingInput(e){
+                return (
+                    // tab key
+                    e.which != 9
+                        &&
+                        // cursor keys
+                        !(e.which >= 37 && e.which <= 40)
+                        &&
+                        // Ctrl + A
+                        !(e.ctrlKey && e.which == 65 )
+                        &&
+                        // Ctrl + C
+                        !(e.ctrlKey && e.which == 67 )
+                    )
             }
         }
 
