@@ -55,7 +55,7 @@
                         "id" : 32111,
                         "columns" : [
                             {
-                                "content" : "<p>*<\/p>",
+                                "content" : "<p>some text <span>before * some</span> text after<\/p>",
                                 "width" : 12,
                                 "readonly" : false,
                                 "wysiwyg" : false,

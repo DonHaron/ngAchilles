@@ -42,11 +42,13 @@
                 currentlyFocusedRow = CurrentFocus.getCurrentFocus();
                 // put all the rows in all the entries in all the treatments in this array
                 treatments.forEach(function (treatment) {
-                    treatment.entries.forEach(function (entry) {
-                        entry.rows.forEach(function (row) {
-                            rows.push(row);
+                    if(treatment.editable == 'true'){
+                        treatment.entries.forEach(function (entry) {
+                            entry.rows.forEach(function (row) {
+                                rows.push(row);
+                            });
                         });
-                    });
+                    }
                 });
                 // exclude all rows up to and including the currently focused one, as we want the next asterisk input
                 partialRows = rows.slice(rows.indexOf(currentlyFocusedRow) + 1);

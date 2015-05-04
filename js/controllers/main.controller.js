@@ -28,7 +28,9 @@
         vm.loadEntries();
 
         function loadEntries() {
-            $http.get(urls.treatmentList(achillesConfig.patient))
+            $http.get(urls.treatmentList(achillesConfig.patient),{
+                spinner: true
+            })
                 .then(function (response) {
                     vm.treatments = response.data;
                 });

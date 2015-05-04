@@ -153,7 +153,6 @@
 
                 promise = $timeout(function () {
                     Locking.check(scope.row);
-                    console.log('checking lock');
                 }, 450);
             }
 

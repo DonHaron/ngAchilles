@@ -121,7 +121,7 @@
         </div>
     </div>
 
-    <treatment treatment="treatment" editable="{{$index<3}}"
+    <treatment treatment="treatment" editable="{{$index<5}}"
                ng-repeat="treatment in vm.treatments | orderBy:[(vm.reverse?'':'-')+'date', 'id']"
                treatmentlist="vm.treatments"></treatment>
 </div>

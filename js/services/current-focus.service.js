@@ -34,7 +34,6 @@
         }
 
         function setNewFocus(element){
-            console.log('setting new focus');
             newFocus = element;
         }
     }

@@ -15,7 +15,7 @@
 
         /* list by treatment */
         function list(treatmentId){
-            return $http.get(urls.biometricList(treatmentId)).then(function(response){
+            return $http.get(urls.biometricList(treatmentId), { spinner: true }).then(function(response){
                 return response.data;
             });
         }

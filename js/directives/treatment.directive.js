@@ -174,6 +174,8 @@
         function link(scope, element, attrs, ctrl) {
             var promise;
 
+            scope.treatment.editable = scope.editable;
+
             element.on('keydown', function (e) {
                 //console.log(e.which);
                 //F9
@@ -188,7 +190,7 @@
             element.on('focusin', function(){
                 scope.treatment.focused = true;
                 scope.editable = true;
-                scope.$apply();
+                //scope.$apply();
                 $timeout.cancel(promise);
             });
             element.on('focusout', function(){

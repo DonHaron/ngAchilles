@@ -37,10 +37,10 @@
             }
             $http(req).then(function(response){
                 if(response.status == 204){
-                    console.log('lock obtained');
+                    //console.log('lock obtained');
                     row.hasOwnLock = true;
                 }else{
-                    console.log('no lock for you');
+                    //console.log('no lock for you');
                     row.lock = true;
                     row.lockedBy = response.data.lockedBy;
                 }
