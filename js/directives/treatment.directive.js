@@ -4,7 +4,7 @@
     angular
         .module('achilles')
         .directive('treatment', treatment);
-        //.directive('treatmentEntry', treatmentEntry)
+    //.directive('treatmentEntry', treatmentEntry)
 
     treatment.$inject = ['$timeout'];
     function treatment($timeout) {
@@ -159,13 +159,13 @@
                 }
             }
 
-            function removeCase(treatment){
+            function removeCase(treatment) {
                 var oldCase = treatment.invoiceCase;
-                treatment.invoiceCase = {id:0,name:''};
+                treatment.invoiceCase = {id: 0, name: ''};
                 $http.post(urls.treatment('put'), treatment)
-                    .then(function(response){
+                    .then(function (response) {
                         treatment.invoiceCase = response.data.invoiceCase;
-                    }, function(){
+                    }, function () {
                         treatment.invoiceCase = oldCase;
                     });
             }
@@ -187,31 +187,33 @@
                 }
             });
 
-            element.on('focusin', function(){
-                scope.treatment.focused = true;
-                scope.editable = true;
-                scope.treatment.editable = true;
+            element.on('focusin', function () {
+                $timeout(function () {
+                    scope.treatment.focused = true;
+                    scope.editable = true;
+                    scope.treatment.editable = true;
+                });
+
                 //scope.$apply();
                 $timeout.cancel(promise);
             });
-            element.on('focusout', function(){
-                promise = $timeout(function(){
+            element.on('focusout', function () {
+                promise = $timeout(function () {
                     scope.treatment.focused = false;
                 }, 300);
             });
             // Prevent the element losing focus when the select2 is opened. Technically it DOES lose focus,
             // but in the actual use case the select2 still counts as belonging to the treatment
-            element.on('select2-open', function(){
+            element.on('select2-open', function () {
                 console.log('opened');
                 scope.select2Open = true;
             });
-            element.on('select2-blur', function(){
+            element.on('select2-blur', function () {
                 console.log('blurred');
                 scope.select2Open = false;
             });
         }
     }
-
 
 
 })();
