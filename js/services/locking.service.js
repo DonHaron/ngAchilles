@@ -28,7 +28,14 @@
         }
 
         function lock(row){
-            $http.put(urls.lock(row, achillesConfig.process)).then(function(response){
+            var req = {
+                method: 'POST',
+                url: urls.lock(row, achillesConfig.process, 'put'),
+                headers: {
+                    'Content-Type': 'text/plain'  // avoid preflight request, request-body is emtpy anyway
+                }
+            }
+            $http(req).then(function(response){
                 if(response.status == 204){
                     console.log('lock obtained');
                     row.hasOwnLock = true;
@@ -38,6 +45,18 @@
                     row.lockedBy = response.data.lockedBy;
                 }
             });
+
+
+            //$http.put(urls.lock(row, achillesConfig.process)).then(function(response){
+            //    if(response.status == 204){
+            //        console.log('lock obtained');
+            //        row.hasOwnLock = true;
+            //    }else{
+            //        console.log('no lock for you');
+            //        row.lock = true;
+            //        row.lockedBy = response.data.lockedBy;
+            //    }
+            //});
         }
     }
 })();

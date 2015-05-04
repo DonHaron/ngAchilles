@@ -7,8 +7,8 @@
 
     function urls() {
         var protocol = "http://";
-        //var baseUrl = "localhost";
-        var baseUrl = "192.168.1.145";
+        var baseUrl = "localhost";
+        //var baseUrl = "192.168.1.145";
         var port = "37114";
         var routes = {
             biometricList: 'treatment/:treatment/biometriclist',
@@ -66,8 +66,12 @@
             return baseUrlComponent() + routes.caseList.replace(/:([a-z]\w*)/gi, treatmentId) + '/';
         }
 
-        function lock(row, process){
-            return baseUrlComponent() + routes.lock
+        function lock(row, process, verb){
+            var verbComponent = '';
+            if (verb) {
+                verbComponent = verb + '/';
+            }
+            return baseUrlComponent() + verbComponent + routes.lock
                 .replace(/:row/, row.id)
                 .replace(/:process/, process)
                 + '/';
