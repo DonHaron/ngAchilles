@@ -5,9 +5,9 @@
         .module('achilles')
         .directive('treatmentColumn', treatmentColumn);
 
-    treatmentColumn.$inject = ['$http', 'urls', '$timeout', '$compile', 'CurrentFocus', 'Locking'];
+    treatmentColumn.$inject = ['$http', 'urls', '$timeout', '$compile', '$window', 'CurrentFocus', 'Locking'];
 
-    function treatmentColumn($http, urls, $timeout, $compile, CurrentFocus, Locking) {
+    function treatmentColumn($http, urls, $timeout, $compile, $window, CurrentFocus, Locking) {
         var templates = {
             editable: '<div ng-class="columnClass">' +
                 '<div class="form-group">' +
@@ -150,7 +150,9 @@
 
             function focus(e) {
                 CurrentFocus.setCurrentFocus(scope.row);
-
+                // todo: save focus position and try to apply it after the row is reloaded due to an updated row
+                //var selection = $window.getSelection();
+                //console.log(selection);
                 promise = $timeout(function () {
                     Locking.check(scope.row);
                 }, 450);
