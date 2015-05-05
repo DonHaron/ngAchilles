@@ -9,6 +9,9 @@ function callMe(){
     angular.element('html').scope().$broadcast('somethingChanged');
 }
 
+toastr.options = {
+    "positionClass": "toast-top-full-width"
+};
 
 //var backupLog = console.log;
 //var logMessages = [];

@@ -13,8 +13,8 @@
 
                     <treatment-column ng-repeat="column in row.columns" content="column.content"
                                       width="{{column.width}}" unique-id="{{row.id}}-{{$index}}"
-                                      editable="{{editable}}" treatment-id="{{treatmentId}}"
-                                      readonly="{{column.readonly}}" parent="entry" row="row"></treatment-column>
+                                      editable="{{editable}}" treatment-id="{{treatmentId}}" warning="{{warning}}"
+                                      readonly="{{column.readonly || permissionToEdit!='true'}}" parent="entry" row="row"></treatment-column>
                 </div>
             </form>
         </div>

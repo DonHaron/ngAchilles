@@ -3,7 +3,7 @@
 
     angular
         .module('achilles')
-        .service('User', User);
+        .factory('User', User);
 
     User.$inject = ['$http', 'urls'];
     function User($http, urls){

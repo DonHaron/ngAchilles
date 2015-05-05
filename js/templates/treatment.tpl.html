@@ -1,3 +1,5 @@
+<pre>{{permissionToEdit}}</pre>
+<pre>{{warning}}</pre>
 <div class="col-xs-12 treatment mandator-{{treatment.mandator}}"
      ng-class="{secondary: !treatment.isMainTreatment, closed: treatment.closed || treatment.billed}" tabindex="-1">
 <div class="panel" ng-class="treatment.type=='success' ? 'panel-success' : 'panel-default'">
@@ -245,7 +247,9 @@
 <div class="panel-body">
     <ul class="list-group">
         <treatment-entry entry="entry" editable="{{editable}}" treatment-id="{{treatment.id}}"
-                         ng-repeat="entry in treatment.entries | orderBy:'type.name'">
+                         ng-repeat="entry in treatment.entries | orderBy:'type.name'"
+                        permission-to-edit="{{permissionToEdit}}"
+                        warning="{{warning}}">
         </treatment-entry>
         <li class="list-group-item" ng-show="treatment.focused">
             <div class="row">

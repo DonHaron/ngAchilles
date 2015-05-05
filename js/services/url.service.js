@@ -8,8 +8,8 @@
     function urls() {
         var protocol = "http://";
         //var baseUrl = "localhost";
-        var baseUrl = "192.168.1.143";
-        var port = "37113";
+        var baseUrl = "192.168.1.137";
+        var port = "37115";
         var routes = {
             biometricList: 'treatment/:treatment/biometriclist',
             biometricReport: 'biometricreport/process/:process',

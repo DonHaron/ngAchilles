@@ -10,7 +10,9 @@
             scope: {
                 entry: '=',
                 editable: '@',
-                treatmentId: '@'
+                treatmentId: '@',
+                permissionToEdit: '@',
+                warning: '@'
             },
             restrict: 'E',
             templateUrl: '../js/templates/treatment-entry.tpl.html',

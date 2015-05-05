@@ -13,7 +13,9 @@
                 treatment: '=',
                 treatments: '=treatmentlist',
                 editable: '@',
-                user: '='
+                user: '=',
+                permissionToEdit: '@',
+                warning: '@'
             },
             restrict: 'A',
             controller: controller,

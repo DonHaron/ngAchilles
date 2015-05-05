@@ -5,9 +5,9 @@
         .module('achilles')
         .controller('MainController', MainController);
 
-    MainController.$inject = ['$http', 'urls', 'User'];
+    MainController.$inject = ['$http', 'urls', 'User', 'TreatmentPermission'];
 
-    function MainController($http, urls, User) {
+    function MainController($http, urls, User, TreatmentPermission) {
         var vm = this;
         vm.baseUrl = urls.baseUrl();
         vm.entries = [];
@@ -24,6 +24,8 @@
             {class: 'medium-fonts', label: 'Mittel'},
             {class: 'small-fonts', label: 'Klein'},
         ];
+        vm.checkEditPermission = TreatmentPermission.checkEditPermission;
+        vm.shouldBeWarned = TreatmentPermission.shouldBeWarned;
 
         vm.loadEntries();
         loadUser();
