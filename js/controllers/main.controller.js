@@ -28,6 +28,8 @@
         vm.loadEntries();
         loadUser();
 
+        vm.browser = window.navigator.appVersion;
+
         function loadEntries() {
             $http.get(urls.treatmentList(achillesConfig.patient),{
                 spinner: true

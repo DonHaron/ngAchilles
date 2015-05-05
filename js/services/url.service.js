@@ -9,7 +9,7 @@
         var protocol = "http://";
         //var baseUrl = "localhost";
         var baseUrl = "192.168.1.143";
-        var port = "37117";
+        var port = "37113";
         var routes = {
             biometricList: 'treatment/:treatment/biometriclist',
             biometricReport: 'biometricreport/process/:process',
