@@ -14,9 +14,17 @@
         return directive;
 
         function link(scope, element) {
+            scope.$watch('row.changed', function(val){
+                if(val){
+                    focusOnChanged();
+                }
+            });
 
             if (scope.row.new == true) {
+                focusOnChanged();
+            }
 
+            function focusOnChanged(){
                 $timeout(function () {
                     var textarea = element.find('.ta-bind:not(.ta-readonly)').eq(0);
                     textarea.focus();

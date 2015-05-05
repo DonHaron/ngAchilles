@@ -403,3 +403,22 @@ span.checkmark {
     right: 5%;
     bottom: 15px;
 }
+
+/* for the textAngular toolbar buttons */
+.red-text {
+    color: red;
+}
+
+.green-text {
+    color: green;
+}
+
+.blue-text {
+    color: blue;
+}
+
+.orange-text {
+    color: orange;
+}
+
+
