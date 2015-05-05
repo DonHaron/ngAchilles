@@ -23,6 +23,16 @@
                     row.lockedBy = data.lockedBy;
                 }else{
                     row.locked = false;
+                    if(data.row.lastChange > row.lastChange){
+                        row.columns = data.row.columns;
+                        row.new = data.row.new;
+                        row.changed = true;
+                        row.lastChange = data.row.lastChange;
+                    }else if(data.row.id == 0){
+                        // TODO: delete this row
+                        row.id = 0;
+                        row.deleted = true;
+                    }
                 }
             });
         }
