@@ -40,6 +40,7 @@
     </div>
 </div>
 <div class="container-fluid" ng-class="[marginSetting, fontSetting]" ng-controller="MainController as vm">
+    <pre>{{vm.user|json}}</pre>
     <div class="toolbar-wrapper" ng-show="vm.treatments.length">
         <div class="toolbar" treatment-toolbar ng-cloak>
             <div class="row">
@@ -55,7 +56,7 @@
                         <div class="dropdown icon-dropdown" toggle-focus dropdown>
 
                             <div class="btn-group">
-                                <a class="btn btn-default btn-xs gdt dropdown-toggle" dropdown-toggle>&nbsp;</a>
+                                <a ng-if="vm.user.hasGDTDevice" class="btn btn-default btn-xs gdt dropdown-toggle" dropdown-toggle>&nbsp;</a>
 
                                 <a class="btn btn-default btn-xs new-treatment" title="Neue Behandlung"
                                    ng-click="dc.addTreatment(vm.treatments)">&nbsp;</a>
@@ -123,7 +124,7 @@
 
     <treatment treatment="treatment" editable="{{$index<5}}"
                ng-repeat="treatment in vm.treatments | orderBy:[(vm.reverse?'':'-')+'date', 'id']"
-               treatmentlist="vm.treatments"></treatment>
+               treatmentlist="vm.treatments" user="vm.user"></treatment>
 </div>
 
 <!-- Placed at the end of the document so the pages load faster -->
@@ -166,6 +167,7 @@
 <script type="text/javascript" src="../js/services/laboratory.service.js"></script>
 <script type="text/javascript" src="../js/services/current-focus.service.js"></script>
 <script type="text/javascript" src="../js/services/locking.service.js"></script>
+<script type="text/javascript" src="../js/services/user.service.js"></script>
 <script type="text/javascript" src="../js/config/spinner.config.js"></script>
 <script type="text/javascript" src="../js/config/textAngular.config.js"></script>
 <script type="text/javascript" src="../js/independent.js"></script>

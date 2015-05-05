@@ -5,9 +5,9 @@
         .module('achilles')
         .controller('MainController', MainController);
 
-    MainController.$inject = ['$http', 'urls'];
+    MainController.$inject = ['$http', 'urls', 'User'];
 
-    function MainController($http, urls) {
+    function MainController($http, urls, User) {
         var vm = this;
         vm.baseUrl = urls.baseUrl();
         vm.entries = [];
@@ -26,6 +26,7 @@
         ];
 
         vm.loadEntries();
+        loadUser();
 
         function loadEntries() {
             $http.get(urls.treatmentList(achillesConfig.patient),{
@@ -35,5 +36,11 @@
                     vm.treatments = response.data;
                 });
         };
+
+        function loadUser(){
+            User.get(achillesConfig.process).then(function(user){
+                vm.user = user;
+            });
+        }
     }
 })();

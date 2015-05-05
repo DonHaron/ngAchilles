@@ -12,7 +12,8 @@
             scope: {
                 treatment: '=',
                 treatments: '=treatmentlist',
-                editable: '@'
+                editable: '@',
+                user: '='
             },
             restrict: 'A',
             controller: controller,

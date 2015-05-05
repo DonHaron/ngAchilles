@@ -8,8 +8,8 @@
     function urls() {
         var protocol = "http://";
         //var baseUrl = "localhost";
-        var baseUrl = "192.168.1.145";
-        var port = "37115";
+        var baseUrl = "192.168.1.143";
+        var port = "37117";
         var routes = {
             biometricList: 'treatment/:treatment/biometriclist',
             biometricReport: 'biometricreport/process/:process',
@@ -31,6 +31,7 @@
             executeGDT: 'gdt/:device/patient/:patient',
             executeGDTTest: 'gdt/:device/patient/:patient/code/:test',
             lock: 'treatmententryrow/lock/:row/process/:process',
+            user: 'user/process/:process'
         };
 
         var factory = {
@@ -53,7 +54,8 @@
             treatmentReport: treatmentReport,
             gdtList: gdtList,
             executeGDT: executeGDT,
-            lock: lock
+            lock: lock,
+            user: user
         };
 
         return factory;
@@ -150,17 +152,22 @@
 
         function biometricReport(process) {
             return baseUrlComponent() + routes.biometricReport
-                .replace(/:process/gi, process)
+                .replace(/:process/gi, process) + '/';
         }
 
         function laboratoryReport(process) {
             return baseUrlComponent() + routes.laboratoryReport
-                .replace(/:process/gi, process)
+                .replace(/:process/gi, process) + '/';
         }
 
         function treatmentReport(process) {
             return baseUrlComponent() + routes.treatmentReport
-                .replace(/:process/gi, process)
+                .replace(/:process/gi, process) + '/';
+        }
+
+        function user(process){
+            return baseUrlComponent() + routes.user
+                .replace(/:process/, process)  + '/';
         }
     }
 })();
