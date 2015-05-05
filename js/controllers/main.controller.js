@@ -27,8 +27,7 @@
 
         vm.loadEntries();
         loadUser();
-
-        vm.browser = window.navigator.appVersion;
+        //vm.browser = window.navigator.userAgent;
 
         function loadEntries() {
             $http.get(urls.treatmentList(achillesConfig.patient),{

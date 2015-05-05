@@ -8,3 +8,16 @@ function callMe(){
     //broadcast an event to angular from outside
     angular.element('html').scope().$broadcast('somethingChanged');
 }
+
+
+//var backupLog = console.log;
+//var logMessages = [];
+//var logErrors = [];
+//
+//console.log = function(message){
+//    logMessages.push(message);
+//};
+//
+//console.error = function(error){
+//    logErrors.push(error);
+//};

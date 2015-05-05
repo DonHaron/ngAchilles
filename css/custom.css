@@ -124,7 +124,9 @@
     display: none;
 }
 
-
+.dropdown-menu li.divider + .divider {
+    display: none;
+}
 
 /*.form-control {
     border-width: 0;

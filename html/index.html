@@ -40,10 +40,8 @@
     </div>
 </div>
 <div class="container-fluid" ng-class="[marginSetting, fontSetting]" ng-controller="MainController as vm">
-    <pre>{{vm.browser|json}}</pre>
-    <pre>{{vm.user|json}}</pre>
     <div class="toolbar-wrapper" ng-show="vm.treatments.length">
-        <div class="toolbar" treatment-toolbar ng-cloak>
+        <div class="toolbar" ng-class="'mandator-' + vm.user.mandator.id + '-toolbar'" treatment-toolbar ng-cloak>
             <div class="row">
                 <div class="col-xs-4">
                     <p ng-show="vm.treatments.length">Behandlungseinträge</p>
