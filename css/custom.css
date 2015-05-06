@@ -426,6 +426,10 @@ span.checkmark {
     color: orange;
 }
 
+.grey-text {
+    color: lightgrey;
+}
+
 .treatment-entry {
     position: relative;
 }

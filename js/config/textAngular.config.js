@@ -39,9 +39,15 @@
                     this.$editor().wrapSelection('forecolor', 'black');
                 }
             });
+            taRegisterTool('colorGrey', {
+                iconclass: 'fa fa-square grey-text',
+                action: function(){
+                    this.$editor().wrapSelection('forecolor', 'lightgrey');
+                }
+            });
             // here we override the default toolbars and classes specified in taOptions.
             taOptions.toolbar = [
-                ['bold', 'italics', 'underline', 'colorRed', 'colorOrange', 'colorGreen', 'colorBlue', 'colorBlack', 'ul', 'ol', 'redo', 'undo', 'clear']
+                ['bold', 'italics', 'underline', 'colorRed', 'colorOrange', 'colorGreen', 'colorBlue', 'colorBlack', 'colorGrey', 'ul', 'ol', 'redo', 'undo', 'clear']
             ];
             return taOptions; // whatever you return will be the taOptions
         }]);
