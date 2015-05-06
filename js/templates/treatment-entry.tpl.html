@@ -13,9 +13,17 @@
                     <treatment-column ng-repeat="column in row.columns" content="column.content"
                                       width="{{column.width}}" unique-id="{{row.id}}-{{$index}}"
                                       editable="{{editable}}" treatment-id="{{treatmentId}}" warning="warning"
+                                      type="entry.type" entry="entry"
                                       readonly="column.readonly || !permissionToEdit()" parent="entry" row="row"></treatment-column>
                 </div>
             </form>
+        </div>
+    </div>
+</li>
+<li class="list-group-item" ng-show="entry.focused">
+    <div class="row">
+        <div class="col-xs-9 col-xs-offset-3">
+            <text-angular-toolbar name="toolbar-{{entry.treatmentId}}-{{entry.type.id}}"></text-angular-toolbar>
         </div>
     </div>
 </li>

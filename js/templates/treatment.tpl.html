@@ -249,13 +249,6 @@
                         permission-to-edit="dc.permissionToEdit"
                         warning="dc.warning">
         </treatment-entry>
-        <li class="list-group-item" ng-show="treatment.focused">
-            <div class="row">
-                <div class="col-xs-9 col-xs-offset-3">
-                    <text-angular-toolbar name="toolbar-{{treatment.id}}"></text-angular-toolbar>
-                </div>
-            </div>
-        </li>
         <li class="list-group-item" ng-show="treatment.focused || select2Open || treatment.new">
             <div class="row">
                 <div class="col-xs-12 type-select">

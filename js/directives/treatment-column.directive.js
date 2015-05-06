@@ -11,7 +11,7 @@
         var templates = {
             editable: '<div ng-class="columnClass">' +
                 '<div class="form-group">' +
-                '<div ng-model="content" ta-disabled="readonly()" text-angular ta-target-toolbars="toolbar-{{treatmentId}}"></div>' +
+                '<div ng-model="content" ta-disabled="readonly()" text-angular ta-target-toolbars="toolbar-{{treatmentId}}-{{type.id}}"></div>' +
                 '</div>' +
                 '</div>',
             readonly: '<div ng-class="columnClass"><p ng-bind-html="readonlyContent"></p></div>'
@@ -27,7 +27,9 @@
                 row: '=',
                 uniqueId: '@',
                 treatmentId: '@',
-                warning: '='
+                warning: '=',
+                type: '=',
+                entry: '='
             },
             require: ['^treatment', '^treatmentEntry'],
             controller: controller,
@@ -114,6 +116,10 @@
                     });
                 }
 
+                $timeout(function () {
+                    scope.entry.focused = false;
+                });
+
                 $timeout.cancel(promise);
             }
 
@@ -162,6 +168,10 @@
                 promise = $timeout(function () {
                     Locking.check(scope.row);
                 }, 450);
+
+                $timeout(function () {
+                    scope.entry.focused = true;
+                });
             }
 
             function click(e){

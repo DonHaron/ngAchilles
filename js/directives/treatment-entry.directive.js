@@ -1,4 +1,4 @@
-(function(){
+(function () {
     "use strict";
 
     angular
@@ -27,11 +27,19 @@
         function controller($scope, $http, urls) {
             var dc = this;
 
-            dc.makePristine = function () {
+            dc.setEntryFocus = setEntryFocus;
+            dc.makePristine = makePristine;
+            dc.removeRow = removeRow;
+
+            function setEntryFocus(focused) {
+                $scope.entry.focused = focused;
+            }
+
+            function makePristine() {
                 $scope.entryform.$setPristine();
             }
 
-            dc.removeRow = function (row) {
+            function removeRow(row) {
                 var rows = $scope.entry.rows;
                 //$http.delete(urls.treatmentEntryRow() + row.id)
                 //PUT/DELETE-workaround
