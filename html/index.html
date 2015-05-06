@@ -44,14 +44,19 @@
     <div class="toolbar-wrapper" ng-show="vm.treatments.length">
         <div class="toolbar" ng-class="'mandator-' + vm.user.mandator.id + '-toolbar'" treatment-toolbar ng-cloak>
             <div class="row">
-                <div class="col-xs-4">
+                <div class="col-xs-3">
                     <p ng-show="vm.treatments.length">Behandlungseinträge</p>
                 </div>
                 <div class="col-xs-2">
                     <p ng-show="vm.treatments.length"
                        ng-bind="vm.treatments.length + ' von ' + vm.treatments.length"></p>
                 </div>
-                <div class="col-xs-5">
+                <div class="col-xs-2">
+                    <div class="form-group">
+                        <input class="form-control" ng-model="vm.search" placeholder="Suche">
+                    </div>
+                </div>
+                <div class="col-xs-4">
                     <div class="btn-toolbar pull-right">
                         <div class="dropdown icon-dropdown" toggle-focus dropdown>
 
@@ -123,7 +128,7 @@
     </div>
 
     <treatment treatment="treatment" editable="{{$index<5}}"
-               ng-repeat="treatment in vm.treatments | orderBy:[(vm.reverse?'':'-')+'date', 'id']"
+               ng-repeat="treatment in vm.treatments | filter:vm.search | orderBy:[(vm.reverse?'':'-')+'date', 'id']"
                treatmentlist="vm.treatments" user="vm.user"></treatment>
 </div>
 

@@ -58,6 +58,10 @@
     margin-bottom: 0;
 }
 
+.toolbar .form-control {
+    height: 22px;
+}
+
 .toolbar .btn-xs {
     width: 27px;
 }
