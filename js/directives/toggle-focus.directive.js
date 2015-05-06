@@ -29,7 +29,7 @@
                     e.preventDefault();
                     // look for the next sibling that is not a divider, and if you find one, focus that.
                     // if not, focus the first one of the bunch
-                    var next = $(this).parent().nextAll(':not(.divider)').first().find('a'),
+                    var next = $(this).parent().nextAll(':visible:not(.divider)').first().find('a'),
                         first = $(this).parent().siblings().first().find('a');
                     if(next.length){
                         next.focus();
