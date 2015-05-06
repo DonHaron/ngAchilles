@@ -72,7 +72,7 @@
 }
 
 .toolbar .new-treatment {
-    background-image: url('../images/icons/toolbar/435.png');
+    background-image: url('../images/icons/toolbar/newTreatment.png');
 }
 
 .toolbar .new-treatment-dialog {
@@ -112,7 +112,7 @@
 }
 
 .toolbar .refresh {
-    background-image: url('../images/icons/toolbar/refresh.png');
+    background-image: url('../images/icons/toolbar/reload.png');
 }
 
 .toolbar .icon-dropdown {

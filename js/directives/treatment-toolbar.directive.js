@@ -43,7 +43,8 @@
                 // put all the rows in all the entries in all the treatments in this array
                 treatments.forEach(function (treatment) {
                     if(treatment.editable == 'true' || treatment.editable == true){
-                        treatment.entries.forEach(function (entry) {
+                        var entries = $filter('orderBy')(treatment.entries, 'type.name');
+                        entries.forEach(function (entry) {
                             entry.rows.forEach(function (row) {
                                 rows.push(row);
                             });
@@ -51,7 +52,13 @@
                     }
                 });
                 // exclude all rows up to and including the currently focused one, as we want the next asterisk input
-                partialRows = rows.slice(rows.indexOf(currentlyFocusedRow) + 1);
+                if(currentlyFocusedRow){
+                    console.log('here');
+                    partialRows = rows.slice(rows.indexOf(currentlyFocusedRow) + 1);
+
+                }else{
+                    partialRows = rows;
+                }
 
                 rowsWithAsterisk = $filter('filter')(partialRows, {$: '*'});
 

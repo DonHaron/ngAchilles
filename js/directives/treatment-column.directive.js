@@ -73,8 +73,8 @@
 //                        //setTemplate(true);
 //                        //scope.$apply();
 //                    }
-                    var input = element.find('.ta-bind');
-                    input.focus();
+                    var input = element.find('.ta-bind:not(.ta-readonly)');
+                    input.eq(0).focus();
                     //console.log('focusing', input);
                     var node = getAsteriskNode(input);
                     if(node){
