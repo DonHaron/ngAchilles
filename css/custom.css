@@ -426,4 +426,19 @@ span.checkmark {
     color: orange;
 }
 
+.treatment-entry {
+    position: relative;
+}
 
+.editor-toolbar {
+    position: absolute;
+    position: absolute;
+    width: 100%;
+    right: 15px;
+    z-index: 90;
+    bottom: -25px;
+}
+
+.editor-toolbar .btn-group {
+    background-color: white;
+}
