@@ -232,6 +232,24 @@
                     row.hasOwnLock = false;
                 });
             }
+
+            function saveRow(parent, row){
+                $http.post(urls.treatmentEntryRow('put'), row).then(function (response) {
+                    //response.data is a row
+                    //now, find the row in the rows and replace it
+                    var row = response.data,
+                        rows = parent.rows;
+                    for (var i = 0; i < rows.length; i++) {
+                        if (rows[i].id == row.id) {
+                            rows[i] = row;
+                            break;
+                        }
+                    }
+
+                    row.locked = false;
+                    row.hasOwnLock = false;
+                });
+            }
         }
 
     }
