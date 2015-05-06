@@ -25,7 +25,7 @@
             {class: 'small-fonts', label: 'Klein'},
         ];
         vm.checkEditPermission = TreatmentPermission.checkEditPermission;
-        vm.shouldBeWarned = TreatmentPermission.shouldBeWarned;
+        //vm.shouldBeWarned = TreatmentPermission.shouldBeWarned;
 
         vm.loadEntries();
         loadUser();

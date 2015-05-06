@@ -27,7 +27,7 @@
                 row: '=',
                 uniqueId: '@',
                 treatmentId: '@',
-                warning: '@'
+                warning: '='
             },
             require: ['^treatment', '^treatmentEntry'],
             controller: controller,
@@ -151,8 +151,9 @@
 
             function focus(e) {
                 CurrentFocus.setCurrentFocus(scope.row);
-                if(scope.warning=='true'){
-                    toastr.warning('Behandlungseintrag liegt ausserhalb des änderbaren Bereichs');
+                if(scope.warning && !scope.warning.displayed){
+                    toastr.warning(scope.warning.message);
+                    scope.warning.displayed = true;
                 }
                 // todo: save focus position and try to apply it after the row is reloaded due to an updated row
                 //var selection = $window.getSelection();

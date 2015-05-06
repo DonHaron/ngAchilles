@@ -28,8 +28,15 @@
         }
 
         function shouldBeWarned(user, treatment){
-            return (user.permission.modifyRange.mode=='warn' && (now - user.permission.modifyRange.pastDays*24*60*60*1000 > treatment.date
-                || now + user.permission.modifyRange.futureDays*24*60*60*1000 < treatment.date))
+            if (user.permission.modifyRange.mode=='warn' && (now - user.permission.modifyRange.pastDays*24*60*60*1000 > treatment.date
+                || now + user.permission.modifyRange.futureDays*24*60*60*1000 < treatment.date)){
+                return {
+                    displayed: false,
+                    message: 'Behandlungseintrag liegt ausserhalb des änderbaren Bereichs'
+                };
+            }else{
+                return false;
+            }
         }
     }
 })();

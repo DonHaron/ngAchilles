@@ -11,8 +11,8 @@
                 entry: '=',
                 editable: '@',
                 treatmentId: '@',
-                permissionToEdit: '@',
-                warning: '@'
+                permissionToEdit: '&',
+                warning: '='
             },
             restrict: 'E',
             templateUrl: '../js/templates/treatment-entry.tpl.html',

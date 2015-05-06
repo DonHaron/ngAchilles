@@ -14,8 +14,6 @@
                 treatments: '=treatmentlist',
                 editable: '@',
                 user: '=',
-                permissionToEdit: '@',
-                warning: '@'
             },
             restrict: 'A',
             controller: controller,
@@ -26,9 +24,9 @@
 
         return directive;
 
-        controller.$inject = ['$scope', '$http', '$modal', 'urls', 'EntryType',
+        controller.$inject = ['$scope', '$http', '$modal', 'urls', 'EntryType', 'TreatmentPermission', 'User',
             'Treatment', 'Subject', 'Document', 'LaboratoryReport', 'Biometric', 'DisabilityCertificate'];
-        function controller($scope, $http, $modal, urls, EntryType, Treatment, Subject, Document, LaboratoryReport, Biometric, DisabilityCertificate) {
+        function controller($scope, $http, $modal, urls, EntryType, TreatmentPermission, User, Treatment, Subject, Document, LaboratoryReport, Biometric, DisabilityCertificate) {
             var dc = this,
                 treatmentId = $scope.treatment.id;
 
@@ -60,6 +58,13 @@
             dc.changeSubject = Treatment.changeSubject;
             dc.removeCase = removeCase;
 
+            dc.warning = {};
+            dc.permissionToEdit = false;
+
+            User.get().then(function (user) {
+                dc.warning = TreatmentPermission.shouldBeWarned(user, $scope.treatment);
+                dc.permissionToEdit = TreatmentPermission.checkEditPermission(user, $scope.treatment);
+            });
 
             dc.removeEntry = function (entry) {
                 var entries = $scope.treatment.entries;
