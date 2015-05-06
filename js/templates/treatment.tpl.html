@@ -249,7 +249,7 @@
                         permission-to-edit="dc.permissionToEdit"
                         warning="dc.warning">
         </treatment-entry>
-        <li class="list-group-item" ng-show="treatment.focused || select2Open || treatment.new">
+        <li class="list-group-item" ng-show="(treatment.focused || select2Open || treatment.new) && dc.permissionToEdit">
             <div class="row">
                 <div class="col-xs-12 type-select">
                     <select2 placeholder="Neuer Behandlungstitel (F9)"
