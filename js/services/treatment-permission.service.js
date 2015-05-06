@@ -28,7 +28,19 @@
         }
 
         function shouldBeWarned(user, treatment){
-            if (user.permission.modifyRange.mode=='warn' && (now - user.permission.modifyRange.pastDays*24*60*60*1000 > treatment.date
+            if(!checkEditPermission(user, treatment)){
+                if(!user.permission.editMandatorEntry){
+                    return {
+                        displayed: false,
+                        message: 'Sie verfügen nicht über die notwendigen Benutzerrechte um diese Aktion auszuführen'
+                    }
+                }else if(treatment.mandator != user.mandator.id){
+                    return {
+                        displayed: false,
+                        message: 'Nur der verantwortliche Mandant darf den Text ändern'
+                    }
+                }
+            } else if (user.permission.modifyRange.mode=='warn' && (now - user.permission.modifyRange.pastDays*24*60*60*1000 > treatment.date
                 || now + user.permission.modifyRange.futureDays*24*60*60*1000 < treatment.date)){
                 return {
                     displayed: false,

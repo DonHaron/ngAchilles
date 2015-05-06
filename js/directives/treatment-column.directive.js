@@ -11,7 +11,7 @@
         var templates = {
             editable: '<div ng-class="columnClass">' +
                 '<div class="form-group">' +
-                '<div ng-model="content" ta-disabled="{{readonly}}" text-angular ta-target-toolbars="toolbar-{{treatmentId}}"></div>' +
+                '<div ng-model="content" ta-disabled="readonly()" text-angular ta-target-toolbars="toolbar-{{treatmentId}}"></div>' +
                 '</div>' +
                 '</div>',
             readonly: '<div ng-class="columnClass"><p ng-bind-html="readonlyContent"></p></div>'
@@ -22,7 +22,7 @@
             scope: {
                 width: '@',
                 content: '=',
-                readonly: '@',
+                readonly: '&',
                 parent: '=',
                 row: '=',
                 uniqueId: '@',
@@ -56,6 +56,7 @@
             element.on('blur', '.ta-bind', blur);
             element.on('keydown', '.ta-bind', keydown);
             element.on('focus', '.ta-bind', focus);
+            element.on('click', '.ta-bind', click);
             attrs.$observe("editable", setTemplate);
             // change the template if the 'editable' attribute changes
             setTemplate(attrs.editable);
@@ -161,6 +162,14 @@
                 promise = $timeout(function () {
                     Locking.check(scope.row);
                 }, 450);
+            }
+
+            function click(e){
+                //console.log(scope.readonly);
+                if(scope.readonly() && scope.warning && !scope.warning.displayed){
+                    toastr.error(scope.warning.message);
+                    scope.warning.displayed = true;
+                }
             }
 
             function getAsteriskNode(jElement){
