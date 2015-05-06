@@ -13,10 +13,36 @@
             copyTreatment: copyTreatment,
             deleteTreatment: deleteTreatment,
             changeStatus: changeStatus,
-            changeSubject: changeSubject
+            changeSubject: changeSubject,
+            addEntry: addEntry
         };
 
         return Treatment;
+
+        // add an entry to a treatment, and add it to the list of entries or replace
+        // the existing one with the same type id
+        function addEntry(treatmentId, type, entries) {
+            //entry: {treatmentId: <id>, type: <type object>}
+            $http.post(urls.treatmentEntry(), {
+                treatmentId: treatmentId,
+                type: type
+            }).then(function (response) {
+                var entry = response.data,
+                    replaced = false;
+                for (var i = 0; i < entries.length; i++) {
+                    if (entry.type.id == entries[i].type.id) {
+                        console.log('already in list');
+                        entries[i] = entry;
+                        replaced = true;
+                        break;
+                    }
+                }
+                if (!replaced) {
+                    entries.push(entry);
+                }
+                //dc.newEntry = {};
+            });
+        }
 
         function addTreatment(treatment, isMandatorTreatment, isMainTreatment, treatments) {
             var date = new Date();

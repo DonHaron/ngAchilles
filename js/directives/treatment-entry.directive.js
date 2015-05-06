@@ -10,7 +10,7 @@
             scope: {
                 entry: '=',
                 editable: '@',
-                treatmentId: '@',
+                treatment: '=',
                 permissionToEdit: '&',
                 warning: '='
             },

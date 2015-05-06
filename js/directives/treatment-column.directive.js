@@ -5,13 +5,13 @@
         .module('achilles')
         .directive('treatmentColumn', treatmentColumn);
 
-    treatmentColumn.$inject = ['$http', 'urls', '$timeout', '$compile', '$window', 'CurrentFocus', 'Locking'];
+    treatmentColumn.$inject = ['$http', 'urls', '$timeout', '$compile', 'CurrentFocus', 'Locking', 'Treatment'];
 
-    function treatmentColumn($http, urls, $timeout, $compile, $window, CurrentFocus, Locking) {
+    function treatmentColumn($http, urls, $timeout, $compile, CurrentFocus, Locking, Treatment) {
         var templates = {
             editable: '<div ng-class="columnClass">' +
                 '<div class="form-group">' +
-                '<div ng-model="content" ta-disabled="readonly()" text-angular ta-target-toolbars="toolbar-{{treatmentId}}-{{type.id}}"></div>' +
+                '<div ng-model="content" ta-disabled="readonly()" text-angular ta-target-toolbars="toolbar-{{treatment.id}}-{{type.id}}"></div>' +
                 '</div>' +
                 '</div>',
             readonly: '<div ng-class="columnClass"><p ng-bind-html="readonlyContent"></p></div>'
@@ -26,7 +26,7 @@
                 parent: '=',
                 row: '=',
                 uniqueId: '@',
-                treatmentId: '@',
+                treatment: '=',
                 warning: '=',
                 type: '=',
                 entry: '='
@@ -99,21 +99,7 @@
                 if (angular.element(this).hasClass('ng-dirty') && !scope.row.locked) {
                     //$http.put(urls.treatmentEntryRow(), scope.row).then(function (response) {
                     //PUT/POST-workaround
-                    $http.post(urls.treatmentEntryRow('put'), scope.row).then(function (response) {
-                        //response.data is a row
-                        //now, find the row in the rows and replace it
-                        var row = response.data,
-                            rows = scope.parent.rows;
-                        for (var i = 0; i < rows.length; i++) {
-                            if (rows[i].id == row.id) {
-                                rows[i] = row;
-                                break;
-                            }
-                        }
-
-                        scope.row.locked = false;
-                        scope.row.hasOwnLock = false;
-                    });
+                    saveRow(scope.parent, scope.row);
                 }
 
                 $timeout(function () {
@@ -130,7 +116,7 @@
                     ) {
                     e.preventDefault();
                 } else
-                // Ctrl + Shirt + Backspace
+                // Ctrl + Shift + Backspace
                 if (e.ctrlKey && e.shiftKey && e.which == 8) {
                     //see if there is a previous textarea element in the same entry. If there is, focus on it
                     var prevRow = element.parents('.row').prev().find('textarea:not(:disabled)');
@@ -149,6 +135,11 @@
                         }
                     }, 150);
                     entryCtrl.removeRow(scope.row);
+                }else
+                // Ctrl + Enter
+                if(e.ctrlKey && e.which == 13){
+                    saveRow(scope.parent, scope.row);
+                    Treatment.addEntry(scope.treatment.id, scope.entry.type, scope.treatment.entries)
                 }else{
                     if(!scope.row.hasOwnLock && isModifyingInput(e)){
                         Locking.lock(scope.row);
@@ -222,6 +213,24 @@
                         // Ctrl + C
                         !(e.ctrlKey && e.which == 67 )
                     )
+            }
+
+            function saveRow(parent, row){
+                $http.post(urls.treatmentEntryRow('put'), row).then(function (response) {
+                    //response.data is a row
+                    //now, find the row in the rows and replace it
+                    var row = response.data,
+                        rows = parent.rows;
+                    for (var i = 0; i < rows.length; i++) {
+                        if (rows[i].id == row.id) {
+                            rows[i] = row;
+                            break;
+                        }
+                    }
+
+                    row.locked = false;
+                    row.hasOwnLock = false;
+                });
             }
         }
 
