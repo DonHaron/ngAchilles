@@ -8,7 +8,7 @@
     EntryType.$inject = ['$http', '$q', 'urls'];
     function EntryType($http, $q, urls) {
 
-        var EntryType = {
+        var service = {
             all: all
         };
 
@@ -16,7 +16,7 @@
             loading = false,
             waiting = [];
 
-        return EntryType;
+        return service;
 
         function all(){
             var deferred = $q.defer();
@@ -39,7 +39,7 @@
                     for (var i = 0; i < entryTypes.length; i++) {
                         entryTypes[i].toString = function () {
                             return this.id;
-                        }
+                        };
                     }
 
                     // loading is done

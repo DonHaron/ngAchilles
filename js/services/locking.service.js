@@ -28,7 +28,7 @@
                         row.new = data.row.new;
                         row.changed = true;
                         row.lastChange = data.row.lastChange;
-                    }else if(data.row.id == 0){
+                    }else if(data.row.id === 0){
                         // TODO: delete this row
                         row.id = 0;
                         row.deleted = true;
@@ -44,7 +44,7 @@
                 headers: {
                     'Content-Type': 'text/plain'  // avoid preflight request, request-body is emtpy anyway
                 }
-            }
+            };
             $http(req).then(function(response){
                 if(response.status == 204){
                     //console.log('lock obtained');

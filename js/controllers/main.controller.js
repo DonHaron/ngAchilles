@@ -32,16 +32,16 @@
         //vm.browser = window.navigator.userAgent;
 
         function loadEntries() {
-            $http.get(urls.treatmentList(achillesConfig.patient),{
+            $http.get(urls.treatmentList(achillesConfig.patient), {
                 spinner: true
             })
                 .then(function (response) {
                     vm.treatments = response.data;
                 });
-        };
+        }
 
-        function loadUser(){
-            User.get(achillesConfig.process).then(function(user){
+        function loadUser() {
+            User.get(achillesConfig.process).then(function (user) {
                 vm.user = user;
             });
         }

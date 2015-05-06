@@ -34,7 +34,7 @@
             user: 'user/process/:process'
         };
 
-        var factory = {
+        var service = {
             baseUrl: baseUrlComponent,
             biometricList: biometricList,
             biometricReport: biometricReport,
@@ -58,7 +58,7 @@
             user: user
         };
 
-        return factory;
+        return service;
 
         function baseUrlComponent() {
             return protocol + baseUrl + ':' + port + '/';
@@ -75,8 +75,7 @@
             }
             return baseUrlComponent() + verbComponent + routes.lock
                 .replace(/:row/, row.id)
-                .replace(/:process/, process)
-                + '/';
+                .replace(/:process/, process) + '/';
         }
 
         function executeGDT(device, patient, test){

@@ -1,3 +1,4 @@
+/* jshint -W027, -W040 */
 (function () {
     "use strict";
 
@@ -42,7 +43,7 @@
                 currentlyFocusedRow = CurrentFocus.getCurrentFocus();
                 // put all the rows in all the entries in all the treatments in this array
                 treatments.forEach(function (treatment) {
-                    if(treatment.editable == 'true' || treatment.editable == true){
+                    if(treatment.editable === 'true' || treatment.editable === true){
                         var entries = $filter('orderBy')(treatment.entries, 'type.name');
                         entries.forEach(function (entry) {
                             entry.rows.forEach(function (row) {
@@ -62,7 +63,7 @@
 
                 rowsWithAsterisk = $filter('filter')(partialRows, {$: '*'});
 
-                if (rowsWithAsterisk.length == 0) {
+                if (rowsWithAsterisk.length === 0) {
                     // with an empty result, we try again at the beginning, as we're probably at the end of the list
                     rowsWithAsterisk = $filter('filter')(rows, {$: '*'});
                 }
@@ -88,7 +89,7 @@
                     var payloadEntry = {
                         id: treatment.id,
                         rows: []
-                    }
+                    };
                     // add each row's id of every entry to the current payload entry
                     treatment.entries.forEach(function (entry) {
                         entry.rows.forEach(function (row) {

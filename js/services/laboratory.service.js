@@ -7,11 +7,11 @@
 
     LaboratoryReport.$inject = ['$http', 'urls'];
     function LaboratoryReport($http, urls){
-        var LaboratoryReport = {
+        var service = {
             list: list
         };
 
-        return LaboratoryReport;
+        return service;
 
         /* list by treatment */
         function list(treatmentId){

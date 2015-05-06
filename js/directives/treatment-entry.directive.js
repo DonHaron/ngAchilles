@@ -1,3 +1,4 @@
+/* jshint -W027, -W040 */
 (function () {
     "use strict";
 
@@ -10,7 +11,7 @@
             scope: {
                 entry: '=',
                 editable: '@',
-                treatmentId: '@',
+                treatment: '=',
                 permissionToEdit: '&',
                 warning: '='
             },
@@ -51,9 +52,9 @@
                                 break;
                             }
                         }
-                        if (rows.length == 0) {
+                        if (rows.length === 0) {
                             //There are now more rows left, delete the entry now
-                            $scope.removeEntry($scope.entry)
+                            $scope.removeEntry($scope.entry);
                         }
                     });
             }

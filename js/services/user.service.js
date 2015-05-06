@@ -12,11 +12,11 @@
             waiting = [],
             process = achillesConfig.process;
 
-        var User = {
+        var service = {
             get: get
         };
 
-        return User;
+        return service;
 
         function get() {
             var deferred = $q.defer();

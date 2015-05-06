@@ -10,7 +10,7 @@
         var directive = {
             require: 'dropdown',
             link: link
-        }
+        };
 
         return directive;
 

@@ -10,11 +10,11 @@
     function DeleteModalController($scope, $modalInstance){
         $scope.ok = function(){
             $modalInstance.close();
-        }
+        };
 
         $scope.cancel = function(){
             $modalInstance.dismiss('canceled');
-        }
+        };
     }
 
     PresetModalController.$inject = ['$scope', '$modalInstance'];
@@ -40,6 +40,6 @@
 
         $scope.close = function(preset){
             $modalInstance.close(preset);
-        }
+        };
     }
 })();

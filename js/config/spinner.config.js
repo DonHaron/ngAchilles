@@ -13,7 +13,7 @@
 
     SpinnerHttpInterceptor.$inject = ['$q', '$timeout'];
     function SpinnerHttpInterceptor($q, $timeout) {
-        var SpinnerHttpInterceptor = {
+        var service = {
             'response': function (response) {
                 //do this with a delay, otherwise it just flashes too quickly if the request is too quick
                 if(response.config.spinner){
@@ -38,8 +38,8 @@
                 }
                 return config;
             }
-        }
+        };
 
-        return SpinnerHttpInterceptor;
+        return service;
     }
 })();

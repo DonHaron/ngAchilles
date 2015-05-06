@@ -7,11 +7,11 @@
 
     DisabilityCertificate.$inject = ['$http', 'urls'];
     function DisabilityCertificate($http, urls){
-        var DisabilityCertificate = {
+        var service = {
             list: list
         };
 
-        return DisabilityCertificate;
+        return service;
 
         /* list by treatment */
         function list(treatmentId){

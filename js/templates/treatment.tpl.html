@@ -244,7 +244,7 @@
 </div>
 <div class="panel-body">
     <ul class="list-group">
-        <treatment-entry entry="entry" editable="{{editable}}" treatment-id="{{treatment.id}}"
+        <treatment-entry entry="entry" editable="{{editable}}" treatment="treatment"
                          ng-repeat="entry in treatment.entries | orderBy:'type.name'"
                         permission-to-edit="dc.permissionToEdit"
                         warning="dc.warning">
@@ -254,7 +254,7 @@
                 <div class="col-xs-12 type-select">
                     <select2 placeholder="Neuer Behandlungstitel (F9)"
                              class="form-control"
-                             ng-change="dc.addEntry(treatment.id, dc.newEntry.type, treatment.entries)"
+                             ng-change="dc.addEntry(treatment.id, dc.newEntry.type, treatment.entries); dc.newEntry = {}"
                              ng-model="dc.newEntry.type"
                              ng-options="type as type.name group by type.name.substr(0,1) for type in dc.types track by type.id"></select2>
                 </div>

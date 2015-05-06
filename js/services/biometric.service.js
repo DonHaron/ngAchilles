@@ -7,11 +7,11 @@
 
     Biometric.$inject = ['$http', 'urls'];
     function Biometric($http, urls){
-        var Biometric = {
+        var service = {
             list: list
         };
 
-        return Biometric;
+        return service;
 
         /* list by treatment */
         function list(treatmentId){

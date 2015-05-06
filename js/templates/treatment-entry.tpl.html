@@ -19,7 +19,7 @@
                     <span class="label locked-warning" ng-class="'mandator-' + row.lockedBy.id + '-warning'" ng-show="row.locked">Gesperrt von {{row.lockedBy.name}}</span>
                     <treatment-column ng-repeat="column in row.columns" content="column.content"
                                       width="{{column.width}}" unique-id="{{row.id}}-{{$index}}"
-                                      editable="{{editable}}" treatment-id="{{treatmentId}}" warning="warning"
+                                      editable="{{editable}}" treatment="treatment" warning="warning"
                                       type="entry.type" entry="entry"
                                       readonly="column.readonly || !permissionToEdit()" parent="entry" row="row"></treatment-column>
                 </div>

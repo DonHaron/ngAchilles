@@ -7,11 +7,11 @@
 
     Document.$inject = ['$http', 'urls'];
     function Document($http, urls){
-        var Document = {
+        var service = {
             list: list
         };
 
-        return Document;
+        return service;
 
         /* list by treatment */
         function list(treatmentId){

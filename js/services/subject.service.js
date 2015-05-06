@@ -7,7 +7,7 @@
 
     Subject.$inject = ['$http', '$q', 'urls'];
     function Subject($http, $q, urls) {
-        var Subject = {
+        var service = {
             all: all
         };
 
@@ -15,7 +15,7 @@
             loading = false,
             waiting = [];
 
-        return Subject;
+        return service;
 
         function all(){
             var deferred = $q.defer();

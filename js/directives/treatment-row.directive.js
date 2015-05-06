@@ -20,7 +20,7 @@
                 }
             });
 
-            if (scope.row.new == true) {
+            if (scope.row.new === true) {
                 focusOnChanged();
             }
 

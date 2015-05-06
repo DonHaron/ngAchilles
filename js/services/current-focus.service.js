@@ -17,7 +17,7 @@
                 setNewFocus: setNewFocus,
                 // get the new element to focus
                 getNewFocus: getNewFocus,
-            }
+            };
 
         return service;
 
