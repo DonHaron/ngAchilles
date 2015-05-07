@@ -48,7 +48,7 @@ module.exports = function(grunt) {
         },
         concat: {
             options: {
-                separator: ';\n'
+                separator: '\n'
             },
             build: {
                 src: '<%= paths.src.jsMin %>',
