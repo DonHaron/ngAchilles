@@ -55,7 +55,8 @@
                         <div class="dropdown icon-dropdown" toggle-focus dropdown>
 
                             <div class="btn-group">
-                                <a ng-if="vm.user.hasGDTDevice" class="btn btn-default btn-xs gdt dropdown-toggle" dropdown-toggle>&nbsp;</a>
+                                <a ng-if="vm.user.hasGDTDevice" class="btn btn-default btn-xs gdt dropdown-toggle"
+                                   dropdown-toggle>&nbsp;</a>
 
                                 <a class="btn btn-default btn-xs new-treatment" title="Neue Behandlung"
                                    ng-click="dc.addTreatment(vm.treatments)">&nbsp;</a>
@@ -84,8 +85,12 @@
                                 <a class="btn btn-default btn-xs refresh" ng-click="vm.loadEntries()">&nbsp;</a>
                             </div>
                             <ul class="dropdown-menu gdt-list">
-                                <li ng-repeat-start="device in dc.gdtDevices"><a href ng-click="dc.executeGDT(device, vm.patient)"><strong>{{device.name}}</strong></a></li>
-                                <li ng-repeat="test in device.gdtTests"><a href ng-click="dc.executeGDT(device, vm.patient, test)">{{test.name}}</a></li>
+                                <li ng-repeat-start="device in dc.gdtDevices"><a href
+                                                                                 ng-click="dc.executeGDT(device, vm.patient)"><strong>{{device.name}}</strong></a>
+                                </li>
+                                <li ng-repeat="test in device.gdtTests"><a href
+                                                                           ng-click="dc.executeGDT(device, vm.patient, test)">{{test.name}}</a>
+                                </li>
                                 <li ng-repeat-end class="divider"></li>
                             </ul>
                         </div>
@@ -130,8 +135,9 @@
             </div>
 
             <div class="list-group">
-                <a class="list-group-item" ng-repeat="type in dc.entryTypes"><span class="checkmark"><i
-                        class="fa fa-check">&nbsp;</i></span> {{type.name}}</a>
+                <a class="list-group-item" ng-repeat="type in dc.entryTypes" href>
+                    <span class="checkmark"><i
+                            class="fa fa-check">&nbsp;</i></span> {{type.name}}</a>
             </div>
 
         </div>
@@ -173,12 +179,15 @@
 <!--<script type="text/javascript" src="../js/controllers/main.controller.js"></script>-->
 <!--<script type="text/javascript" src="../js/controllers/modal.controllers.js"></script>-->
 <!--&lt;!&ndash;<script type="text/javascript" src="../js/directives/treatment.directive.js"></script>&ndash;&gt;-->
-<!--&lt;!&ndash;<script type="text/javascript" src="../js/directives/treatment-entry.directive.js"></script>&ndash;&gt;-->
+<!--&lt;!&ndash;<script type="text/javascript" src="../js/directives/treatment-entry.directive.js"></script>&ndash;&gt;
+-->
 <!--&lt;!&ndash;<script type="text/javascript" src="../js/directives/treatment-row.directive.js"></script>&ndash;&gt;-->
-<!--&lt;!&ndash;<script type="text/javascript" src="../js/directives/treatment-column.directive.js"></script>&ndash;&gt;-->
+<!--&lt;!&ndash;<script type="text/javascript" src="../js/directives/treatment-column.directive.js"></script>&ndash;&gt;
+-->
 <!--&lt;!&ndash;<script type="text/javascript" src="../js/directives/modal-select2.directive.js"></script>&ndash;&gt;-->
 <!--&lt;!&ndash;<script type="text/javascript" src="../js/directives/toggle-focus.directive.js"></script>&ndash;&gt;-->
-<!--&lt;!&ndash;<script type="text/javascript" src="../js/directives/treatment-toolbar.directive.js"></script>&ndash;&gt;-->
+<!--&lt;!&ndash;<script type="text/javascript" src="../js/directives/treatment-toolbar.directive.js"></script>&ndash;&gt;
+-->
 <!--<script type="text/javascript" src="../js/services/url.service.js"></script>-->
 <!--<script type="text/javascript" src="../js/services/entry-type.service.js"></script>-->
 <!--<script type="text/javascript" src="../js/services/treatment.service.js"></script>-->
@@ -194,8 +203,6 @@
 <!--<script type="text/javascript" src="../js/config/spinner.config.js"></script>-->
 <!--<script type="text/javascript" src="../js/config/textAngular.config.js"></script>-->
 <!--<script type="text/javascript" src="../js/independent.js"></script>-->
-
-
 
 
 </body>

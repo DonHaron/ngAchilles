@@ -21,7 +21,7 @@ module.exports = function (grunt) {
                     'bower_components/rangy/rangy-selectionsaverestore.js'
                 ],
                 jsAchilles: [
-                    'config/config.js',
+                    //'config/config.js',
                     'js/**/*.js'
                 ],
                 jsMin: [
