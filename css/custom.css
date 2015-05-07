@@ -450,3 +450,11 @@ span.checkmark {
 .editor-toolbar .btn-group {
     background-color: white;
 }
+
+.title-settings-widget {
+    width: 300px;
+    position: fixed;
+    top: 50px;
+    right: 15px;
+    z-index: 95;
+}

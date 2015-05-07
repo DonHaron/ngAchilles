@@ -25,11 +25,11 @@
             {class: 'small-fonts', label: 'Klein'},
         ];
         vm.checkEditPermission = TreatmentPermission.checkEditPermission;
-        //vm.shouldBeWarned = TreatmentPermission.shouldBeWarned;
 
         vm.loadEntries();
         loadUser();
-        //vm.browser = window.navigator.userAgent;
+
+        console.log('maincontroller line 32 ');
 
         function loadEntries() {
             $http.get(urls.treatmentList(achillesConfig.patient), {

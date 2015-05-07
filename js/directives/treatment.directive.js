@@ -61,11 +61,9 @@
             // Prevent the element losing focus when the select2 is opened. Technically it DOES lose focus,
             // but in the actual use case the select2 still counts as belonging to the treatment
             element.on('select2-open', function () {
-                console.log('opened');
                 scope.select2Open = true;
             });
             element.on('select2-blur', function () {
-                console.log('blurred');
                 scope.select2Open = false;
             });
         }
@@ -143,8 +141,6 @@
                         //TODO: remove after testing
                         console.error(error.statusText);
                         dc.documents = [
-                            {id: 1, name: 'War & Peace'},
-                            {id: 2, name: 'Skin Game'}
                         ];
                     });
             }
