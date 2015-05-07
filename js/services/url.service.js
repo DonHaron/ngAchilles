@@ -8,8 +8,8 @@
     function urls() {
         var protocol = "http://";
         //var baseUrl = "localhost";
-        var baseUrl = "192.168.1.107";
-        var port = "36611";
+        var baseUrl = achillesConfig.baseUrl;
+        var port = achillesConfig.port;
         var routes = {
             biometricList: 'treatment/:treatment/biometriclist',
             biometricReport: 'biometricreport/process/:process',
