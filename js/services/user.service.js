@@ -13,14 +13,14 @@
             process = achillesConfig.process;
 
         var service = {
-            get: get
+            get: get,
+            setVisibleEntryTypes: setVisibleEntryTypes
         };
 
         return service;
 
         function get() {
             var deferred = $q.defer();
-
             if (currentUser) {
                 deferred.resolve(currentUser);
             } else if (!loading) {
@@ -29,6 +29,9 @@
                 $http.get(urls.user(process))
                     .then(function (response) {
                         currentUser = response.data;
+
+                        // TODO: remove after testing
+                        currentUser.hiddenEntryTypes = [24];
 
                         loading = false;
 
@@ -43,6 +46,14 @@
             }
 
             return deferred.promise;
+        }
+
+        function setVisibleEntryTypes(types, user){
+            types.forEach(function(type){
+                if(user.hiddenEntryTypes.indexOf(type.id)>-1){
+                    type.hidden = true;
+                }
+            });
         }
     }
 })();

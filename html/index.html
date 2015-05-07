@@ -119,7 +119,7 @@
                                         class="fa fa-check" ng-show="fontSetting=='large-fonts'">&nbsp;</i></span>
                                     Grosse Schrift</a></li>
                                 <li class="divider"></li>
-                                <li><a ng-click="">Titel zeigen</a></li>
+                                <li><a ng-click="vm.showTitleSettingsWidget=true">Titel zeigen</a></li>
                             </ul>
                         </div>
                     </div>
@@ -128,16 +128,16 @@
         </div>
     </div>
 
-    <div class="title-settings-widget" title-settings-widget>
+    <div class="title-settings-widget" title-settings-widget ng-show="vm.showTitleSettingsWidget">
         <div class="panel panel-default">
             <div class="panel-body">
                 <p>This is some text</p>
             </div>
 
             <div class="list-group">
-                <a class="list-group-item" ng-repeat="type in dc.entryTypes" href>
-                    <span class="checkmark"><i
-                            class="fa fa-check">&nbsp;</i></span> {{type.name}}</a>
+                <a class="list-group-item" ng-click="dc.changeTypeStatus(type)" ng-repeat="type in dc.entryTypes | orderBy:'name'" href>
+                    <span class="checkmark"><i class="fa fa-check" ng-hide="type.hidden">&nbsp;</i></span> {{type.name}}
+                </a>
             </div>
 
         </div>

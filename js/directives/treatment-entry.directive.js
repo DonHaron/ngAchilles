@@ -19,6 +19,7 @@
             templateUrl: '../js/templates/treatment-entry.tpl.html',
             require: '^treatment',
             controller: TreatmentEntryController,
+            controllerAs: 'dc',
             link: link
         };
 
@@ -29,13 +30,29 @@
         }
     }
 
-    TreatmentEntryController.$inject = ['$scope', '$http', 'urls'];
-    function TreatmentEntryController($scope, $http, urls) {
+    TreatmentEntryController.$inject = ['$scope', '$http', 'urls', 'User'];
+    function TreatmentEntryController($scope, $http, urls, User) {
         var dc = this;
 
+
+        dc.user = {};
         dc.setEntryFocus = setEntryFocus;
         dc.makePristine = makePristine;
         dc.removeRow = removeRow;
+        dc.isHidden = isHidden;
+
+        loadUser();
+
+        function loadUser(){
+            User.get(achillesConfig.process).then(function (user) {
+                dc.user = user;
+            });
+        }
+
+        function isHidden(type){
+            return dc.user.hiddenEntryTypes &&
+                dc.user.hiddenEntryTypes.indexOf(type.id)>-1;
+        }
 
         function setEntryFocus(focused) {
             $scope.entry.focused = focused;
