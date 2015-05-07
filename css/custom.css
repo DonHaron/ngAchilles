@@ -465,3 +465,10 @@ span.checkmark {
     overflow-y: auto;
     max-height: 100%;
 }
+
+.close-widget {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    z-index: 10;
+}

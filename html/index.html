@@ -128,7 +128,8 @@
         </div>
     </div>
 
-    <div class="title-settings-widget" title-settings-widget ng-show="vm.showTitleSettingsWidget">
+    <div class="title-settings-widget" title-settings-widget ng-show="vm.showTitleSettingsWidget" ng-cloak>
+        <a class="btn btn-default close-widget" ng-click="vm.showTitleSettingsWidget = false"><i class="fa fa-check">&nbsp;</i></a>
         <div class="panel panel-default">
             <div class="panel-body">
                 <p>This is some text</p>
