@@ -42,7 +42,7 @@
                     e.preventDefault();
                     // look for the previous sibling that is not a divider, and focus it if you find one.
                     // if not, focus the last one in the list
-                    var prev = $(this).parent().prevAll(':not(.divider)').first().find('a'),
+                    var prev = $(this).parent().prevAll(':visible:not(.divider)').first().find('a'),
                         last = $(this).parent().siblings().last().find('a');
 
                     if(prev.length){

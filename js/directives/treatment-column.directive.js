@@ -1,4 +1,4 @@
-/* jshint -W027, -W040 */
+/* jshint -W040 */
 (function () {
     "use strict";
 
@@ -33,7 +33,7 @@
                 entry: '='
             },
             require: ['^treatment', '^treatmentEntry'],
-            controller: controller,
+            controller: TreatmentColumnController,
             link: link
         };
 
@@ -43,12 +43,6 @@
 
         function getTemplate(editable) {
             return editable == 'true' ? templates.editable : templates.readonly;
-        }
-
-        cntroller.$inject = ['$scope', '$sce'];
-        function controller($scope, $sce) {
-            // we have to sanitize the content if we just want to display it with html tags
-            $scope.readonlyContent = $sce.trustAsHtml($scope.content);
         }
 
         function link(scope, element, attrs, ctrls) {
@@ -78,12 +72,12 @@
                     input.eq(0).focus();
                     //console.log('focusing', input);
                     var node = getAsteriskNode(input);
-                    if(node){
+                    if (node) {
                         //console.log(node);
                         var range = document.createRange();
                         var index = node.nodeValue.indexOf('*');
                         range.setStart(node, index);
-                        range.setEnd(node, index+1);
+                        range.setEnd(node, index + 1);
                         var selection = window.getSelection();
                         selection.removeAllRanges();
                         selection.addRange(range);
@@ -136,15 +130,15 @@
                         }
                     }, 150);
                     entryCtrl.removeRow(scope.row);
-                }else
+                } else
                 // Ctrl + Enter
-                if(e.ctrlKey && e.which == 13){
+                if (e.ctrlKey && e.which == 13) {
                     // save the current row
                     saveRow(scope.parent, scope.row);
                     // also, add a row of the same type as the currently focused one
                     Treatment.addEntry(scope.treatment.id, scope.entry.type, scope.treatment.entries);
-                }else{
-                    if(!scope.row.hasOwnLock && isModifyingInput(e)){
+                } else {
+                    if (!scope.row.hasOwnLock && isModifyingInput(e)) {
                         Locking.lock(scope.row);
                     }
                 }
@@ -152,7 +146,7 @@
 
             function focus(e) {
                 CurrentFocus.setCurrentFocus(scope.row);
-                if(scope.warning && !scope.warning.displayed){
+                if (scope.warning && !scope.warning.displayed) {
                     toastr.warning(scope.warning.message);
                     scope.warning.displayed = true;
                 }
@@ -168,32 +162,32 @@
                 });
             }
 
-            function click(e){
+            function click(e) {
                 //console.log(scope.readonly);
-                if(scope.readonly() && scope.warning && !scope.warning.displayed){
+                if (scope.readonly() && scope.warning && !scope.warning.displayed) {
                     toastr.error(scope.warning.message);
                     scope.warning.displayed = true;
                 }
             }
 
-            function getAsteriskNode(jElement){
-                if(!jElement.length){
+            function getAsteriskNode(jElement) {
+                if (!jElement.length) {
                     return null;
                 }
                 var htmlElement = jElement[0];
                 return recursiveGetAsteriskNode(htmlElement);
             }
 
-            function recursiveGetAsteriskNode(node){
-                for(var i = 0;i<node.childNodes.length;i++){
+            function recursiveGetAsteriskNode(node) {
+                for (var i = 0; i < node.childNodes.length; i++) {
                     var currentNode = node.childNodes[i];
-                    if(currentNode.nodeType == 3){
-                        if(currentNode.nodeValue.indexOf('*')>=0){
+                    if (currentNode.nodeType == 3) {
+                        if (currentNode.nodeValue.indexOf('*') >= 0) {
                             return currentNode;
                         }
-                    }else{
+                    } else {
                         var subResult = recursiveGetAsteriskNode(currentNode);
-                        if(subResult){
+                        if (subResult) {
                             return subResult;
                         }
                     }
@@ -202,7 +196,7 @@
             }
 
             // detect whether the pressed key modifies the input field
-            function isModifyingInput(e){
+            function isModifyingInput(e) {
                 return (
                     // tab key
                     e.which != 9 &&
@@ -215,7 +209,7 @@
                     );
             }
 
-            function saveRow(parent, row){
+            function saveRow(parent, row) {
                 $http.post(urls.treatmentEntryRow('put'), row).then(function (response) {
                     //response.data is a row
                     //now, find the row in the rows and replace it
@@ -233,24 +227,13 @@
                 });
             }
 
-            function saveRow(parent, row){
-                $http.post(urls.treatmentEntryRow('put'), row).then(function (response) {
-                    //response.data is a row
-                    //now, find the row in the rows and replace it
-                    var row = response.data,
-                        rows = parent.rows;
-                    for (var i = 0; i < rows.length; i++) {
-                        if (rows[i].id == row.id) {
-                            rows[i] = row;
-                            break;
-                        }
-                    }
-
-                    row.locked = false;
-                    row.hasOwnLock = false;
-                });
-            }
         }
 
+    }
+
+    TreatmentColumnController.$inject = ['$scope', '$sce'];
+    function TreatmentColumnController($scope, $sce) {
+        // we have to sanitize the content if we just want to display it with html tags
+        $scope.readonlyContent = $sce.trustAsHtml($scope.content);
     }
 })();
