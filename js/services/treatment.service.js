@@ -31,7 +31,6 @@
                     replaced = false;
                 for (var i = 0; i < entries.length; i++) {
                     if (entry.type.id == entries[i].type.id) {
-                        console.log('already in list');
                         entries[i] = entry;
                         replaced = true;
                         break;

@@ -123,17 +123,16 @@
         </div>
     </div>
 
-    <div class="title-settings-widget">
+    <div class="title-settings-widget" title-settings-widget>
         <div class="panel panel-default">
             <div class="panel-body">
                 <p>This is some text</p>
             </div>
 
-            <ul class="list-group">
-                <li class="list-group-item">Some</li>
-                <li class="list-group-item">Thing</li>
-                <li class="list-group-item">Else</li>
-            </ul>
+            <div class="list-group">
+                <a class="list-group-item" ng-repeat="type in dc.entryTypes"><span class="checkmark"><i
+                        class="fa fa-check">&nbsp;</i></span> {{type.name}}</a>
+            </div>
 
         </div>
     </div>

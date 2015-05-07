@@ -28,7 +28,6 @@
 
         loadGDT();
 
-
         function addTreatment(treatments) {
             var firstTreatment = treatments.length ? $filter('orderBy')(treatments, ['-date', 'id'])[0] : {id: 0};
             Treatment.addTreatment(firstTreatment, true, true, treatments);

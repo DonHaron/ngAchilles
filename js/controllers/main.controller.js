@@ -5,9 +5,9 @@
         .module('achilles')
         .controller('MainController', MainController);
 
-    MainController.$inject = ['$http', 'urls', 'User', 'TreatmentPermission'];
+    MainController.$inject = ['$http', 'urls', 'User', 'TreatmentPermission', 'EntryType'];
 
-    function MainController($http, urls, User, TreatmentPermission) {
+    function MainController($http, urls, User, TreatmentPermission, EntryType) {
         var vm = this;
         vm.baseUrl = urls.baseUrl();
         vm.entries = [];
@@ -28,6 +28,7 @@
 
         vm.loadEntries();
         loadUser();
+        //loadEntryTypes();
 
         console.log('maincontroller line 32 ');
 
