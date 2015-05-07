@@ -34,7 +34,9 @@
                 //console.log(e.which);
                 //F9
                 if (e.which == 120) {
-                    element.find('.type-select input').select2('open');
+                    if(ctrl.permissionToEdit){
+                        element.find('.type-select input').select2('open');
+                    }
                 }
                 if (e.which == 121) {
                     ctrl.testModal();
