@@ -462,13 +462,28 @@ span.checkmark {
 }
 
 .title-settings-widget .panel{
+    /*overflow-y: auto;*/
+    height: 100%;
+}
+
+.title-settings-widget .panel-body {
+    position: absolute;
+    z-index: 9;
+    background-color: white;
+    width: 99%;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.title-settings-widget .list-group {
+    margin-top: 100px;
+    max-height: 90%;
     overflow-y: auto;
-    max-height: 100%;
 }
 
 .close-widget {
     position: absolute;
-    right: 20px;
-    top: 20px;
+    right: 15px;
+    top: 60px;
     z-index: 10;
 }

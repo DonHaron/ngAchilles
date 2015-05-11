@@ -5,12 +5,13 @@
         .module('achilles')
         .factory('User', User);
 
-    User.$inject = ['$http', '$q', 'urls'];
-    function User($http, $q, urls) {
+    User.$inject = ['$http', '$q', '$timeout', 'urls'];
+    function User($http, $q, $timeout, urls) {
         var currentUser,
             loading = false,
             waiting = [],
-            process = achillesConfig.process;
+            process = achillesConfig.process,
+            promise;
 
         var service = {
             get: get,
@@ -58,13 +59,25 @@
             });
         }
 
-        function changeVisibility(type, user){
+        function changeVisibility(type, user, visibility){
+            // if the current user has no hidden entry types defined, define an empty array
             if(!user.hiddenEntryTypes){
                 user.hiddenEntryTypes = [];
             }
 
             var hiddenEntryTypes = user.hiddenEntryTypes,
-                index = hiddenEntryTypes.indexOf(type.id);
+                index = hiddenEntryTypes.indexOf(type.id); // is the current type already in the hidden types?
+            // if the visibility is defined, it has precedence, and the type gets this visibility
+            if(visibility !== undefined){
+                if(visibility && index>-1){
+                    hiddenEntryTypes.splice(index, 1);
+                }
+                if(!visibility && index === -1){
+                    hiddenEntryTypes.push(type.id);
+                }
+                type.hidden = !visibility;
+            }else
+            // if the visibility is not defined, the current visibility is reversed
             if(index>-1){
                 hiddenEntryTypes.splice(index, 1);
                 type.hidden = false;
@@ -72,7 +85,17 @@
                 hiddenEntryTypes.push(type.id);
                 type.hidden = true;
             }
-            $http.post(urls.user(process, 'put'), user);
+            // If a request is already starting, cancel it. The last request is always the most current one, and
+            // contains all the previous information as well
+            if(promise && promise.$$state.status === 0){
+                $timeout.cancel(promise);
+            }
+            // Save the current user object, so the hidden entry types are saved for the next page load.
+            // But delay it for a fraction of a second, so multiple actions do not all send a request if in quick
+            // succession
+            promise = $timeout(function(){
+                $http.post(urls.user(process, 'put'), user);
+            },150);
         }
     }
 })();

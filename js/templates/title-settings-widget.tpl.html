@@ -2,11 +2,13 @@
     <a class="btn btn-default close-widget" ng-click="vm.showTitleSettingsWidget = false"><i class="fa fa-check">&nbsp;</i></a>
     <div class="panel panel-default">
         <div class="panel-body">
-            <p>This is some text</p>
+            <p>Alt + Klick: Alle anderen an- / abwählen</p>
+            <a href class="btn btn-default" ng-click="dc.changeAll(dc.entryTypes, true)">Alle</a>
+            <a href class="btn btn-default" ng-click="dc.changeAll(dc.entryTypes, false)">Keine</a>
         </div>
 
         <div class="list-group">
-            <a class="list-group-item" ng-click="dc.changeTypeStatus(type)" ng-repeat="type in dc.entryTypes | orderBy:'name'" href>
+            <a class="list-group-item" ng-click="dc.changeTypeStatus(type, undefined, $event)" ng-repeat="type in dc.entryTypes | orderBy:'name'" href>
                 <span class="checkmark"><i class="fa fa-check" ng-hide="type.hidden">&nbsp;</i></span> {{type.name}}
             </a>
         </div>
