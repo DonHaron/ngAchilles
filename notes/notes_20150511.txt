@@ -1,0 +1,68 @@
+[
+  {
+    "name": "Nachtessen",
+    "sortPosition": 3,
+    "complexContent": [
+      {
+        "initialState": "on",
+        "text": "Hamburger"
+      },
+      {
+        "initialState": "off",
+        "text": "Steak"
+      },
+      {
+        "initialState": "off",
+        "text": "Pommes Frites"
+      },
+      {
+        "initialState": "fixOn",
+        "list": [
+          "Ketchup",
+          "Mayo"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Mittagessen",
+    "sortPosition": 1,
+    "complexContent": [
+      {
+        "initialState": "fixOn",
+        "text": "Vegetarisch"
+      },
+      {
+        "initialState": "fixOn",
+        "text": "Salatteller"
+      },
+      {
+        "initialState": "fixOn",
+        "text": "Buffet"
+      }
+    ]
+  },
+  {
+    "name": "Morgenessen",
+    "sortPosition": 2,
+    "complexContent": [
+      {
+        "initialState": "fixOn",
+        "text": "Viel"
+      },
+      {
+        "initialState": "fixOn",
+        "text": "Wenig"
+      },
+      {
+        "initialState": "fixOn",
+        "text": "Mittelmässig"
+      }
+    ]
+  },
+  {
+    "name": "Simple text",
+    "sortPosition": 4,
+    "text": "Simple text"
+  }
+]
