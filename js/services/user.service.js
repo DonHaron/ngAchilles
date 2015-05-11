@@ -33,7 +33,7 @@
                         currentUser = response.data;
 
                         // TODO: remove after testing
-                        currentUser.hiddenEntryTypes = [24];
+                        //currentUser.hiddenEntryTypes = [24];
 
                         loading = false;
 
