@@ -464,6 +464,8 @@ span.checkmark {
 .title-settings-widget .panel{
     /*overflow-y: auto;*/
     height: 100%;
+    box-sizing: border-box;
+    padding-top: 95px;
 }
 
 .title-settings-widget .panel-body {
@@ -473,11 +475,13 @@ span.checkmark {
     width: 99%;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+    top: 17px;
+    border-bottom: 1px solid #ddd;
 }
 
 .title-settings-widget .list-group {
-    margin-top: 100px;
-    max-height: 90%;
+    /*margin-top: 100px;*/
+    max-height: 100%;
     overflow-y: auto;
 }
 

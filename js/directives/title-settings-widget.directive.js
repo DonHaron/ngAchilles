@@ -5,17 +5,30 @@
         .module('achilles')
         .directive('titleSettingsWidget', titleSettingsWidget);
 
-    function titleSettingsWidget(){
+    titleSettingsWidget.$inject = ['$timeout'];
+    function titleSettingsWidget($timeout){
         var directive = {
             restrict: 'E',
             controller: TitleSettingsWidgetController,
             controllerAs: 'dc',
             templateUrl: '../js/templates/title-settings-widget.tpl.html',
-            //link: link
+            link: link
         };
 
         return directive;
 
+        function link(scope, element, attrs){
+//            scope.$watch('vm.showTitleSettingsWidget', function(newVal){
+//                if(newVal===true){
+//                    $timeout(function(){
+//                        element.find('.title-settings-widget').draggable();
+//                    }, 500);
+//                }
+//            });
+            element.find('.title-settings-widget').draggable({
+                axis: "x"
+            });
+        }
     }
 
     TitleSettingsWidgetController.$inject = ['$filter', 'EntryType', 'User'];

@@ -18,7 +18,8 @@ module.exports = function (grunt) {
                     'bower_components/textAngular/src/textAngular-sanitize.js',
                     'bower_components/angular-select2/dist/angular-select2.min.js',
                     'bower_components/rangy/rangy-core.js',
-                    'bower_components/rangy/rangy-selectionsaverestore.js'
+                    'bower_components/rangy/rangy-selectionsaverestore.js',
+                    'bower_components/jquery-ui/jquery-ui.js'
                 ],
                 jsAchilles: [
                     //'config/config.js',
@@ -83,5 +84,5 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.registerTask('default', ['jshint']);
     grunt.registerTask('build-achilles', ['jshint', 'uglify:achilles', 'concat']);
-    grunt.registerTask('build', ['uglify', 'concat']);
+    grunt.registerTask('build', ['jshint', 'uglify', 'concat']);
 }
