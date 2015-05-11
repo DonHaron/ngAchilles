@@ -6,15 +6,16 @@
         .factory('Treatment', Treatment);
 
 
-    Treatment.$inject = ['$http', '$modal', 'urls'];
-    function Treatment($http, $modal, urls) {
+    Treatment.$inject = ['$http', '$modal', 'urls', 'User'];
+    function Treatment($http, $modal, urls, User) {
         var service = {
             addTreatment: addTreatment,
             copyTreatment: copyTreatment,
             deleteTreatment: deleteTreatment,
             changeStatus: changeStatus,
             changeSubject: changeSubject,
-            addEntry: addEntry
+            addEntry: addEntry,
+            removeCase: removeCase
         };
 
         return service;
@@ -39,7 +40,12 @@
                 if (!replaced) {
                     entries.push(entry);
                 }
-                //dc.newEntry = {};
+                // if the entry type is hidden, change that, to see the newly added entry type
+                User.get().then(function(user){
+                    if(user.hiddenEntryTypes && user.hiddenEntryTypes.indexOf(entry.type.id)>-1){
+                        User.changeVisibility(type, user);
+                    }
+                });
             });
         }
 
@@ -108,6 +114,17 @@
             }, function (error) {
                 treatment.subject = oldSubject;
             });
+        }
+
+        function removeCase(treatment) {
+            var oldCase = treatment.invoiceCase;
+            treatment.invoiceCase = {id: 0, name: ''};
+            $http.post(urls.treatment('put'), treatment)
+                .then(function (response) {
+                    treatment.invoiceCase = response.data.invoiceCase;
+                }, function () {
+                    treatment.invoiceCase = oldCase;
+                });
         }
     }
 })();

@@ -7,9 +7,10 @@
 
     function titleSettingsWidget(){
         var directive = {
-            restrict: 'A',
+            restrict: 'E',
             controller: TitleSettingsWidgetController,
-            controllerAs: 'dc'
+            controllerAs: 'dc',
+            templateUrl: '../js/templates/title-settings-widget.tpl.html'
         };
 
         return directive;
@@ -23,18 +24,7 @@
         loadEntryTypes();
 
         function changeTypeStatus(type){
-            if(!dc.user.hiddenEntryTypes){
-                dc.user.hiddenEntryTypes = [];
-            }
-            var hiddenEntryTypes = dc.user.hiddenEntryTypes,
-                index = hiddenEntryTypes.indexOf(type.id);
-            if(index>-1){
-                hiddenEntryTypes.splice(index, 1);
-                type.hidden = false;
-            }else{
-                hiddenEntryTypes.push(type.id);
-                type.hidden = true;
-            }
+            User.changeVisibility(type, dc.user);
         }
 
         function loadEntryTypes(){

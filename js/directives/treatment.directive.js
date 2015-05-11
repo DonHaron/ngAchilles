@@ -102,7 +102,7 @@
         dc.deleteTreatment = Treatment.deleteTreatment;
         dc.changeStatus = Treatment.changeStatus;
         dc.changeSubject = Treatment.changeSubject;
-        dc.removeCase = removeCase;
+        dc.removeCase = Treatment.removeCase;
 
         dc.warning = {};
         dc.permissionToEdit = false;
@@ -185,17 +185,17 @@
 
             }
         }
-
-        function removeCase(treatment) {
-            var oldCase = treatment.invoiceCase;
-            treatment.invoiceCase = {id: 0, name: ''};
-            $http.post(urls.treatment('put'), treatment)
-                .then(function (response) {
-                    treatment.invoiceCase = response.data.invoiceCase;
-                }, function () {
-                    treatment.invoiceCase = oldCase;
-                });
-        }
+//
+//        function removeCase(treatment) {
+//            var oldCase = treatment.invoiceCase;
+//            treatment.invoiceCase = {id: 0, name: ''};
+//            $http.post(urls.treatment('put'), treatment)
+//                .then(function (response) {
+//                    treatment.invoiceCase = response.data.invoiceCase;
+//                }, function () {
+//                    treatment.invoiceCase = oldCase;
+//                });
+//        }
     }
 
 

@@ -1,0 +1,15 @@
+<div class="title-settings-widget" ng-show="vm.showTitleSettingsWidget" ng-cloak>
+    <a class="btn btn-default close-widget" ng-click="vm.showTitleSettingsWidget = false"><i class="fa fa-check">&nbsp;</i></a>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <p>This is some text</p>
+        </div>
+
+        <div class="list-group">
+            <a class="list-group-item" ng-click="dc.changeTypeStatus(type)" ng-repeat="type in dc.entryTypes | orderBy:'name'" href>
+                <span class="checkmark"><i class="fa fa-check" ng-hide="type.hidden">&nbsp;</i></span> {{type.name}}
+            </a>
+        </div>
+
+    </div>
+</div>

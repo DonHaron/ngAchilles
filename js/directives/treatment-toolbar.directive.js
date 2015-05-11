@@ -8,8 +8,10 @@
 
     function treatmentToolbar() {
         var directive = {
+            restrict: 'E',
             controller: TreatmentToolbarController,
-            controllerAs: 'dc'
+            controllerAs: 'dc',
+            templateUrl: '../js/templates/treatment-toolbar.tpl.html'
         };
 
         return directive;

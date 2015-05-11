@@ -14,7 +14,9 @@
 
         var service = {
             get: get,
-            setVisibleEntryTypes: setVisibleEntryTypes
+            setVisibleEntryTypes: setVisibleEntryTypes,
+            changeVisibility: changeVisibility
+            //isEntryTypeHidden: isEntryTypeHidden
         };
 
         return service;
@@ -54,6 +56,23 @@
                     type.hidden = true;
                 }
             });
+        }
+
+        function changeVisibility(type, user){
+            if(!user.hiddenEntryTypes){
+                user.hiddenEntryTypes = [];
+            }
+
+            var hiddenEntryTypes = user.hiddenEntryTypes,
+                index = hiddenEntryTypes.indexOf(type.id);
+            if(index>-1){
+                hiddenEntryTypes.splice(index, 1);
+                type.hidden = false;
+            }else{
+                hiddenEntryTypes.push(type.id);
+                type.hidden = true;
+            }
+            $http.post(urls.user(process, 'put'), user);
         }
     }
 })();

@@ -164,8 +164,8 @@
                 .replace(/:process/gi, process) + '/';
         }
 
-        function user(process){
-            return baseUrlComponent() + routes.user
+        function user(process, method){
+            return baseUrlComponent() + (method ? method + '/' : '') + routes.user
                 .replace(/:process/, process)  + '/';
         }
     }

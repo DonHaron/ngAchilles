@@ -43,15 +43,15 @@
 
         loadUser();
 
+        function isHidden(type){
+            return dc.user.hiddenEntryTypes &&
+                dc.user.hiddenEntryTypes.indexOf(type.id)>-1;
+        }
+
         function loadUser(){
             User.get(achillesConfig.process).then(function (user) {
                 dc.user = user;
             });
-        }
-
-        function isHidden(type){
-            return dc.user.hiddenEntryTypes &&
-                dc.user.hiddenEntryTypes.indexOf(type.id)>-1;
         }
 
         function setEntryFocus(focused) {
