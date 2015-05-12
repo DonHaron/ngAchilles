@@ -15,7 +15,7 @@
                 '<div ng-model="content" ta-disabled="readonly()" text-angular ta-target-toolbars="toolbar-{{treatment.id}}-{{type.id}}"></div>' +
                 '</div>' +
                 '</div>',
-            readonly: '<div ng-class="columnClass"><p ng-bind-html="readonlyContent"></p></div>'
+            readonly: '<div ng-class="columnClass"><p ng-bind-html="readonlyContent" class="read-only-content"></p></div>'
         };
 
         var directive = {

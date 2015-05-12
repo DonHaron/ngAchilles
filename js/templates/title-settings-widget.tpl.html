@@ -2,13 +2,15 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             Titel anzeigen
-            <a class="btn btn-default close-widget" ng-click="dc.showWidget(false)"><i class="fa fa-close"></i></a>
+            <div class="btn-group widget-controls">
+                <!--<a class="btn btn-danger close-widget" ng-click="dc.showWidget(false)"><i class="fa fa-close"></i></a>-->
+                <a class="btn btn-success confirm-widget" ng-click="dc.showWidget(false)"><i class="fa fa-check"></i></a>
+            </div>
         </div>
         <div class="panel-body">
             <p>Alt + Klick: Alle anderen an- / abwählen</p>
             <a href class="btn btn-default" ng-click="dc.changeAll(dc.entryTypes, true)">Alle</a>
             <a href class="btn btn-default" ng-click="dc.changeAll(dc.entryTypes, false)">Keine</a>
-            <a class="btn btn-default confirm-widget" ng-click="dc.showWidget(false)"><i class="fa fa-check"></i></a>
         </div>
 
         <div class="list-group">

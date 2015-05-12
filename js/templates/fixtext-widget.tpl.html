@@ -3,7 +3,10 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             Fixtexte
-            <a class="btn btn-default close-widget" ng-click="dc.showWidget(false)"><i class="fa fa-close"></i></a>
+            <div class="btn-group widget-controls">
+                <a class="btn btn-danger close-widget" ng-click="dc.showWidget(false)"><i class="fa fa-close"></i></a>
+                <a class="btn btn-success confirm-widget" ng-click="dc.showSelection(dc.selectedText)"><i class="fa fa-check"></i></a>
+            </div>
         </div>
         <div class="panel-body">
             <div class="form-group">
@@ -37,7 +40,6 @@
             <p ng-if="!dc.selectedGroup.complexContent">
                 {{dc.selectedText = dc.selectedGroup.text}}
             </p>
-            <a class="btn btn-default confirm-widget" ng-click="dc.showSelection(dc.selectedText)"><i class="fa fa-check"></i></a>
         </div>
     </div>
 </div>

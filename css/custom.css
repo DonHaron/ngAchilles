@@ -503,22 +503,28 @@ span.checkmark {
     overflow-y: auto;
 }
 
-.confirm-widget,
-.close-widget {
+.widget-controls {
     position: absolute;
-    z-index: 10;
+    right: 3px;
+    top: 3px;
+}
+
+/*.confirm-widget,*/
+/*.close-widget {*/
+    /*position: absolute;*/
+    /*z-index: 10;*/
     /*width: 38px;*/
-}
+/*}*/
 
-.confirm-widget {
-    right: 2px;
-    bottom: 2px;
-}
+/*.confirm-widget {*/
+    /*right: 2px;*/
+    /*bottom: 2px;*/
+/*}*/
 
-.close-widget {
-    top: 2px;
-    right: 2px;
-}
+/*.close-widget {*/
+    /*top: 2px;*/
+    /*right: 2px;*/
+/*}*/
 
 .ui-draggable-handle {
     cursor: move;
@@ -538,4 +544,8 @@ span.checkmark {
 .fixtext-widget .panel-heading,
 .fixtext-widget .panel-body {
     position: relative;
+}
+
+p.read-only-content {
+    word-wrap: break-word;
 }
