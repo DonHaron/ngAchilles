@@ -1,0 +1,43 @@
+<div class="fixtext-widget col-xs-6" ng-show="dc.isVisible()" ng-cloak draggable
+     draggable-handle=".panel-heading">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Fixtexte
+            <a class="btn btn-default close-widget" ng-click="dc.showWidget(false)"><i class="fa fa-close"></i></a>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <select ng-model="dc.selectedGroup"
+                        class="form-control"
+                        ng-options="group as group.name for group in dc.textGroups">
+                </select>
+            </div>
+
+        </div>
+        <div class="list-group" ng-show="dc.selectedGroup.complexContent">
+            <div class="list-group-item" ng-repeat="block in dc.selectedGroup.complexContent">
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input type="checkbox" ng-model="block.checked"
+                               ng-disabled="block.fixed">
+                    </span>
+                    <input ng-if="!block.list" class="form-control" class="text" ng-model="block.text">
+                    <select ng-model="block.text" ng-if="block.list" class="form-control" ng-options="item for item in block.list">
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">Ergebnis</div>
+        <div class="panel-body">
+            <p ng-if="dc.selectedGroup.complexContent">
+                <span ng-repeat="block in (dc.selectedText = dc.selectedGroup.complexContent | filter:{checked: true})">{{block.text}} </span>
+            </p>
+            <p ng-if="!dc.selectedGroup.complexContent">
+                {{dc.selectedText = dc.selectedGroup.text}}
+            </p>
+            <a class="btn btn-default confirm-widget" ng-click="dc.showSelection(dc.selectedText)"><i class="fa fa-check"></i></a>
+        </div>
+    </div>
+</div>

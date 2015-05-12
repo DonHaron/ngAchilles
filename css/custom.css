@@ -384,6 +384,7 @@ span.checkmark {
     margin-left: 0;
 }
 
+.entry-toolbar .btn-group,
 .ta-toolbar .btn-group {
     float: right;
 }
@@ -438,16 +439,26 @@ span.checkmark {
     position: relative;
 }
 
+.entry-toolbar,
 .editor-toolbar {
     position: absolute;
-    width: 530px;
-    right: 15px;
     z-index: 90;
-    bottom: -25px;
+    right: 15px;
 }
 
+.entry-toolbar .btn-group,
 .editor-toolbar .btn-group {
     background-color: white;
+}
+
+.entry-toolbar {
+    top: -32px;
+    width: 50px;
+}
+
+.editor-toolbar {
+    bottom: -25px;
+    width: 530px;
 }
 
 .title-settings-widget {
@@ -465,7 +476,16 @@ span.checkmark {
     /*overflow-y: auto;*/
     height: 100%;
     box-sizing: border-box;
-    padding-top: 95px;
+    padding-top: 136px;
+}
+
+.title-settings-widget .panel-heading {
+    position: absolute;
+    top: 17px;
+    width: 99%;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    z-index: 9;
 }
 
 .title-settings-widget .panel-body {
@@ -473,9 +493,7 @@ span.checkmark {
     z-index: 9;
     background-color: white;
     width: 99%;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    top: 17px;
+    top: 58px;
     border-bottom: 1px solid #ddd;
 }
 
@@ -485,9 +503,39 @@ span.checkmark {
     overflow-y: auto;
 }
 
+.confirm-widget,
 .close-widget {
     position: absolute;
-    right: 15px;
-    top: 60px;
     z-index: 10;
+    /*width: 38px;*/
+}
+
+.confirm-widget {
+    right: 2px;
+    bottom: 2px;
+}
+
+.close-widget {
+    top: 2px;
+    right: 2px;
+}
+
+.ui-draggable-handle {
+    cursor: move;
+}
+
+.fixtext-widget {
+    /*width: 600px;*/
+    position: fixed;
+    top: 50px;
+    left: 15px;
+    z-index: 95;
+    height: auto;
+    box-sizing: border-box;
+    padding: 15px 0;
+}
+
+.fixtext-widget .panel-heading,
+.fixtext-widget .panel-body {
+    position: relative;
 }

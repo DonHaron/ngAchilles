@@ -30,16 +30,18 @@
         }
     }
 
-    TreatmentEntryController.$inject = ['$scope', '$http', 'urls', 'User'];
-    function TreatmentEntryController($scope, $http, urls, User) {
+    TreatmentEntryController.$inject = ['$scope', '$http', 'urls', 'User', 'WidgetVisibility'];
+    function TreatmentEntryController($scope, $http, urls, User, WidgetVisibility) {
         var dc = this;
 
 
-        dc.user = {};
-        dc.setEntryFocus = setEntryFocus;
+        dc.isHidden = isHidden;
         dc.makePristine = makePristine;
         dc.removeRow = removeRow;
-        dc.isHidden = isHidden;
+        dc.setEntryFocus = setEntryFocus;
+        dc.showFixtextWidget = WidgetVisibility.showFixtextWidget;
+
+        dc.user = {};
 
         loadUser();
 

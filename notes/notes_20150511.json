@@ -1,0 +1,75 @@
+[
+            {
+                "name": "Nachtessen",
+                "sortPosition": 3,
+                "complexContent": [
+                    {
+                        "checked": true,
+                        "text": "Hamburger"
+                    },
+                    {
+                        "checked": false,
+                        "text": "Steak"
+                    },
+                    {
+                        "checked": false,
+                        "text": "Pommes Frites"
+                    },
+                    {
+                        "checked": true,
+                        "fixed": true,
+                        "list": [
+                            "Ketchup",
+                            "Mayo"
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "Mittagessen",
+                "sortPosition": 1,
+                "complexContent": [
+                    {
+                        "checked": true,
+                        "fixed": true,
+                        "text": "Vegetarisch"
+                    },
+                    {
+                        "checked": true,
+                        "fixed": true,
+                        "text": "Salatteller"
+                    },
+                    {
+                        "checked": true,
+                        "fixed": true,
+                        "text": "Buffet"
+                    }
+                ]
+            },
+            {
+                "name": "Morgenessen",
+                "sortPosition": 2,
+                "complexContent": [
+                    {
+                        "checked": true,
+                        "fixed": true,
+                        "text": "Viel"
+                    },
+                    {
+                        "checked": true,
+                        "fixed": true,
+                        "text": "Wenig"
+                    },
+                    {
+                        "checked": true,
+                        "fixed": true,
+                        "text": "Mittelmässig"
+                    }
+                ]
+            },
+            {
+                "name": "Simple text",
+                "sortPosition": 4,
+                "text": "Simple text"
+            }
+        ]

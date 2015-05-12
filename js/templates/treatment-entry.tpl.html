@@ -1,4 +1,11 @@
 <li class="list-group-item treatment-entry" ng-hide="dc.isHidden(entry.type)">
+    <div class="entry-toolbar"  ng-show="entry.focused">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="btn-group"><a href class="btn btn-default" ng-click="dc.showFixtextWidget(true)"><i class="fa fa-list-alt"></i></a></div>
+            </div>
+        </div>
+    </div>
     <div class="editor-toolbar" ng-show="entry.focused">
         <div class="row">
             <div class="col-xs-12">
@@ -18,6 +25,7 @@
                 <div class="row" treatment-row ng-repeat="row in entry.rows | orderBy:'id'" ng-class="{locked: row.locked}" ng-hide="row.deleted">
                     <span class="label locked-warning" ng-class="'mandator-' + row.lockedBy.id + '-warning'" ng-show="row.locked">Gesperrt von {{row.lockedBy.name}}</span>
                     <treatment-column ng-repeat="column in row.columns" content="column.content"
+                                      column="column"
                                       width="{{column.width}}" unique-id="{{row.id}}-{{$index}}"
                                       editable="{{editable}}" treatment="treatment" warning="warning"
                                       type="entry.type" entry="entry"

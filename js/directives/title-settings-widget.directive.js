@@ -6,36 +6,35 @@
         .directive('titleSettingsWidget', titleSettingsWidget);
 
     titleSettingsWidget.$inject = ['$timeout'];
-    function titleSettingsWidget($timeout){
+    function titleSettingsWidget(){
         var directive = {
             restrict: 'E',
             controller: TitleSettingsWidgetController,
             controllerAs: 'dc',
-            templateUrl: '../js/templates/title-settings-widget.tpl.html',
-            link: link
+            link: link,
+            scope: {
+                showWidget: '='
+            },
+            templateUrl: '../js/templates/title-settings-widget.tpl.html'
         };
 
         return directive;
 
         function link(scope, element, attrs){
-//            scope.$watch('vm.showTitleSettingsWidget', function(newVal){
-//                if(newVal===true){
-//                    $timeout(function(){
-//                        element.find('.title-settings-widget').draggable();
-//                    }, 500);
-//                }
-//            });
-            element.find('.title-settings-widget').draggable({
-                axis: "x"
+            attrs.$observe('show', function() {
+                console.log('changed', attrs.show);
+                scope.showWidget = scope.$eval(attrs.show);
             });
         }
     }
 
-    TitleSettingsWidgetController.$inject = ['$filter', 'EntryType', 'User'];
-    function TitleSettingsWidgetController($filter, EntryType, User){
+    TitleSettingsWidgetController.$inject = ['$filter', 'EntryType', 'User', 'WidgetVisibility'];
+    function TitleSettingsWidgetController($filter, EntryType, User, WidgetVisibility){
         var dc = this;
         dc.changeTypeStatus = changeTypeStatus;
         dc.changeAll = changeAll;
+        dc.isVisible = WidgetVisibility.getTitleSettingsWidgetVisibility;
+        dc.showWidget = WidgetVisibility.showTitleSettingsWidget;
 
         loadEntryTypes();
 

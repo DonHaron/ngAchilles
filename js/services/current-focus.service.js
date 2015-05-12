@@ -6,35 +6,43 @@
         .factory('CurrentFocus', CurrentFocus);
 
     function CurrentFocus() {
-        var currentFocus,
-            newFocus,
+        var currentlyFocusedRow,
+            currentlyFocusedColum,
+            newlyFocusedRow,
             service = {
+                // get the currently focused content
+                getCurrentlyFocusedColumn: getCurrentlyFocusedColumn,
                 // save the currently focused element
                 setCurrentFocus: setCurrentFocus,
                 // get the currently focused element
-                getCurrentFocus: getCurrentFocus,
+                getCurrentlyFocusedRow: getCurrentlyFocusedRow,
                 // set the focus on the specified element
                 setNewFocus: setNewFocus,
                 // get the new element to focus
-                getNewFocus: getNewFocus,
+                getNewlyFocusedRow: getNewlyFocusedRow
             };
 
         return service;
 
-        function getCurrentFocus(){
+        function getCurrentlyFocusedColumn(){
+            return currentlyFocusedColum;
+        }
+
+        function getCurrentlyFocusedRow(){
             return currentFocus;
         }
 
-        function getNewFocus(){
-            return newFocus;
+        function getNewlyFocusedRow(){
+            return newlyFocusedRow;
         }
 
-        function setCurrentFocus(element){
-            currentFocus = element;
+        function setCurrentFocus(row, column){
+            currentlyFocusedRow = row;
+            currentlyFocusedColum = column;
         }
 
-        function setNewFocus(element){
-            newFocus = element;
+        function setNewFocus(row){
+            newlyFocusedRow = row;
         }
     }
 })();

@@ -22,6 +22,7 @@
             restrict: 'E',
             scope: {
                 width: '@',
+                column: '=',
                 content: '=',
                 readonly: '&',
                 parent: '=',
@@ -58,7 +59,7 @@
             // change the template if the 'editable' attribute changes
             setTemplate(attrs.editable);
 
-            scope.$watch(CurrentFocus.getNewFocus, function (val) {
+            scope.$watch(CurrentFocus.getNewlyFocusedRow, function (val) {
                 if (val && scope.row.id == val.id) {
                     //console.log('yes!', val);
                     // TODO: make editable if not already so
@@ -99,7 +100,7 @@
 
                 $timeout(function () {
                     scope.entry.focused = false;
-                });
+                },150);
 
                 $timeout.cancel(promise);
             }
@@ -145,7 +146,7 @@
             }
 
             function focus(e) {
-                CurrentFocus.setCurrentFocus(scope.row);
+                CurrentFocus.setCurrentFocus(scope.row, scope.column);
                 if (scope.warning && !scope.warning.displayed) {
                     toastr.warning(scope.warning.message);
                     scope.warning.displayed = true;

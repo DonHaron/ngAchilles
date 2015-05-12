@@ -10,15 +10,15 @@
         var directive = {
             restrict: 'E',
             controller: TreatmentToolbarController,
-            controllerAs: 'dc',
+            controllerAs: 'toolbar',
             templateUrl: '../js/templates/treatment-toolbar.tpl.html'
         };
 
         return directive;
     }
 
-    TreatmentToolbarController.$inject = ['$http', '$filter', 'urls', 'Treatment', 'CurrentFocus'];
-    function TreatmentToolbarController($http, $filter, urls, Treatment, CurrentFocus) {
+    TreatmentToolbarController.$inject = ['$http', '$filter', 'urls', 'Treatment', 'CurrentFocus', 'WidgetVisibility'];
+    function TreatmentToolbarController($http, $filter, urls, Treatment, CurrentFocus, WidgetVisibility) {
         var dc = this;
 
         dc.addTreatment = addTreatment;
@@ -27,10 +27,12 @@
         dc.openLaboratoryReport = openLaboratoryReport;
         dc.openTreatmentReport = openTreatmentReport;
         dc.executeGDT = executeGDT;
+        dc.showTitleSettingsWidget = WidgetVisibility.showTitleSettingsWidget;
 
         loadGDT();
 
         function addTreatment(treatments) {
+            console.log('getting here');
             var firstTreatment = treatments.length ? $filter('orderBy')(treatments, ['-date', 'id'])[0] : {id: 0};
             Treatment.addTreatment(firstTreatment, true, true, treatments);
         }
@@ -42,7 +44,7 @@
                 partialRows,
                 rows = [],
                 rowsWithAsterisk;
-            currentlyFocusedRow = CurrentFocus.getCurrentFocus();
+            currentlyFocusedRow = CurrentFocus.getCurrentlyFocusedRow();
             // put all the rows in all the entries in all the treatments in this array
             treatments.forEach(function (treatment) {
                 if(treatment.editable === 'true' || treatment.editable === true){

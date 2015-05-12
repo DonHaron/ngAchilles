@@ -39,6 +39,8 @@
 
     <title-settings-widget></title-settings-widget>
 
+    <fixtext-widget></fixtext-widget>
+
     <treatment treatment="treatment" editable="{{$index<5}}"
                ng-repeat="treatment in vm.treatments | filter:vm.search | orderBy:[(vm.reverse?'':'-')+'date', 'id']"
                treatmentlist="vm.treatments" user="vm.user"></treatment>

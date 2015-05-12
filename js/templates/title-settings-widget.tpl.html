@@ -1,10 +1,14 @@
-<div class="title-settings-widget" ng-show="vm.showTitleSettingsWidget" ng-cloak>
-    <a class="btn btn-default close-widget" ng-click="vm.showTitleSettingsWidget = false"><i class="fa fa-check">&nbsp;</i></a>
+<div class="title-settings-widget" ng-show="dc.isVisible()" ng-cloak draggable draggable-handle=".panel-heading">
     <div class="panel panel-default">
+        <div class="panel-heading">
+            Titel anzeigen
+            <a class="btn btn-default close-widget" ng-click="dc.showWidget(false)"><i class="fa fa-close"></i></a>
+        </div>
         <div class="panel-body">
             <p>Alt + Klick: Alle anderen an- / abwählen</p>
             <a href class="btn btn-default" ng-click="dc.changeAll(dc.entryTypes, true)">Alle</a>
             <a href class="btn btn-default" ng-click="dc.changeAll(dc.entryTypes, false)">Keine</a>
+            <a class="btn btn-default confirm-widget" ng-click="dc.showWidget(false)"><i class="fa fa-check"></i></a>
         </div>
 
         <div class="list-group">

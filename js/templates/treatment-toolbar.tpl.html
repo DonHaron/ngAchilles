@@ -22,18 +22,18 @@
                                dropdown-toggle>&nbsp;</a>
 
                             <a class="btn btn-default btn-xs new-treatment" title="Neue Behandlung"
-                               ng-click="dc.addTreatment(vm.treatments)">&nbsp;</a>
+                               ng-click="toolbar.addTreatment(vm.treatments)">&nbsp;</a>
                             <a class="btn btn-default btn-xs new-treatment-dialog" title=""
                                href="{{vm.baseUrl}}treatment/">
                                 &nbsp;</a>
                             <a class="btn btn-default btn-xs biometric-report"
-                               ng-click="dc.openBiometricReport(vm.process)">&nbsp;</a>
+                               ng-click="toolbar.openBiometricReport(vm.process)">&nbsp;</a>
                             <a class="btn btn-default btn-xs laboratory-report"
-                               ng-click="dc.openLaboratoryReport(vm.process)">&nbsp;</a>
+                               ng-click="toolbar.openLaboratoryReport(vm.process)">&nbsp;</a>
                             <a class="btn btn-default btn-xs treatment-report"
-                               ng-click="dc.openTreatmentReport(vm.process, vm.treatments)">&nbsp;</a>
+                               ng-click="toolbar.openTreatmentReport(vm.process, vm.treatments)">&nbsp;</a>
                             <a class="btn btn-default btn-xs search"
-                               ng-click="dc.asteriskSearch(vm.treatments)">&nbsp;</a>
+                               ng-click="toolbar.asteriskSearch(vm.treatments)">&nbsp;</a>
                             <a class="btn btn-default btn-xs sort"
                                ng-click="vm.reverse=!vm.reverse">&nbsp;</a>
                         </div>
@@ -48,11 +48,11 @@
                             <a class="btn btn-default btn-xs refresh" ng-click="vm.loadEntries()">&nbsp;</a>
                         </div>
                         <ul class="dropdown-menu gdt-list">
-                            <li ng-repeat-start="device in dc.gdtDevices"><a href
-                                                                             ng-click="dc.executeGDT(device, vm.patient)"><strong>{{device.name}}</strong></a>
+                            <li ng-repeat-start="device in toolbar.gdtDevices"><a href
+                                                                             ng-click="toolbar.executeGDT(device, vm.patient)"><strong>{{device.name}}</strong></a>
                             </li>
                             <li ng-repeat="test in device.gdtTests"><a href
-                                                                       ng-click="dc.executeGDT(device, vm.patient, test)">{{test.name}}</a>
+                                                                       ng-click="toolbar.executeGDT(device, vm.patient, test)">{{test.name}}</a>
                             </li>
                             <li ng-repeat-end class="divider"></li>
                         </ul>
@@ -82,7 +82,7 @@
                                     class="fa fa-check" ng-show="fontSetting=='large-fonts'">&nbsp;</i></span>
                                 Grosse Schrift</a></li>
                             <li class="divider"></li>
-                            <li><a ng-click="vm.showTitleSettingsWidget=true">Titel zeigen</a></li>
+                            <li><a href ng-click="toolbar.showTitleSettingsWidget(true);toolbar.showFixtextWidget(true)">Titel zeigen</a></li>
                         </ul>
                     </div>
                 </div>
