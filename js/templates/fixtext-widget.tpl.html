@@ -32,7 +32,7 @@
         <div class="panel-heading">Ergebnis</div>
         <div class="panel-body">
             <p ng-if="dc.selectedGroup.complexContent">
-                <span ng-repeat="block in (dc.selectedText = dc.selectedGroup.complexContent | filter:{checked: true})">{{block.text}} </span>
+                <span ng-repeat="block in dc.selectedText = (dc.selectedGroup.complexContent | filter:{checked: true})">{{block.text}} </span>
             </p>
             <p ng-if="!dc.selectedGroup.complexContent">
                 {{dc.selectedText = dc.selectedGroup.text}}
