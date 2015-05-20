@@ -7,11 +7,14 @@
 
     function CurrentFocus() {
         var currentlyFocusedRow,
-            currentlyFocusedColum,
+            currentlyFocusedColumn,
+            currentlyFocusedEntry,
             newlyFocusedRow,
             service = {
                 // get the currently focused content
                 getCurrentlyFocusedColumn: getCurrentlyFocusedColumn,
+                // get the currently focused entry
+                getCurrentlyFocusedEntry: getCurrentlyFocusedEntry,
                 // save the currently focused element
                 setCurrentFocus: setCurrentFocus,
                 // get the currently focused element
@@ -25,20 +28,25 @@
         return service;
 
         function getCurrentlyFocusedColumn(){
-            return currentlyFocusedColum;
+            return currentlyFocusedColumn;
+        }
+
+        function getCurrentlyFocusedEntry(){
+            return currentlyFocusedEntry;
         }
 
         function getCurrentlyFocusedRow(){
-            return currentFocus;
+            return currentlyFocusedRow;
         }
 
         function getNewlyFocusedRow(){
             return newlyFocusedRow;
         }
 
-        function setCurrentFocus(row, column){
+        function setCurrentFocus(column, row, entry){
+            currentlyFocusedColumn = column;
             currentlyFocusedRow = row;
-            currentlyFocusedColum = column;
+            currentlyFocusedEntry = entry;
         }
 
         function setNewFocus(row){

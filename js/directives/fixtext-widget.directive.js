@@ -1,11 +1,11 @@
-(function(){
+(function () {
     "use strict";
 
     angular
         .module('achilles')
         .directive('fixtextWidget', fixtextWidget);
 
-    function fixtextWidget(){
+    function fixtextWidget() {
         var directive = {
             restrict: 'E',
             controller: FixtextWidgetController,
@@ -18,11 +18,11 @@
         return directive;
     }
 
-    FixtextWidgetController.$inject = ['CurrentFocus', 'WidgetVisibility'];
-    function FixtextWidgetController(CurrentFocus, WidgetVisibility){
+    FixtextWidgetController.$inject = ['CurrentFocus', 'WidgetVisibility', 'TreatmentRow'];
+    function FixtextWidgetController(CurrentFocus, WidgetVisibility, TreatmentRow) {
         var dc = this;
 
-        dc.showSelection = showSelection;
+        dc.insertSelection = insertSelection;
         dc.isVisible = WidgetVisibility.getFixtextWidgetVisibility;
         dc.showWidget = WidgetVisibility.showFixtextWidget;
 
@@ -102,17 +102,28 @@
             }
         ];
 
-        function showSelection(selectedText){
+        function insertSelection(selectedText) {
             var text = '';
-            if(angular.isArray(selectedText)){
-                text = selectedText.map(function(item){return item.text;}).join(' ');
-            }else{
+            if (!angular.isDefined(selectedText)) {
+                dc.showWidget(false);
+                return;
+            }
+            if (angular.isArray(selectedText)) {
+                text = selectedText.map(function (item) {
+                    return item.text;
+                }).join(' ');
+            } else {
                 text = selectedText;
             }
-            var column = CurrentFocus.getCurrentlyFocusedColumn();
-            if(column){
+            var column = CurrentFocus.getCurrentlyFocusedColumn(),
+                row = CurrentFocus.getCurrentlyFocusedRow(),
+                entry = CurrentFocus.getCurrentlyFocusedEntry();
+            if (column && entry) {
                 column.content += text;
+                TreatmentRow.save(row, entry);
             }
+
+            console.log(column);
             dc.showWidget(false);
         }
     }

@@ -6,9 +6,9 @@
         .module('achilles')
         .directive('treatmentColumn', treatmentColumn);
 
-    treatmentColumn.$inject = ['$http', 'urls', '$timeout', '$compile', 'CurrentFocus', 'Locking', 'Treatment'];
+    treatmentColumn.$inject = ['$http', 'urls', '$timeout', '$compile', 'CurrentFocus', 'Locking', 'Treatment', 'TreatmentRow'];
 
-    function treatmentColumn($http, urls, $timeout, $compile, CurrentFocus, Locking, Treatment) {
+    function treatmentColumn($http, urls, $timeout, $compile, CurrentFocus, Locking, Treatment, TreatmentRow) {
         var templates = {
             editable: '<div ng-class="columnClass">' +
                 '<div class="form-group">' +
@@ -25,7 +25,7 @@
                 column: '=',
                 content: '=',
                 readonly: '&',
-                parent: '=',
+                //parent: '=',
                 row: '=',
                 uniqueId: '@',
                 treatment: '=',
@@ -95,7 +95,7 @@
                 if (angular.element(this).hasClass('ng-dirty') && !scope.row.locked) {
                     //$http.put(urls.treatmentEntryRow(), scope.row).then(function (response) {
                     //PUT/POST-workaround
-                    saveRow(scope.parent, scope.row);
+                    TreatmentRow.save(scope.row, scope.entry);
                 }
 
                 $timeout(function () {
@@ -135,7 +135,7 @@
                 // Ctrl + Enter
                 if (e.ctrlKey && e.which == 13) {
                     // save the current row
-                    saveRow(scope.parent, scope.row);
+                    TreatmentRow.save(scope.row, scope.entry);
                     // also, add a row of the same type as the currently focused one
                     Treatment.addEntry(scope.treatment.id, scope.entry.type, scope.treatment.entries);
                 } else {
@@ -146,7 +146,7 @@
             }
 
             function focus(e) {
-                CurrentFocus.setCurrentFocus(scope.row, scope.column);
+                CurrentFocus.setCurrentFocus(scope.column, scope.row, scope.entry);
                 if (scope.warning && !scope.warning.displayed) {
                     toastr.warning(scope.warning.message);
                     scope.warning.displayed = true;
@@ -208,24 +208,6 @@
                         // Ctrl + C
                         !(e.ctrlKey && e.which == 67 )
                     );
-            }
-
-            function saveRow(parent, row) {
-                $http.post(urls.treatmentEntryRow('put'), row).then(function (response) {
-                    //response.data is a row
-                    //now, find the row in the rows and replace it
-                    var row = response.data,
-                        rows = parent.rows;
-                    for (var i = 0; i < rows.length; i++) {
-                        if (rows[i].id == row.id) {
-                            rows[i] = row;
-                            break;
-                        }
-                    }
-
-                    row.locked = false;
-                    row.hasOwnLock = false;
-                });
             }
 
         }

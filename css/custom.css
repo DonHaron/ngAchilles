@@ -193,10 +193,12 @@
     font-weight: bold;
     text-shadow: none;
     text-align: left;
+    padding: 3px 15px;
 }
 
 .treatment .panel-body {
-    padding: 10px 15px 3px 15px;
+    /*padding: 10px 15px 3px 15px;*/
+    padding: 3px 15px 0px 15px;
 }
 
 .large-margins .treatment .panel-body {
@@ -212,7 +214,8 @@
 
 .treatment .heading-label {
     display: inline-block;
-    padding: 6px 12px;
+    /*padding: 6px 12px;*/
+    padding: 3px 12px;
     margin-bottom: 0;
     text-align: left;
     white-space: nowrap;
@@ -230,7 +233,8 @@
 
 .treatment .list-group-item {
     border: 0;
-    padding: 3px 15px;
+    /*padding: 3px 15px;*/
+    padding: 0px 15px;
 }
 
 .large-margins .treatment .list-group-item {
@@ -249,7 +253,8 @@
 
 .treatment .list-group {
     /*margin-bottom: 15px;*/
-    margin-bottom: 5px;
+    /*margin-bottom: 5px;*/
+    margin-bottom: 0px;
 }
 
 .treatment .form-control {
@@ -455,12 +460,12 @@ span.checkmark {
 }
 
 .entry-toolbar {
-    top: -32px;
+    top: -34px;
     width: 50px;
 }
 
 .editor-toolbar {
-    bottom: -28px;
+    bottom: -31px;
     width: 530px;
 }
 
@@ -565,12 +570,22 @@ span.checkmark {
     z-index: 95;
     height: auto;
     box-sizing: border-box;
-    padding: 15px 0;
+    /*padding: 15px 0;*/
+    padding: 0;
+    background-color: white;
+}
+
+.fixtext-widget .panel {
+    margin-bottom: 3px;
 }
 
 .fixtext-widget .panel-heading,
 .fixtext-widget .panel-body {
     position: relative;
+}
+
+.fixtext-widget .form-group {
+    margin-bottom: 0px;
 }
 
 p.read-only-content {
@@ -591,4 +606,8 @@ p.read-only-content {
 
 p:last-child {
     margin-bottom: 0;
+}
+
+.type-select {
+    margin-bottom: 3px;
 }
