@@ -110,134 +110,142 @@
     </div>
 </div>
 
-<div class="col-xs-3" ng-show="treatment.isMandatorTreatment">
+<div class="col-xs-3 treatment-relations" ng-show="treatment.isMandatorTreatment">
     <div class="pull-right">
-        <div class="dropdown icon-dropdown" toggle-focus dropdown>
-            <a class="btn dropdown-toggle achilles-icon achilles-medication"
-               ng-class="{'empty': !treatment.hasMedication}" dropdown-toggle>
-                &nbsp;
-            </a>
-            <ul class="dropdown-menu dropdown-menu-right">
-                <li><a href>Medikamente</a></li>
-                <li role="presentation" class="divider"></li>
-                <li ng-if="!treatment.billed && !treatment.closed && treatment.mandator == user.mandator.id">
-                    <a ng-href="{{dc.baseUrl}}treatment/{{treatment.id}}/drug/given/">Abgeben</a>
-                </li>
-                <li ng-if="treatment.mandator == user.mandator.id">
-                    <a ng-href="{{dc.baseUrl}}treatment/{{treatment.id}}/drug/prescription/">Rezept</a>
-                </li>
-                <li ng-if="treatment.mandator == user.mandator.id">
-                    <a ng-href="{{dc.baseUrl}}treatment/{{treatment.id}}/drug/foreign/">Fremd</a></li>
-                <li role="presentation" class="divider"></li>
-                <li>
-                    <a ng-href="{{dc.baseUrl}}goto/drug/">Gehe zu Medi-Listen</a>
-                </li>
-            </ul>
-        </div>
-        <div class="dropdown icon-dropdown" dropdown toggle-focus
-             on-toggle="dc.loadLaboratoryReports(open)">
-            <a class="btn dropdown-toggle achilles-icon achilles-laboratory"
-               ng-class="{'empty': !treatment.hasLaboratory}" dropdown-toggle>
-                &nbsp;
-            </a>
-            <ul class="dropdown-menu dropdown-menu-right">
-                <li><a href>Labor-Resultate</a></li>
-                <li role="presentation" class="divider" ng-show="dc.laboratoryReports.length"></li>
-                <li ng-repeat="laboratoryReport in dc.laboratoryReports"><a
-                        ng-href="{{dc.baseUrl}}set/laboratory/{{laboratoryReport.id}}/">{{laboratoryReport.name}}</a>
-                </li>
-                <li role="presentation" class="divider"></li>
-                <li><a ng-href="{{dc.baseUrl}}goto/laboratory/">Gehe zu Labor</a></li>
-            </ul>
-        </div>
-        <div class="dropdown icon-dropdown" dropdown toggle-focus on-toggle="dc.loadDocuments(open)">
-            <a class="btn dropdown-toggle achilles-icon achilles-document"
-               ng-class="{'empty': !treatment.hasDocument}" dropdown-toggle>
-                &nbsp;
-            </a>
-            <ul class="dropdown-menu dropdown-menu-right">
-                <li><a href>Briefe & Dokumente</a></li>
-                <li role="presentation" class="divider" ng-show="dc.documents.length"></li>
-                <li ng-repeat="document in dc.documents"><a
-                        ng-href="{{dc.baseUrl}}set/document/{{document.id}}/">{{document.name}}</a></li>
-                <li role="presentation" class="divider"></li>
-                <li ng-if="treatment.mandator == user.mandator.id">
-                    <a ng-href="{{dc.baseUrl}}treatment/{{treatment.id}}/document/letterto/">Neuer Brief
-                        an</a>
-                </li>
-                <li ng-if="treatment.mandator == user.mandator.id">
-                    <a ng-href="{{dc.baseUrl}}treatment/{{treatment.id}}/document/letterfrom/">Neuer
-                        Brief von</a>
-                </li>
-                <li ng-if="treatment.mandator == user.mandator.id">
-                    <a ng-href="{{dc.baseUrl}}treatment/{{treatment.id}}/document/document/">Neues
-                        Dokument</a>
-                </li>
-                <li role="presentation" class="divider"></li>
-                <li><a ng-href="{{dc.baseUrl}}goto/document/">Gehe zu Briefe & Dokumente</a></li>
-            </ul>
-        </div>
-        <div class="dropdown icon-dropdown" dropdown toggle-focus
-             on-toggle="treatment.mandator == user.mandator.id && dc.loadDisability(open)">
-            <a class="btn dropdown-toggle achilles-icon achilles-auf"
-               ng-class="{'empty': !treatment.hasDisability}" dropdown-toggle>
-                &nbsp;
-            </a>
-            <ul class="dropdown-menu dropdown-menu-right" ng-if="treatment.mandator == user.mandator.id">
-                <li><a href>Arbeitsunfähigkeit</a></li>
-                <li role="presentation" class="divider" ng-show="dc.disabilityCertificates.length"></li>
-                <li ng-repeat="disabilityCertificate in dc.disabilityCertificates">
-                    <a ng-href="{{dc.baseUrl}}set/disability/{{disabilityCertificate.id}}/">{{disabilityCertificate.name}}</a>
-                </li>
-                <li role="presentation" class="divider"></li>
-                <li><a ng-href="{{dc.baseUrl}}treatment/{{treatment.id}}/disability/">Neue
-                    Arbeitsunfähigkeit</a></li>
-            </ul>
-        </div>
-        <div class="dropdown icon-dropdown" dropdown toggle-focus on-toggle="dc.loadBiometrics(open)">
-            <a class="btn dropdown-toggle achilles-icon achilles-biometric"
-               ng-class="{'empty': !treatment.hasBiometric}" dropdown-toggle>
-                &nbsp;
-            </a>
-            <ul class="dropdown-menu dropdown-menu-right">
-                <li><a href>Biometrische Daten</a></li>
-                <li role="presentation" class="divider" ng-show="dc.biometrics.length"></li>
-                <li ng-repeat="biometric in dc.biometrics"><a
-                        ng-href="{{dc.baseUrl}}set/biometric/{{biometric.id}}/">{{biometric.name}}</a>
-                </li>
-                <li role="presentation" class="divider"></li>
-                <li ng-if="treatment.mandator == user.mandator.id && !treatment.billed">
-                    <a ng-href="{{dc.baseUrl}}treatment/{{treatment.id}}/biometric/">Neue Biometrische
-                        Daten</a>
-                </li>
-                <li role="presentation" class="divider"></li>
-                <li><a ng-href="{{dc.baseUrl}}goto/biometric/">Gehe zu Biometrische Daten</a></li>
-            </ul>
-        </div>
-        <div class="dropdown icon-dropdown" toggle-focus dropdown>
-            <a class="btn dropdown-toggle achilles-icon achilles-benefit"
-               ng-class="{'empty': !treatment.hasService}" dropdown-toggle>
-                &nbsp;
-            </a>
-            <ul class="dropdown-menu dropdown-menu-right">
-                <li><a href>Leistungen</a></li>
-                <li role="presentation" class="divider"></li>
-                <li ng-if="treatment.mandator == user.mandator.id && !treatment.billed && treatment.invoiceCase.id">
-                    <a ng-href="{{dc.baseUrl}}treatment/{{treatment.id}}/service/treatment/">Neue
-                    Leistungen zu Behandlung</a>
-                </li>
-                <li ng-if="treatment.mandator == user.mandator.id && !treatment.billed && treatment.invoiceCase.id">
-                    <a ng-href="{{dc.baseUrl}}treatment/{{treatment.id}}/service/generic/">Neue
-                    Leistungen</a>
-                </li>
-                <li ng-if="treatment.mandator != user.mandator.id || treatment.billed">
-                    <a ng-href="{{dc.baseUrl}}show/service/{{treatment.id}}/">Leistungen zeigen</a>
-                </li>
+        <div cass="row">
+            <div class="dropdowns col-md-6 col-sm-12">
+                <div class="dropdown icon-dropdown" toggle-focus dropdown>
+                    <a class="btn dropdown-toggle achilles-icon achilles-medication"
+                       ng-class="{'empty': !treatment.hasMedication}" dropdown-toggle>
+                        &nbsp;
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li><a href>Medikamente</a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li ng-if="!treatment.billed && !treatment.closed && treatment.mandator == user.mandator.id">
+                            <a ng-href="{{dc.baseUrl}}treatment/{{treatment.id}}/drug/given/">Abgeben</a>
+                        </li>
+                        <li ng-if="treatment.mandator == user.mandator.id">
+                            <a ng-href="{{dc.baseUrl}}treatment/{{treatment.id}}/drug/prescription/">Rezept</a>
+                        </li>
+                        <li ng-if="treatment.mandator == user.mandator.id">
+                            <a ng-href="{{dc.baseUrl}}treatment/{{treatment.id}}/drug/foreign/">Fremd</a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li>
+                            <a ng-href="{{dc.baseUrl}}goto/drug/">Gehe zu Medi-Listen</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="dropdown icon-dropdown" dropdown toggle-focus
+                     on-toggle="dc.loadLaboratoryReports(open)">
+                    <a class="btn dropdown-toggle achilles-icon achilles-laboratory"
+                       ng-class="{'empty': !treatment.hasLaboratory}" dropdown-toggle>
+                        &nbsp;
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li><a href>Labor-Resultate</a></li>
+                        <li role="presentation" class="divider" ng-show="dc.laboratoryReports.length"></li>
+                        <li ng-repeat="laboratoryReport in dc.laboratoryReports"><a
+                                ng-href="{{dc.baseUrl}}set/laboratory/{{laboratoryReport.id}}/">{{laboratoryReport.name}}</a>
+                        </li>
+                        <li role="presentation" class="divider"></li>
+                        <li><a ng-href="{{dc.baseUrl}}goto/laboratory/">Gehe zu Labor</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown icon-dropdown" dropdown toggle-focus on-toggle="dc.loadDocuments(open)">
+                    <a class="btn dropdown-toggle achilles-icon achilles-document"
+                       ng-class="{'empty': !treatment.hasDocument}" dropdown-toggle>
+                        &nbsp;
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li><a href>Briefe & Dokumente</a></li>
+                        <li role="presentation" class="divider" ng-show="dc.documents.length"></li>
+                        <li ng-repeat="document in dc.documents"><a
+                                ng-href="{{dc.baseUrl}}set/document/{{document.id}}/">{{document.name}}</a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li ng-if="treatment.mandator == user.mandator.id">
+                            <a ng-href="{{dc.baseUrl}}treatment/{{treatment.id}}/document/letterto/">Neuer Brief
+                                an</a>
+                        </li>
+                        <li ng-if="treatment.mandator == user.mandator.id">
+                            <a ng-href="{{dc.baseUrl}}treatment/{{treatment.id}}/document/letterfrom/">Neuer
+                                Brief von</a>
+                        </li>
+                        <li ng-if="treatment.mandator == user.mandator.id">
+                            <a ng-href="{{dc.baseUrl}}treatment/{{treatment.id}}/document/document/">Neues
+                                Dokument</a>
+                        </li>
+                        <li role="presentation" class="divider"></li>
+                        <li><a ng-href="{{dc.baseUrl}}goto/document/">Gehe zu Briefe & Dokumente</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="dropdowns col-md-6 col-sm-12">
+                <div class="dropdown icon-dropdown" dropdown toggle-focus
+                     on-toggle="treatment.mandator == user.mandator.id && dc.loadDisability(open)">
+                    <a class="btn dropdown-toggle achilles-icon achilles-auf"
+                       ng-class="{'empty': !treatment.hasDisability}" dropdown-toggle>
+                        &nbsp;
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right" ng-if="treatment.mandator == user.mandator.id">
+                        <li><a href>Arbeitsunfähigkeit</a></li>
+                        <li role="presentation" class="divider" ng-show="dc.disabilityCertificates.length"></li>
+                        <li ng-repeat="disabilityCertificate in dc.disabilityCertificates">
+                            <a ng-href="{{dc.baseUrl}}set/disability/{{disabilityCertificate.id}}/">{{disabilityCertificate.name}}</a>
+                        </li>
+                        <li role="presentation" class="divider"></li>
+                        <li><a ng-href="{{dc.baseUrl}}treatment/{{treatment.id}}/disability/">Neue
+                            Arbeitsunfähigkeit</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown icon-dropdown" dropdown toggle-focus on-toggle="dc.loadBiometrics(open)">
+                    <a class="btn dropdown-toggle achilles-icon achilles-biometric"
+                       ng-class="{'empty': !treatment.hasBiometric}" dropdown-toggle>
+                        &nbsp;
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li><a href>Biometrische Daten</a></li>
+                        <li role="presentation" class="divider" ng-show="dc.biometrics.length"></li>
+                        <li ng-repeat="biometric in dc.biometrics"><a
+                                ng-href="{{dc.baseUrl}}set/biometric/{{biometric.id}}/">{{biometric.name}}</a>
+                        </li>
+                        <li role="presentation" class="divider"></li>
+                        <li ng-if="treatment.mandator == user.mandator.id && !treatment.billed">
+                            <a ng-href="{{dc.baseUrl}}treatment/{{treatment.id}}/biometric/">Neue Biometrische
+                                Daten</a>
+                        </li>
+                        <li role="presentation" class="divider"></li>
+                        <li><a ng-href="{{dc.baseUrl}}goto/biometric/">Gehe zu Biometrische Daten</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown icon-dropdown" toggle-focus dropdown>
+                    <a class="btn dropdown-toggle achilles-icon achilles-benefit"
+                       ng-class="{'empty': !treatment.hasService}" dropdown-toggle>
+                        &nbsp;
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li><a href>Leistungen</a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li ng-if="treatment.mandator == user.mandator.id && !treatment.billed && treatment.invoiceCase.id">
+                            <a ng-href="{{dc.baseUrl}}treatment/{{treatment.id}}/service/treatment/">Neue
+                                Leistungen zu Behandlung</a>
+                        </li>
+                        <li ng-if="treatment.mandator == user.mandator.id && !treatment.billed && treatment.invoiceCase.id">
+                            <a ng-href="{{dc.baseUrl}}treatment/{{treatment.id}}/service/generic/">Neue
+                                Leistungen</a>
+                        </li>
+                        <li ng-if="treatment.mandator != user.mandator.id || treatment.billed">
+                            <a ng-href="{{dc.baseUrl}}show/service/{{treatment.id}}/">Leistungen zeigen</a>
+                        </li>
 
-                <li role="presentation" class="divider"></li>
-                <li><a ng-href="{{dc.baseUrl}}goto/invoice/">Gehe zu Rechnungen</a></li>
-            </ul>
+                        <li role="presentation" class="divider"></li>
+                        <li><a ng-href="{{dc.baseUrl}}goto/invoice/">Gehe zu Rechnungen</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
+
+
     </div>
 </div>
 </div>
@@ -246,10 +254,11 @@
     <ul class="list-group">
         <treatment-entry entry="entry" editable="{{editable}}" treatment="treatment"
                          ng-repeat="entry in treatment.entries | orderBy:'type.name'"
-                        permission-to-edit="dc.permissionToEdit"
-                        warning="dc.warning">
+                         permission-to-edit="dc.permissionToEdit"
+                         warning="dc.warning">
         </treatment-entry>
-        <li class="list-group-item" ng-show="(treatment.focused || select2Open || treatment.new) && dc.permissionToEdit">
+        <li class="list-group-item"
+            ng-show="(treatment.focused || select2Open || treatment.new) && dc.permissionToEdit">
             <div class="row">
                 <div class="col-xs-12 type-select">
                     <select2 placeholder="Neuer Behandlungstitel (F9)"

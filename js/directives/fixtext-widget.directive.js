@@ -123,7 +123,6 @@
                 TreatmentRow.save(row, entry);
             }
 
-            console.log(column);
             dc.showWidget(false);
         }
     }
