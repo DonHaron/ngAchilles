@@ -160,7 +160,7 @@
 
                 $timeout(function () {
                     scope.entry.focused = true;
-                });
+                }, 250);
             }
 
             function click(e) {

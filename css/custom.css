@@ -238,7 +238,8 @@
 }
 
 .treatment .form-group {
-    margin-bottom: 7px;
+    /*margin-bottom: 7px;*/
+    margin-bottom: 3px;
 }
 
 .treatment .list-group {
@@ -390,7 +391,8 @@ span.checkmark {
 }
 
 .ta-editor.ta-html, .ta-scroll-window.form-control {
-    min-height: 34px;
+    /*min-height: 34px;*/
+    min-height: 28px;
 }
 
 .ta-editor p {
@@ -398,7 +400,8 @@ span.checkmark {
 }
 
 .ta-scroll-window > .ta-bind {
-    min-height: 34px;
+    /*min-height: 34px;*/
+    min-height: 28px;
 }
 
 .locked .ta-root.focussed > .ta-scroll-window.form-control {
@@ -457,7 +460,7 @@ span.checkmark {
 }
 
 .editor-toolbar {
-    bottom: -25px;
+    bottom: -28px;
     width: 530px;
 }
 
@@ -509,6 +512,30 @@ span.checkmark {
     top: 3px;
 }
 
+.close-widget, .confirm-widget {
+    background-repeat: no-repeat;
+    background-size: 20px;
+    width: 20px;
+    height: 21px;
+    background-position: center 35%;
+}
+
+.close-widget:hover, .confirm-widget:hover {
+    background-position: center 66%;
+}
+
+.close-widget,
+.close-widget:active {
+    background-image: url('../images/icons/titlebar/icon-close.png');
+}
+
+.confirm-widget,
+.confirm-widget:active {
+    background-image: url('../images/icons/titlebar/icon-ok.png');
+    background-size: 27px;
+    width: 27px;
+}
+
 /*.confirm-widget,*/
 /*.close-widget {*/
     /*position: absolute;*/
@@ -548,4 +575,20 @@ span.checkmark {
 
 p.read-only-content {
     word-wrap: break-word;
+}
+
+.ta-scroll-window > .ta-bind {
+    padding: 3px 12px;
+}
+
+.panel-heading, .panel-body {
+    padding: 4px 15px;
+}
+
+.list-group-item {
+    padding: 4px 15px;
+}
+
+p:last-child {
+    margin-bottom: 0;
 }
