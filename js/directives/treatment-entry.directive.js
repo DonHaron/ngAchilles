@@ -39,7 +39,7 @@
         dc.makePristine = makePristine;
         dc.removeRow = removeRow;
         dc.setEntryFocus = setEntryFocus;
-        dc.showFixtextWidget = WidgetVisibility.showFixtextWidget;
+        dc.showTextBlockWidget = WidgetVisibility.showTextBlockWidget;
 
         dc.user = {};
 

@@ -575,7 +575,7 @@ span.checkmark {
     cursor: move;
 }
 
-.fixtext-widget {
+.textblock-widget {
     /*width: 600px;*/
     position: fixed;
     top: 50px;
@@ -588,16 +588,16 @@ span.checkmark {
     background-color: white;
 }
 
-.fixtext-widget .panel {
+.textblock-widget .panel {
     margin-bottom: 3px;
 }
 
-.fixtext-widget .panel-heading,
-.fixtext-widget .panel-body {
+.textblock-widget .panel-heading,
+.textblock-widget .panel-body {
     position: relative;
 }
 
-.fixtext-widget .form-group {
+.textblock-widget .form-group {
     margin-bottom: 0px;
 }
 

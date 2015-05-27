@@ -39,7 +39,7 @@
 
     <title-settings-widget></title-settings-widget>
 
-    <fixtext-widget></fixtext-widget>
+    <text-block-widget></text-block-widget>
 
     <treatment treatment="treatment" editable="{{$index<5}}"
                ng-repeat="treatment in vm.treatments | filter:vm.search | orderBy:[(vm.reverse?'':'-')+'date', 'id']"
