@@ -31,7 +31,8 @@
             executeGDT: 'gdt/:device/patient/:patient',
             executeGDTTest: 'gdt/:device/patient/:patient/code/:test',
             lock: 'treatmententryrow/lock/:row/process/:process',
-            user: 'user/process/:process'
+            user: 'user/process/:process',
+            textblock: 'textblock/process/:process'
         };
 
         var service = {
@@ -55,7 +56,8 @@
             gdtList: gdtList,
             executeGDT: executeGDT,
             lock: lock,
-            user: user
+            user: user,
+            textblock: textblock
         };
 
         return service;
@@ -83,6 +85,10 @@
                 .replace(/:device/, device.id)
                 .replace(/:patient/, patient)
                 .replace(/:test/, test ? test.code : '') + '/';
+        }
+
+        function textblock(process){
+            return baseUrlComponent() + routes.textblock.replace(/:process/, process) + '/';
         }
 
         function treatmentList(patientId) {

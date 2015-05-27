@@ -5,13 +5,13 @@
 <div class="row">
 <div class="col-xs-4">
     <div class="dropdown icon-dropdown" toggle-focus dropdown>
-        <a class="btn btn-default btn-icon dropdown-toggle" dropdown-toggle>
-            <i class="fa fa-cog"></i>
-        </a>
         <!--
         TODO: change the fixed timezone here to a dynamic one once the backend supports this (4D doesn't yet)
         -->
         <span class="heading-label" ng-show="treatment.isMainTreatment ">{{treatment.date | date:'EEE dd.MM.yyyy HH:mm':'UTC'}}</span>
+        <a class="btn btn-default btn-icon dropdown-toggle btn-treatment-settings" dropdown-toggle>
+            <i class="fa fa-cog"></i>
+        </a>
         <ul class="dropdown-menu">
             <li role="presentation"
                 ng-if="(treatment.isMandatorTreatment && !treatment.billed && !treatment.closed && user.mandator.id == treatment.mandator)

@@ -173,6 +173,7 @@
     padding-top: 1px;
     padding-bottom: 0;
     font-weight: bold;
+    border-bottom-width: 0;
 }
 
 .treatment .panel-heading > .row {
@@ -198,7 +199,8 @@
 
 .treatment .panel-body {
     /*padding: 10px 15px 3px 15px;*/
-    padding: 3px 15px 0px 15px;
+    /*padding: 3px 15px 0px 15px;*/
+    padding: 3px 0px 0px 0px;
 }
 
 .large-margins .treatment .panel-body {
@@ -215,7 +217,8 @@
 .treatment .heading-label {
     display: inline-block;
     /*padding: 6px 12px;*/
-    padding: 3px 12px;
+    /*padding: 3px 12px;*/
+    padding: 3px 12px 3px 0px;
     margin-bottom: 0;
     text-align: left;
     white-space: nowrap;
@@ -226,6 +229,16 @@
 .treatment .btn-icon {
     display: inline-block;
 }
+
+.treatment .btn-treatment-settings{
+    display: none;
+    border: 0;
+}
+
+.treatment:hover .btn-treatment-settings{
+    display: inline-block;
+}
+
 
 .treatment .treatment-user {
     margin-left: 10px;
