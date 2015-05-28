@@ -9,12 +9,13 @@
     Treatment.$inject = ['$http', '$modal', 'urls', 'User'];
     function Treatment($http, $modal, urls, User) {
         var service = {
+            addEntry: addEntry,
+            addPreset: addPreset,
             addTreatment: addTreatment,
             copyTreatment: copyTreatment,
             deleteTreatment: deleteTreatment,
             changeStatus: changeStatus,
             changeSubject: changeSubject,
-            addEntry: addEntry,
             removeCase: removeCase
         };
 
@@ -46,6 +47,23 @@
                         User.changeVisibility(type, user);
                     }
                 });
+            });
+        }
+
+        // add a preset to the current treatment, and replace the treatment
+        function addPreset(treatmentId, preset, treatments) {
+            //entry: {treatmentId: <id>, type: <type object>}
+            $http.post(urls.treatmentPreset(), {
+                treatmentId: treatmentId,
+                preset: preset
+            }).then(function (response) {
+                var treatment = response.data;
+                for (var i=0;i<treatments.length;i++){
+                    if(treatments[i].id == treatmentId){
+                        treatments[i] = treatment;
+                        break;
+                    }
+                }
             });
         }
 

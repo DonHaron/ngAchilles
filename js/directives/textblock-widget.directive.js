@@ -18,16 +18,16 @@
         return directive;
     }
 
-    TextBlockWidgetController.$inject = ['$scope', '$filter', 'CurrentFocus', 'WidgetVisibility', 'TreatmentRow', 'TextBlock'];
-    function TextBlockWidgetController($scope, $filter, CurrentFocus, WidgetVisibility, TreatmentRow, TextBlock) {
+    TextBlockWidgetController.$inject = ['$filter', 'CurrentFocus', 'TextBlockWidget', 'TreatmentRow', 'TextBlock'];
+    function TextBlockWidgetController($filter, CurrentFocus, TextBlockWidget, TreatmentRow, TextBlock) {
         var dc = this;
         var blocks;
 
         dc.insertSelection = insertSelection;
-        dc.isVisible = WidgetVisibility.getTextBlockWidgetVisibility;
-        dc.showWidget = WidgetVisibility.showTextBlockWidget;
+        dc.isVisible = TextBlockWidget.isVisible;
+        dc.showWidget = TextBlockWidget.show;
 
-        WidgetVisibility.addTypeObserverCallback(updateType);
+        TextBlockWidget.addObserverCallback(updateType);
 
         TextBlock.all().then(function (textBlocks) {
             dc.textGroups = blocks = textBlocks;

@@ -35,7 +35,8 @@
                 //F9
                 if (e.which == 120) {
                     if(ctrl.permissionToEdit){
-                        element.find('.type-select input').select2('open');
+                        //element.find('.type-select input').select2('open');
+                        element.find('.type-and-preset-search').focus();
                     }
                 }
                 if (e.which == 121) {
@@ -69,9 +70,10 @@
         }
     }
 
-    TreatmentController.$inject = ['$scope', '$http', '$modal', 'urls', 'EntryType', 'TreatmentPermission', 'User',
-        'Treatment', 'Subject', 'Document', 'LaboratoryReport', 'Biometric', 'DisabilityCertificate'];
-    function TreatmentController($scope, $http, $modal, urls, EntryType, TreatmentPermission, User, Treatment, Subject, Document, LaboratoryReport, Biometric, DisabilityCertificate) {
+    TreatmentController.$inject = ['$scope', '$modal', 'urls', 'EntryType', 'TreatmentPermission', 'User',
+        'Treatment', 'Subject', 'Document', 'LaboratoryReport', 'Biometric', 'DisabilityCertificate', 'Preset'];
+    function TreatmentController($scope, $modal, urls, EntryType, TreatmentPermission, User, Treatment, Subject, Document,
+                                 LaboratoryReport, Biometric, DisabilityCertificate, Preset) {
         var dc = this,
             treatmentId = $scope.treatment.id;
 
@@ -87,12 +89,17 @@
             .then(function (subjects) {
                 dc.subjects = subjects;
             });
+        Preset.all()
+            .then(function(presets){
+                dc.presets = presets;
+            });
 
         dc.loadDocuments = loadDocuments;
         dc.loadLaboratoryReports = loadLaboratoryReports;
         dc.loadBiometrics = loadBiometrics;
         dc.loadDisability = loadDisability;
         dc.addEntry = Treatment.addEntry;
+        dc.addPreset = Treatment.addPreset;
 
         dc.baseUrl = urls.baseUrl();
 

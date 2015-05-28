@@ -30,8 +30,8 @@
         }
     }
 
-    TreatmentEntryController.$inject = ['$scope', '$http', 'urls', 'User', 'WidgetVisibility'];
-    function TreatmentEntryController($scope, $http, urls, User, WidgetVisibility) {
+    TreatmentEntryController.$inject = ['$scope', '$http', 'urls', 'User', 'TextBlockWidget'];
+    function TreatmentEntryController($scope, $http, urls, User, TextBlockWidget) {
         var dc = this;
 
 
@@ -39,7 +39,7 @@
         dc.makePristine = makePristine;
         dc.removeRow = removeRow;
         dc.setEntryFocus = setEntryFocus;
-        dc.showTextBlockWidget = WidgetVisibility.showTextBlockWidget;
+        dc.showTextBlockWidget = TextBlockWidget.show;
 
         dc.user = {};
 

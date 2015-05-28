@@ -23,6 +23,7 @@
             treatmententry: 'treatmententry',
             treatmententryrow: 'treatmententryrow',
             treatmententrytype: 'treatmententrytype',
+            treatmentpreset: 'put/treatmentpreset',
             treatmentlist: 'patient/:patient/treatmentlist',
             treatmentReport: 'treatmentreport/process/:process',
             treatmentsubject: 'treatmentsubject',
@@ -32,7 +33,8 @@
             executeGDTTest: 'gdt/:device/patient/:patient/code/:test',
             lock: 'treatmententryrow/lock/:row/process/:process',
             user: 'user/process/:process',
-            textblock: 'textblock/process/:process'
+            textblock: 'textblock/process/:process',
+            presetList: 'treatmentpreset'
         };
 
         var service = {
@@ -49,6 +51,7 @@
             treatmentEntryTypeList: treatmentEntryTypeList,
             treatmentEntry: treatmentEntry,
             treatmentEntryRow: treatmentEntryRow,
+            treatmentPreset: treatmentPreset,
             treatmentList: treatmentList,
             treatmentSubject: treatmentSubject,
             treatment: treatment,
@@ -57,7 +60,8 @@
             executeGDT: executeGDT,
             lock: lock,
             user: user,
-            textblock: textblock
+            textblock: textblock,
+            presetList: presetList
         };
 
         return service;
@@ -87,6 +91,10 @@
                 .replace(/:test/, test ? test.code : '') + '/';
         }
 
+        function presetList(){
+            return baseUrlComponent() + routes.presetList + '/';
+        }
+
         function textblock(process){
             return baseUrlComponent() + routes.textblock.replace(/:process/, process) + '/';
         }
@@ -111,6 +119,10 @@
                 verbComponent = verb + '/';
             }
             return baseUrlComponent() + verbComponent + routes.treatmententryrow + '/';
+        }
+
+        function treatmentPreset() {
+            return baseUrlComponent() + routes.treatmentpreset + '/';
         }
 
         function treatmentSubject() {

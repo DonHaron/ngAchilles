@@ -140,6 +140,7 @@
 
 .treatment {
     outline: 0;
+    position: relative;
     /*padding-left: 0;*/
     /*padding-right: 0;*/
 }
@@ -244,7 +245,10 @@
     margin-left: 10px;
 }
 
-.treatment .list-group-item {
+/*.treatment .list-group-item {*/
+/*.treatment > div > div > .list-group > .list-group-item {*/
+.treatment-entry.list-group-item,
+.type-and-preset.list-group-item {
     border: 0;
     /*padding: 3px 15px;*/
     padding: 0px 15px;
@@ -259,16 +263,11 @@
     margin-bottom: 3px;
 }
 
-.treatment .list-group {
+.treatment > div > div > .list-group {
     box-shadow: none;
     margin-bottom: 0;
 }
 
-.treatment .list-group {
-    /*margin-bottom: 15px;*/
-    /*margin-bottom: 5px;*/
-    margin-bottom: 0px;
-}
 
 .treatment .form-control {
     border-color: #f3f3f3;
@@ -482,27 +481,37 @@ span.checkmark {
     width: 530px;
 }
 
+.achilles-widget {
+    position: fixed;
+    z-index: 101;
+    box-shadow: #ccc 1px 1px 5px;
+    box-sizing: border-box;
+    padding: 0;
+    background-color: white;
+    border-radius: 5px;
+}
+
 .title-settings-widget {
     width: 300px;
-    position: fixed;
+    /*position: fixed;*/
     top: 50px;
     right: 15px;
-    z-index: 95;
+    /*z-index: 95;*/
     height: 80%;
-    box-sizing: border-box;
-    padding: 15px 0;
+    /*box-sizing: border-box;*/
+    /*padding: 15px 0;*/
 }
 
 .title-settings-widget .panel{
     /*overflow-y: auto;*/
     height: 100%;
     box-sizing: border-box;
-    padding-top: 136px;
+    padding-top: 115px;
 }
 
 .title-settings-widget .panel-heading {
     position: absolute;
-    top: 17px;
+    top: 0px;
     width: 99%;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
@@ -514,7 +523,7 @@ span.checkmark {
     z-index: 9;
     background-color: white;
     width: 99%;
-    top: 58px;
+    top: 40px;
     border-bottom: 1px solid #ddd;
 }
 
@@ -577,19 +586,18 @@ span.checkmark {
 
 .textblock-widget {
     /*width: 600px;*/
-    position: fixed;
     top: 50px;
     left: 15px;
-    z-index: 95;
     height: auto;
-    box-sizing: border-box;
     /*padding: 15px 0;*/
-    padding: 0;
-    background-color: white;
 }
 
 .textblock-widget .panel {
     margin-bottom: 3px;
+}
+
+.textblock-widget .panel:last-child {
+    margin-bottom: 0;
 }
 
 .textblock-widget .panel-heading,
@@ -629,4 +637,29 @@ p:last-child {
     padding-left: 0;
     padding-right: 0;
     text-align: right;
+}
+
+.type-and-preset {
+    position: relative;
+}
+
+.type-and-preset-list hr{
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.type-and-preset-list a:focus,
+.type-and-preset-list a.focused
+{
+    color: white;
+    background-color: #337ab7;
+    outline: 0;
+}
+
+.list-group-item.entry-type {
+    background-color: rgba(255,0,0,0.3);
+}
+
+.list-group-item.preset {
+    background-color: rgba(0,0,255,0.3);
 }
