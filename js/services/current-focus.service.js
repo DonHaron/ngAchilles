@@ -11,6 +11,7 @@
             currentlyFocusedEntry,
             newlyFocusedRow,
             service = {
+                clearNewFocus: clearNewFocus,
                 // get the currently focused content
                 getCurrentlyFocusedColumn: getCurrentlyFocusedColumn,
                 // get the currently focused entry
@@ -47,6 +48,10 @@
             currentlyFocusedColumn = column;
             currentlyFocusedRow = row;
             currentlyFocusedEntry = entry;
+        }
+
+        function clearNewFocus(){
+            newlyFocusedRow = null;
         }
 
         function setNewFocus(row){

@@ -656,10 +656,10 @@ p:last-child {
     outline: 0;
 }
 
-.list-group-item.entry-type {
-    background-color: rgba(255,0,0,0.3);
+h5.list-group-item.entry-type {
+    background-color: rgba(255,30,0,0.15);
 }
 
-.list-group-item.preset {
-    background-color: rgba(0,0,255,0.3);
+h5.list-group-item.preset {
+    background-color: rgba(0,60,255,0.15);
 }

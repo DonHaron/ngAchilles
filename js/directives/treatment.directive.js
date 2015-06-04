@@ -98,7 +98,7 @@
         dc.loadLaboratoryReports = loadLaboratoryReports;
         dc.loadBiometrics = loadBiometrics;
         dc.loadDisability = loadDisability;
-        dc.addEntry = Treatment.addEntry;
+        dc.addEntry = addEntry;
         dc.addPreset = Treatment.addPreset;
 
         dc.baseUrl = urls.baseUrl();
@@ -114,12 +114,23 @@
         dc.warning = {};
         dc.permissionToEdit = false;
 
+        dc.removeEntry = removeEntry;
+
         User.get().then(function (user) {
             dc.warning = TreatmentPermission.shouldBeWarned(user, $scope.treatment);
             dc.permissionToEdit = TreatmentPermission.checkEditPermission(user, $scope.treatment);
         });
 
-        dc.removeEntry = function (entry) {
+        function addEntry(treatmentId, type, entries){
+            console.log('addEntry');
+            Treatment.addEntry(treatmentId, type, entries)
+                .then(function(){
+                    console.log('active false');
+                    $scope.active = false;
+                });
+        }
+
+        function removeEntry(entry) {
             var entries = $scope.treatment.entries;
             for (var i = 0; i < entries.length; i++) {
                 if (entry.type.id == entries[i].type.id) {
@@ -127,16 +138,7 @@
                     break;
                 }
             }
-        };
-
-        dc.testModal = function () {
-            var modalInstance = $modal.open({
-                templateUrl: '../js/templates/preset-modal.tpl.html',
-                controller: 'PresetModalController',
-                controllerAs: 'mc',
-                size: 'lg'
-            });
-        };
+        }
 
         function loadDocuments(open) {
             //only load the documents if the dropdown was opened, and the documents were not already loaded before

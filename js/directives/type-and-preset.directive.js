@@ -16,11 +16,13 @@
 
         function link(scope, element, attrs){
             element.on('focusin', setActive);
-            element.on('focusout', setInactive);
+            element.on('blur', setInactive);
+
 
             element.find('.type-and-preset-search').on('keyup', setListFocus);
 
             function setActive(){
+                console.log('setting active');
                 $timeout(function(){
                     scope.active = true;
                 });
@@ -28,6 +30,7 @@
             }
 
             function setInactive(){
+                console.log('setting inactive');
                 $timeout(function(){
                     scope.active = false;
                 });
@@ -58,9 +61,9 @@
                     e.preventDefault();
 
                     if(focused.length){
-                        var next = focused.prevAll('.list-group-item:visible').first();
+                        var prev = focused.prevAll('.list-group-item:visible').first();
                         focused.removeClass('focused');
-                        next.addClass('focused');
+                        prev.addClass('focused');
                     }else{
                         focusLastItem();
                     }

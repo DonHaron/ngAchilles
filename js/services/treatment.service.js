@@ -25,7 +25,7 @@
         // the existing one with the same type id
         function addEntry(treatmentId, type, entries) {
             //entry: {treatmentId: <id>, type: <type object>}
-            $http.post(urls.treatmentEntry(), {
+            return $http.post(urls.treatmentEntry(), {
                 treatmentId: treatmentId,
                 type: type
             }).then(function (response) {

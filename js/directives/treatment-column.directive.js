@@ -55,11 +55,13 @@
             element.on('keydown', '.ta-bind', keydown);
             element.on('focus', '.ta-bind', focus);
             element.on('click', '.ta-bind', click);
+            element.on('keyup', '.ta-bind', keyup);
             attrs.$observe("editable", setTemplate);
             // change the template if the 'editable' attribute changes
             setTemplate(attrs.editable);
 
             scope.$watch(CurrentFocus.getNewlyFocusedRow, function (val) {
+                console.log('currentfocus changed');
                 if (val && scope.row.id == val.id) {
                     //console.log('yes!', val);
                     // TODO: make editable if not already so
@@ -72,7 +74,9 @@
                     var input = element.find('.ta-bind:not(.ta-readonly)');
                     input.eq(0).focus();
                     //console.log('focusing', input);
+                    // todo: remove this and the functions it calls
                     var node = getAsteriskNode(input);
+
                     if (node) {
                         //console.log(node);
                         var range = document.createRange();
@@ -145,8 +149,30 @@
                 }
             }
 
+            function keyup(e){
+                //todo: objective: save the current position in the element
+                //console.log(e);
+                //console.log($(this));
+                console.log('index', $(this).index());
+                console.log('text', $(this).text());
+                console.log('html', $(this).html());
+
+                var range = document.createRange();
+                var selection = window.getSelection();
+                console.log('offset', selection.focusOffset);
+                console.log('toString', selection.toString());
+                console.log(selection);
+
+                var input = element.find('.ta-bind:not(.ta-readonly)');
+                var nodes = getAsteriskNodes(input);
+
+                console.log('nodes', nodes);
+                //debugger;
+            }
+
             function focus(e) {
                 CurrentFocus.setCurrentFocus(scope.column, scope.row, scope.entry);
+                CurrentFocus.clearNewFocus();
                 if (scope.warning && !scope.warning.displayed) {
                     toastr.warning(scope.warning.message);
                     scope.warning.displayed = true;
@@ -179,6 +205,16 @@
                 return recursiveGetAsteriskNode(htmlElement);
             }
 
+            function getAsteriskNodes(jElement) {
+                if (!jElement.length) {
+                    return null;
+                }
+                var htmlElement = jElement[0];
+                var nodes = [];
+                recursiveGetAsteriskNodes(htmlElement, nodes);
+                return nodes;
+            }
+
             function recursiveGetAsteriskNode(node) {
                 for (var i = 0; i < node.childNodes.length; i++) {
                     var currentNode = node.childNodes[i];
@@ -194,6 +230,23 @@
                     }
                 }
                 return null;
+            }
+
+            function recursiveGetAsteriskNodes(node, nodes){
+                for(var i = 0; i < node.childNodes.length; i++){
+                    var currentNode = node.childNodes[i];
+                    if (currentNode.nodeType == 3) {
+                        if (currentNode.nodeValue.indexOf('*') >= 0) {
+                            nodes.push(currentNode);
+                        }
+                    } else {
+                        var subResult = recursiveGetAsteriskNodes(currentNode, nodes);
+                        if (subResult) {
+                            nodes.push(subResult);
+                        }
+                    }
+                }
+                return;
             }
 
             // detect whether the pressed key modifies the input field

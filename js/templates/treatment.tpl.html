@@ -264,6 +264,7 @@
                         <input class="form-control type-and-preset-search" placeholder="Neuer Behandlungstitel (F9)" ng-model="search.term">
                     </div>
                     <div class="list-group type-and-preset-list" ng-show="active">
+                        <h5 class="list-group-item entry-type">Typen</h5>
                         <a tabindex href
                            ng-click="dc.addEntry(treatment.id, type, treatment.entries); search.term=''"
                            ng-repeat="type in dc.types | filter:search.term"
@@ -271,6 +272,7 @@
                             {{type.name}}
                         </a>
                         <hr>
+                        <h5 class="list-group-item preset">Strukturen</h5>
                         <a tabindex href
                            class="list-group-item preset"
                            ng-click="dc.addPreset(treatment.id, preset, treatments); search.term=''"

@@ -45,6 +45,7 @@
                 rows = [],
                 rowsWithAsterisk;
             currentlyFocusedRow = CurrentFocus.getCurrentlyFocusedRow();
+            console.log('currentlyFocusedRow', currentlyFocusedRow);
             // put all the rows in all the entries in all the treatments in this array
             treatments.forEach(function (treatment) {
                 if(treatment.editable === 'true' || treatment.editable === true){
@@ -74,6 +75,7 @@
 
             next = rowsWithAsterisk.shift();
             if(next){
+                console.log(next);
                 CurrentFocus.setNewFocus(next);
             }
         }
