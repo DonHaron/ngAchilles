@@ -41,7 +41,7 @@
         var dc = this;
 
         dc.isHidden = isHidden;
-        dc.lookupCatalogEntries = CatalogEntry.lookup;
+        dc.lookupCatalogEntries = lookupCatalogEntries;;
         dc.makePristine = makePristine;
         dc.removeRow = TreatmentEntry.removeRow;
         dc.setEntryFocus = setEntryFocus;
@@ -60,6 +60,10 @@
             User.get(achillesConfig.process).then(function (user) {
                 dc.user = user;
             });
+        }
+
+        function lookupCatalogEntries(term){
+            $scope.catalogEntries = CatalogEntry.lookup(term);
         }
 
         function setEntryFocus(focused) {
