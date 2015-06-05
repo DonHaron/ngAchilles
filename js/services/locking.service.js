@@ -42,7 +42,7 @@
                 method: 'POST',
                 url: urls.lock(row, achillesConfig.process, 'put'),
                 headers: {
-                    'Content-Type': 'text/plain'  // avoid preflight request, request-body is emtpy anyway
+                    'Content-Type': 'text/plain'  // avoid pre-flight request, request-body is empty anyway
                 }
             };
             $http(req).then(function(response){

@@ -663,3 +663,16 @@ h5.list-group-item.entry-type {
 h5.list-group-item.preset {
     background-color: rgba(0,60,255,0.15);
 }
+
+.treatment-row {
+    position: relative;
+}
+
+.catalog-list {
+    position: absolute;
+    top: 30px;
+    z-index: 9;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+}

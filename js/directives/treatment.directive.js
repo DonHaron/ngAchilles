@@ -114,7 +114,7 @@
         dc.warning = {};
         dc.permissionToEdit = false;
 
-        dc.removeEntry = removeEntry;
+        dc.removeEntry = Treatment.removeEntry;
 
         User.get().then(function (user) {
             dc.warning = TreatmentPermission.shouldBeWarned(user, $scope.treatment);
@@ -128,16 +128,6 @@
                     console.log('active false');
                     $scope.active = false;
                 });
-        }
-
-        function removeEntry(entry) {
-            var entries = $scope.treatment.entries;
-            for (var i = 0; i < entries.length; i++) {
-                if (entry.type.id == entries[i].type.id) {
-                    entries.splice(i, 1);
-                    break;
-                }
-            }
         }
 
         function loadDocuments(open) {

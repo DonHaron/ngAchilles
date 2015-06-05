@@ -10,7 +10,7 @@
 
     function treatmentColumn($http, urls, $timeout, $compile, CurrentFocus, Locking, Treatment, TreatmentRow) {
         var templates = {
-            editable: '<div ng-class="columnClass">' +
+            editable: '<div ng-class="columnClass" catalog-prompt>' +
                 '<div class="form-group">' +
                 '<div ng-model="content" ta-disabled="readonly()" text-angular ta-target-toolbars="toolbar-{{treatment.id}}-{{type.id}}"></div>' +
                 '</div>' +
@@ -57,11 +57,11 @@
             element.on('click', '.ta-bind', click);
             element.on('keyup', '.ta-bind', keyup);
             attrs.$observe("editable", setTemplate);
+
             // change the template if the 'editable' attribute changes
             setTemplate(attrs.editable);
 
             scope.$watch(CurrentFocus.getNewlyFocusedRow, function (val) {
-                console.log('currentfocus changed');
                 if (val && scope.row.id == val.id) {
                     //console.log('yes!', val);
                     // TODO: make editable if not already so
@@ -119,10 +119,10 @@
                 // Ctrl + Shift + Backspace
                 if (e.ctrlKey && e.shiftKey && e.which == 8) {
                     //see if there is a previous textarea element in the same entry. If there is, focus on it
-                    var prevRow = element.parents('.row').prev().find('textarea:not(:disabled)');
-                    var nextRow = element.parents('.row').next().find('textarea:not(:disabled)');
-                    var prevEntry = element.parents('treatment-entry').prev().find('textarea:not(:disabled)');
-                    var nextEntry = element.parents('treatment-entry').next().find('textarea:not(:disabled)');
+                    var prevRow = element.parents('.row').prev().find('.ta-bind:not(:disabled)');
+                    var nextRow = element.parents('.row').next().find('.ta-bind:not(:disabled)');
+                    var prevEntry = element.parents('treatment-entry').prev().find('.ta-bind:not(:disabled)');
+                    var nextEntry = element.parents('treatment-entry').next().find('.ta-bind:not(:disabled)');
                     $timeout(function () {
                         if (prevRow.length) {
                             prevRow.eq(0).focus();
@@ -134,7 +134,7 @@
                             nextEntry.eq(0).focus();
                         }
                     }, 150);
-                    entryCtrl.removeRow(scope.row);
+                    entryCtrl.removeRow(scope.row, scope.entry, scope.treatment.entries);
                 } else
                 // Ctrl + Enter
                 if (e.ctrlKey && e.which == 13) {
@@ -149,25 +149,21 @@
                 }
             }
 
+//            function keyup(e){
+//                /*
+//                 todo: objective: save the current selection position in the element for the asterisk search.
+//                 does not seem possible at the moment
+//                 */
+////                var range = document.createRange();
+////                var selection = window.getSelection();
+////                var input = element.find('.ta-bind:not(.ta-readonly)');
+////                var nodes = getAsteriskNodes(input);
+//
+//                //console.log(scope.content.replace(/<[^>]*>/gm, ''));
+//            }
+
             function keyup(e){
-                //todo: objective: save the current position in the element
-                //console.log(e);
-                //console.log($(this));
-                console.log('index', $(this).index());
-                console.log('text', $(this).text());
-                console.log('html', $(this).html());
-
-                var range = document.createRange();
-                var selection = window.getSelection();
-                console.log('offset', selection.focusOffset);
-                console.log('toString', selection.toString());
-                console.log(selection);
-
-                var input = element.find('.ta-bind:not(.ta-readonly)');
-                var nodes = getAsteriskNodes(input);
-
-                console.log('nodes', nodes);
-                //debugger;
+                entryCtrl.lookupCatalogEntries(scope.content.replace(/<[^>]*>/gm, ''));
             }
 
             function focus(e) {

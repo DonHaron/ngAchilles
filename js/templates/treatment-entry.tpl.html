@@ -1,8 +1,10 @@
 <li class="list-group-item treatment-entry" ng-hide="dc.isHidden(entry.type)">
-    <div class="entry-toolbar"  ng-show="entry.focused">
+    <div class="entry-toolbar" ng-show="entry.focused">
         <div class="row">
             <div class="col-xs-12">
-                <div class="btn-group"><a href class="btn btn-default" ng-click="dc.showTextBlockWidget(true, entry.type) "><i class="fa fa-list-alt"></i></a></div>
+                <div class="btn-group"><a href class="btn btn-default"
+                                          ng-click="dc.showTextBlockWidget(true, entry.type) "><i
+                        class="fa fa-list-alt"></i></a></div>
             </div>
         </div>
     </div>
@@ -22,14 +24,36 @@
         </div>
         <div class="col-xs-8 col-sm-9 col-lg-10">
             <form name="entryform">
-                <div class="row" treatment-row ng-repeat="row in entry.rows | orderBy:'id'" ng-class="{locked: row.locked}" ng-hide="row.deleted">
-                    <span class="label locked-warning" ng-class="'mandator-' + row.lockedBy.id + '-warning'" ng-show="row.locked">Gesperrt von {{row.lockedBy.name}}</span>
+                <div class="row treatment-row" treatment-row ng-repeat="row in entry.rows | orderBy:'id'"
+                     ng-class="{locked: row.locked}" ng-hide="row.deleted">
+                    <span class="label locked-warning" ng-class="'mandator-' + row.lockedBy.id + '-warning'"
+                          ng-show="row.locked">Gesperrt von {{row.lockedBy.name}}</span>
                     <treatment-column ng-repeat="column in row.columns" content="column.content"
                                       column="column"
                                       width="{{column.width}}" unique-id="{{row.id}}-{{$index}}"
                                       editable="{{editable}}" treatment="treatment" warning="warning"
                                       type="entry.type" entry="entry"
                                       readonly="column.readonly || !permissionToEdit()" row="row"></treatment-column>
+                    <div class="catalog-list list-group" ng-if="catalogEntries.length">
+                        <a class="list-group-item">
+                            <div class="row">
+                                <div class="col-xs-12">Something</div>
+                            </div>
+                        </a>
+                        <a class="list-group-item">
+                            <div class="row">
+                                <div class="col-xs-8">Something</div>
+                                <div class="col-xs-4">else</div>
+                            </div>
+                        </a>
+                        <a class="list-group-item">
+                            <div class="row">
+                                <div class="col-xs-4">Something</div>
+                                <div class="col-xs-4">completely</div>
+                                <div class="col-xs-4">different</div>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </form>
         </div>

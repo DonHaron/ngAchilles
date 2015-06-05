@@ -16,7 +16,8 @@
             deleteTreatment: deleteTreatment,
             changeStatus: changeStatus,
             changeSubject: changeSubject,
-            removeCase: removeCase
+            removeCase: removeCase,
+            removeEntry: removeEntry
         };
 
         return service;
@@ -42,8 +43,8 @@
                     entries.push(entry);
                 }
                 // if the entry type is hidden, change that, to see the newly added entry type
-                User.get().then(function(user){
-                    if(user.hiddenEntryTypes && user.hiddenEntryTypes.indexOf(entry.type.id)>-1){
+                User.get().then(function (user) {
+                    if (user.hiddenEntryTypes && user.hiddenEntryTypes.indexOf(entry.type.id) > -1) {
                         User.changeVisibility(type, user);
                     }
                 });
@@ -58,8 +59,8 @@
                 preset: preset
             }).then(function (response) {
                 var treatment = response.data;
-                for (var i=0;i<treatments.length;i++){
-                    if(treatments[i].id == treatmentId){
+                for (var i = 0; i < treatments.length; i++) {
+                    if (treatments[i].id == treatmentId) {
                         treatments[i] = treatment;
                         break;
                     }
@@ -143,6 +144,16 @@
                 }, function () {
                     treatment.invoiceCase = oldCase;
                 });
+        }
+
+        function removeEntry(entry, entries) {
+            //var entries = $scope.treatment.entries;
+            for (var i = 0; i < entries.length; i++) {
+                if (entry.type.id == entries[i].type.id) {
+                    entries.splice(i, 1);
+                    break;
+                }
+            }
         }
     }
 })();

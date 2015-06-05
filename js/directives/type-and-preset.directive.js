@@ -22,7 +22,6 @@
             element.find('.type-and-preset-search').on('keyup', setListFocus);
 
             function setActive(){
-                console.log('setting active');
                 $timeout(function(){
                     scope.active = true;
                 });
@@ -30,7 +29,6 @@
             }
 
             function setInactive(){
-                console.log('setting inactive');
                 $timeout(function(){
                     scope.active = false;
                 });
@@ -39,7 +37,7 @@
 
             function setListFocus(e){
                 //console.log(e.which);
-                var focused = element.find('.list-group-item.focused');
+                var focused = element.find('a.list-group-item.focused');
 
                 if(e.which == 8 || e.which > 40){ // backspace or character key
                     $timeout(function(){
@@ -51,7 +49,7 @@
                 }else if(e.which == 40){ // cursor down
                     e.preventDefault();
                     if(focused.length){
-                        var next = focused.nextAll('.list-group-item:visible').first();
+                        var next = focused.nextAll('a.list-group-item:visible').first();
                         focused.removeClass('focused');
                         next.addClass('focused');
                     }else{
@@ -61,7 +59,7 @@
                     e.preventDefault();
 
                     if(focused.length){
-                        var prev = focused.prevAll('.list-group-item:visible').first();
+                        var prev = focused.prevAll('a.list-group-item:visible').first();
                         focused.removeClass('focused');
                         prev.addClass('focused');
                     }else{
@@ -72,10 +70,10 @@
                 }
 
                 function focusFirstItem(){
-                    element.find('.list-group-item:visible').first().addClass('focused');
+                    element.find('a.list-group-item:visible').first().addClass('focused');
                 }
                 function focusLastItem(){
-                    element.find('.list-group-item:visible').last().addClass('focused');
+                    element.find('a.list-group-item:visible').last().addClass('focused');
                 }
 
             }
