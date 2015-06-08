@@ -39,9 +39,9 @@
                         element.find('.type-and-preset-search').focus();
                     }
                 }
-                if (e.which == 121) {
-                    ctrl.testModal();
-                }
+//                if (e.which == 121) {
+//                    ctrl.testModal();
+//                }
             });
 
             element.on('focusin', function () {

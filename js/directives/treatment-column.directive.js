@@ -56,6 +56,7 @@
             element.on('focus', '.ta-bind', focus);
             element.on('click', '.ta-bind', click);
             element.on('keyup', '.ta-bind', keyup);
+            element.on('focusout', focusout);
             attrs.$observe("editable", setTemplate);
 
             // change the template if the 'editable' attribute changes
@@ -135,7 +136,10 @@
                         }
                     }, 150);
                     entryCtrl.removeRow(scope.row, scope.entry, scope.treatment.entries);
-                } else
+                // Escape
+                } else if(e.keyCode == 27){
+                    entryCtrl.cancelCatalog = true;
+                }else
                 // Ctrl + Enter
                 if (e.ctrlKey && e.which == 13) {
                     // save the current row
@@ -162,11 +166,22 @@
 //                //console.log(scope.content.replace(/<[^>]*>/gm, ''));
 //            }
 
-            function keyup(e){
-                entryCtrl.lookupCatalogEntries(scope.content.replace(/<[^>]*>/gm, ''));
+            // hide the catalog when losing focus
+            function focusout(){
+                $timeout(function(){
+                    entryCtrl.showCatalog = false;
+                }, 50);
             }
 
-            function focus(e) {
+            function keyup(){
+                console.log(scope.column);
+                entryCtrl.lookupCatalogEntries(scope.content.replace(/<[^>]*>/gm, ''), scope.row, scope.column);
+            }
+
+            function focus() {
+                entryCtrl.showCatalog = true;
+                entryCtrl.setCatalog(scope.row);
+
                 CurrentFocus.setCurrentFocus(scope.column, scope.row, scope.entry);
                 CurrentFocus.clearNewFocus();
                 if (scope.warning && !scope.warning.displayed) {

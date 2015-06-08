@@ -40,16 +40,27 @@
     function TreatmentEntryController($scope, CatalogEntry, User, TextBlockWidget, TreatmentEntry) {
         var dc = this;
 
+        dc.chooseCatalogEntry = chooseCatalogEntry;
         dc.isHidden = isHidden;
         dc.lookupCatalogEntries = lookupCatalogEntries;;
         dc.makePristine = makePristine;
         dc.removeRow = TreatmentEntry.removeRow;
+        dc.setCatalog = setCatalog;
         dc.setEntryFocus = setEntryFocus;
         dc.showTextBlockWidget = TextBlockWidget.show;
 
         dc.user = {};
+        //dc.catalog = {};
+        dc.showCatalog = true;
 
+        setCatalog();
         loadUser();
+
+        function chooseCatalogEntry(catalogEntry){
+            dc
+            // todo: send the chosen entry to the server and wait for an answer, then replace the current row with the
+            //  one from the response
+        }
 
         function isHidden(type){
             return dc.user.hiddenEntryTypes &&
@@ -62,8 +73,22 @@
             });
         }
 
-        function lookupCatalogEntries(term){
-            $scope.catalogEntries = CatalogEntry.lookup(term);
+        function lookupCatalogEntries(term, row, column){
+            CatalogEntry.lookup(term, row, column)
+                .then(function(catalogEntries){
+                    setCatalog(row, catalogEntries);
+                });
+        }
+
+        function setCatalog(row, entries){
+            var catalog = {};
+            if(angular.isDefined(row)){
+                catalog.id = row.id;
+            }
+            if(angular.isDefined(entries)){
+                catalog.entries = entries;
+            }
+            dc.catalog = catalog;
         }
 
         function setEntryFocus(focused) {

@@ -14,6 +14,8 @@
             biometricList: 'treatment/:treatment/biometriclist',
             biometricReport: 'biometricreport/process/:process',
             caseList: 'treatment/:treatment/caselist',
+            catalogEntries: 'catalog/treatmententryrow/:row/col/:column/term/:term',
+            catalogRow: 'catalog/treatmententryrow/:row',
             copyTreatment: 'treatment/copy',
             disabilityList: 'treatment/:treatment/disabilitylist',
             documentList: 'treatment/:treatment/documentlist',
@@ -42,6 +44,8 @@
             biometricList: biometricList,
             biometricReport: biometricReport,
             caseList: caseList,
+            catalogEntries: catalogEntries,
+            catalogRow: catalogRow,
             copyTreatment: copyTreatment,
             disabilityList: disabilityList,
             documentList: documentList,
@@ -72,6 +76,18 @@
 
         function caseList(treatmentId) {
             return baseUrlComponent() + routes.caseList.replace(/:([a-z]\w*)/gi, treatmentId) + '/';
+        }
+
+        function catalogEntries(term, row, column){
+            return baseUrlComponent() + routes.catalogEntries
+                .replace(/:term/, term)
+                .replace(/:row/, row.id)
+                .replace(/:column/, column.id) + (term > '' ? '/' : '');
+        }
+
+        function catalogRow(row){
+            return baseUrlComponent() + routes.catalogRow
+                .replace(/:row/, row.id) + '/';
         }
 
         function lock(row, process, verb){

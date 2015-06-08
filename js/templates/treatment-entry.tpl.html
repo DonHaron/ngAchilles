@@ -34,25 +34,16 @@
                                       editable="{{editable}}" treatment="treatment" warning="warning"
                                       type="entry.type" entry="entry"
                                       readonly="column.readonly || !permissionToEdit()" row="row"></treatment-column>
-                    <div class="catalog-list list-group" ng-if="catalogEntries.length">
-                        <a class="list-group-item">
+                    <div class="catalog-list list-group" ng-if="dc.catalog.entries.length && dc.catalog.id == row.id && dc.showCatalog">
+                        <a class="list-group-item"
+                           href ng-click="dc.chooseCatalogEntry(catalogEntry)"
+                           ng-repeat="catalogEntry in dc.catalog.entries"
+                           >
                             <div class="row">
-                                <div class="col-xs-12">Something</div>
+                                <div ng-repeat="column in catalogEntry.cols" ng-class="'col-xs-' + column.width ">{{column.content}}</div>
                             </div>
                         </a>
-                        <a class="list-group-item">
-                            <div class="row">
-                                <div class="col-xs-8">Something</div>
-                                <div class="col-xs-4">else</div>
-                            </div>
-                        </a>
-                        <a class="list-group-item">
-                            <div class="row">
-                                <div class="col-xs-4">Something</div>
-                                <div class="col-xs-4">completely</div>
-                                <div class="col-xs-4">different</div>
-                            </div>
-                        </a>
+
                     </div>
                 </div>
             </form>
