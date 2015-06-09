@@ -175,7 +175,7 @@
 
             function keyup(e){
                 //console.log(scope.column);
-                if(isModifyingInput(e)){
+                if(isModifyingInput(e) && e.which != 13){ // excude enter key
                     entryCtrl.lookupCatalogEntries(scope.content.replace(/<[^>]*>/gm, ''), scope.row, scope.column);
                 }
             }
