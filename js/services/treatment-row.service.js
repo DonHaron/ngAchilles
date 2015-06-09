@@ -27,11 +27,9 @@
             row.new = newRow.new;
             row.changed = true;
             row.lastChange = newRow.lastChange;
-            console.log('replaced', row);
         }
 
         function save(row, entry){
-            console.log('saving');
             saving = $timeout(function(){
                 $http.post(urls.treatmentEntryRow('put'), row).then(function (response) {
                     //response.data is a row

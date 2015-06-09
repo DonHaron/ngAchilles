@@ -60,9 +60,7 @@
 
         function chooseCatalogEntry(catalogEntry, row){
             TreatmentRow.cancelSave();
-            console.log('choosing entry');
             CatalogEntry.choose(catalogEntry, row).then(function(newRow){
-                console.log('replacing row');
                 // using timeout to update scope
                 $timeout(function(){
                     TreatmentRow.replace(row, newRow);
@@ -87,7 +85,6 @@
             $timeout.cancel(currentLookupPromise);
 
             currentLookupPromise = $timeout(function(){
-                console.log('looking up now');
                 CatalogEntry.lookup(term, row, column)
                     .then(function(catalogEntries){
                         setCatalog(row, catalogEntries);

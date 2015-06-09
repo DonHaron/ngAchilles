@@ -138,7 +138,7 @@
                     entryCtrl.removeRow(scope.row, scope.entry, scope.treatment.entries);
                 // Escape
                 } else if(e.keyCode == 27){
-                    entryCtrl.cancelCatalog = true;
+                    entryCtrl.showCatalog = false;
                 }else
                 // Ctrl + Enter
                 if (e.ctrlKey && e.which == 13) {

@@ -658,12 +658,16 @@ p:last-child {
 }
 
 .type-and-preset-list a:focus,
-.type-and-preset-list a.focused
+.type-and-preset-list a.focused,
+a:focus,
+a.focused
 {
     color: white;
     background-color: #337ab7;
     outline: 0;
 }
+
+
 
 .list-group-row {
     width: 100%;
