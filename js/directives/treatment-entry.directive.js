@@ -44,7 +44,7 @@
 
         dc.chooseCatalogEntry = chooseCatalogEntry;
         dc.isHidden = isHidden;
-        dc.lookupCatalogEntries = lookupCatalogEntries;;
+        dc.lookupCatalogEntries = lookupCatalogEntries;
         dc.makePristine = makePristine;
         dc.removeRow = TreatmentEntry.removeRow;
         dc.setCatalog = setCatalog;
