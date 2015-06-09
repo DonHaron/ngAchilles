@@ -170,12 +170,14 @@
             function focusout(){
                 $timeout(function(){
                     entryCtrl.showCatalog = false;
-                }, 50);
+                }, 150);
             }
 
-            function keyup(){
-                console.log(scope.column);
-                entryCtrl.lookupCatalogEntries(scope.content.replace(/<[^>]*>/gm, ''), scope.row, scope.column);
+            function keyup(e){
+                //console.log(scope.column);
+                if(isModifyingInput(e)){
+                    entryCtrl.lookupCatalogEntries(scope.content.replace(/<[^>]*>/gm, ''), scope.row, scope.column);
+                }
             }
 
             function focus() {

@@ -5,8 +5,8 @@
         .module('achilles')
         .factory('Locking', Locking);
 
-    Locking.$inject = ['$http', 'urls'];
-    function Locking($http, urls){
+    Locking.$inject = ['$http', 'urls', 'TreatmentRow'];
+    function Locking($http, urls, TreatmentRow){
         var service = {
             check: check,
             lock: lock
@@ -24,10 +24,8 @@
                 }else{
                     row.locked = false;
                     if(data.row.lastChange > row.lastChange){
-                        row.columns = data.row.columns;
-                        row.new = data.row.new;
-                        row.changed = true;
-                        row.lastChange = data.row.lastChange;
+                        // replace all the attributes of the current row with the ones from the new row
+                        TreatmentRow.replace(row, data.row);
                     }else if(data.row.id === 0){
                         // TODO: delete this row
                         row.id = 0;

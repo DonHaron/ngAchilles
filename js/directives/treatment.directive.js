@@ -122,7 +122,6 @@
         });
 
         function addEntry(treatmentId, type, entries){
-            console.log('addEntry');
             Treatment.addEntry(treatmentId, type, entries)
                 .then(function(){
                     console.log('active false');

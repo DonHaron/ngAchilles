@@ -36,9 +36,11 @@
         }
     }
 
-    TreatmentEntryController.$inject = ['$scope', 'CatalogEntry', 'User', 'TextBlockWidget', 'TreatmentEntry'];
-    function TreatmentEntryController($scope, CatalogEntry, User, TextBlockWidget, TreatmentEntry) {
+    TreatmentEntryController.$inject = ['$scope', '$timeout', 'CatalogEntry', 'User', 'TextBlockWidget', 'TreatmentEntry', 'TreatmentRow'];
+    function TreatmentEntryController($scope, $timeout, CatalogEntry, User, TextBlockWidget, TreatmentEntry, TreatmentRow) {
         var dc = this;
+
+        var currentLookupPromise;
 
         dc.chooseCatalogEntry = chooseCatalogEntry;
         dc.isHidden = isHidden;
@@ -56,8 +58,16 @@
         setCatalog();
         loadUser();
 
-        function chooseCatalogEntry(catalogEntry){
-            dc
+        function chooseCatalogEntry(catalogEntry, row){
+            TreatmentRow.cancelSave();
+            console.log('choosing entry');
+            CatalogEntry.choose(catalogEntry, row).then(function(newRow){
+                console.log('replacing row');
+                // using timeout to update scope
+                $timeout(function(){
+                    TreatmentRow.replace(row, newRow);
+                });
+            });
             // todo: send the chosen entry to the server and wait for an answer, then replace the current row with the
             //  one from the response
         }
@@ -74,10 +84,15 @@
         }
 
         function lookupCatalogEntries(term, row, column){
-            CatalogEntry.lookup(term, row, column)
-                .then(function(catalogEntries){
-                    setCatalog(row, catalogEntries);
-                });
+            $timeout.cancel(currentLookupPromise);
+
+            currentLookupPromise = $timeout(function(){
+                console.log('looking up now');
+                CatalogEntry.lookup(term, row, column)
+                    .then(function(catalogEntries){
+                        setCatalog(row, catalogEntries);
+                    });
+            }, 350);
         }
 
         function setCatalog(row, entries){
