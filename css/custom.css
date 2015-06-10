@@ -547,6 +547,10 @@ span.checkmark {
     background-position: center 35%;
 }
 
+.confirm-widget {
+    background-position: center 2.5%;
+}
+
 .close-widget:hover, .confirm-widget:hover {
     background-position: center 66%;
 }
