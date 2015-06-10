@@ -17,8 +17,8 @@
         return directive;
     }
 
-    TreatmentToolbarController.$inject = [ '$filter', 'Treatment', 'Biometric', 'GDT', 'LaboratoryReport', 'AsteriskSearch', 'WidgetVisibility'];
-    function TreatmentToolbarController( $filter, Treatment, Biometric, GDT, LaboratoryReport, AsteriskSearch, WidgetVisibility) {
+    TreatmentToolbarController.$inject = [ '$filter', 'AdvancedSearchWidget', 'Treatment', 'Biometric', 'GDT', 'LaboratoryReport', 'AsteriskSearch', 'WidgetVisibility'];
+    function TreatmentToolbarController( $filter, AdvancedSearchWidget, Treatment, Biometric, GDT, LaboratoryReport, AsteriskSearch, WidgetVisibility) {
         var dc = this;
 
         dc.addTreatment = addTreatment;
@@ -27,6 +27,7 @@
         dc.openLaboratoryReport = LaboratoryReport.open;
         dc.openTreatmentReport = Treatment.openReport;
         dc.executeGDT = GDT.execute;
+        dc.showAdvancedSearch = AdvancedSearchWidget.show;
         dc.showTitleSettingsWidget = WidgetVisibility.showTitleSettingsWidget;
 
         GDT.load(dc);

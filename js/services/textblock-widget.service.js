@@ -37,7 +37,7 @@
             });
         }
 
-
+        // show the Widget if visible = true, and only show the blocks of the correct type if defined
         function show(visible, type) {
             blockType = visible ? type : undefined;
             blockVisible = visible;

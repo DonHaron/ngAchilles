@@ -37,22 +37,21 @@
                         count = focusableItems.length;
 
                     if(e.which == 38){ // cursor up
-                        console.log('doing something');
                         focusableItems.removeClass('focused');
                         if(index>0){
-                            focusableItems.eq((index-1)).addClass('focused');
+                            focusedElement = focusableItems.eq((index-1)).addClass('focused');
                         }else{
-                            focusableItems.eq(count-1).addClass('focused');
+                            focusedElement = focusableItems.eq(count-1).addClass('focused');
                         }
+                        scrollToElement(focusedElement);
                     }else if(e.which == 40){ // cursor down
-                        console.log('doing something else');
-
                         focusableItems.removeClass('focused');
                         if(index>=0){
-                            focusableItems.eq((index+1)%count).addClass('focused');
+                            focusedElement = focusableItems.eq((index+1)%count).addClass('focused');
                         }else{
-                            focusableItems.eq(0).addClass('focused');
+                            focusedElement = focusableItems.eq(0).addClass('focused');
                         }
+                        scrollToElement(focusedElement);
                     } else if(e.which == 13){ // enter key
                         focusedElement.click();
                         focusedElement.removeClass('focused');
@@ -68,6 +67,14 @@
                     }
 
                     return -1;
+                }
+
+                function scrollToElement(el){
+                    var listGroup = element.find('.list-group');
+                    var newPosition = listGroup.scrollTop() + el.position().top - (listGroup.height() - 50);
+                    listGroup.animate({
+                        scrollTop:  newPosition
+                    }, 0);
                 }
             }
         }

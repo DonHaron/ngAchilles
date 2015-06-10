@@ -10,7 +10,8 @@
             </div>
             <div class="col-xs-2">
                 <div class="form-group">
-                    <input class="form-control" ng-model="vm.search" placeholder="Suche">
+                    <input class="form-control" ng-model="vm.search.text" placeholder="Suche">
+                    <a href class="btn btn-default btn-xs" ng-click="toolbar.showAdvancedSearch(true)">+</a>
                 </div>
             </div>
             <div class="col-xs-4">

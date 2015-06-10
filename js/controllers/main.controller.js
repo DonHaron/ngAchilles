@@ -15,6 +15,7 @@
         vm.process = achillesConfig.process;
         vm.patient = achillesConfig.patient;
         vm.reverse = false;
+        vm.search = {};
         vm.marginOptions = [
             {class: 'large-margins', label: 'Grosse Abstände'},
             {class: 'small-margins', label: 'Kleine Abstände'}

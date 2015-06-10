@@ -491,6 +491,12 @@ span.checkmark {
     border-radius: 5px;
 }
 
+.advanced-search-widget {
+    width: 400px;
+    top: 50px;
+    left: 150px;
+}
+
 .title-settings-widget {
     width: 300px;
     /*position: fixed;*/

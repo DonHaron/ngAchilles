@@ -23,7 +23,7 @@
             element.find('.type-and-preset-search').on('keyup', setListFocus);
 
             function setActive(){
-                console.log('focusin');
+                //console.log('focusin');
                 $timeout(function(){
                     scope.active = true;
                 });
@@ -31,7 +31,7 @@
             }
 
             function setInactive(){
-                console.log('blurred');
+                //console.log('blurred');
                 $timeout(function(){
                     scope.active = false;
                 },150);
@@ -55,6 +55,7 @@
                         var next = focused.nextAll('a.list-group-item:visible').first();
                         focused.removeClass('focused');
                         next.addClass('focused');
+                        scrollToElement(next);
                     }else{
                         focusFirstItem();
                     }
@@ -65,6 +66,7 @@
                         var prev = focused.prevAll('a.list-group-item:visible').first();
                         focused.removeClass('focused');
                         prev.addClass('focused');
+                        scrollToElement(prev);
                     }else{
                         focusLastItem();
                     }
@@ -79,6 +81,14 @@
                 }
                 function focusLastItem(){
                     element.find('a.list-group-item:visible').last().addClass('focused');
+                }
+
+                function scrollToElement(el){
+                    var listGroup = element.find('.list-group');
+                    var newPosition = listGroup.scrollTop() + el.position().top - (listGroup.height() - 50);
+                    listGroup.animate({
+                        scrollTop:  newPosition
+                    }, 0);
                 }
 
             }

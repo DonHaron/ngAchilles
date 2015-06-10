@@ -27,88 +27,14 @@
         dc.isVisible = TextBlockWidget.isVisible;
         dc.showWidget = TextBlockWidget.show;
 
+        // when the type changes in the TextBlockWidget service, the filter gets updated to only display the entries
+        // with the chosen type
+        // todo: maybe this whole observer business is not the angular way to do it, check out $scope.$watch again if possible
         TextBlockWidget.addObserverCallback(updateType);
 
         TextBlock.all().then(function (textBlocks) {
             dc.textGroups = blocks = textBlocks;
         });
-
-
-//        dc.textGroups = [
-//            {
-//                "name": "Nachtessen",
-//                "sortPosition": 3,
-//                "complexContent": [
-//                    {
-//                        "checked": true,
-//                        "text": "Hamburger"
-//                    },
-//                    {
-//                        "checked": false,
-//                        "text": "Steak"
-//                    },
-//                    {
-//                        "checked": false,
-//                        "text": "Pommes Frites"
-//                    },
-//                    {
-//                        "checked": true,
-//                        "fixed": true,
-//                        "list": [
-//                            "Ketchup",
-//                            "Mayo"
-//                        ]
-//                    }
-//                ]
-//            },
-//            {
-//                "name": "Mittagessen",
-//                "sortPosition": 1,
-//                "complexContent": [
-//                    {
-//                        "checked": true,
-//                        "fixed": true,
-//                        "text": "Vegetarisch"
-//                    },
-//                    {
-//                        "checked": true,
-//                        "fixed": true,
-//                        "text": "Salatteller"
-//                    },
-//                    {
-//                        "checked": true,
-//                        "fixed": true,
-//                        "text": "Buffet"
-//                    }
-//                ]
-//            },
-//            {
-//                "name": "Morgenessen",
-//                "sortPosition": 2,
-//                "complexContent": [
-//                    {
-//                        "checked": true,
-//                        "fixed": true,
-//                        "text": "Viel"
-//                    },
-//                    {
-//                        "checked": true,
-//                        "fixed": true,
-//                        "text": "Wenig"
-//                    },
-//                    {
-//                        "checked": true,
-//                        "fixed": true,
-//                        "text": "Mittelmässig"
-//                    }
-//                ]
-//            },
-//            {
-//                "name": "Simple text",
-//                "sortPosition": 4,
-//                "text": "Simple text"
-//            }
-//        ];
 
         function updateType(type){
             if(type){
