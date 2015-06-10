@@ -64,7 +64,6 @@
 
             scope.$watch(CurrentFocus.getNewlyFocusedRow, function (val) {
                 if (val && scope.row.id == val.id) {
-                    //console.log('yes!', val);
                     // TODO: make editable if not already so
 //                    if(attrs.editable!='true'){
 //                        console.log('not true');
@@ -74,19 +73,17 @@
 //                    }
                     var input = element.find('.ta-bind:not(.ta-readonly)');
                     input.eq(0).focus();
-                    //console.log('focusing', input);
-                    // todo: remove this and the functions it calls
                     var node = getAsteriskNode(input);
-
-                    if (node) {
-                        //console.log(node);
+                    var currentCursor = CurrentFocus.getCurrentCursor();
+                    var nextAsteriskPosition = findNextAsteriskPosition(input, currentCursor);
+                    if (nextAsteriskPosition>=0) {
                         var range = document.createRange();
-                        var index = node.nodeValue.indexOf('*');
-                        range.setStart(node, index);
-                        range.setEnd(node, index + 1);
+                        range.setStart(node, nextAsteriskPosition);
+                        range.setEnd(node, nextAsteriskPosition + 1);
                         var selection = window.getSelection();
                         selection.removeAllRanges();
                         selection.addRange(range);
+                        CurrentFocus.setCurrentCursor();
                     }
                 }
             });
@@ -153,19 +150,6 @@
                 }
             }
 
-//            function keyup(e){
-//                /*
-//                 todo: objective: save the current selection position in the element for the asterisk search.
-//                 does not seem possible at the moment
-//                 */
-////                var range = document.createRange();
-////                var selection = window.getSelection();
-////                var input = element.find('.ta-bind:not(.ta-readonly)');
-////                var nodes = getAsteriskNodes(input);
-//
-//                //console.log(scope.content.replace(/<[^>]*>/gm, ''));
-//            }
-
             // hide the catalog when losing focus
             function focusout(){
                 $timeout(function(){
@@ -174,10 +158,10 @@
             }
 
             function keyup(e){
-                //console.log(scope.column);
                 if(isModifyingInput(e) && e.which != 13){ // excude enter key
                     entryCtrl.lookupCatalogEntries(scope.content.replace(/<[^>]*>/gm, ''), scope.row, scope.column);
                 }
+                CurrentFocus.setCurrentCursor();
             }
 
             function focus() {
@@ -191,8 +175,6 @@
                     scope.warning.displayed = true;
                 }
                 // todo: save focus position and try to apply it after the row is reloaded due to an updated row
-                //var selection = $window.getSelection();
-                //console.log(selection);
                 promise = $timeout(function () {
                     Locking.check(scope.row);
                 }, 450);
@@ -208,6 +190,40 @@
                     toastr.error(scope.warning.message);
                     scope.warning.displayed = true;
                 }
+
+                $timeout(function(){
+                    CurrentFocus.setCurrentCursor();
+                },50);
+            }
+
+            function findNextAsteriskPosition(jElement, currentCursor){
+                if (!jElement.length) {
+                    return null;
+                }
+                var htmlElement = jElement[0];
+                var chars = htmlElement.innerHTML.replace(/<[^>]*>/, '').split('');
+                for(var i=currentCursor;i<chars.length;i++){
+                    if(chars[i]==='*'){
+                        return i;
+                    }
+                }
+                return -1;
+            }
+
+            function findAsteriskPositions(jElement){
+                var indices = [];
+                if (!jElement.length) {
+                    return null;
+                }
+                var htmlElement = jElement[0];
+                //console.log(htmlElement);
+                var chars = htmlElement.innerHTML.replace(/<[^>]*>/, '').split('');
+                for(var i=0;i<chars.length;i++){
+                    if(chars[i]==='*'){
+                        indices.push(i);
+                    }
+                }
+                return indices;
             }
 
             function getAsteriskNode(jElement) {

@@ -17,12 +17,12 @@
         return directive;
     }
 
-    TreatmentToolbarController.$inject = ['$http', '$filter', 'urls', 'Treatment', 'CurrentFocus', 'WidgetVisibility'];
-    function TreatmentToolbarController($http, $filter, urls, Treatment, CurrentFocus, WidgetVisibility) {
+    TreatmentToolbarController.$inject = ['$http', '$filter', 'urls', 'Treatment', 'AsteriskSearch', 'WidgetVisibility'];
+    function TreatmentToolbarController($http, $filter, urls, Treatment, AsteriskSearch, WidgetVisibility) {
         var dc = this;
 
         dc.addTreatment = addTreatment;
-        dc.asteriskSearch = asteriskSearch;
+        dc.asteriskSearch = AsteriskSearch.search;
         dc.openBiometricReport = openBiometricReport;
         dc.openLaboratoryReport = openLaboratoryReport;
         dc.openTreatmentReport = openTreatmentReport;
@@ -32,52 +32,12 @@
         loadGDT();
 
         function addTreatment(treatments) {
-            console.log('getting here');
             var firstTreatment = treatments.length ? $filter('orderBy')(treatments, ['-date', 'id'])[0] : {id: 0};
             Treatment.addTreatment(firstTreatment, true, true, treatments);
         }
 
         function asteriskSearch(treatments) {
-            //TODO: look for the next entry with an asterisk, starting from the current focus
-            var currentlyFocusedRow,
-                next,
-                partialRows,
-                rows = [],
-                rowsWithAsterisk;
-            currentlyFocusedRow = CurrentFocus.getCurrentlyFocusedRow();
-            console.log('currentlyFocusedRow', currentlyFocusedRow);
-            // put all the rows in all the entries in all the treatments in this array
-            treatments.forEach(function (treatment) {
-                if(treatment.editable === 'true' || treatment.editable === true){
-                    var entries = $filter('orderBy')(treatment.entries, 'type.name');
-                    entries.forEach(function (entry) {
-                        entry.rows.forEach(function (row) {
-                            rows.push(row);
-                        });
-                    });
-                }
-            });
-            // exclude all rows up to and including the currently focused one, as we want the next asterisk input
-            if(currentlyFocusedRow){
-                console.log('here');
-                partialRows = rows.slice(rows.indexOf(currentlyFocusedRow) + 1);
 
-            }else{
-                partialRows = rows;
-            }
-
-            rowsWithAsterisk = $filter('filter')(partialRows, {$: '*'});
-
-            if (rowsWithAsterisk.length === 0) {
-                // with an empty result, we try again at the beginning, as we're probably at the end of the list
-                rowsWithAsterisk = $filter('filter')(rows, {$: '*'});
-            }
-
-            next = rowsWithAsterisk.shift();
-            if(next){
-                console.log(next);
-                CurrentFocus.setNewFocus(next);
-            }
         }
 
         function openBiometricReport(process) {
