@@ -16,6 +16,7 @@
             deleteTreatment: deleteTreatment,
             changeStatus: changeStatus,
             changeSubject: changeSubject,
+            openReport: openReport,
             removeCase: removeCase,
             removeEntry: removeEntry
         };
@@ -69,7 +70,6 @@
         }
 
         function addTreatment(treatment, isMandatorTreatment, isMainTreatment, treatments) {
-            var date = new Date();
             $http.post(urls.treatment(), {
                 patient: achillesConfig.patient,
                 process: achillesConfig.process,
@@ -133,6 +133,25 @@
             }, function (error) {
                 treatment.subject = oldSubject;
             });
+        }
+
+        function openReport(process, treatments) {
+            var payload = [];
+            treatments.forEach(function (treatment) {
+                //console.log(treatment);
+                var payloadEntry = {
+                    id: treatment.id,
+                    rows: []
+                };
+                // add each row's id of every entry to the current payload entry
+                treatment.entries.forEach(function (entry) {
+                    entry.rows.forEach(function (row) {
+                        payloadEntry.rows.push(row.id);
+                    });
+                });
+                payload.push(payloadEntry);
+            });
+            $http.post(urls.treatmentReport(process), payload);
         }
 
         function removeCase(treatment) {

@@ -8,7 +8,8 @@
     Biometric.$inject = ['$http', 'urls'];
     function Biometric($http, urls){
         var service = {
-            list: list
+            list: list,
+            open: open
         };
 
         return service;
@@ -18,6 +19,10 @@
             return $http.get(urls.biometricList(treatmentId), { spinner: true }).then(function(response){
                 return response.data;
             });
+        }
+
+        function open(process) {
+            $http.get(urls.biometricReport(process));
         }
     }
 })();

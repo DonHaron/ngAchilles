@@ -21,7 +21,7 @@
                 rows = [],
                 rowsWithAsterisk;
             currentlyFocusedRow = CurrentFocus.getCurrentlyFocusedRow();
-            console.log('currentlyFocusedRow', currentlyFocusedRow);
+            //console.log('currentlyFocusedRow', currentlyFocusedRow);
             // put all the rows in all the entries in all the treatments in this array
             treatments.forEach(function (treatment) {
                 if(treatment.editable === 'true' || treatment.editable === true){
@@ -40,13 +40,12 @@
                 var column = CurrentFocus.getCurrentlyFocusedColumn(),
                     columnArray = column.content.replace(/<[^>]>/, '').split(''),
                     lastAsterisk = 0;
-                console.log('columnArray', columnArray);
                 for(var i = 0; i<columnArray.length; i++){
                     if(columnArray[i] == '*'){
                         lastAsterisk = i;
                     }
                 }
-                console.log('Current Cursor', CurrentFocus.getCurrentCursor());
+                //console.log('Current Cursor', CurrentFocus.getCurrentCursor());
 
                 if(lastAsterisk>CurrentFocus.getCurrentCursor()){
                     partialRows = rows.slice(rows.indexOf(currentlyFocusedRow));

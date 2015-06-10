@@ -18,10 +18,12 @@
             element.on('focusin', setActive);
             element.on('blur', setInactive);
 
+            element.find('.type-and-preset-search').on('blur',setInactive);
 
             element.find('.type-and-preset-search').on('keyup', setListFocus);
 
             function setActive(){
+                console.log('focusin');
                 $timeout(function(){
                     scope.active = true;
                 });
@@ -29,9 +31,10 @@
             }
 
             function setInactive(){
+                console.log('blurred');
                 $timeout(function(){
                     scope.active = false;
-                });
+                },150);
                 //scope.$apply();
             }
 
@@ -67,6 +70,8 @@
                     }
                 }else if(e.which == 13){ // enter
                     focused.click();
+                }else if(e.keyCode == 27){ // Escape
+                    setInactive();
                 }
 
                 function focusFirstItem(){

@@ -8,7 +8,8 @@
     LaboratoryReport.$inject = ['$http', 'urls'];
     function LaboratoryReport($http, urls){
         var service = {
-            list: list
+            list: list,
+            open: open
         };
 
         return service;
@@ -19,5 +20,10 @@
                 return response.data;
             });
         }
+
+        function open(process) {
+            $http.get(urls.laboratoryReport(process));
+        }
+
     }
 })();
