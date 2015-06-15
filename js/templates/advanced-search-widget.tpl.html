@@ -1,4 +1,5 @@
-<div class="advanced-search-widget achilles-widget" ng-show="dc.isVisible()" ng-cloak draggable draggable-handle=".panel-heading">
+<div class="advanced-search-widget achilles-widget" ng-show="dc.isVisible()" ng-cloak draggable
+     draggable-handle=".panel-heading">
     <div class="panel panel-default">
         <div class="panel-heading">
             Erweiterte Suche
@@ -9,19 +10,36 @@
         <div class="panel-body">
             <div class="form-group">
                 <label class="control-label">Volltextsuche</label>
-                <input ng-model="search.text" ng-model-options="{updateOn: 'blur'}" class="form-control">
+                <input ng-model="search.text" ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 500, 'blur': 0 } }" class="form-control">
             </div>
             <div class="row">
                 <div class="col-xs-6">
                     <div class="form-group">
                         <label class="control-label">Datum von</label>
-                        <input ng-model="search.dateFrom" ng-model-options="{updateOn: 'blur'}" class="form-control">
+
+                        <div class="input-group">
+                            <input datepicker-popup="dd.MM.yyyy" is-open="dc.fromOpened" ng-model="search.dateFrom"
+                                   class="form-control">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="dc.openFromDatepicker($event)"><i
+                                    class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                        </div>
                     </div>
                 </div>
                 <div class="col-xs-6">
                     <div class="form-group">
                         <label class="control-label">Datum bis</label>
-                        <input ng-model="search.dateTo" ng-model-options="{updateOn: 'blur'}" class="form-control">
+
+                        <div class="input-group">
+
+                            <input ng-model="search.dateTo" datepicker-popup="dd.MM.yyyy" is-open="dc.toOpened"
+                                   ng-model-options="{updateOn: 'blur'}" class="form-control">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="dc.openToDatepicker($event)"><i
+                                    class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -11,20 +11,22 @@
             if (!angular.isDefined(treatments)) {
                 return filtered;
             }
-            // expect date in format dd.mm.yy or dd.mm.yyyy
-            if(!/^\d{2}\.\d{2}\.(\d{2}|\d{4})$/.test(date)){
+            // expect date or string in in format dd.mm.yy or dd.mm.yyyy
+            if(!angular.isDate(date) && !/^\d{2}\.\d{2}\.(\d{2}|\d{4})$/.test(date)){
                 return treatments;
             }
-            var dateArr = date.split('.'),
-                day = dateArr[0],
-                month = dateArr[1],
-                year = dateArr[2],
-                dateObj = new Date(year, month-1, day);
+            if(!angular.isDate(date)){
+                var dateArr = date.split('.'),
+                    day = dateArr[0],
+                    month = dateArr[1],
+                    year = dateArr[2],
+                    date = new Date(year, month-1, day);
+            }
 
             treatments.forEach(function (treatment) {
                     if(
-                        comparator == 'after' && treatment.date >= dateObj.getTime() ||
-                            comparator == 'before' && treatment.date <= dateObj.getTime()
+                        comparator == 'after' && treatment.date >= date.getTime() ||
+                            comparator == 'before' && treatment.date <= date.getTime()
                         ){
                         filtered.push(treatment);
                     }

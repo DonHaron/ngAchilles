@@ -25,5 +25,25 @@
 
         dc.isVisible = AdvancedSearchWidget.isVisible;
         dc.showWidget = AdvancedSearchWidget.show;
+        dc.openFromDatepicker = openFromDatepicker;
+        dc.openToDatepicker = openToDatepicker;
+        dc.fromOpened = false;
+        dc.toOpened = false;
+
+
+
+        function openFromDatepicker($event) {
+            $event.preventDefault();
+            $event.stopPropagation();
+
+            dc.fromOpened = true;
+        }
+
+        function openToDatepicker($event) {
+            $event.preventDefault();
+            $event.stopPropagation();
+
+            dc.toOpened = true;
+        }
     }
 })();

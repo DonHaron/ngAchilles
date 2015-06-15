@@ -9,9 +9,12 @@
                    ng-bind="vm.treatments.length + ' von ' + vm.treatments.length"></p>
             </div>
             <div class="col-xs-2">
-                <div class="form-group">
+                <div class="input-group">
+
                     <input class="form-control" ng-model="vm.search.text" placeholder="Suche">
-                    <a href class="btn btn-default btn-xs" ng-click="toolbar.showAdvancedSearch(true)">+</a>
+                    <span class="input-group-btn">
+                        <a href class="btn btn-default btn-xs" ng-click="toolbar.showAdvancedSearch(true)"><i class="fa fa-plus"></i></a>
+                    </span>
                 </div>
             </div>
             <div class="col-xs-4">
@@ -50,7 +53,7 @@
                         </div>
                         <ul class="dropdown-menu gdt-list">
                             <li ng-repeat-start="device in toolbar.gdtDevices"><a href
-                                                                             ng-click="toolbar.executeGDT(device, vm.patient)"><strong>{{device.name}}</strong></a>
+                                                                                  ng-click="toolbar.executeGDT(device, vm.patient)"><strong>{{device.name}}</strong></a>
                             </li>
                             <li ng-repeat="test in device.gdtTests"><a href
                                                                        ng-click="toolbar.executeGDT(device, vm.patient, test)">{{test.name}}</a>
