@@ -34,7 +34,7 @@
                 //console.log(e.which);
                 //F9
                 if (e.which == 120) {
-                    if(ctrl.permissionToEdit){
+                    if (ctrl.permissionToEdit) {
                         //element.find('.type-select input').select2('open');
                         element.find('.type-and-preset-search').focus();
                     }
@@ -72,8 +72,7 @@
 
     TreatmentController.$inject = ['$scope', '$modal', 'urls', 'EntryType', 'TreatmentPermission', 'User',
         'Treatment', 'Subject', 'Document', 'LaboratoryReport', 'Biometric', 'DisabilityCertificate', 'Preset'];
-    function TreatmentController($scope, $modal, urls, EntryType, TreatmentPermission, User, Treatment, Subject, Document,
-                                 LaboratoryReport, Biometric, DisabilityCertificate, Preset) {
+    function TreatmentController($scope, $modal, urls, EntryType, TreatmentPermission, User, Treatment, Subject, Document, LaboratoryReport, Biometric, DisabilityCertificate, Preset) {
         var dc = this,
             treatmentId = $scope.treatment.id;
 
@@ -90,16 +89,17 @@
                 dc.subjects = subjects;
             });
         Preset.all()
-            .then(function(presets){
+            .then(function (presets) {
                 dc.presets = presets;
             });
 
+        dc.addEntry = addEntry;
+        dc.addPreset = Treatment.addPreset;
+        dc.createPreset = createPreset;
         dc.loadDocuments = loadDocuments;
         dc.loadLaboratoryReports = loadLaboratoryReports;
         dc.loadBiometrics = loadBiometrics;
         dc.loadDisability = loadDisability;
-        dc.addEntry = addEntry;
-        dc.addPreset = Treatment.addPreset;
 
         dc.baseUrl = urls.baseUrl();
 
@@ -121,12 +121,17 @@
             dc.permissionToEdit = TreatmentPermission.checkEditPermission(user, $scope.treatment);
         });
 
-        function addEntry(treatmentId, type, entries){
+        function addEntry(treatmentId, type, entries) {
             Treatment.addEntry(treatmentId, type, entries)
-                .then(function(){
-                    console.log('active false');
+                .then(function () {
                     $scope.active = false;
                 });
+        }
+
+        function createPreset(treatment) {
+            PresetWidget.getName().then(function (name) {
+                Preset.create(treatment, name);
+            });
         }
 
         function loadDocuments(open) {
@@ -183,6 +188,7 @@
 
             }
         }
+
 //
 //        function removeCase(treatment) {
 //            var oldCase = treatment.invoiceCase;

@@ -624,6 +624,12 @@ span.checkmark {
     margin-bottom: 0px;
 }
 
+.preset-widget {
+    width: 150px;
+    top: 250px;
+    left: 50px;
+}
+
 p.read-only-content {
     word-wrap: break-word;
 }

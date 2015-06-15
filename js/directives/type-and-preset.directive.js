@@ -45,7 +45,7 @@
                 if(e.which == 8 || e.which > 40){ // backspace or character key
                     $timeout(function(){
                         focused.removeClass('focused');
-                        if(scope.search.term > ''){
+                        if(angular.isDefined(scope.search) && scope.search.term > ''){
                             focusFirstItem();
                         }
                     }, 50);

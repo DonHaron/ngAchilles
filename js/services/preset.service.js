@@ -9,7 +9,8 @@
     function Preset($http, $q, urls) {
 
         var service = {
-            all: all
+            all: all,
+            create: create
         };
 
         var presets = [],
@@ -57,6 +58,13 @@
             }
 
             return deferred.promise;
+        }
+
+        function create(treatment, name){
+            $http.post(urls.createPreset(), {
+                treatment: treatment,
+                name: name
+            });
         }
     }
 })();
