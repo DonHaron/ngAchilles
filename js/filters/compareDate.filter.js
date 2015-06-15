@@ -21,7 +21,8 @@
                 var dateArr = date.split('.'),
                     day = dateArr[0],
                     month = dateArr[1],
-                    year = dateArr[2],
+                    year = dateArr[2];
+                
                     date = new Date(year, month-1, day);
             }
 
