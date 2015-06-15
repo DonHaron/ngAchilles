@@ -23,14 +23,20 @@
     function AdvancedSearchWidgetController(AdvancedSearchWidget){
         var dc = this;
 
+        dc.clearSearch = clearSearch;
+        dc.fromOpened = false;
         dc.isVisible = AdvancedSearchWidget.isVisible;
-        dc.showWidget = AdvancedSearchWidget.show;
         dc.openFromDatepicker = openFromDatepicker;
         dc.openToDatepicker = openToDatepicker;
-        dc.fromOpened = false;
+        dc.showWidget = AdvancedSearchWidget.show;
         dc.toOpened = false;
 
-
+        function clearSearch(search){
+            search.text = '';
+            search.attachments = {};
+            delete search.dateFrom;
+            delete search.dateTo;
+        }
 
         function openFromDatepicker($event) {
             $event.preventDefault();

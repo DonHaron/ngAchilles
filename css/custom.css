@@ -492,9 +492,14 @@ span.checkmark {
 }
 
 .advanced-search-widget {
-    width: 400px;
+    width: 700px;
     top: 50px;
     left: 150px;
+}
+
+.advanced-search-widget .panel {
+    margin-bottom: 0;
+    padding-bottom: 10px;
 }
 
 .title-settings-widget {

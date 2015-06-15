@@ -6,7 +6,9 @@
         .filter('compareDate', compareDate);
 
     function compareDate() {
-        return function (treatments, date, comparator) {
+        return filter;
+
+        function filter(treatments, date, comparator) {
             var filtered = [];
             if (!angular.isDefined(treatments)) {
                 return filtered;
@@ -32,6 +34,6 @@
                     }
             });
             return filtered;
-        };
+        }
     }
 })();
