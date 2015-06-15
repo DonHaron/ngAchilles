@@ -12,7 +12,7 @@
         var templates = {
             editable: '<div ng-class="columnClass" class="treatment-column" catalog-prompt>' +
                 '<div class="form-group">' +
-                '<div ng-model="content" ta-disabled="readonly()" text-angular ta-target-toolbars="toolbar-{{treatment.id}}-{{type.id}}"></div>' +
+                '<div ng-model="column.content" placeholder="{{column.placeholder}}" ta-disabled="readonly()" text-angular ta-target-toolbars="toolbar-{{treatment.id}}-{{type.id}}"></div>' +
                 '</div>' +
                 '</div>',
             readonly: '<div ng-class="columnClass"><p ng-bind-html="readonlyContent" class="read-only-content"></p></div>'
@@ -23,7 +23,7 @@
             scope: {
                 width: '@',
                 column: '=',
-                content: '=',
+                //content: '=',
                 readonly: '&',
                 //parent: '=',
                 row: '=',
@@ -158,8 +158,8 @@
             }
 
             function keyup(e){
-                if(isModifyingInput(e) && e.which != 13){ // excude enter key
-                    entryCtrl.lookupCatalogEntries(scope.content.replace(/<[^>]*>/gm, ''), scope.row, scope.column);
+                if(isModifyingInput(e) && e.which != 13 ){ // excude enter key
+                    entryCtrl.lookupCatalogEntries(scope.column.content.replace(/<[^>]*>/gm, ''), scope.row, scope.column);
                 }
                 CurrentFocus.setCurrentCursor();
             }
@@ -299,6 +299,6 @@
     TreatmentColumnController.$inject = ['$scope', '$sce'];
     function TreatmentColumnController($scope, $sce) {
         // we have to sanitize the content if we just want to display it with html tags
-        $scope.readonlyContent = $sce.trustAsHtml($scope.content);
+        $scope.readonlyContent = $sce.trustAsHtml($scope.column.content);
     }
 })();

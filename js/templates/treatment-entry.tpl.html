@@ -25,28 +25,30 @@
         <div class="col-xs-8 col-sm-9 col-lg-10">
             <form name="entryform">
                 <div
-                        keyboard-focus focusable=".catalog-entry" active="{{dc.catalog.entries.length && dc.catalog.id == row.id && dc.showCatalog}}"
+                        keyboard-focus focusable=".catalog-entry"
+                        active="{{dc.catalog.entries.length && dc.catalog.id == row.id && dc.showCatalog}}"
                         class="row treatment-row" treatment-row ng-repeat="row in entry.rows | orderBy:'id'"
-                     ng-class="{locked: row.locked}" ng-hide="row.deleted">
+                        ng-class="{locked: row.locked}" ng-hide="row.deleted">
                     <span class="label locked-warning" ng-class="'mandator-' + row.lockedBy.id + '-warning'"
                           ng-show="row.locked">Gesperrt von {{row.lockedBy.name}}</span>
-                    <treatment-column ng-repeat="column in row.columns" content="column.content"
+                    <treatment-column ng-repeat="column in row.columns"
                                       column="column"
                                       width="{{column.width}}" unique-id="{{row.id}}-{{$index}}"
                                       editable="{{editable}}" treatment="treatment" warning="warning"
                                       type="entry.type" entry="entry"
                                       readonly="column.readonly || !permissionToEdit()" row="row"></treatment-column>
-                    <div class="catalog-list" ng-if="dc.catalog.entries.length && dc.catalog.id == row.id && dc.showCatalog">
+                    <div class="catalog-list"
+                         ng-if="dc.catalog.entries.length && dc.catalog.id == row.id && dc.showCatalog">
                         <div class="list-group">
                             <a class="list-group-item catalog-entry"
                                href ng-click="dc.chooseCatalogEntry(catalogEntry, row)"
                                ng-repeat="catalogEntry in dc.catalog.entries"
                                     >
                                 <div class="row">
-                                    <div ng-repeat="column in catalogEntry.cols" ng-class="'col-xs-' + column.width " ng-bind-html="column.trustedContent"></div>
+                                    <div ng-repeat="column in catalogEntry.cols" ng-class="'col-xs-' + column.width "
+                                         ng-bind-html="column.trustedContent"></div>
                                 </div>
                             </a>
-
                         </div>
                     </div>
 

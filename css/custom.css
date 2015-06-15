@@ -629,7 +629,7 @@ p.read-only-content {
 }
 
 .ta-scroll-window > .ta-bind {
-    padding: 3px 12px;
+    padding: 3px 6px;
 }
 
 .panel-heading, .panel-body {
@@ -743,6 +743,12 @@ h5.list-group-item.preset {
 }
 
 .treatment-column {
-    padding-left: 3px;
-    padding-right: 3px;
+    padding-left: 1px;
+    padding-right: 1px;
+}
+
+.placeholder-text::before {
+    position: absolute;
+    cursor: text;
+    color: rgba(0,0,0,0.3);
 }
