@@ -40,7 +40,11 @@
 
     <title-settings-widget></title-settings-widget>
 
+    <advanced-search-widget search="vm.search"></advanced-search-widget>
+
     <text-block-widget></text-block-widget>
+
+    <preset-widget></preset-widget>
 
     <treatment treatment="treatment" editable="{{$index<5}}"
                ng-repeat="treatment in vm.treatments | filter:vm.search | orderBy:[(vm.reverse?'':'-')+'date', 'id']"
