@@ -12,12 +12,18 @@
 
 
         var service = {
+            cancel: cancel,
             getName: getName,
             isVisible: isVisible,
             setName: setName
         };
 
         return service;
+
+        function cancel(){
+            deferred.reject();
+            visible = false;
+        }
 
         function getName(){
             deferred = $q.defer();
@@ -32,6 +38,7 @@
 
         function setName(name){
             deferred.resolve(name);
+            visible = false;
         }
     }
 })();

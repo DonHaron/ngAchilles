@@ -17,11 +17,13 @@
             catalogEntries: 'catalog/treatmententryrow/:row/col/:column/term/:term',
             catalogRow: 'catalog/treatmententryrow/:row',
             copyTreatment: 'treatment/copy',
+            createPreset: 'preset/create',
             disabilityList: 'treatment/:treatment/disabilitylist',
             documentList: 'treatment/:treatment/documentlist',
             laboratoryList: 'treatment/:treatment/laboratorylist',
             laboratoryReport: 'laboratoryreport/process/:process',
             removeCase: 'treatment/:treatment/case/:case',
+            treatment: 'treatment',
             treatmententry: 'treatmententry',
             treatmententryrow: 'treatmententryrow',
             treatmententrytype: 'treatmententrytype',
@@ -29,7 +31,6 @@
             treatmentlist: 'patient/:patient/treatmentlist',
             treatmentReport: 'treatmentreport/process/:process',
             treatmentsubject: 'treatmentsubject',
-            treatment: 'treatment',
             gdtList: 'gdt/list',
             executeGDT: 'gdt/:device/patient/:patient',
             executeGDTTest: 'gdt/:device/patient/:patient/code/:test',
@@ -47,6 +48,7 @@
             catalogEntries: catalogEntries,
             catalogRow: catalogRow,
             copyTreatment: copyTreatment,
+            createPreset: createPreset,
             disabilityList: disabilityList,
             documentList: documentList,
             laboratoryList: laboratoryList,
@@ -88,6 +90,10 @@
         function catalogRow(row){
             return baseUrlComponent() + routes.catalogRow
                 .replace(/:row/, row.id) + '/';
+        }
+
+        function createPreset(){
+            return baseUrlComponent() + routes.createPreset + '/';
         }
 
         function lock(row, process, verb){

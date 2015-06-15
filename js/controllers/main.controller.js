@@ -5,9 +5,9 @@
         .module('achilles')
         .controller('MainController', MainController);
 
-    MainController.$inject = ['$http', 'urls', 'User', 'TreatmentPermission', 'EntryType'];
+    MainController.$inject = ['$http', '$scope', 'urls', 'User', 'Treatment', 'TreatmentPermission'];
 
-    function MainController($http, urls, User, TreatmentPermission, EntryType) {
+    function MainController($http, $scope, urls, User, Treatment, TreatmentPermission) {
         var vm = this;
         vm.baseUrl = urls.baseUrl();
         vm.entries = [];
@@ -31,7 +31,12 @@
         loadUser();
         //loadEntryTypes();
 
-        console.log('maincontroller line 32 ');
+        console.log('maincontroller line 34');
+
+        $scope.$on('updateTreatment', function(event, treatment){
+            Treatment.update(treatment, vm.treatments);
+            $scope.$apply();
+        });
 
         function loadEntries() {
             $http.get(urls.treatmentList(achillesConfig.patient), {

@@ -18,7 +18,8 @@
             changeSubject: changeSubject,
             openReport: openReport,
             removeCase: removeCase,
-            removeEntry: removeEntry
+            removeEntry: removeEntry,
+            update: update
         };
 
         return service;
@@ -170,6 +171,15 @@
             for (var i = 0; i < entries.length; i++) {
                 if (entry.type.id == entries[i].type.id) {
                     entries.splice(i, 1);
+                    break;
+                }
+            }
+        }
+
+        function update(treatment, treatments){
+            for(var i = 0; i<treatments.length;i++){
+                if(treatment.id == treatments[i].id){
+                    treatments[i] = treatment;
                     break;
                 }
             }

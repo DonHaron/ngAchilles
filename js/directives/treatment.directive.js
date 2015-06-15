@@ -71,8 +71,8 @@
     }
 
     TreatmentController.$inject = ['$scope', '$modal', 'urls', 'EntryType', 'TreatmentPermission', 'User',
-        'Treatment', 'Subject', 'Document', 'LaboratoryReport', 'Biometric', 'DisabilityCertificate', 'Preset'];
-    function TreatmentController($scope, $modal, urls, EntryType, TreatmentPermission, User, Treatment, Subject, Document, LaboratoryReport, Biometric, DisabilityCertificate, Preset) {
+        'Treatment', 'Subject', 'Document', 'LaboratoryReport', 'Biometric', 'DisabilityCertificate', 'Preset', 'PresetWidget'];
+    function TreatmentController($scope, $modal, urls, EntryType, TreatmentPermission, User, Treatment, Subject, Document, LaboratoryReport, Biometric, DisabilityCertificate, Preset, PresetWidget) {
         var dc = this,
             treatmentId = $scope.treatment.id;
 
