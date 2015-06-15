@@ -22,8 +22,8 @@
                     day = dateArr[0],
                     month = dateArr[1],
                     year = dateArr[2];
-                
-                    date = new Date(year, month-1, day);
+
+                    date = new Date(year, month-1, day); // months in Javascript are 0 based
             }
 
             treatments.forEach(function (treatment) {

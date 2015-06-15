@@ -10,7 +10,7 @@
 
     function treatmentColumn($http, urls, $timeout, $compile, CurrentFocus, Locking, Treatment, TreatmentRow) {
         var templates = {
-            editable: '<div ng-class="columnClass" catalog-prompt>' +
+            editable: '<div ng-class="columnClass" class="treatment-column" catalog-prompt>' +
                 '<div class="form-group">' +
                 '<div ng-model="content" ta-disabled="readonly()" text-angular ta-target-toolbars="toolbar-{{treatment.id}}-{{type.id}}"></div>' +
                 '</div>' +
