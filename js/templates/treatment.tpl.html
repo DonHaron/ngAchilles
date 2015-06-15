@@ -273,7 +273,8 @@
                                     <a tabindex href
                                        ng-click="dc.addEntry(treatment.id, type, treatment.entries); search.term=''"
                                        ng-repeat="type in dc.types | filter:search.term"
-                                       class="list-group-item entry-type">
+                                       class="list-group-item entry-type"
+                                            ng-class="'level-' + (type.level ? type.level : '1' ) ">
                                         {{type.name}}
                                     </a>
                                     <hr>

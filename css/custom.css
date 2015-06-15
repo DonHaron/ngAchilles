@@ -703,6 +703,10 @@ h5.list-group-item.preset {
     background-color: rgba(0,60,255,0.15);
 }
 
+.entry-type.level-2 {
+    padding-left: 35px;
+}
+
 .treatment-row {
     position: relative;
 }
@@ -712,8 +716,8 @@ h5.list-group-item.preset {
     top: 30px;
     z-index: 99;
     width: 100%;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 1px;
+    padding-right: 1px;
 }
 
 .catalog-list > .list-group{
