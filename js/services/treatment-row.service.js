@@ -7,7 +7,8 @@
 
     TreatmentRow.$inject = ['$http', '$timeout', 'urls'];
     function TreatmentRow($http, $timeout, urls){
-        var saving;
+        var saving,
+            savingRow;
 
         var service = {
             cancelSave: cancelSave,
@@ -17,9 +18,13 @@
 
         return service;
 
-        function cancelSave(){
+        function cancelSave(row){
             console.log('canceling');
+            if(angular.isDefined(row) && angular.isDefined(savingRow) && row.id !== savingRow.id){
+                return;
+            }
             $timeout.cancel(saving);
+            savingRow = undefined;
         }
 
         function replace(row, newRow){
@@ -30,7 +35,9 @@
         }
 
         function save(row, entry){
+            savingRow = row;
             saving = $timeout(function(){
+                console.log('saving');
                 $http.post(urls.treatmentEntryRow('put'), row).then(function (response) {
                     //response.data is a row
                     //now, find the row in the rows and replace it
@@ -46,6 +53,8 @@
                     row.locked = false;
                     row.hasOwnLock = false;
                 });
+
+                savingRow = undefined;
             }, 150);
         }
     }

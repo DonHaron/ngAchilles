@@ -168,6 +168,8 @@
                 entryCtrl.showCatalog = true;
                 entryCtrl.setCatalog(scope.row);
 
+                TreatmentRow.cancelSave(scope.row);
+
                 CurrentFocus.setCurrentFocus(scope.column, scope.row, scope.entry);
                 CurrentFocus.clearNewFocus();
                 if (scope.warning && !scope.warning.displayed) {
