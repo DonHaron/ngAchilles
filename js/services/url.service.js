@@ -18,6 +18,7 @@
             catalogRow: 'catalog/treatmententryrow/:row',
             copyTreatment: 'treatment/copy',
             createPreset: 'preset/create',
+            deletePreset: 'delete/preset',
             disabilityList: 'treatment/:treatment/disabilitylist',
             documentList: 'treatment/:treatment/documentlist',
             laboratoryList: 'treatment/:treatment/laboratorylist',
@@ -50,6 +51,7 @@
             catalogRow: catalogRow,
             copyTreatment: copyTreatment,
             createPreset: createPreset,
+            deletePreset: deletePreset,
             disabilityList: disabilityList,
             documentList: documentList,
             laboratoryList: laboratoryList,
@@ -96,6 +98,10 @@
 
         function createPreset(){
             return baseUrlComponent() + routes.createPreset + '/';
+        }
+
+        function deletePreset(){
+            return baseUrlComponent() + routes.deletePreset + '/';
         }
 
         function lock(row, process, verb){

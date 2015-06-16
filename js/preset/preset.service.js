@@ -13,6 +13,7 @@
             create: create,
             hasUpdated: hasUpdated,
             rename: rename,
+            remove: remove,
             setUpdated: setUpdated
         };
 
@@ -71,12 +72,20 @@
             });
         }
 
+
         function hasUpdated(){
             return updated;
         }
 
         function rename(preset){
             $http.post(urls.renamePreset(), preset).then(function(response){
+                presets = response.data;
+                setUpdated(true);
+            });
+        }
+
+        function remove(preset){
+            $http.post(urls.deletePreset(), preset).then(function(response){
                 presets = response.data;
                 setUpdated(true);
             });

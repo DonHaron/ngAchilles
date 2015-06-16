@@ -3,8 +3,7 @@
 
     angular
         .module('achilles')
-        .controller('DeleteModalController', DeleteModalController)
-        .controller('PresetModalController', PresetModalController);
+        .controller('DeleteModalController', DeleteModalController);
 
     DeleteModalController.$inject = ['$scope', '$modalInstance'];
     function DeleteModalController($scope, $modalInstance){
@@ -14,32 +13,6 @@
 
         $scope.cancel = function(){
             $modalInstance.dismiss('canceled');
-        };
-    }
-
-    PresetModalController.$inject = ['$scope', '$modalInstance'];
-    function PresetModalController($scope, $modalInstance){
-        $scope.presets = [
-            {
-                id: 1,
-                name: 'SOAP'
-            },
-            {
-                id: 2,
-                name: 'Gynäkologische Untersuchung'
-            },
-            {
-                id: 3,
-                name: 'Vermicelles'
-            },
-            {
-                id: 4,
-                name: 'Schoggischuum'
-            }
-        ];
-
-        $scope.close = function(preset){
-            $modalInstance.close(preset);
         };
     }
 })();

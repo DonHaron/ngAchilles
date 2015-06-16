@@ -17,9 +17,14 @@
         return directive;
     }
 
-    PresetSettingsWidgetController.$inject = ['$scope', '$timeout', 'PresetSettingsWidget', 'Preset'];
-    function PresetSettingsWidgetController($scope, $timeout, PresetSettingsWidget, Preset){
+    PresetSettingsWidgetController.$inject = ['$scope', '$modal', 'PresetSettingsWidget', 'Preset'];
+    function PresetSettingsWidgetController($scope, $modal, PresetSettingsWidget, Preset){
         var dc = this;
+
+        dc.isVisible = PresetSettingsWidget.isVisible;
+        dc.rename = Preset.rename;
+        dc.show = PresetSettingsWidget.show;
+        dc.remove = remove;
 
         Preset.all().then(function(presets){
             dc.presets = presets;
@@ -36,8 +41,18 @@
             }
         });
 
-        dc.isVisible = PresetSettingsWidget.isVisible;
-        dc.rename = Preset.rename;
-        dc.show = PresetSettingsWidget.show;
+        function remove(preset){
+            console.log('here i am');
+            var modalInstance = $modal.open({
+                templateUrl: '../js/preset/delete-preset-modal.tpl.html',
+                controller: 'DeleteModalController',
+                controllerAs: 'mc',
+                size: 'sm'
+            });
+
+            modalInstance.result.then(function () {
+                Preset.remove(preset);
+            });
+        }
     }
 })();
