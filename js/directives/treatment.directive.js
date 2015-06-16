@@ -71,8 +71,8 @@
     }
 
     TreatmentController.$inject = ['$scope', '$modal', 'urls', 'EntryType', 'TreatmentPermission', 'User',
-        'Treatment', 'Subject', 'Document', 'LaboratoryReport', 'Biometric', 'DisabilityCertificate', 'Preset', 'PresetWidget'];
-    function TreatmentController($scope, $modal, urls, EntryType, TreatmentPermission, User, Treatment, Subject, Document, LaboratoryReport, Biometric, DisabilityCertificate, Preset, PresetWidget) {
+        'Treatment', 'Subject', 'Document', 'LaboratoryReport', 'Biometric', 'DisabilityCertificate', 'Preset', 'CreatePresetWidget'];
+    function TreatmentController($scope, $modal, urls, EntryType, TreatmentPermission, User, Treatment, Subject, Document, LaboratoryReport, Biometric, DisabilityCertificate, Preset, CreatePresetWidget) {
         var dc = this,
             treatmentId = $scope.treatment.id;
 
@@ -129,7 +129,7 @@
         }
 
         function createPreset(treatment) {
-            PresetWidget.getName().then(function (name) {
+            CreatePresetWidget.getName().then(function (name) {
                 Preset.create(treatment, name);
             });
         }

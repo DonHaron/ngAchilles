@@ -624,7 +624,7 @@ span.checkmark {
     margin-bottom: 0px;
 }
 
-.preset-widget {
+.create-preset-widget {
     width: 250px;
     top: 250px;
     left: 50%;
@@ -632,7 +632,7 @@ span.checkmark {
     z-index: 999;
 }
 
-.preset-widget-wrapper {
+.create-preset-widget-wrapper {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -640,9 +640,17 @@ span.checkmark {
     z-index: 998;
 }
 
-.preset-widget .panel {
+.create-preset-widget .panel,
+.preset-settings-widget .panel {
     margin-bottom: 0;
     padding-bottom: 10px;
+}
+
+.preset-settings-widget {
+    width: 500px;
+    margin-left: -250px;
+    left: 50%;
+    top: 150px;
 }
 
 p.read-only-content {

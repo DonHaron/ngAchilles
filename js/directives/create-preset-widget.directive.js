@@ -3,17 +3,17 @@
 
     angular
         .module('achilles')
-        .directive('presetWidget', presetWidget);
+        .directive('createPresetWidget', createPresetWidget);
 
-    presetWidget.$inject = ['$timeout'];
-    function presetWidget($timeout){
+    createPresetWidget.$inject = ['$timeout'];
+    function createPresetWidget($timeout){
         var directive = {
             restrict: 'E',
-            controller: PresetWidgetController,
+            controller: CreatePresetWidgetController,
             controllerAs: 'dc',
             link: link,
-            require: 'presetWidget',
-            templateUrl: '../js/templates/preset-widget.tpl.html'
+            require: 'createPresetWidget',
+            templateUrl: '../js/templates/create-preset-widget.tpl.html'
         };
 
         return directive;
@@ -31,12 +31,12 @@
         }
     }
 
-    PresetWidgetController.$inject = ['PresetWidget'];
-    function PresetWidgetController(PresetWidget){
+    CreatePresetWidgetController.$inject = ['CreatePresetWidget'];
+    function CreatePresetWidgetController(CreatePresetWidget){
         var dc = this;
 
-        dc.isVisible = PresetWidget.isVisible;
-        dc.cancel = PresetWidget.cancel;
-        dc.confirm = PresetWidget.setName;
+        dc.isVisible = CreatePresetWidget.isVisible;
+        dc.cancel = CreatePresetWidget.cancel;
+        dc.confirm = CreatePresetWidget.setName;
     }
 })();

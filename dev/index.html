@@ -44,7 +44,9 @@
 
     <text-block-widget></text-block-widget>
 
-    <preset-widget></preset-widget>
+    <create-preset-widget></create-preset-widget>
+
+    <preset-settings-widget></preset-settings-widget>
 
     <treatment treatment="treatment" editable="{{$index<5}}"
                ng-repeat="treatment in vm.treatments |
@@ -99,7 +101,8 @@
 <script type="text/javascript" src="../js/directives/textblock-widget.directive.js"></script>
 <script type="text/javascript" src="../js/directives/type-and-preset.directive.js"></script>
 <script type="text/javascript" src="../js/directives/keyboard-focus.directive.js"></script>
-<script type="text/javascript" src="../js/directives/preset-widget.directive.js"></script>
+<script type="text/javascript" src="../js/directives/create-preset-widget.directive.js"></script>
+<script type="text/javascript" src="../js/directives/preset-settings-widget.directive.js"></script>
 
 <script type="text/javascript" src="../js/services/advanced-search-widget.service.js"></script>
 <script type="text/javascript" src="../js/services/asterisk-search.service.js"></script>
@@ -123,7 +126,8 @@
 <script type="text/javascript" src="../js/services/url.service.js"></script>
 <script type="text/javascript" src="../js/services/user.service.js"></script>
 <script type="text/javascript" src="../js/services/widget-visibility.service.js"></script>
-<script type="text/javascript" src="../js/services/preset-widget.service.js"></script>
+<script type="text/javascript" src="../js/services/create-preset-widget.service.js"></script>
+<script type="text/javascript" src="../js/services/preset-settings-widget.service.js"></script>
 
 <script type="text/javascript" src="../js/filters/compareDate.filter.js"></script>
 <script type="text/javascript" src="../js/filters/attachments.filter.js"></script>

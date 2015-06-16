@@ -3,10 +3,10 @@
 
     angular
         .module('achilles')
-        .factory('PresetWidget', PresetWidget);
+        .factory('CreatePresetWidget', CreatePresetWidget);
 
-    PresetWidget.$inject = ['$q'];
-    function PresetWidget($q){
+    CreatePresetWidget.$inject = ['$q'];
+    function CreatePresetWidget($q){
         var visible = false,
             deferred;
 

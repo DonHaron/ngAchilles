@@ -1,0 +1,29 @@
+<div class="create-preset-widget-wrapper" ng-show="dc.isVisible()">
+    <div class="create-preset-widget achilles-widget" ng-cloak draggable
+         draggable-handle=".panel-heading">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Neue Struktur
+                <div class="btn-group widget-controls">
+                    <a class="btn confirm-widget" ng-click="dc.confirm(name)" ng-disabled="!name">&nbsp;</a>
+                    <a class="btn close-widget" ng-click="dc.cancel()">&nbsp;</a>
+                </div>
+            </div>
+            <div class="panel-body">
+                <form ng-submit="dc.confirm(name)">
+                    <div class="form-group">
+                        <label class="control-label">
+                            Name
+                        </label>
+                        <input type="text" class="form-control" ng-model="name">
+                    </div>
+                    <div class="pull-right">
+                        <div class="btn-group">
+                            <input type="submit" class="btn btn-default" ng-disabled="!name" value="Ok">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
