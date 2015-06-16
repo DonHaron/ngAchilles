@@ -51,7 +51,13 @@
     <preset-settings-widget></preset-settings-widget>
 
     <treatment treatment="treatment" editable="{{$index<5}}"
-               ng-repeat="treatment in vm.treatments | filter:vm.search | orderBy:[(vm.reverse?'':'-')+'date', 'id']"
+               ng-repeat="treatment in vm.filteredTreatments = (vm.treatments |
+                            filter:vm.search.text |
+                            compareDate:vm.search.dateFrom:'after' |
+                            compareDate:vm.search.dateTo:'before' |
+                            attachments:vm.search.attachments |
+                            orderBy:[(vm.reverse?'':'-')+'date', 'id'] |
+                            limitTo:8)"
                treatmentlist="vm.treatments" user="vm.user"></treatment>
 </div>
 
