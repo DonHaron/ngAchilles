@@ -210,38 +210,12 @@
                 return -1;
             }
 
-            function findAsteriskPositions(jElement){
-                var indices = [];
-                if (!jElement.length) {
-                    return null;
-                }
-                var htmlElement = jElement[0];
-                //console.log(htmlElement);
-                var chars = htmlElement.innerHTML.replace(/<[^>]*>/, '').split('');
-                for(var i=0;i<chars.length;i++){
-                    if(chars[i]==='*'){
-                        indices.push(i);
-                    }
-                }
-                return indices;
-            }
-
             function getAsteriskNode(jElement) {
                 if (!jElement.length) {
                     return null;
                 }
                 var htmlElement = jElement[0];
                 return recursiveGetAsteriskNode(htmlElement);
-            }
-
-            function getAsteriskNodes(jElement) {
-                if (!jElement.length) {
-                    return null;
-                }
-                var htmlElement = jElement[0];
-                var nodes = [];
-                recursiveGetAsteriskNodes(htmlElement, nodes);
-                return nodes;
             }
 
             function recursiveGetAsteriskNode(node) {
