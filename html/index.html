@@ -44,7 +44,9 @@
 
     <text-block-widget></text-block-widget>
 
-    <preset-widget></preset-widget>
+    <create-preset-widget></create-preset-widget>
+
+    <preset-settings-widget></preset-settings-widget>
 
     <treatment treatment="treatment" editable="{{$index<5}}"
                ng-repeat="treatment in vm.treatments | filter:vm.search | orderBy:[(vm.reverse?'':'-')+'date', 'id']"

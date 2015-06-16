@@ -1,4 +1,4 @@
-(function(){
+(function () {
     "use strict";
 
     angular
@@ -6,33 +6,35 @@
         .directive('createPresetWidget', createPresetWidget);
 
     createPresetWidget.$inject = ['$timeout'];
-    function createPresetWidget($timeout){
+    function createPresetWidget($timeout) {
         var directive = {
             restrict: 'E',
             controller: CreatePresetWidgetController,
             controllerAs: 'dc',
             link: link,
+            scope: {},
             require: 'createPresetWidget',
-            templateUrl: '../js/templates/create-preset-widget.tpl.html'
+            templateUrl: '../js/preset/create-preset-widget.tpl.html'
         };
 
         return directive;
 
-        function link(scope, element, attrs, controller){
-            scope.$watch(controller.isVisible, function(newVal){
-                if(newVal===true){
-                    scope.name = '';
+        function link(scope, element, attrs, controller) {
 
-                    $timeout(function(){
+            scope.$watch(controller.isVisible, function (newVal) {
+                if (newVal === true) {
+                    scope.name = '';
+                    $timeout(function () {
                         element.find('input[type="text"]').focus();
-                    },150);
+                    }, 150);
                 }
             });
+
         }
     }
 
     CreatePresetWidgetController.$inject = ['CreatePresetWidget'];
-    function CreatePresetWidgetController(CreatePresetWidget){
+    function CreatePresetWidgetController(CreatePresetWidget) {
         var dc = this;
 
         dc.isVisible = CreatePresetWidget.isVisible;

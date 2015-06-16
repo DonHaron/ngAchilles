@@ -1,0 +1,29 @@
+<div class="preset-settings-widget achilles-widget" ng-cloak draggable
+     draggable-handle=".panel-heading" ng-show="dc.isVisible()">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Strukturen
+            <div class="btn-group widget-controls">
+                <a class="btn close-widget" ng-click="dc.show(false)">&nbsp;</a>
+            </div>
+        </div>
+        <ul class="list-group">
+            <li class="list-group-item" ng-repeat="preset in dc.presets">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <p>{{preset.name}}</p>
+                        <input ng-model="preset.name">
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="pull-right">
+                            <div class="btn-group">
+                                <a class="btn btn-default"><i class="fa fa-edit"></i></a>
+                                <a class="btn btn-default"><i class="fa fa-remove"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
