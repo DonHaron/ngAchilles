@@ -60,14 +60,10 @@
                 treatmentId: treatmentId,
                 preset: preset
             }).then(function (response) {
-                console.log('starting');
                 var treatment = response.data;
                 for (var i = 0; i < treatments.length; i++) {
                     if (treatments[i].id == treatmentId) {
-                        console.log('replacing');
-                        $timeout(function(){
-                            treatments[i] = treatment;
-                        });
+                        treatments[i] = treatment;
                         break;
                     }
                 }
@@ -180,9 +176,9 @@
             }
         }
 
-        function update(treatment, treatments){
-            for(var i = 0; i<treatments.length;i++){
-                if(treatment.id == treatments[i].id){
+        function update(treatment, treatments) {
+            for (var i = 0; i < treatments.length; i++) {
+                if (treatment.id == treatments[i].id) {
                     treatments[i] = treatment;
                     break;
                 }
