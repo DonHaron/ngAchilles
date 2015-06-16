@@ -11,13 +11,16 @@
             <li class="list-group-item" ng-repeat="preset in dc.presets">
                 <div class="row">
                     <div class="col-sm-8">
-                        <p>{{preset.name}}</p>
-                        <input ng-model="preset.name">
+                        <p ng-hide="preset.editable">{{preset.name}}</p>
+                        <div class="form-group" ng-show="preset.editable">
+                            <input ng-model="preset.name" class="form-control">
+                        </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="pull-right">
                             <div class="btn-group">
-                                <a class="btn btn-default"><i class="fa fa-edit"></i></a>
+                                <a class="btn btn-default" href ng-click="preset.editable = true;" ng-hide="preset.editable"><i class="fa fa-edit"></i></a>
+                                <a class="btn btn-default" href ng-click="dc.rename(preset)" ng-show="preset.editable"><i class="fa fa-save"></i></a>
                                 <a class="btn btn-default"><i class="fa fa-remove"></i></a>
                             </div>
                         </div>

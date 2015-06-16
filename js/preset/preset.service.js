@@ -10,12 +10,16 @@
 
         var service = {
             all: all,
-            create: create
+            create: create,
+            hasUpdated: hasUpdated,
+            rename: rename,
+            setUpdated: setUpdated
         };
 
         var presets = [],
             loading = false,
-            waiting = [];
+            waiting = [],
+            updated = false;
 
         return service;
 
@@ -65,6 +69,21 @@
                 treatment: treatment,
                 name: name
             });
+        }
+
+        function hasUpdated(){
+            return updated;
+        }
+
+        function rename(preset){
+            $http.post(urls.renamePreset(), preset).then(function(response){
+                presets = response.data;
+                setUpdated(true);
+            });
+        }
+
+        function setUpdated(status){
+            updated = status;
         }
     }
 })();

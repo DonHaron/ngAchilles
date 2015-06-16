@@ -17,15 +17,27 @@
         return directive;
     }
 
-    PresetSettingsWidgetController.$inject = ['PresetSettingsWidget', 'Preset'];
-    function PresetSettingsWidgetController(PresetSettingsWidget, Preset){
+    PresetSettingsWidgetController.$inject = ['$scope', '$timeout', 'PresetSettingsWidget', 'Preset'];
+    function PresetSettingsWidgetController($scope, $timeout, PresetSettingsWidget, Preset){
         var dc = this;
 
         Preset.all().then(function(presets){
             dc.presets = presets;
         });
 
+        $scope.$watch(Preset.hasUpdated, function(newVal){
+            if(newVal === true){
+                // reload all presets
+                Preset.all()
+                    .then(function (presets) {
+                        dc.presets = presets;
+                        Preset.setUpdated(false);
+                    });
+            }
+        });
+
         dc.isVisible = PresetSettingsWidget.isVisible;
+        dc.rename = Preset.rename;
         dc.show = PresetSettingsWidget.show;
     }
 })();

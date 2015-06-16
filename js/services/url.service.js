@@ -23,6 +23,7 @@
             laboratoryList: 'treatment/:treatment/laboratorylist',
             laboratoryReport: 'laboratoryreport/process/:process',
             removeCase: 'treatment/:treatment/case/:case',
+            renamePreset: 'preset/rename',
             treatment: 'treatment',
             treatmententry: 'treatmententry',
             treatmententryrow: 'treatmententryrow',
@@ -54,6 +55,7 @@
             laboratoryList: laboratoryList,
             laboratoryReport: laboratoryReport,
             removeCase: removeCase,
+            renamePreset: renamePreset,
             treatmentEntryTypeList: treatmentEntryTypeList,
             treatmentEntry: treatmentEntry,
             treatmentEntryRow: treatmentEntryRow,
@@ -115,6 +117,10 @@
 
         function presetList(){
             return baseUrlComponent() + routes.presetList + '/';
+        }
+
+        function renamePreset(){
+            return baseUrlComponent() + routes.renamePreset + '/';
         }
 
         function textblock(process){
