@@ -632,12 +632,13 @@ span.checkmark {
     z-index: 999;
 }
 
-.create-preset-widget-wrapper {
-    position: absolute;
+.modal-wrapper {
+    position: fixed;
     width: 100%;
     height: 100%;
     background: rgba(0,0,0,0.3);
     z-index: 998;
+    top: 0;
 }
 
 .create-preset-widget .panel,
@@ -646,12 +647,18 @@ span.checkmark {
     padding-bottom: 10px;
 }
 
-.preset-settings-widget {
+.preset-settings-widget,
+.replace-preset-widget {
     width: 500px;
     margin-left: -250px;
     left: 50%;
     top: 150px;
 }
+
+.replace-preset-widget .panel {
+    margin-bottom: 0;
+}
+
 
 p.read-only-content {
     word-wrap: break-word;

@@ -6,8 +6,8 @@
         .factory('Treatment', Treatment);
 
 
-    Treatment.$inject = ['$http', '$modal', 'urls', 'User'];
-    function Treatment($http, $modal, urls, User) {
+    Treatment.$inject = ['$http', '$modal', '$timeout', 'urls', 'User'];
+    function Treatment($http, $modal, $timeout, urls, User) {
         var service = {
             addEntry: addEntry,
             addPreset: addPreset,
@@ -60,10 +60,14 @@
                 treatmentId: treatmentId,
                 preset: preset
             }).then(function (response) {
+                console.log('starting');
                 var treatment = response.data;
                 for (var i = 0; i < treatments.length; i++) {
                     if (treatments[i].id == treatmentId) {
-                        treatments[i] = treatment;
+                        console.log('replacing');
+                        $timeout(function(){
+                            treatments[i] = treatment;
+                        });
                         break;
                     }
                 }

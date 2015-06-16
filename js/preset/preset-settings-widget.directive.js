@@ -42,7 +42,6 @@
         });
 
         function remove(preset){
-            console.log('here i am');
             var modalInstance = $modal.open({
                 templateUrl: '../js/preset/delete-preset-modal.tpl.html',
                 controller: 'DeleteModalController',

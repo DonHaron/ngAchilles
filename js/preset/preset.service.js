@@ -14,6 +14,7 @@
             hasUpdated: hasUpdated,
             rename: rename,
             remove: remove,
+            replace: replace,
             setUpdated: setUpdated
         };
 
@@ -69,6 +70,9 @@
             $http.post(urls.createPreset(), {
                 treatment: treatment,
                 name: name
+            }).then(function(response){
+                presets = response.data;
+                setUpdated(true);
             });
         }
 
@@ -88,6 +92,13 @@
             $http.post(urls.deletePreset(), preset).then(function(response){
                 presets = response.data;
                 setUpdated(true);
+            });
+        }
+
+        function replace(treatment, preset){
+            $http.post(urls.replacePreset(), {
+                treatment: treatment,
+                preset: preset
             });
         }
 

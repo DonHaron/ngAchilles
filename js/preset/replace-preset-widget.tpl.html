@@ -1,0 +1,18 @@
+<div class="modal-wrapper" ng-show="dc.isVisible()">
+    <div class="replace-preset-widget achilles-widget" ng-cloak draggable
+         draggable-handle=".panel-heading">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Struktur ersetzen
+                <div class="btn-group widget-controls">
+                    <a class="btn close-widget" ng-click="dc.cancel()">&nbsp;</a>
+                </div>
+            </div>
+            <div class="list-group">
+                <a class="list-group-item" href ng-repeat="preset in dc.presets" ng-click="dc.select(preset);">
+                    {{preset.name}}
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -19,7 +19,7 @@
             restrict: 'E',
             controller: TreatmentController,
             controllerAs: 'dc',
-            templateUrl: '../js/templates/treatment.tpl.html',
+            templateUrl: '../js/treatment/treatment.tpl.html',
             link: link
         };
 
@@ -59,20 +59,13 @@
                     scope.treatment.focused = false;
                 }, 300);
             });
-            // Prevent the element losing focus when the select2 is opened. Technically it DOES lose focus,
-            // but in the actual use case the select2 still counts as belonging to the treatment
-            element.on('select2-open', function () {
-                scope.select2Open = true;
-            });
-            element.on('select2-blur', function () {
-                scope.select2Open = false;
-            });
         }
     }
 
     TreatmentController.$inject = ['$scope', 'urls', 'EntryType', 'TreatmentPermission', 'User',
-        'Treatment', 'Subject', 'Document', 'LaboratoryReport', 'Biometric', 'DisabilityCertificate', 'Preset', 'CreatePresetWidget'];
-    function TreatmentController($scope, urls, EntryType, TreatmentPermission, User, Treatment, Subject, Document, LaboratoryReport, Biometric, DisabilityCertificate, Preset, CreatePresetWidget) {
+        'Treatment', 'Subject', 'Document', 'LaboratoryReport', 'Biometric', 'DisabilityCertificate',
+        'Preset', 'CreatePresetWidget', 'ReplacePresetWidget'];
+    function TreatmentController($scope, urls, EntryType, TreatmentPermission, User, Treatment, Subject, Document, LaboratoryReport, Biometric, DisabilityCertificate, Preset, CreatePresetWidget, ReplacePresetWidget) {
         var dc = this,
             treatmentId = $scope.treatment.id;
 
@@ -87,6 +80,7 @@
         dc.loadLaboratoryReports = loadLaboratoryReports;
         dc.loadBiometrics = loadBiometrics;
         dc.loadDisability = loadDisability;
+        dc.replacePreset = replacePreset;
 
         dc.baseUrl = urls.baseUrl();
 
@@ -116,8 +110,8 @@
                 dc.presets = presets;
             });
 
-        $scope.$watch(Preset.hasUpdated, function(newVal){
-            if(newVal === true){
+        $scope.$watch(Preset.hasUpdated, function (newVal) {
+            if (newVal === true) {
                 // reload all presets
                 Preset.all()
                     .then(function (presets) {
@@ -143,6 +137,12 @@
         function createPreset(treatment) {
             CreatePresetWidget.getName().then(function (name) {
                 Preset.create(treatment, name);
+            });
+        }
+
+        function replacePreset(treatment) {
+            ReplacePresetWidget.selectPreset().then(function (preset) {
+                Preset.replace(treatment, preset);
             });
         }
 
