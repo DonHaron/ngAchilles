@@ -1,3 +1,7 @@
+.form-control {
+    color: black;
+}
+
 #loading-overlay {
     position: fixed;
     width: 100%;
