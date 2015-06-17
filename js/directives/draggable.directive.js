@@ -14,7 +14,9 @@
         return directive;
 
         function link(scope, element, attrs){
-            var options = {};
+            var options = {
+                containment: "window"
+            };
             if(attrs.draggableHandle){
                 options.handle = attrs.draggableHandle;
             }

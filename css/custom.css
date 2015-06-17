@@ -506,6 +506,11 @@ span.checkmark {
     padding-bottom: 10px;
 }
 
+.advanced-search-widget hr {
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
 .title-settings-widget {
     width: 300px;
     /*position: fixed;*/

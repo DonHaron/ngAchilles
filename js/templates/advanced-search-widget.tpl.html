@@ -16,13 +16,17 @@
                                ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 500, 'blur': 0 } }"
                                class="form-control">
                     </div>
+
+                </div>
+                <div class="col-sm-6">
                     <div class="row">
                         <div class="col-xs-6">
                             <div class="form-group">
                                 <label class="control-label">Datum von</label>
 
                                 <div class="input-group">
-                                    <input datepicker-popup="dd.MM.yyyy" is-open="dc.fromOpened" ng-model="search.dateFrom"
+                                    <input datepicker-popup="dd.MM.yyyy" is-open="dc.fromOpened"
+                                           ng-model="search.dateFrom"
                                            class="form-control">
                         <span class="input-group-btn">
                             <button type="button" class="btn btn-default" ng-click="dc.openFromDatepicker($event)"><i
@@ -49,12 +53,19 @@
 
                     </div>
                 </div>
-                <div class="col-sm-6">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <div class="form-group">
-                                <label class="control-label">Nur Einträge mit</label>
 
+            </div>
+
+            <hr>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label class="control-label">Nur Einträge mit</label>
+
+
+                        <div class="row">
+                            <div class="col-sm-4">
                                 <div class="checkbox">
                                     <input type="checkbox" id="medi-list-checkbox"
                                            ng-model="search.attachments.medication">
@@ -62,49 +73,90 @@
                                         Medi-Listen
                                     </label>
                                 </div>
-
                                 <div class="checkbox">
                                     <input type="checkbox" id="laboratory-checkbox"
-                                            ng-model="search.attachments.laboratory">
+                                           ng-model="search.attachments.laboratory">
                                     <label for="laboratory-checkbox">
                                         Labor
                                     </label>
                                 </div>
+
+
+                            </div>
+                            <div class="col-sm-4">
                                 <div class="checkbox">
                                     <input type="checkbox" id="service-checkbox"
-                                            ng-model="search.attachments.service">
+                                           ng-model="search.attachments.service">
                                     <label for="service-checkbox">
                                         Leistungen
                                     </label>
                                 </div>
                                 <div class="checkbox">
-                                    <input type="checkbox" id="disability-checkbox"
-                                            ng-model="search.attachments.disability">
-                                    <label for="disability-checkbox">
-                                        Arbeitsunfähigkeit
-                                    </label>
-                                </div>
-                                <div class="checkbox">
                                     <input type="checkbox" id="biometric-checkbox"
-                                            ng-model="search.attachments.biometric">
+                                           ng-model="search.attachments.biometric">
                                     <label for="biometric-checkbox">
                                         Biometrische Daten
                                     </label>
                                 </div>
+                            </div>
+                            <div class="col-sm-4">
+
 
                                 <div class="checkbox">
                                     <input type="checkbox" id="document-checkbox"
-                                            ng-model="search.attachments.document">
+                                           ng-model="search.attachments.document">
                                     <label for="document-checkbox">
                                         Briefe & Dokumente
                                     </label>
                                 </div>
+
+                                <div class="checkbox">
+                                    <input type="checkbox" id="disability-checkbox"
+                                           ng-model="search.attachments.disability">
+                                    <label for="disability-checkbox">
+                                        Arbeitsunfähigkeit
+                                    </label>
+                                </div>
                             </div>
                         </div>
+
+
                     </div>
                 </div>
             </div>
 
+            <hr>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label">Nach Betreff</label>
+                        <select ng-model="search.subject" class="form-control"
+                                ng-options="subject for subject in dc.subjects"></select>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label">Nach Fall</label>
+                        <select ng-model="search.case" class="form-control"></select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label">Nach Titel</label>
+                        <select ng-model="search.subject" class="form-control"></select>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label">Nach Mandant</label>
+                        <select ng-model="search.case" class="form-control"></select>
+                    </div>
+                </div>
+            </div>
 
 
             <div class="row">

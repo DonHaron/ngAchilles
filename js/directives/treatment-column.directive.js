@@ -48,9 +48,10 @@
         return directive;
 
         function getTemplate(editable, options) {
-            if(editable != 'true'){
+            if(editable !== 'true'){
                 return templates.readonly;
             }else{
+                // if there is an options array, the input should become a dropdown
                 return angular.isDefined(options) ? templates.dropdown : templates.editable;
             }
         }

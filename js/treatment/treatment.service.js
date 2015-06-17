@@ -180,9 +180,10 @@
             for (var i = 0; i < treatments.length; i++) {
                 if (treatment.id == treatments[i].id) {
                     treatments[i] = treatment;
-                    break;
+                    return;
                 }
             }
+            treatments.push(treatment);
         }
     }
 })();

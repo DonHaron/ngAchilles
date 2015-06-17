@@ -54,6 +54,7 @@
     <treatment treatment="treatment" editable="{{$index<5}}"
                ng-repeat="treatment in vm.filteredTreatments = (vm.treatments |
                             filter:vm.search.text |
+                            filter:{subject:vm.search.subject} |
                             compareDate:vm.search.dateFrom:'after' |
                             compareDate:vm.search.dateTo:'before' |
                             attachments:vm.search.attachments |
