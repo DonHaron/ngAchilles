@@ -19,8 +19,8 @@
         return directive;
     }
 
-    AdvancedSearchWidgetController.$inject = ['AdvancedSearchWidget', 'Subject'];
-    function AdvancedSearchWidgetController(AdvancedSearchWidget, Subject){
+    AdvancedSearchWidgetController.$inject = ['AdvancedSearchWidget', 'Subject', 'InvoiceCase'];
+    function AdvancedSearchWidgetController(AdvancedSearchWidget, Subject, InvoiceCase){
         var dc = this;
 
         dc.clearSearch = clearSearch;
@@ -33,7 +33,11 @@
 
         Subject.all().then(function(subjects){
             dc.subjects = subjects;
-            console.log(subjects);
+        });
+
+        InvoiceCase.all().then(function(cases){
+            dc.cases = cases;
+            console.log(cases);
         });
 
         function clearSearch(search){
@@ -42,6 +46,7 @@
             delete search.dateFrom;
             delete search.dateTo;
             delete search.subject;
+            delete search.case;
         }
 
         function openFromDatepicker($event) {

@@ -138,7 +138,8 @@
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label class="control-label">Nach Fall</label>
-                        <select ng-model="search.case" class="form-control"></select>
+                        <select ng-model="search.case" class="form-control"
+                                ng-options="case as case.name for case in dc.cases"></select>
                     </div>
                 </div>
             </div>

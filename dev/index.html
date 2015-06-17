@@ -55,6 +55,7 @@
                ng-repeat="treatment in vm.filteredTreatments = (vm.treatments |
                             filter:vm.search.text |
                             filter:{subject:vm.search.subject} |
+                            invoiceCase:vm.search.case |
                             compareDate:vm.search.dateFrom:'after' |
                             compareDate:vm.search.dateTo:'before' |
                             attachments:vm.search.attachments |
@@ -114,6 +115,7 @@
 <script type="text/javascript" src="../js/services/disability.service.js"></script>
 <script type="text/javascript" src="../js/services/document.service.js"></script>
 <script type="text/javascript" src="../js/services/entry-type.service.js"></script>
+<script type="text/javascript" src="../js/services/invoice-case.service.js"></script>
 <script type="text/javascript" src="../js/services/gdt.service.js"></script>
 <script type="text/javascript" src="../js/services/laboratory.service.js"></script>
 <script type="text/javascript" src="../js/services/locking.service.js"></script>
@@ -138,6 +140,7 @@
 
 <script type="text/javascript" src="../js/filters/compareDate.filter.js"></script>
 <script type="text/javascript" src="../js/filters/attachments.filter.js"></script>
+<script type="text/javascript" src="../js/filters/invoice-case.filter.js"></script>
 
 <script type="text/javascript" src="../js/config/spinner.config.js"></script>
 <script type="text/javascript" src="../js/config/textAngular.config.js"></script>

@@ -14,6 +14,7 @@
             biometricList: 'treatment/:treatment/biometriclist',
             biometricReport: 'biometricreport/process/:process',
             caseList: 'treatment/:treatment/caselist',
+            cases: 'patient/:patient/invoiceCase',
             catalogEntries: 'catalog/treatmententryrow/:row/col/:column/term/:term',
             catalogRow: 'catalog/treatmententryrow/:row',
             copyTreatment: 'treatment/copy',
@@ -48,6 +49,7 @@
             biometricList: biometricList,
             biometricReport: biometricReport,
             caseList: caseList,
+            cases: cases,
             catalogEntries: catalogEntries,
             catalogRow: catalogRow,
             copyTreatment: copyTreatment,
@@ -84,6 +86,10 @@
 
         function caseList(treatmentId) {
             return baseUrlComponent() + routes.caseList.replace(/:([a-z]\w*)/gi, treatmentId) + '/';
+        }
+
+        function cases(patient){
+            return baseUrlComponent() + routes.cases.replace(/:patient/, patient) + '/';
         }
 
         function catalogEntries(term, row, column){
