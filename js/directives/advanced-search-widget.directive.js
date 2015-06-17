@@ -41,12 +41,14 @@
         });
 
         function clearSearch(search){
-            search.text = '';
-            search.attachments = {};
-            delete search.dateFrom;
-            delete search.dateTo;
-            delete search.subject;
-            delete search.case;
+            console.log('should work');
+            angular.copy({}, search);
+//            search.text = '';
+//            search.attachments = {};
+//            delete search.dateFrom;
+//            delete search.dateTo;
+//            delete search.subject;
+//            delete search.case;
         }
 
         function openFromDatepicker($event) {

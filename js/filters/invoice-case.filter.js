@@ -10,7 +10,7 @@
 
         function filter(treatments, invoiceCase){
             if(!angular.isDefined(invoiceCase)){
-                return treatments
+                return treatments;
             }
 
             var filtered = [];
