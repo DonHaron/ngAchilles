@@ -791,6 +791,10 @@ h5.list-group-item.preset {
     padding-right: 1px;
 }
 
+.treatment-column select.form-control {
+    height: 30px;
+}
+
 .placeholder-text::before {
     position: absolute;
     cursor: text;

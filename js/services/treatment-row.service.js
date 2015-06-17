@@ -19,7 +19,7 @@
         return service;
 
         function cancelSave(row){
-            console.log('canceling');
+            //console.log('canceling');
             if(angular.isDefined(row) && angular.isDefined(savingRow) && row.id !== savingRow.id){
                 return;
             }

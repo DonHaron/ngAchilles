@@ -15,6 +15,11 @@
                 '<div ng-model="column.content" placeholder="{{column.placeholder}}" ta-disabled="readonly()" text-angular ta-target-toolbars="toolbar-{{treatment.id}}-{{type.id}}"></div>' +
                 '</div>' +
                 '</div>',
+            dropdown: '<div ng-class="columnClass" class="treatment-column">' +
+                '<div class="form-group">' +
+                '<select class="form-control" ng-model="column.content" ng-options="option as option for option in column.options"></select>' +
+                '</div>' +
+                '</div>',
             readonly: '<div ng-class="columnClass"><p ng-bind-html="readonlyContent" class="read-only-content"></p></div>'
         };
 
@@ -42,8 +47,12 @@
 
         return directive;
 
-        function getTemplate(editable) {
-            return editable == 'true' ? templates.editable : templates.readonly;
+        function getTemplate(editable, options) {
+            if(editable != 'true'){
+                return templates.readonly;
+            }else{
+                return angular.isDefined(options) ? templates.dropdown : templates.editable;
+            }
         }
 
         function link(scope, element, attrs, ctrls) {
@@ -51,7 +60,7 @@
             var entryCtrl = ctrls[1];
             scope.columnClass = 'col-xs-' + attrs.width;
 
-            element.on('blur', '.ta-bind', blur);
+            element.on('blur', '.ta-bind, .form-control', blur);
             element.on('keydown', '.ta-bind', keydown);
             element.on('focus', '.ta-bind', focus);
             element.on('click', '.ta-bind', click);
@@ -89,7 +98,7 @@
             });
 
             function setTemplate(editable) {
-                element.html(getTemplate(editable)).show();
+                element.html(getTemplate(editable, scope.column.options)).show();
                 $compile(element.contents())(scope);
             }
 
