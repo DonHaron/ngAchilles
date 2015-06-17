@@ -1,5 +1,5 @@
 <li class="list-group-item treatment-entry" ng-hide="dc.isHidden(entry.type)">
-    <div class="entry-toolbar" ng-show="entry.focused">
+    <div class="entry-toolbar" ng-show="entry.focused && entry.type.hasTextBlock">
         <div class="row">
             <div class="col-xs-12">
                 <div class="btn-group"><a href class="btn btn-default"
