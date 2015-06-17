@@ -99,6 +99,9 @@
             $http.post(urls.replacePreset(), {
                 treatment: treatment,
                 preset: preset
+            }).then(function(response){
+                presets = response.data;
+                setUpdated(true);
             });
         }
 

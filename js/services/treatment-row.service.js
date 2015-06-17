@@ -16,7 +16,7 @@
             save: save
         };
 
-        return service;
+        return service;e
 
         function cancelSave(row){
             console.log('canceling');
