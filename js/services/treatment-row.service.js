@@ -37,7 +37,7 @@
         function save(row, entry){
             savingRow = row;
             saving = $timeout(function(){
-                console.log('saving');
+                //console.log('saving');
                 $http.post(urls.treatmentEntryRow('put'), row).then(function (response) {
                     //response.data is a row
                     //now, find the row in the rows and replace it

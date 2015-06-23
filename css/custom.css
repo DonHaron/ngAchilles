@@ -372,7 +372,7 @@
 }
 
 .large-fonts .panel-heading .btn {
-    height: 36px;
+    /*height: 36px;*/
 }
 
 .small-fonts,
@@ -672,7 +672,6 @@ span.checkmark {
 .replace-preset-widget .panel {
     margin-bottom: 0;
 }
-
 
 p.read-only-content {
     word-wrap: break-word;
