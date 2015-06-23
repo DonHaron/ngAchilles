@@ -12,7 +12,7 @@
         var port = achillesConfig.port;
         var routes = {
             biometricList: 'treatment/:treatment/biometriclist',
-            biometricReport: 'biometricreport/process/:process',
+            biometricReport: 'biometricreport',
             caseList: 'treatment/:treatment/caselist',
             cases: 'patient/:patient/invoiceCase',
             catalogEntries: 'catalog/treatmententryrow/:row/col/:column/term/:term',
@@ -23,7 +23,7 @@
             disabilityList: 'treatment/:treatment/disabilitylist',
             documentList: 'treatment/:treatment/documentlist',
             laboratoryList: 'treatment/:treatment/laboratorylist',
-            laboratoryReport: 'laboratoryreport/process/:process',
+            laboratoryReport: 'laboratoryreport',
             removeCase: 'treatment/:treatment/case/:case',
             renamePreset: 'preset/rename',
             replacePreset: 'preset/replace',
@@ -33,14 +33,14 @@
             treatmententrytype: 'treatmententrytype',
             treatmentpreset: 'put/treatmentpreset',
             treatmentlist: 'patient/:patient/treatmentlist',
-            treatmentReport: 'treatmentreport/process/:process',
+            treatmentReport: 'treatmentreport',
             treatmentsubject: 'treatmentsubject',
             gdtList: 'gdt/list',
             executeGDT: 'gdt/:device/patient/:patient',
             executeGDTTest: 'gdt/:device/patient/:patient/code/:test',
-            lock: 'treatmententryrow/lock/:row/process/:process',
-            user: 'user/process/:process',
-            textblock: 'textblock/process/:process',
+            lock: 'treatmententryrow/lock/:row',
+            user: 'user',
+            textblock: 'textblock',
             presetList: 'treatmentpreset'
         };
 
@@ -112,14 +112,13 @@
             return baseUrlComponent() + routes.deletePreset + '/';
         }
 
-        function lock(row, process, verb){
+        function lock(row, verb){
             var verbComponent = '';
             if (verb) {
                 verbComponent = verb + '/';
             }
             return baseUrlComponent() + verbComponent + routes.lock
-                .replace(/:row/, row.id)
-                .replace(/:process/, process) + '/';
+                .replace(/:row/, row.id) + '/';
         }
 
         function executeGDT(device, patient, test){
@@ -141,13 +140,17 @@
             return baseUrlComponent() + routes.replacePreset + '/';
         }
 
-        function textblock(process){
-            return baseUrlComponent() + routes.textblock.replace(/:process/, process) + '/';
+        function textblock(){
+            return baseUrlComponent() + routes.textblock + '/';
         }
 
-        function treatmentList(patientId) {
+        function treatmentList(patientId, from) {
             //return 'http://localhost/ngachilles/json/demo.treatment.json';
-            return baseUrlComponent() + routes.treatmentlist.replace(/:([a-z]\w*)/gi, patientId) + '/';
+            var fromPart = '';
+            if(angular.isDefined(from)){
+                fromPart = '/from/' + from;
+            }
+            return baseUrlComponent() + routes.treatmentlist.replace(/:([a-z]\w*)/gi, patientId) + fromPart + '/';
         }
 
         function treatmentEntryTypeList() {
@@ -213,24 +216,20 @@
                 .replace(/:case/gi, treatment.invoiceCase.id) + '/';
         }
 
-        function biometricReport(process) {
-            return baseUrlComponent() + routes.biometricReport
-                .replace(/:process/gi, process) + '/';
+        function biometricReport() {
+            return baseUrlComponent() + routes.biometricReport + '/';
         }
 
-        function laboratoryReport(process) {
-            return baseUrlComponent() + routes.laboratoryReport
-                .replace(/:process/gi, process) + '/';
+        function laboratoryReport() {
+            return baseUrlComponent() + routes.laboratoryReport + '/';
         }
 
-        function treatmentReport(process) {
-            return baseUrlComponent() + routes.treatmentReport
-                .replace(/:process/gi, process) + '/';
+        function treatmentReport() {
+            return baseUrlComponent() + routes.treatmentReport + '/';
         }
 
-        function user(process, method){
-            return baseUrlComponent() + (method ? method + '/' : '') + routes.user
-                .replace(/:process/, process)  + '/';
+        function user(method){
+            return baseUrlComponent() + (method ? method + '/' : '') + routes.user  + '/';
         }
     }
 })();

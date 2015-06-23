@@ -21,8 +21,8 @@
             });
         }
 
-        function open(process) {
-            $http.get(urls.laboratoryReport(process));
+        function open() {
+            $http.get(urls.laboratoryReport());
         }
 
     }

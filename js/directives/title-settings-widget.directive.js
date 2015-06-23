@@ -66,7 +66,7 @@
         }
 
         function loadEntryTypes(){
-            User.get(achillesConfig.process).then(function(user){
+            User.get().then(function(user){
                 dc.user = user;
                 EntryType.all()
                     .then(function (types) {

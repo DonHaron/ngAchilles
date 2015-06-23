@@ -13,9 +13,10 @@
             addPreset: addPreset,
             addTreatment: addTreatment,
             copyTreatment: copyTreatment,
-            deleteTreatment: deleteTreatment,
             changeStatus: changeStatus,
             changeSubject: changeSubject,
+            deleteTreatment: deleteTreatment,
+            load: load,
             openReport: openReport,
             removeCase: removeCase,
             removeEntry: removeEntry,
@@ -73,7 +74,7 @@
         function addTreatment(treatment, isMandatorTreatment, isMainTreatment, treatments) {
             $http.post(urls.treatment(), {
                 patient: achillesConfig.patient,
-                process: achillesConfig.process,
+                //process: achillesConfig.process,
                 treatment: {
                     id: treatment.id,
                     isMandatorTreatment: isMandatorTreatment,
@@ -86,7 +87,7 @@
 
         function copyTreatment(treatment, treatments) {
             $http.post(urls.copyTreatment(), {
-                process: achillesConfig.process,
+                //process: achillesConfig.process,
                 treatment: {
                     id: treatment.id
                 }
@@ -136,7 +137,17 @@
             });
         }
 
-        function openReport(process, treatments) {
+        function load() {
+            return $http
+                .get(urls.treatmentList(achillesConfig.patient), {
+                    spinner: true
+                })
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function openReport(treatments) {
             var payload = [];
             treatments.forEach(function (treatment) {
                 //console.log(treatment);
@@ -152,7 +163,7 @@
                 });
                 payload.push(payloadEntry);
             });
-            $http.post(urls.treatmentReport(process), payload);
+            $http.post(urls.treatmentReport(), payload);
         }
 
         function removeCase(treatment) {

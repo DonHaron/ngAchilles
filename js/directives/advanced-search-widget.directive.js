@@ -41,7 +41,7 @@
         });
 
         function clearSearch(search){
-            console.log('should work');
+            //console.log('should work');
             angular.copy({}, search);
 //            search.text = '';
 //            search.attachments = {};

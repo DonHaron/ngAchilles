@@ -21,8 +21,8 @@
             });
         }
 
-        function open(process) {
-            $http.get(urls.biometricReport(process));
+        function open() {
+            $http.get(urls.biometricReport());
         }
     }
 })();

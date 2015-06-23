@@ -28,7 +28,7 @@
                 // if there isn't already a request running, start one
                 loading = true;
 
-                $http.get(urls.textblock(achillesConfig.process)).then(function(response){
+                $http.get(urls.textblock()).then(function(response){
                     textBlocks = response.data;
                     /*
                      * this is ugly, but need to do this with an open issue in the angular-select2 lib

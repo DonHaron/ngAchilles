@@ -5,14 +5,14 @@
         .module('achilles')
         .controller('MainController', MainController);
 
-    MainController.$inject = ['$http', '$scope', 'urls', 'User', 'Treatment', 'TreatmentPermission'];
+    MainController.$inject = ['$scope', 'urls', 'User', 'Treatment', 'TreatmentPermission'];
 
-    function MainController($http, $scope, urls, User, Treatment, TreatmentPermission) {
+    function MainController($scope, urls, User, Treatment, TreatmentPermission) {
         var vm = this;
         vm.baseUrl = urls.baseUrl();
         vm.entries = [];
         vm.loadEntries = loadEntries;
-        vm.process = achillesConfig.process;
+        //vm.process = achillesConfig.process;
         vm.patient = achillesConfig.patient;
         vm.reverse = false;
         vm.search = {};
@@ -39,16 +39,13 @@
         });
 
         function loadEntries() {
-            $http.get(urls.treatmentList(achillesConfig.patient), {
-                spinner: true
-            })
-                .then(function (response) {
-                    vm.treatments = response.data;
-                });
+            Treatment.load().then(function(treatments){
+                vm.treatments = treatments;
+            });
         }
 
         function loadUser() {
-            User.get(achillesConfig.process).then(function (user) {
+            User.get().then(function (user) {
                 vm.user = user;
             });
         }

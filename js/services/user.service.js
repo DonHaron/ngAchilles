@@ -10,7 +10,7 @@
         var currentUser,
             loading = false,
             waiting = [],
-            process = achillesConfig.process,
+            //process = achillesConfig.process,
             promise;
 
         var service = {
@@ -29,7 +29,7 @@
             } else if (!loading) {
                 loading = true;
 
-                $http.get(urls.user(process))
+                $http.get(urls.user())
                     .then(function (response) {
                         currentUser = response.data;
 
@@ -94,7 +94,7 @@
             // But delay it for a fraction of a second, so multiple actions do not all send a request if in quick
             // succession
             promise = $timeout(function(){
-                $http.post(urls.user(process, 'put'), user);
+                $http.post(urls.user('put'), user);
             },150);
         }
     }

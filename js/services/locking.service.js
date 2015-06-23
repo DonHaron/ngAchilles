@@ -15,7 +15,7 @@
         return service;
 
         function check(row){
-            $http.get(urls.lock(row, achillesConfig.process)).then(function(response){
+            $http.get(urls.lock(row)).then(function(response){
                 //console.log(response);
                 var data = response.data;
                 if(data.lock){
@@ -38,7 +38,7 @@
         function lock(row){
             var req = {
                 method: 'POST',
-                url: urls.lock(row, achillesConfig.process, 'put'),
+                url: urls.lock(row, 'put'),
                 headers: {
                     'Content-Type': 'text/plain'  // avoid pre-flight request, request-body is empty anyway
                 }

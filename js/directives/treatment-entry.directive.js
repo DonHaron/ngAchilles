@@ -76,7 +76,7 @@
         }
 
         function loadUser(){
-            User.get(achillesConfig.process).then(function (user) {
+            User.get().then(function (user) {
                 dc.user = user;
             });
         }
