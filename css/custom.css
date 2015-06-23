@@ -633,6 +633,11 @@ span.checkmark {
     margin-bottom: 0px;
 }
 
+.textblock-widget .selection-list {
+    max-height: 350px;
+    overflow-y: auto;
+}
+
 .create-preset-widget {
     width: 250px;
     top: 250px;
