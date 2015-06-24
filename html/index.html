@@ -53,12 +53,24 @@
     <treatment treatment="treatment" editable="{{$index<5}}"
                ng-repeat="treatment in vm.filteredTreatments = (vm.treatments |
                             filter:vm.search.text |
+                            filter:{subject:vm.search.subject} |
+                            invoiceCase:vm.search.case |
                             compareDate:vm.search.dateFrom:'after' |
                             compareDate:vm.search.dateTo:'before' |
                             attachments:vm.search.attachments |
                             orderBy:[(vm.reverse?'':'-')+'date', 'id'] |
-                            limitTo:8)"
+                            limitTo:20)"
                treatmentlist="vm.treatments" user="vm.user"></treatment>
+
+    <div class="col-xs-12 centered" ng-hide="vm.treatmentCount() == vm.treatments.length || !vm.treatments" ng-cloak>
+        <div class="panel">
+            <div class="panel-body">
+                <div class="btn-group">
+                    <a href class="btn" ng-class="'btn-default'" ng-click="vm.loadNext()" ng-bind="'Mehr laden'"></a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- Placed at the end of the document so the pages load faster -->
