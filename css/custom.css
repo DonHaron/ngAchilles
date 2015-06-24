@@ -804,8 +804,15 @@ h5.list-group-item.preset {
     padding-right: 1px;
 }
 
-.treatment-column select.form-control {
+.treatment-column .form-control {
     height: 30px;
+}
+
+.treatment-column .read-only-content {
+    height: auto;
+    min-height: 30px;
+    padding: 3px 6px;
+    background-color: rgba(250, 250, 250, 0.9);
 }
 
 .placeholder-text::before {

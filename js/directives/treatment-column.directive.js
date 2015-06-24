@@ -6,21 +6,30 @@
         .module('achilles')
         .directive('treatmentColumn', treatmentColumn);
 
-    treatmentColumn.$inject = ['$http', 'urls', '$timeout', '$compile', 'CurrentFocus', 'Locking', 'Treatment', 'TreatmentRow'];
+    treatmentColumn.$inject = ['$timeout', '$compile', 'CurrentFocus', 'Locking', 'Treatment', 'TreatmentRow'];
 
-    function treatmentColumn($http, urls, $timeout, $compile, CurrentFocus, Locking, Treatment, TreatmentRow) {
+    function treatmentColumn($timeout, $compile, CurrentFocus, Locking, Treatment, TreatmentRow) {
         var templates = {
-            editable: '<div ng-class="columnClass" class="treatment-column" catalog-prompt>' +
+            wysiwyg: '<div ng-class="::columnClass" class="treatment-column" catalog-prompt>' +
                 '<div class="form-group">' +
-                '<div ng-model="column.content" placeholder="{{column.placeholder}}" ta-disabled="readonly()" text-angular ta-target-toolbars="toolbar-{{treatment.id}}-{{type.id}}"></div>' +
+                '<div ng-model="column.content" placeholder="{{::column.placeholder}}" ta-disabled="::readonly()" text-angular ta-target-toolbars="toolbar-{{::treatment.id}}-{{::type.id}}"></div>' +
                 '</div>' +
                 '</div>',
-            dropdown: '<div ng-class="columnClass" class="treatment-column">' +
+            input: '<div ng-class="::columnClass" class="treatment-column" catalog-prompt>' +
+                '<div class="form-group">' +
+                '<input ng-model="column.content" placeholder="{{::column.placeholder}}" class="form-control"></div>' +
+                '</div>' +
+                '</div>',
+            dropdown: '<div ng-class="::columnClass" class="treatment-column">' +
                 '<div class="form-group">' +
                 '<select class="form-control" ng-model="column.content" ng-options="option as option for option in column.options"></select>' +
                 '</div>' +
                 '</div>',
-            readonly: '<div ng-class="columnClass"><p ng-bind-html="readonlyContent" class="read-only-content"></p></div>'
+            readonly: '<div ng-class="::columnClass" class="treatment-column">' +
+                '<div class="form-group">' +
+                '<div ng-bind-html="::readonlyContent" class="read-only-content form-control"></div>' +
+                '</div>' +
+                '</div>'
         };
 
         var directive = {
@@ -47,12 +56,18 @@
 
         return directive;
 
-        function getTemplate(editable, options) {
-            if(editable !== 'true'){
+        function getTemplate(editable, column) {
+            if (editable !== 'true') {
                 return templates.readonly;
-            }else{
+            } else {
                 // if there is an options array, the input should become a dropdown
-                return angular.isDefined(options) ? templates.dropdown : templates.editable;
+                if (angular.isDefined(column.options)) {
+                    return templates.dropdown;
+                }
+                if (column.wysiwyg) {
+                    return templates.wysiwyg;
+                }
+                return  templates.input;
             }
         }
 
@@ -62,15 +77,17 @@
             scope.columnClass = 'col-xs-' + attrs.width;
 
             element.on('blur', '.ta-bind, .form-control', blur);
-            element.on('keydown', '.ta-bind', keydown);
-            element.on('focus', '.ta-bind', focus);
-            element.on('click', '.ta-bind', click);
-            element.on('keyup', '.ta-bind', keyup);
+            element.on('keydown', '.ta-bind, .form-control', keydown);
+            element.on('focus', '.ta-bind, .form-control', focus);
+            element.on('click', '.ta-bind, .form-control', click);
+            element.on('keyup', '.ta-bind, .form-control', keyup);
             element.on('focusout', focusout);
-            attrs.$observe("editable", setTemplate);
+            attrs.$observe("editable", function(value){
+                setTemplate(value, scope.column);
+            });
 
             // change the template if the 'editable' attribute changes
-            setTemplate(attrs.editable);
+            setTemplate(attrs.editable, scope.column);
 
             scope.$watch(CurrentFocus.getNewlyFocusedRow, function (val) {
                 if (val && scope.row.id == val.id) {
@@ -81,12 +98,14 @@
 //                        //setTemplate(true);
 //                        //scope.$apply();
 //                    }
+
+                    //todo: maybe add .form-control here
                     var input = element.find('.ta-bind:not(.ta-readonly)');
                     input.eq(0).focus();
                     var node = getAsteriskNode(input);
                     var currentCursor = CurrentFocus.getCurrentCursor();
                     var nextAsteriskPosition = findNextAsteriskPosition(input, currentCursor);
-                    if (nextAsteriskPosition>=0) {
+                    if (nextAsteriskPosition >= 0) {
                         var range = document.createRange();
                         range.setStart(node, nextAsteriskPosition);
                         range.setEnd(node, nextAsteriskPosition + 1);
@@ -98,8 +117,8 @@
                 }
             });
 
-            function setTemplate(editable) {
-                element.html(getTemplate(editable, scope.column.options)).show();
+            function setTemplate(editable, column) {
+                element.html(getTemplate(editable, column)).show();
                 $compile(element.contents())(scope);
             }
 
@@ -112,7 +131,7 @@
 
                 $timeout(function () {
                     scope.entry.focused = false;
-                },150);
+                }, 150);
 
                 $timeout.cancel(promise);
             }
@@ -127,10 +146,10 @@
                 // Ctrl + Shift + Backspace
                 if (e.ctrlKey && e.shiftKey && e.which == 8) {
                     //see if there is a previous textarea element in the same entry. If there is, focus on it
-                    var prevRow = element.parents('.row').prev().find('.ta-bind:not(:disabled)');
-                    var nextRow = element.parents('.row').next().find('.ta-bind:not(:disabled)');
-                    var prevEntry = element.parents('treatment-entry').prev().find('.ta-bind:not(:disabled)');
-                    var nextEntry = element.parents('treatment-entry').next().find('.ta-bind:not(:disabled)');
+                    var prevRow = element.parents('.row').prev().find('.ta-bind:not(:disabled), .form-control:not(:disabled)');
+                    var nextRow = element.parents('.row').next().find('.ta-bind:not(:disabled), .form-control:not(:disabled)');
+                    var prevEntry = element.parents('treatment-entry').prev().find('.ta-bind:not(:disabled), .form-control:not(:disabled)');
+                    var nextEntry = element.parents('treatment-entry').next().find('.ta-bind:not(:disabled), .form-control:not(:disabled)');
                     $timeout(function () {
                         if (prevRow.length) {
                             prevRow.eq(0).focus();
@@ -143,10 +162,10 @@
                         }
                     }, 150);
                     entryCtrl.removeRow(scope.row, scope.entry, scope.treatment.entries);
-                // Escape
-                } else if(e.keyCode == 27){
+                    // Escape
+                } else if (e.keyCode == 27) {
                     entryCtrl.showCatalog = false;
-                }else
+                } else
                 // Ctrl + Enter
                 if (e.ctrlKey && e.which == 13) {
                     // save the current row
@@ -161,14 +180,14 @@
             }
 
             // hide the catalog when losing focus
-            function focusout(){
-                $timeout(function(){
+            function focusout() {
+                $timeout(function () {
                     entryCtrl.showCatalog = false;
                 }, 150);
             }
 
-            function keyup(e){
-                if(isModifyingInput(e) && e.which != 13 ){ // excude enter key
+            function keyup(e) {
+                if (isModifyingInput(e) && e.which != 13) { // exclude enter key
                     entryCtrl.lookupCatalogEntries(scope.column.content.replace(/<[^>]*>/gm, ''), scope.row, scope.column);
                 }
                 CurrentFocus.setCurrentCursor();
@@ -203,19 +222,19 @@
                     scope.warning.displayed = true;
                 }
 
-                $timeout(function(){
+                $timeout(function () {
                     CurrentFocus.setCurrentCursor();
-                },50);
+                }, 50);
             }
 
-            function findNextAsteriskPosition(jElement, currentCursor){
+            function findNextAsteriskPosition(jElement, currentCursor) {
                 if (!jElement.length) {
                     return null;
                 }
                 var htmlElement = jElement[0];
                 var chars = htmlElement.innerHTML.replace(/<[^>]*>/, '').split('');
-                for(var i=currentCursor;i<chars.length;i++){
-                    if(chars[i]==='*'){
+                for (var i = currentCursor; i < chars.length; i++) {
+                    if (chars[i] === '*') {
                         return i;
                     }
                 }
@@ -247,8 +266,8 @@
                 return null;
             }
 
-            function recursiveGetAsteriskNodes(node, nodes){
-                for(var i = 0; i < node.childNodes.length; i++){
+            function recursiveGetAsteriskNodes(node, nodes) {
+                for (var i = 0; i < node.childNodes.length; i++) {
                     var currentNode = node.childNodes[i];
                     if (currentNode.nodeType == 3) {
                         if (currentNode.nodeValue.indexOf('*') >= 0) {

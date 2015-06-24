@@ -1,6 +1,6 @@
-<div class="col-xs-12 treatment mandator-{{treatment.mandator}}"
-     ng-class="{secondary: !treatment.isMainTreatment, closed: treatment.closed || treatment.billed}" tabindex="-1">
-<div class="panel" ng-class="treatment.type=='success' ? 'panel-success' : 'panel-default'">
+<div class="col-xs-12 treatment mandator-::{{treatment.mandator}}"
+     ng-class="::{secondary: !treatment.isMainTreatment, closed: treatment.closed || treatment.billed}" tabindex="-1">
+<div class="panel" ng-class="::treatment.type=='success' ? 'panel-success' : 'panel-default'">
 <div class="panel-heading clearfix">
 <div class="row">
 <div class="col-xs-4">
@@ -8,20 +8,20 @@
         <!--
         TODO: change the fixed timezone here to a dynamic one once the backend supports this (4D doesn't yet)
         -->
-        <span class="heading-label" ng-show="treatment.isMainTreatment ">{{treatment.date | date:'EEE dd.MM.yyyy HH:mm':'UTC'}}</span>
+        <span class="heading-label" ng-show="::treatment.isMainTreatment ">{{::treatment.date | date:'EEE dd.MM.yyyy HH:mm':'UTC'}}</span>
         <a class="btn btn-default btn-icon dropdown-toggle btn-treatment-settings" dropdown-toggle>
             <i class="fa fa-cog"></i>
         </a>
         <ul class="dropdown-menu">
             <li role="presentation"
-                ng-if="(treatment.isMandatorTreatment && !treatment.billed && !treatment.closed && user.mandator.id == treatment.mandator)
+                ng-if="::(treatment.isMandatorTreatment && !treatment.billed && !treatment.closed && user.mandator.id == treatment.mandator)
                          || (!treatment.isMandatorTreatment && user.token == treatment.userToken)">
                 <a role="menuitem"
-                   ng-href="{{dc.baseUrl}}set/treatment/{{treatment.id}}">Behandlung
+                   ng-href="{{::dc.baseUrl}}set/treatment/{{::treatment.id}}">Behandlung
                     einstellen</a>
             </li>
             <li role="presentation"
-                ng-if="(treatment.isMandatorTreatment && !treatment.hasLaboratory && !treatment.hasDocument && !treatment.hasDisability
+                ng-if="::(treatment.isMandatorTreatment && !treatment.hasLaboratory && !treatment.hasDocument && !treatment.hasDisability
                     && !treatment.hasBiometric && !treatment.hasService && !treatment.hasMedication && user.mandator.id == treatment.mandator)
                     || (!treatment.isMandatorTreatment && user.token == treatment.userToken)">
                 <a role="menuitem" href
@@ -29,7 +29,7 @@
                     löschen</a>
             </li>
             <li role="presentation"
-                ng-if="(treatment.isMandatorTreatment && user.mandator.id == treatment.mandator && !treatment.hasService && !treatment.billed)
+                ng-if="::(treatment.isMandatorTreatment && user.mandator.id == treatment.mandator && !treatment.hasService && !treatment.billed)
                     || (!treatment.isMandatorTreatment && user.token == treatment.userToken)">
                 <a role="menuitem" href
                    ng-click="dc.changeStatus(treatment)">Behandlung <span
@@ -41,18 +41,18 @@
                                        ng-click="dc.addTreatment(treatment, true, true, treatments)">Neue
                 Behandlung</a>
             </li>
-            <li role="presentation" ng-if="treatment.isMandatorTreatment"><a role="menuitem" href
+            <li role="presentation" ng-if="::treatment.isMandatorTreatment"><a role="menuitem" href
                                                                              ng-click="dc.copyTreatment(treatment, treatments)">Neue
                 Behandlung (Kopie)</a></li>
             <li role="presentation"><a role="menuitem" href
                                        ng-click="dc.addTreatment(treatment, true, false, treatments)">Neue
                 Nebenbehandlung</a></li>
             <li role="presentation" class="divider"></li>
-            <li role="presentation" ng-if="!user.isMandator"><a role="menuitem" href
+            <li role="presentation" ng-if="::!user.isMandator"><a role="menuitem" href
                                                                 ng-click="dc.addTreatment(treatment, false, true, treatments)">Neue
                 Nichtmandanten-Behandlung</a>
             </li>
-            <li role="presentation" ng-if="!user.isMandator"><a role="menuitem" href
+            <li role="presentation" ng-if="::!user.isMandator"><a role="menuitem" href
                                                                 ng-click="dc.addTreatment(treatment, false, false, treatments)">Neue
                 Nichtmandanten-Nebenbehandlung</a>
             </li>
@@ -67,23 +67,23 @@
 
 
 <div class="col-xs-1">
-    <span class="heading-label treatment-user">{{treatment.userToken}}</span>
+    <span class="heading-label treatment-user">{{::treatment.userToken}}</span>
 </div>
 
 
 <div class="col-xs-2">
     <!--<a class="btn btn-default dropdown-toggle">&nbsp;</a>-->
-    <div class="dropdown" toggle-focus dropdown ng-show="!user.isMandator || user.mandator.id == treatment.mandator">
+    <div class="dropdown" toggle-focus dropdown ng-show="::!user.isMandator || user.mandator.id == treatment.mandator">
         <a class="btn btn-default dropdown-toggle" dropdown-toggle>
             {{ treatment.subject }} &nbsp;
         </a>
         <ul class="dropdown-menu">
             <li ng-repeat="subject in dc.subjects">
-                <a href ng-click="dc.changeSubject(treatment, subject)">{{subject}}</a>
+                <a href ng-click="dc.changeSubject(treatment, subject)">{{::subject}}</a>
             </li>
         </ul>
     </div>
-    <div ng-hide="!user.isMandator || user.mandator.id == treatment.mandator">
+    <div ng-hide="::!user.isMandator || user.mandator.id == treatment.mandator">
         <a class="btn btn-default">{{ treatment.subject }} &nbsp;</a>
     </div>
 </div>
@@ -110,78 +110,78 @@
                 && !treatment.hasService && treatment.invoiceCase.id"><a href ng-click="dc.removeCase(treatment)">Ohne
                 Fall</a></li>
             <li role="presentation" class="divider"></li>
-            <li><a ng-href="{{dc.baseUrl}}goto/case">Gehe zu Fälle & Garanten</a></li>
+            <li><a ng-href="{{::dc.baseUrl}}goto/case">Gehe zu Fälle & Garanten</a></li>
         </ul>
     </div>
 </div>
 
-<div class="col-xs-3 treatment-relations" ng-show="treatment.isMandatorTreatment">
+<div class="col-xs-3 treatment-relations" ng-show="::treatment.isMandatorTreatment">
     <div class="pull-right">
         <div cass="row">
             <div class="dropdowns col-md-6 col-sm-12">
                 <div class="dropdown icon-dropdown" toggle-focus dropdown>
                     <a class="btn dropdown-toggle achilles-icon achilles-medication"
-                       ng-class="{'empty': !treatment.hasMedication}" dropdown-toggle>
+                       ng-class="::{'empty': !treatment.hasMedication}" dropdown-toggle>
                         &nbsp;
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li><a href>Medikamente</a></li>
                         <li role="presentation" class="divider"></li>
-                        <li ng-if="!treatment.billed && !treatment.closed && treatment.mandator == user.mandator.id">
-                            <a ng-href="{{dc.baseUrl}}treatment/{{treatment.id}}/drug/given/">Abgeben</a>
+                        <li ng-if="::!treatment.billed && !treatment.closed && treatment.mandator == user.mandator.id">
+                            <a ng-href="{{::dc.baseUrl}}treatment/{{::treatment.id}}/drug/given/">Abgeben</a>
                         </li>
-                        <li ng-if="treatment.mandator == user.mandator.id">
-                            <a ng-href="{{dc.baseUrl}}treatment/{{treatment.id}}/drug/prescription/">Rezept</a>
+                        <li ng-if="::treatment.mandator == user.mandator.id">
+                            <a ng-href="{{::dc.baseUrl}}treatment/{{::treatment.id}}/drug/prescription/">Rezept</a>
                         </li>
-                        <li ng-if="treatment.mandator == user.mandator.id">
-                            <a ng-href="{{dc.baseUrl}}treatment/{{treatment.id}}/drug/foreign/">Fremd</a></li>
+                        <li ng-if="::treatment.mandator == user.mandator.id">
+                            <a ng-href="{{::dc.baseUrl}}treatment/{{::treatment.id}}/drug/foreign/">Fremd</a></li>
                         <li role="presentation" class="divider"></li>
                         <li>
-                            <a ng-href="{{dc.baseUrl}}goto/drug/">Gehe zu Medi-Listen</a>
+                            <a ng-href="{{::dc.baseUrl}}goto/drug/">Gehe zu Medi-Listen</a>
                         </li>
                     </ul>
                 </div>
                 <div class="dropdown icon-dropdown" dropdown toggle-focus
                      on-toggle="dc.loadLaboratoryReports(open)">
                     <a class="btn dropdown-toggle achilles-icon achilles-laboratory"
-                       ng-class="{'empty': !treatment.hasLaboratory}" dropdown-toggle>
+                       ng-class="::{'empty': !treatment.hasLaboratory}" dropdown-toggle>
                         &nbsp;
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li><a href>Labor-Resultate</a></li>
                         <li role="presentation" class="divider" ng-show="dc.laboratoryReports.length"></li>
                         <li ng-repeat="laboratoryReport in dc.laboratoryReports"><a
-                                ng-href="{{dc.baseUrl}}set/laboratory/{{laboratoryReport.id}}/">{{laboratoryReport.name}}</a>
+                                ng-href="{{::dc.baseUrl}}set/laboratory/{{::laboratoryReport.id}}/">{{::laboratoryReport.name}}</a>
                         </li>
                         <li role="presentation" class="divider"></li>
-                        <li><a ng-href="{{dc.baseUrl}}goto/laboratory/">Gehe zu Labor</a></li>
+                        <li><a ng-href="{{::dc.baseUrl}}goto/laboratory/">Gehe zu Labor</a></li>
                     </ul>
                 </div>
                 <div class="dropdown icon-dropdown" dropdown toggle-focus on-toggle="dc.loadDocuments(open)">
                     <a class="btn dropdown-toggle achilles-icon achilles-document"
-                       ng-class="{'empty': !treatment.hasDocument}" dropdown-toggle>
+                       ng-class="::{'empty': !treatment.hasDocument}" dropdown-toggle>
                         &nbsp;
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li><a href>Briefe & Dokumente</a></li>
                         <li role="presentation" class="divider" ng-show="dc.documents.length"></li>
                         <li ng-repeat="document in dc.documents"><a
-                                ng-href="{{dc.baseUrl}}set/document/{{document.id}}/">{{document.name}}</a></li>
+                                ng-href="{{::dc.baseUrl}}set/document/{{::document.id}}/">{{::document.name}}</a></li>
                         <li role="presentation" class="divider"></li>
-                        <li ng-if="treatment.mandator == user.mandator.id">
-                            <a ng-href="{{dc.baseUrl}}treatment/{{treatment.id}}/document/letterto/">Neuer Brief
+                        <li ng-if="::treatment.mandator == user.mandator.id">
+                            <a ng-href="{{::dc.baseUrl}}treatment/{{::treatment.id}}/document/letterto/">Neuer Brief
                                 an</a>
                         </li>
-                        <li ng-if="treatment.mandator == user.mandator.id">
-                            <a ng-href="{{dc.baseUrl}}treatment/{{treatment.id}}/document/letterfrom/">Neuer
+                        <li ng-if="::treatment.mandator == user.mandator.id">
+                            <a ng-href="{{::dc.baseUrl}}treatment/{{::treatment.id}}/document/letterfrom/">Neuer
                                 Brief von</a>
                         </li>
-                        <li ng-if="treatment.mandator == user.mandator.id">
-                            <a ng-href="{{dc.baseUrl}}treatment/{{treatment.id}}/document/document/">Neues
+                        <li ng-if="::treatment.mandator == user.mandator.id">
+                            <a ng-href="{{::dc.baseUrl}}treatment/{{::treatment.id}}/document/document/">Neues
                                 Dokument</a>
                         </li>
                         <li role="presentation" class="divider"></li>
-                        <li><a ng-href="{{dc.baseUrl}}goto/document/">Gehe zu Briefe & Dokumente</a></li>
+                        <li><a ng-href="{{::dc.baseUrl}}goto/document/">Gehe zu Briefe & Dokumente</a></li>
                     </ul>
                 </div>
             </div>
@@ -189,62 +189,62 @@
                 <div class="dropdown icon-dropdown" dropdown toggle-focus
                      on-toggle="treatment.mandator == user.mandator.id && dc.loadDisability(open)">
                     <a class="btn dropdown-toggle achilles-icon achilles-auf"
-                       ng-class="{'empty': !treatment.hasDisability}" dropdown-toggle>
+                       ng-class="::{'empty': !treatment.hasDisability}" dropdown-toggle>
                         &nbsp;
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-right" ng-if="treatment.mandator == user.mandator.id">
+                    <ul class="dropdown-menu dropdown-menu-right" ng-if="::treatment.mandator == user.mandator.id">
                         <li><a href>Arbeitsunfähigkeit</a></li>
-                        <li role="presentation" class="divider" ng-show="dc.disabilityCertificates.length"></li>
+                        <li role="presentation" class="divider" ng-show="::dc.disabilityCertificates.length"></li>
                         <li ng-repeat="disabilityCertificate in dc.disabilityCertificates">
-                            <a ng-href="{{dc.baseUrl}}set/disability/{{disabilityCertificate.id}}/">{{disabilityCertificate.name}}</a>
+                            <a ng-href="{{::dc.baseUrl}}set/disability/{{::disabilityCertificate.id}}/">{{::disabilityCertificate.name}}</a>
                         </li>
                         <li role="presentation" class="divider"></li>
-                        <li><a ng-href="{{dc.baseUrl}}treatment/{{treatment.id}}/disability/">Neue
+                        <li><a ng-href="{{::dc.baseUrl}}treatment/{{::treatment.id}}/disability/">Neue
                             Arbeitsunfähigkeit</a></li>
                     </ul>
                 </div>
                 <div class="dropdown icon-dropdown" dropdown toggle-focus on-toggle="dc.loadBiometrics(open)">
                     <a class="btn dropdown-toggle achilles-icon achilles-biometric"
-                       ng-class="{'empty': !treatment.hasBiometric}" dropdown-toggle>
+                       ng-class="::{'empty': !treatment.hasBiometric}" dropdown-toggle>
                         &nbsp;
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li><a href>Biometrische Daten</a></li>
                         <li role="presentation" class="divider" ng-show="dc.biometrics.length"></li>
                         <li ng-repeat="biometric in dc.biometrics"><a
-                                ng-href="{{dc.baseUrl}}set/biometric/{{biometric.id}}/">{{biometric.name}}</a>
+                                ng-href="{{::dc.baseUrl}}set/biometric/{{::biometric.id}}/">{{::biometric.name}}</a>
                         </li>
                         <li role="presentation" class="divider"></li>
                         <li ng-if="treatment.mandator == user.mandator.id && !treatment.billed">
-                            <a ng-href="{{dc.baseUrl}}treatment/{{treatment.id}}/biometric/">Neue Biometrische
+                            <a ng-href="{{::dc.baseUrl}}treatment/{{::treatment.id}}/biometric/">Neue Biometrische
                                 Daten</a>
                         </li>
                         <li role="presentation" class="divider"></li>
-                        <li><a ng-href="{{dc.baseUrl}}goto/biometric/">Gehe zu Biometrische Daten</a></li>
+                        <li><a ng-href="{{::dc.baseUrl}}goto/biometric/">Gehe zu Biometrische Daten</a></li>
                     </ul>
                 </div>
                 <div class="dropdown icon-dropdown" toggle-focus dropdown>
                     <a class="btn dropdown-toggle achilles-icon achilles-benefit"
-                       ng-class="{'empty': !treatment.hasService}" dropdown-toggle>
+                       ng-class="::{'empty': !treatment.hasService}" dropdown-toggle>
                         &nbsp;
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li><a href>Leistungen</a></li>
                         <li role="presentation" class="divider"></li>
-                        <li ng-if="treatment.mandator == user.mandator.id && !treatment.billed && treatment.invoiceCase.id">
-                            <a ng-href="{{dc.baseUrl}}treatment/{{treatment.id}}/service/treatment/">Neue
+                        <li ng-if="::treatment.mandator == user.mandator.id && !treatment.billed && treatment.invoiceCase.id">
+                            <a ng-href="{{::dc.baseUrl}}treatment/{{::treatment.id}}/service/treatment/">Neue
                                 Leistungen zu Behandlung</a>
                         </li>
-                        <li ng-if="treatment.mandator == user.mandator.id && !treatment.billed && treatment.invoiceCase.id">
-                            <a ng-href="{{dc.baseUrl}}treatment/{{treatment.id}}/service/generic/">Neue
+                        <li ng-if="::treatment.mandator == user.mandator.id && !treatment.billed && treatment.invoiceCase.id">
+                            <a ng-href="{{::dc.baseUrl}}treatment/{{::treatment.id}}/service/generic/">Neue
                                 Leistungen</a>
                         </li>
-                        <li ng-if="treatment.mandator != user.mandator.id || treatment.billed">
-                            <a ng-href="{{dc.baseUrl}}show/service/{{treatment.id}}/">Leistungen zeigen</a>
+                        <li ng-if="::treatment.mandator != user.mandator.id || treatment.billed">
+                            <a ng-href="{{::dc.baseUrl}}show/service/{{::treatment.id}}/">Leistungen zeigen</a>
                         </li>
 
                         <li role="presentation" class="divider"></li>
-                        <li><a ng-href="{{dc.baseUrl}}goto/invoice/">Gehe zu Rechnungen</a></li>
+                        <li><a ng-href="{{::dc.baseUrl}}goto/invoice/">Gehe zu Rechnungen</a></li>
                     </ul>
                 </div>
             </div>
@@ -257,7 +257,7 @@
 </div>
 <div class="panel-body">
     <ul class="list-group">
-        <treatment-entry entry="entry" editable="{{editable}}" treatment="treatment"
+        <treatment-entry entry="entry" editable="{{::editable}}" treatment="treatment"
                          ng-repeat="entry in treatment.entries | orderBy:'type.name'"
                          permission-to-edit="dc.permissionToEdit"
                          warning="dc.warning">
@@ -279,8 +279,8 @@
                                        ng-click="dc.addEntry(treatment.id, type, treatment.entries); search.term=''"
                                        ng-repeat="type in dc.types | filter:search.term"
                                        class="list-group-item entry-type"
-                                            ng-class="'level-' + (type.level ? type.level : '1' ) ">
-                                        {{type.name}}
+                                            ng-class="::'level-' + (type.level ? type.level : '1' ) ">
+                                        {{::type.name}}
                                     </a>
                                     <hr>
                                     <h5 class="list-group-item preset">Strukturen</h5>
@@ -288,7 +288,7 @@
                                        class="list-group-item preset"
                                        ng-click="dc.addPreset(treatment.id, preset, treatments); search.term=''"
                                        ng-repeat="preset in dc.presets | filter:search.term">
-                                        {{preset.name}}
+                                        {{::preset.name}}
                                     </a>
                                 </div>
                             </div>

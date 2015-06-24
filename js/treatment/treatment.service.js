@@ -147,6 +147,7 @@
         }
 
         function load() {
+            console.time('load');
             return $http
                 .get(urls.treatmentList(achillesConfig.patient), {
                     spinner: true
@@ -154,11 +155,14 @@
                 .then(function (response) {
                     next = response.data.urlnext;
                     allCount = response.data.count;
+                    console.timeEnd('load');
                     return response.data.treatments;
                 });
         }
 
         function loadNext(){
+            console.time('loadNext');
+
             if(!angular.isDefined(next)){
                 var deferred = $q.defer();
                 deferred.reject();
@@ -170,6 +174,7 @@
                 .then(function(response){
                     next = response.data.urlnext;
                     allCount = response.data.count;
+                    console.timeEnd('loadNext');
                     return response.data.treatments;
                 });
         }

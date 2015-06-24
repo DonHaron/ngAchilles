@@ -51,7 +51,7 @@
 
     <preset-settings-widget></preset-settings-widget>
 
-    <treatment treatment="treatment" editable="{{$index<5}}"
+    <treatment treatment="treatment" editable="{{$index<3}}"
                ng-repeat="treatment in vm.filteredTreatments = (vm.treatments |
                             filter:vm.search.text |
                             filter:{subject:vm.search.subject} |
@@ -61,7 +61,7 @@
                             attachments:vm.search.attachments |
                             orderBy:[(vm.reverse?'':'-')+'date', 'id'] |
                             limitTo:20)"
-               treatmentlist="vm.treatments" user="vm.user"></treatment>
+               treatmentlist="vm.treatments" user="::vm.user"></treatment>
 
     <div class="col-xs-12 centered" ng-hide="vm.treatmentCount() == vm.treatments.length || !vm.treatments" ng-cloak>
         <div class="panel">

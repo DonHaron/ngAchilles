@@ -34,7 +34,7 @@
                     <treatment-column ng-repeat="column in row.columns"
                                       column="column"
                                       width="{{column.width}}" unique-id="{{row.id}}-{{$index}}"
-                                      editable="{{editable}}" treatment="treatment" warning="warning"
+                                      editable="{{editable && !column.readonly}}" treatment="treatment" warning="warning"
                                       type="entry.type" entry="entry"
                                       readonly="column.readonly || !permissionToEdit()" row="row"></treatment-column>
                     <div class="catalog-list"
