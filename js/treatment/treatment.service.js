@@ -6,8 +6,11 @@
         .factory('Treatment', Treatment);
 
 
-    Treatment.$inject = ['$http', '$modal', '$timeout', 'urls', 'User'];
-    function Treatment($http, $modal, $timeout, urls, User) {
+    Treatment.$inject = ['$http', '$q', '$modal', 'urls', 'User'];
+    function Treatment($http, $q, $modal, urls, User) {
+        var next,
+            allCount = 0;
+
         var service = {
             addEntry: addEntry,
             addPreset: addPreset,
@@ -15,8 +18,10 @@
             copyTreatment: copyTreatment,
             changeStatus: changeStatus,
             changeSubject: changeSubject,
+            count: count,
             deleteTreatment: deleteTreatment,
             load: load,
+            loadNext: loadNext,
             openReport: openReport,
             removeCase: removeCase,
             removeEntry: removeEntry,
@@ -96,6 +101,10 @@
             });
         }
 
+        function count(){
+            return allCount;
+        }
+
         function deleteTreatment(treatment, treatments) {
             var modalInstance = $modal.open({
                 templateUrl: '../js/templates/delete-modal.tpl.html',
@@ -143,7 +152,25 @@
                     spinner: true
                 })
                 .then(function (response) {
-                    return response.data;
+                    next = response.data.urlnext;
+                    allCount = response.data.count;
+                    return response.data.treatments;
+                });
+        }
+
+        function loadNext(){
+            if(!angular.isDefined(next)){
+                var deferred = $q.defer();
+                deferred.reject();
+                return deferred.promise;
+            }
+            return $http.get(urls.baseUrl() + next,{
+                spinner: true
+            })
+                .then(function(response){
+                    next = response.data.urlnext;
+                    allCount = response.data.count;
+                    return response.data.treatments;
                 });
         }
 

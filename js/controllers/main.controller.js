@@ -9,13 +9,18 @@
 
     function MainController($scope, urls, User, Treatment, TreatmentPermission) {
         var vm = this;
+
         vm.baseUrl = urls.baseUrl();
-        vm.entries = [];
         vm.loadEntries = loadEntries;
-        //vm.process = achillesConfig.process;
+        vm.loadNext = loadNext;
+        vm.treatmentCount = Treatment.count;
         vm.patient = achillesConfig.patient;
+
+        vm.checkEditPermission = TreatmentPermission.checkEditPermission;
         vm.reverse = false;
+
         vm.search = {};
+        vm.entries = [];
         vm.marginOptions = [
             {class: 'large-margins', label: 'Grosse Abstände'},
             {class: 'small-margins', label: 'Kleine Abstände'}
@@ -25,7 +30,6 @@
             {class: 'medium-fonts', label: 'Mittel'},
             {class: 'small-fonts', label: 'Klein'},
         ];
-        vm.checkEditPermission = TreatmentPermission.checkEditPermission;
 
         vm.loadEntries();
         loadUser();
@@ -42,6 +46,13 @@
             Treatment.load().then(function(treatments){
                 vm.treatments = treatments;
             });
+        }
+
+        function loadNext(){
+            Treatment.loadNext()
+                .then(function(treatments){
+                    vm.treatments = vm.treatments.concat(treatments);
+                });
         }
 
         function loadUser() {

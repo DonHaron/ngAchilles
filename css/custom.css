@@ -2,6 +2,10 @@
     color: black;
 }
 
+.centered {
+    text-align: center;
+}
+
 #loading-overlay {
     position: fixed;
     width: 100%;
