@@ -8,7 +8,8 @@
     TreatmentEntry.$inject = ['$http', 'urls', 'Treatment'];
     function TreatmentEntry($http, urls, Treatment){
         var service = {
-            removeRow: removeRow
+            removeRow: removeRow,
+            replace: replace
         };
 
         return service;
@@ -30,6 +31,13 @@
                         Treatment.removeEntry(entry, entries);
                     }
                 });
+        }
+
+        function replace(entry, newEntry){
+            console.log('old', entry);
+            console.log('new', newEntry);
+            //entry.rows = newEntry.rows;
+            angular.copy(newEntry, entry);
         }
     }
 })();

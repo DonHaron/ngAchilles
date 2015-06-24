@@ -12,7 +12,7 @@
         var templates = {
             wysiwyg: '<div ng-class="::columnClass" class="treatment-column" catalog-prompt>' +
                 '<div class="form-group">' +
-                '<div ng-model="column.content" placeholder="{{::column.placeholder}}" ta-disabled="::readonly()" text-angular ta-target-toolbars="toolbar-{{::treatment.id}}-{{::type.id}}"></div>' +
+                '<div ng-model="column.content" placeholder="{{::column.placeholder}}" ta-disabled="readonly()" text-angular ta-target-toolbars="toolbar-{{::treatment.id}}-{{::type.id}}"></div>' +
                 '</div>' +
                 '</div>',
             input: '<div ng-class="::columnClass" class="treatment-column" catalog-prompt>' +
@@ -77,12 +77,13 @@
             scope.columnClass = 'col-xs-' + attrs.width;
 
             element.on('blur', '.ta-bind, .form-control', blur);
+            element.on('change', 'select.form-control', blur);
             element.on('keydown', '.ta-bind, .form-control', keydown);
             element.on('focus', '.ta-bind, .form-control', focus);
             element.on('click', '.ta-bind, .form-control', click);
             element.on('keyup', '.ta-bind, .form-control', keyup);
             element.on('focusout', focusout);
-            attrs.$observe("editable", function(value){
+            attrs.$observe("editable", function (value) {
                 setTemplate(value, scope.column);
             });
 
@@ -210,9 +211,16 @@
                     Locking.check(scope.row);
                 }, 450);
 
+
                 $timeout(function () {
                     scope.entry.focused = true;
+                    if(scope.column.wysiwyg){
+                        scope.entry.showToolbar = true;
+                    }else{
+                        scope.entry.showToolbar = false;
+                    }
                 }, 250);
+
             }
 
             function click(e) {

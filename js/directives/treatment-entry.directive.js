@@ -58,12 +58,14 @@
         setCatalog();
         loadUser();
 
-        function chooseCatalogEntry(catalogEntry, row){
+        function chooseCatalogEntry(catalogEntry, row, entry){
             TreatmentRow.cancelSave();
-            CatalogEntry.choose(catalogEntry, row).then(function(newRow){
+            CatalogEntry.choose(catalogEntry, row).then(function(newEntry){
                 // using timeout to update scope
                 $timeout(function(){
-                    TreatmentRow.replace(row, newRow);
+                    console.log(newEntry);
+                    TreatmentEntry.replace(entry, newEntry);
+                    //TreatmentRow.replace(row, newRow);
                 });
             });
             // todo: send the chosen entry to the server and wait for an answer, then replace the current row with the

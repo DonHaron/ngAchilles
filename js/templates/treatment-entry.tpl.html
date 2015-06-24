@@ -8,7 +8,7 @@
             </div>
         </div>
     </div>
-    <div class="editor-toolbar" ng-show="entry.focused">
+    <div class="editor-toolbar" ng-show="entry.focused && entry.showToolbar">
         <div class="row">
             <div class="col-xs-12">
                 <text-angular-toolbar name="toolbar-{{entry.treatmentId}}-{{entry.type.id}}"></text-angular-toolbar>
@@ -33,7 +33,7 @@
                           ng-show="row.locked">Gesperrt von {{row.lockedBy.name}}</span>
                     <treatment-column ng-repeat="column in row.columns"
                                       column="column"
-                                      width="{{column.width}}" unique-id="{{row.id}}-{{$index}}"
+                                      width="{{column.width}}"
                                       editable="{{editable && !column.readonly}}" treatment="treatment" warning="warning"
                                       type="entry.type" entry="entry"
                                       readonly="column.readonly || !permissionToEdit()" row="row"></treatment-column>
@@ -41,7 +41,7 @@
                          ng-if="dc.catalog.entries.length && dc.catalog.id == row.id && dc.showCatalog">
                         <div class="list-group">
                             <a class="list-group-item catalog-entry"
-                               href ng-click="dc.chooseCatalogEntry(catalogEntry, row)"
+                               href ng-click="dc.chooseCatalogEntry(catalogEntry, row, entry)"
                                ng-repeat="catalogEntry in dc.catalog.entries"
                                     >
                                 <div class="row">
