@@ -64,6 +64,7 @@
                 // using timeout to update scope
                 $timeout(function(){
                     console.log(newEntry);
+                    dc.showCatalog = false;
                     TreatmentEntry.replace(entry, newEntry);
                     //TreatmentRow.replace(row, newRow);
                 });

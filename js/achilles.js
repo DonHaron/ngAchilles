@@ -7,7 +7,6 @@
                 'ngResource',
                 'ngSanitize',
                 'ui.bootstrap',
-                'rt.select2',
                 'textAngular',
                 'monospaced.elastic'
             ]);

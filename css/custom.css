@@ -812,6 +812,7 @@ h5.list-group-item.preset {
     min-height: 30px;
     height: auto;
     padding: 3px 6px;
+    resize: none;
 }
 
 .treatment-column .read-only-content {

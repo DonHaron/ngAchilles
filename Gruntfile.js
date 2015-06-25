@@ -6,7 +6,6 @@ module.exports = function (grunt) {
                 jsVendor: [
                     'bower_components/jquery/dist/jquery.js',
                     'bower_components/angular/angular.js',
-                    'bower_components/select2/select2.js',
                     'bower_components/angular-resource/angular-resource.js',
                     'bower_components/angular-sanitize/angular-sanitize.js',
                     'bower_components/ngLocale/angular-locale_de-ch.js',
@@ -16,7 +15,6 @@ module.exports = function (grunt) {
                     'bower_components/textAngular/src/textAngularSetup.js',
                     'bower_components/textAngular/src/textAngular.js',
                     'bower_components/textAngular/src/textAngular-sanitize.js',
-                    'bower_components/angular-select2/dist/angular-select2.min.js',
                     'bower_components/rangy/rangy-core.js',
                     'bower_components/rangy/rangy-selectionsaverestore.js',
                     'bower_components/jquery-ui/jquery-ui.js',
