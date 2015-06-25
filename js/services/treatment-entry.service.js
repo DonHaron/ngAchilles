@@ -34,9 +34,6 @@
         }
 
         function replace(entry, newEntry){
-            console.log('old', entry);
-            console.log('new', newEntry);
-            //entry.rows = newEntry.rows;
             angular.copy(newEntry, entry);
         }
     }
