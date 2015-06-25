@@ -45,8 +45,8 @@
                                ng-repeat="catalogEntry in dc.catalog.entries"
                                     >
                                 <div class="row">
-                                    <div ng-repeat="column in catalogEntry.cols" ng-class="'col-xs-' + column.width "
-                                         ng-bind-html="column.trustedContent"></div>
+                                    <div ng-repeat="column in catalogEntry.cols" ng-class="::'col-xs-' + column.width "
+                                         ng-bind-html="::column.trustedContent"></div>
                                 </div>
                             </a>
                         </div>
