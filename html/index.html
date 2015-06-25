@@ -54,6 +54,7 @@
                ng-repeat="treatment in vm.filteredTreatments = (vm.treatments |
                             filter:vm.search.text |
                             filter:{subject:vm.search.subject} |
+                            filter:{userToken:vm.search.user} |
                             invoiceCase:vm.search.case |
                             compareDate:vm.search.dateFrom:'after' |
                             compareDate:vm.search.dateTo:'before' |

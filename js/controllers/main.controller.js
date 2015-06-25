@@ -52,7 +52,7 @@
         function loadNext(){
             Treatment.loadNext()
                 .then(function(treatments){
-                    vm.treatments = vm.treatments.concat(treatments);
+                    vm.treatments = treatments;
                 });
         }
 

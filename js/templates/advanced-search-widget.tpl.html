@@ -154,7 +154,8 @@
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label class="control-label">Nach Mandant</label>
-                        <select ng-model="search.case" class="form-control"></select>
+                        <select ng-model="search.user" class="form-control"
+                                ng-options="user for user in dc.users"></select>
                     </div>
                 </div>
             </div>

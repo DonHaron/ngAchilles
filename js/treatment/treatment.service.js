@@ -10,12 +10,14 @@
     function Treatment($http, $q, $modal, urls, User) {
         var next,
             allCount = 0,
-            nextCaption = '';
+            nextCaption = '',
+            treatments = [];
 
         var service = {
             addEntry: addEntry,
             addPreset: addPreset,
             addTreatment: addTreatment,
+            all: all,
             copyTreatment: copyTreatment,
             changeStatus: changeStatus,
             changeSubject: changeSubject,
@@ -92,6 +94,10 @@
             });
         }
 
+        function all(){
+            return treatments;
+        }
+
         function copyTreatment(treatment, treatments) {
             $http.post(urls.copyTreatment(), {
                 //process: achillesConfig.process,
@@ -162,8 +168,9 @@
                     next = response.data.urlnext;
                     nextCaption = response.data.buttonCaption;
                     allCount = response.data.count;
+                    treatments = response.data.treatments;
                     console.timeEnd('load');
-                    return response.data.treatments;
+                    return treatments;
                 });
         }
 
@@ -183,8 +190,9 @@
                     next = response.data.urlnext;
                     nextCaption = response.data.buttonCaption;
                     allCount = response.data.count;
+                    treatments = treatments.concat(response.data.treatments);
                     console.timeEnd('loadNext');
-                    return response.data.treatments;
+                    return treatments;
                 });
         }
 
