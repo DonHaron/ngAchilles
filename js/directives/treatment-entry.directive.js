@@ -93,6 +93,7 @@
                     .then(function(catalogEntries){
                         //console.log('returning now', catalogEntries.length);
                         console.timeEnd('lookup');
+                        dc.showCatalog = true;
                         setCatalog(row, catalogEntries);
                     });
             }, 350);
