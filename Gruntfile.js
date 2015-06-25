@@ -19,7 +19,8 @@ module.exports = function (grunt) {
                     'bower_components/angular-select2/dist/angular-select2.min.js',
                     'bower_components/rangy/rangy-core.js',
                     'bower_components/rangy/rangy-selectionsaverestore.js',
-                    'bower_components/jquery-ui/jquery-ui.js'
+                    'bower_components/jquery-ui/jquery-ui.js',
+                    'bower_components/angular-elastic/elastic.js'
                 ],
                 jsAchilles: [
                     //'config/config.js',

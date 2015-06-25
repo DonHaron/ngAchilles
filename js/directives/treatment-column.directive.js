@@ -17,7 +17,7 @@
                 '</div>',
             input: '<div ng-class="::columnClass" class="treatment-column" catalog-prompt>' +
                 '<div class="form-group">' +
-                '<input ng-model="column.content" placeholder="{{::column.placeholder}}" class="form-control"></div>' +
+                '<textarea rows="1" msd-elastic ng-model="column.content" placeholder="{{::column.placeholder}}" class="form-control"></textarea>' +
                 '</div>' +
                 '</div>',
             dropdown: '<div ng-class="::columnClass" class="treatment-column">' +

@@ -808,6 +808,12 @@ h5.list-group-item.preset {
     height: 30px;
 }
 
+.treatment-column textarea.form-control{
+    min-height: 30px;
+    height: auto;
+    padding: 3px 6px;
+}
+
 .treatment-column .read-only-content {
     height: auto;
     min-height: 30px;
