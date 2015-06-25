@@ -13,7 +13,7 @@
             <a href class="btn btn-default" ng-click="dc.changeAll(dc.entryTypes, false)">Keine</a>
         </div>
 
-        <div class="list-group">
+        <div class="list-group" restricted-scroll>
             <a class="list-group-item" ng-click="dc.changeTypeStatus(type, undefined, $event)" ng-repeat="type in dc.entryTypes | orderBy:'name'" href>
                 <span class="checkmark"><i class="fa fa-check" ng-hide="type.hidden">&nbsp;</i></span> {{type.name}}
             </a>
