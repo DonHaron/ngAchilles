@@ -11,12 +11,18 @@
             deferred;
 
         var service = {
+            cancel: cancel,
             isVisible: isVisible,
             selectPreset: selectPreset,
             setPreset: setPreset
         };
 
         return service;
+
+        function cancel(){
+            deferred.reject();
+            visible = false;
+        }
 
         function isVisible(){
             return visible;
@@ -33,11 +39,6 @@
             deferred.resolve(preset);
             visible = false;
 
-        }
-
-        function cancel(){
-            deferred.reject();
-            visible = false;
         }
     }
 })();

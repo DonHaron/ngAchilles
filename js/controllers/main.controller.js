@@ -15,6 +15,7 @@
         vm.loadNext = loadNext;
         vm.treatmentCount = Treatment.count;
         vm.patient = achillesConfig.patient;
+        vm.getNextCaption = Treatment.getNextCaption;
 
         vm.checkEditPermission = TreatmentPermission.checkEditPermission;
         vm.reverse = false;

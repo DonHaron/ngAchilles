@@ -9,7 +9,8 @@
     Treatment.$inject = ['$http', '$q', '$modal', 'urls', 'User'];
     function Treatment($http, $q, $modal, urls, User) {
         var next,
-            allCount = 0;
+            allCount = 0,
+            nextCaption = '';
 
         var service = {
             addEntry: addEntry,
@@ -20,6 +21,7 @@
             changeSubject: changeSubject,
             count: count,
             deleteTreatment: deleteTreatment,
+            getNextCaption: getNextCaption,
             load: load,
             loadNext: loadNext,
             openReport: openReport,
@@ -146,6 +148,10 @@
             });
         }
 
+        function getNextCaption(){
+            return nextCaption;
+        }
+
         function load() {
             console.time('load');
             return $http
@@ -154,6 +160,7 @@
                 })
                 .then(function (response) {
                     next = response.data.urlnext;
+                    nextCaption = response.data.buttonCaption;
                     allCount = response.data.count;
                     console.timeEnd('load');
                     return response.data.treatments;
@@ -166,6 +173,7 @@
             if(!angular.isDefined(next)){
                 var deferred = $q.defer();
                 deferred.reject();
+                nextCaption = '';
                 return deferred.promise;
             }
             return $http.get(urls.baseUrl() + next,{
@@ -173,6 +181,7 @@
             })
                 .then(function(response){
                     next = response.data.urlnext;
+                    nextCaption = response.data.buttonCaption;
                     allCount = response.data.count;
                     console.timeEnd('loadNext');
                     return response.data.treatments;
