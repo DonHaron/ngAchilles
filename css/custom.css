@@ -811,7 +811,7 @@ h5.list-group-item.preset {
     padding-right: 1px;
 }
 
-.treatment-column .form-control {
+.treatment-column select.form-control {
     height: 30px;
 }
 

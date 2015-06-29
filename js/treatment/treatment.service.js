@@ -107,7 +107,7 @@
                 }
             }).then(function (response) {
                 treatments.push(response.data);
-                allCount;
+                allCount++;
             });
         }
 
