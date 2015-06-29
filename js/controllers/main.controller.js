@@ -32,7 +32,7 @@
             {class: 'small-fonts', label: 'Klein'},
         ];
 
-        vm.loadEntries();
+        vm.loadEntries(false);
         loadUser();
         //loadEntryTypes();
 
@@ -43,8 +43,8 @@
             $scope.$apply();
         });
 
-        function loadEntries() {
-            Treatment.load().then(function(treatments){
+        function loadEntries(all) {
+            Treatment.load(all).then(function(treatments){
                 vm.treatments = treatments;
             });
         }

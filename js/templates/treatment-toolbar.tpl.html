@@ -52,7 +52,7 @@
                             <a class="btn btn-default btn-xs"
                                ng-hide="vm.treatmentCount() == vm.treatments.length || !vm.treatments"
                                     ng-click="vm.loadNext()">{{vm.getNextCaption()}}</a>
-                            <a class="btn btn-default btn-xs refresh" ng-click="vm.loadEntries()">&nbsp;</a>
+                            <a class="btn btn-default btn-xs refresh" ng-click="vm.loadEntries(true)">&nbsp;</a>
                         </div>
                         <ul class="dropdown-menu gdt-list">
                             <li ng-repeat-start="device in toolbar.gdtDevices"><a href

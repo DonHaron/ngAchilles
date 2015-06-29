@@ -144,11 +144,16 @@
             return baseUrlComponent() + routes.textblock + '/';
         }
 
-        function treatmentList(patientId, from) {
+        function treatmentList(patientId, arg) {    // arg is either true if all should be shown, or the
+                                                    // treatment id from the last treatment shown for the paging
             //return 'http://localhost/ngachilles/json/demo.treatment.json';
             var fromPart = '';
-            if(angular.isDefined(from)){
-                fromPart = '/from/' + from;
+            if(angular.isDefined(arg) && arg !== false){
+                if(arg===true){
+                    fromPart = '/all';
+                }else{
+                    fromPart = '/from/' + arg;
+                }
             }
             return baseUrlComponent() + routes.treatmentlist.replace(/:([a-z]\w*)/gi, patientId) + fromPart + '/';
         }

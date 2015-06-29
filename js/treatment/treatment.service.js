@@ -158,10 +158,10 @@
             return nextCaption;
         }
 
-        function load() {
+        function load(all) {
             console.time('load');
             return $http
-                .get(urls.treatmentList(achillesConfig.patient), {
+                .get(urls.treatmentList(achillesConfig.patient, all), {
                     spinner: true
                 })
                 .then(function (response) {
