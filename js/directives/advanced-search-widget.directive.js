@@ -45,17 +45,31 @@
         /*
          Reduce all the treatments in the list to their user tokens, so the list of tokens can be used in the search
          */
-        $scope.$watch(Treatment.all, getUserTokens);
+        $scope.$watch(Treatment.all, function (treatments) {
+            getTitles(treatments);
+            getUserTokens(treatments);
+        });
 
         function clearSearch(search) {
-            //console.log('should work');
             angular.copy({}, search);
-//            search.text = '';
-//            search.attachments = {};
-//            delete search.dateFrom;
-//            delete search.dateTo;
-//            delete search.subject;
-//            delete search.case;
+        }
+
+        function getTitles(treatments) {
+            if (treatments.length) {
+                dc.titles = treatments.reduce(function (t, treatment) {
+                    //titles.concat(
+                    console.log(t);
+                    return t.concat(treatment.entries.map(function (entry) {
+                        return entry.type;
+                    }));
+                    //console.log(someArray);
+                }, []).reduce(function(p, c){
+                    if(indexOfType(c, p)<0){
+                        p.push(c);
+                    }
+                    return p;
+                }, []);
+            }
         }
 
         function getUserTokens(treatments) {
@@ -67,13 +81,24 @@
                         return treatment.userToken;
                     })
                     // check for uniqueness
-                    .reduce(function (p, c) {
-                        if (p.indexOf(c) < 0) {
-                            p.push(c);
-                        }
-                        return p;
-                    }, []);
+                    .reduce(makeUnique, []);
             }
+        }
+
+        function makeUnique(p, c){
+            if (p.indexOf(c) < 0) {
+                p.push(c);
+            }
+            return p;
+        }
+
+        function indexOfType(type, types){
+            for(var i=0;i<types.length;i++){
+                if(type.id === types[i].id){
+                    return i;
+                }
+            }
+            return -1;
         }
 
         function openFromDatepicker($event) {

@@ -165,6 +165,7 @@
                     entryCtrl.removeRow(scope.row, scope.entry, scope.treatment.entries);
                     // Escape
                 } else if (e.keyCode == 27) {
+                    console.log('escape');
                     entryCtrl.showCatalog = false;
                 } else
                 // Ctrl + Enter
@@ -189,6 +190,7 @@
 
             function keyup(e) {
                 if (isModifyingInput(e) && e.which != 13) { // exclude enter key
+                    console.log('pressed ', e.which);
                     entryCtrl.lookupCatalogEntries(scope.column.content.replace(/<[^>]*>/gm, ''), scope.row, scope.column);
                 }
                 CurrentFocus.setCurrentCursor();
@@ -301,7 +303,10 @@
                         // Ctrl + A
                         !(e.ctrlKey && e.which == 65 ) &&
                         // Ctrl + C
-                        !(e.ctrlKey && e.which == 67 )
+                        !(e.ctrlKey && e.which == 67 ) &&
+                        // Escape
+                        e.which != 27
+
                     );
             }
 

@@ -5,7 +5,8 @@
 //TODO: remove the debug values after the || when going live
 var achillesConfig = {
     process: parseInt(getURLParameter("process")) || 1234,
-    patient: parseInt(getURLParameter("patient")) || 1369,
+    //patient: parseInt(getURLParameter("patient")) || 1369,
+    patient: parseInt(getURLParameter("patient")) || 1534,
     port: 36611,
     baseUrl: '192.168.1.107'
 };

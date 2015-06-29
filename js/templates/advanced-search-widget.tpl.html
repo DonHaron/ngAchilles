@@ -148,7 +148,8 @@
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label class="control-label">Nach Titel</label>
-                        <select ng-model="search.subject" class="form-control"></select>
+                        <select ng-model="search.title" class="form-control"
+                                ng-options="title as title.name for title in dc.titles"></select>
                     </div>
                 </div>
                 <div class="col-sm-6">
