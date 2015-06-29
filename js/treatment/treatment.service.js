@@ -91,6 +91,7 @@
                 }
             }).then(function (response) {
                 treatments.push(response.data);
+                allCount++;
             });
         }
 
@@ -106,6 +107,7 @@
                 }
             }).then(function (response) {
                 treatments.push(response.data);
+                allCount;
             });
         }
 
@@ -126,6 +128,7 @@
                     for (var i = 0; i < treatments.length; i++) {
                         if (treatments[i].id == treatment.id) {
                             treatments.splice(i, 1);
+                            allCount--;
                             break;
                         }
                     }

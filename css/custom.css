@@ -2,6 +2,8 @@
     color: black;
 }
 
+
+
 .centered {
     text-align: center;
 }
@@ -239,15 +241,14 @@
     display: inline-block;
 }
 
-.treatment .btn-treatment-settings{
+.treatment .btn-treatment-settings {
     display: none;
     border: 0;
 }
 
-.treatment:hover .btn-treatment-settings{
+.treatment:hover .btn-treatment-settings {
     display: inline-block;
 }
-
 
 .treatment .treatment-user {
     margin-left: 10px;
@@ -276,10 +277,17 @@
     margin-bottom: 0;
 }
 
-
 .treatment .form-control {
     border-color: #f3f3f3;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, .025);
+}
+
+.treatment .form-control:focus {
+    border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
 }
 
 .select2-container .select2-choices .select2-search-field input,
@@ -399,11 +407,11 @@ span.checkmark {
  */
 
 /*.ta-toolbar {*/
-    /*display: none;*/
+/*display: none;*/
 /*}*/
 
 /*.ta-toolbar.focussed {*/
-    /*display: block;*/
+/*display: block;*/
 /*}*/
 
 .ta-toolbar.btn-toolbar {
@@ -526,7 +534,7 @@ span.checkmark {
     /*padding: 15px 0;*/
 }
 
-.title-settings-widget .panel{
+.title-settings-widget .panel {
     /*overflow-y: auto;*/
     height: 100%;
     box-sizing: border-box;
@@ -593,19 +601,19 @@ span.checkmark {
 
 /*.confirm-widget,*/
 /*.close-widget {*/
-    /*position: absolute;*/
-    /*z-index: 10;*/
-    /*width: 38px;*/
+/*position: absolute;*/
+/*z-index: 10;*/
+/*width: 38px;*/
 /*}*/
 
 /*.confirm-widget {*/
-    /*right: 2px;*/
-    /*bottom: 2px;*/
+/*right: 2px;*/
+/*bottom: 2px;*/
 /*}*/
 
 /*.close-widget {*/
-    /*top: 2px;*/
-    /*right: 2px;*/
+/*top: 2px;*/
+/*right: 2px;*/
 /*}*/
 
 .ui-draggable-handle {
@@ -654,7 +662,7 @@ span.checkmark {
     position: fixed;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.3);
+    background: rgba(0, 0, 0, 0.3);
     z-index: 998;
     top: 0;
 }
@@ -720,7 +728,7 @@ p:last-child {
     background-color: white;
 }
 
-.type-and-preset-list hr{
+.type-and-preset-list hr {
     margin-top: 4px;
     margin-bottom: 4px;
 }
@@ -728,14 +736,13 @@ p:last-child {
 .type-and-preset-list a:focus,
 .type-and-preset-list a.focused,
 a:focus,
-a.focused
-{
+a.focused {
     color: white;
     background-color: #337ab7;
     outline: 0;
 }
 
-.type-and-preset-list > .list-group{
+.type-and-preset-list > .list-group {
     max-height: 400px;
     overflow-y: scroll;
 }
@@ -749,11 +756,11 @@ h5.list-group-item {
 }
 
 h5.list-group-item.entry-type {
-    background-color: rgba(255,30,0,0.15);
+    background-color: rgba(255, 30, 0, 0.15);
 }
 
 h5.list-group-item.preset {
-    background-color: rgba(0,60,255,0.15);
+    background-color: rgba(0, 60, 255, 0.15);
 }
 
 .entry-type.level-2 {
@@ -773,7 +780,7 @@ h5.list-group-item.preset {
     padding-right: 1px;
 }
 
-.catalog-list > .list-group{
+.catalog-list > .list-group {
     max-height: 400px;
     overflow-y: scroll;
 }
@@ -783,7 +790,7 @@ h5.list-group-item.preset {
 }
 
 ::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
     -webkit-border-radius: 10px;
     border-radius: 10px;
 }
@@ -791,12 +798,12 @@ h5.list-group-item.preset {
 ::-webkit-scrollbar-thumb {
     -webkit-border-radius: 10px;
     border-radius: 3px;
-    background: rgba(100,100,100,0.6);
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+    background: rgba(100, 100, 100, 0.6);
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
 }
 
 ::-webkit-scrollbar-thumb:window-inactive {
-    background: rgba(100,100,100,0.4);
+    background: rgba(100, 100, 100, 0.4);
 }
 
 .treatment-column {
@@ -808,7 +815,7 @@ h5.list-group-item.preset {
     height: 30px;
 }
 
-.treatment-column textarea.form-control{
+.treatment-column textarea.form-control {
     min-height: 30px;
     height: auto;
     padding: 3px 6px;
@@ -825,5 +832,5 @@ h5.list-group-item.preset {
 .placeholder-text::before {
     position: absolute;
     cursor: text;
-    color: rgba(0,0,0,0.3);
+    color: rgba(0, 0, 0, 0.3);
 }
