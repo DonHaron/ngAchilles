@@ -22,6 +22,7 @@ module.exports = function (grunt) {
                 ],
                 jsAchilles: [
                     //'config/config.js',
+                    'js/independent.js',
                     'js/**/*.js'
                 ],
                 jsMin: [

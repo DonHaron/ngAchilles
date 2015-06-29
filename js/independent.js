@@ -158,7 +158,7 @@ toastr.options = {
 };
 
 var log = console.log;
-onPaste = function(e){
+function onPaste(e){
     var text, url;
 
     console.log('paste');
@@ -212,7 +212,7 @@ onPaste = function(e){
     }
 
 
-};
+}
 
 function isArray(obj) {
     return obj && !(obj.propertyIsEnumerable('length')) &&
