@@ -6,7 +6,7 @@
 var achillesConfig = {
     process: parseInt(getURLParameter("process")) || 1234,
     //patient: parseInt(getURLParameter("patient")) || 1369,
-    patient: parseInt(getURLParameter("patient")) || 1534,
+    patient: parseInt(getURLParameter("patient")) || 105,
     port: 36611,
     baseUrl: '192.168.1.107'
 };
