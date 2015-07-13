@@ -825,6 +825,14 @@ h5.list-group-item.preset {
     resize: none;
 }
 
+.treatment-column input.form-control{
+    height: 30px;
+}
+
+.treatment-column .form-group .btn{
+    padding: 4px 12px;
+}
+
 .treatment-column .read-only-content {
     height: auto;
     min-height: 30px;

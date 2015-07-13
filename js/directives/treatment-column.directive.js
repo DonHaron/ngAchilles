@@ -6,6 +6,7 @@
         .module('achilles')
         .directive('treatmentColumn', treatmentColumn);
 
+
     treatmentColumn.$inject = ['$timeout', '$compile', 'CurrentFocus', 'Locking', 'Treatment', 'TreatmentRow'];
 
     function treatmentColumn($timeout, $compile, CurrentFocus, Locking, Treatment, TreatmentRow) {
@@ -18,6 +19,17 @@
             input: '<div ng-class="::columnClass" class="treatment-column" catalog-prompt>' +
                 '<div class="form-group">' +
                 '<textarea rows="1" msd-elastic validation="{{::column.validation}}" ng-model="column.content" placeholder="{{::column.placeholder}}" class="form-control"></textarea>' +
+                '</div>' +
+                '</div>',
+            datepicker: '<div ng-class="::columnClass" class="treatment-column">' +
+                '<div class="form-group">' +
+                '<div class="input-group">' +
+                '<input rows="1" ng-model="column.content" is-open="opened" datepicker-popup="dd.MM.yy" placeholder="{{::column.placeholder}}" class="form-control">' +
+                '<span class="input-group-btn">' +
+                    '<button tabindex="-1" type="button" class="btn btn-default" ng-click="openDatepicker($event)"><i ' +
+                    ' class="glyphicon glyphicon-calendar"></i></button>' +
+                '</span>' +
+                '</div>' +
                 '</div>' +
                 '</div>',
             dropdown: '<div ng-class="::columnClass" class="treatment-column">' +
@@ -63,6 +75,9 @@
                 // if there is an options array, the input should become a dropdown
                 if (angular.isDefined(column.options)) {
                     return templates.dropdown;
+                }
+                if(column.validation==='date'){
+                    return templates.datepicker;
                 }
                 if (column.wysiwyg) {
                     return templates.wysiwyg;
@@ -124,7 +139,6 @@
             }
 
             function blur(e) {
-                console.log(angular.element(this).parents('form'));
                 if (angular.element(this).parents('form').hasClass('ng-dirty') && angular.element(this).parents('form').hasClass('ng-valid') && !scope.row.locked) {
                     //$http.put(urls.treatmentEntryRow(), scope.row).then(function (response) {
                     //PUT/POST-workaround
@@ -192,7 +206,7 @@
             }
 
             function keyup(e) {
-                if (isModifyingInput(e) && e.which != 13 && scope.column.content) { // exclude enter key
+                if (isModifyingInput(e) && e.which != 13 && scope.column.content && !scope.column.content instanceof Date) { // exclude enter key & dates
                     entryCtrl.lookupCatalogEntries(scope.column.content.replace(/<[^>]*>/gm, ''), scope.row, scope.column);
                 }
                 CurrentFocus.setCurrentCursor();
@@ -316,9 +330,21 @@
 
     }
 
-    TreatmentColumnController.$inject = ['$scope', '$sce'];
-    function TreatmentColumnController($scope, $sce) {
+    TreatmentColumnController.$inject = ['$scope', '$sce', '$timeout', 'TreatmentRow'];
+    function TreatmentColumnController($scope, $sce, $timeout, TreatmentRow) {
         // we have to sanitize the content if we just want to display it with html tags
         $scope.readonlyContent = $sce.trustAsHtml($scope.column.content);
+
+        $scope.opened = false;
+
+        $scope.openDatepicker = openDatepicker;
+
+        function openDatepicker($event){
+                $event.preventDefault();
+                $event.stopPropagation();
+                //$timeout.cancel(promise);
+                TreatmentRow.cancelSave($scope.row);
+                $scope.opened = true;
+        }
     }
 })();
