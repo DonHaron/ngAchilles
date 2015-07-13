@@ -2,7 +2,10 @@
     color: black;
 }
 
-
+.treatment .form-control.ng-invalid,
+.treatment .form-control.ng-invalid:focus {
+    border-color: red;
+}
 
 .centered {
     text-align: center;
@@ -834,6 +837,8 @@ h5.list-group-item.preset {
     cursor: text;
     color: rgba(0, 0, 0, 0.3);
 }
+
+
 
 @media (min-width: 1060px) {
     .container-fluid {

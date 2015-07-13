@@ -17,7 +17,7 @@
                 '</div>',
             input: '<div ng-class="::columnClass" class="treatment-column" catalog-prompt>' +
                 '<div class="form-group">' +
-                '<textarea rows="1" msd-elastic ng-model="column.content" placeholder="{{::column.placeholder}}" class="form-control"></textarea>' +
+                '<textarea rows="1" msd-elastic validation="{{::column.validation}}" ng-model="column.content" placeholder="{{::column.placeholder}}" class="form-control"></textarea>' +
                 '</div>' +
                 '</div>',
             dropdown: '<div ng-class="::columnClass" class="treatment-column">' +
@@ -124,7 +124,8 @@
             }
 
             function blur(e) {
-                if (angular.element(this).hasClass('ng-dirty') && !scope.row.locked) {
+                console.log(angular.element(this).parents('form'));
+                if (angular.element(this).parents('form').hasClass('ng-dirty') && angular.element(this).parents('form').hasClass('ng-valid') && !scope.row.locked) {
                     //$http.put(urls.treatmentEntryRow(), scope.row).then(function (response) {
                     //PUT/POST-workaround
                     TreatmentRow.save(scope.row, scope.entry);
@@ -191,7 +192,7 @@
             }
 
             function keyup(e) {
-                if (isModifyingInput(e) && e.which != 13) { // exclude enter key
+                if (isModifyingInput(e) && e.which != 13 && scope.column.content) { // exclude enter key
                     entryCtrl.lookupCatalogEntries(scope.column.content.replace(/<[^>]*>/gm, ''), scope.row, scope.column);
                 }
                 CurrentFocus.setCurrentCursor();
