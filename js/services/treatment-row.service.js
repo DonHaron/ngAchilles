@@ -19,7 +19,6 @@
         return service;
 
         function cancelSave(row){
-            //console.log('canceling');
             if(angular.isDefined(row) && angular.isDefined(savingRow) && row.id !== savingRow.id){
                 return;
             }
@@ -35,9 +34,9 @@
         }
 
         function save(row, entry){
+
             savingRow = row;
             saving = $timeout(function(){
-                //console.log('saving');
                 $http.post(urls.treatmentEntryRow('put'), row).then(function (response) {
                     //response.data is a row
                     //now, find the row in the rows and replace it
@@ -55,7 +54,7 @@
                 });
 
                 savingRow = undefined;
-            }, 150);
+            }, 250);
         }
     }
 })();

@@ -65,9 +65,6 @@
                             limitTo:vm.limit:(currentPage? vm.limit*(currentPage-1) : 0) ) "
                treatmentlist="vm.treatments" user="::vm.user"></treatment>
 
-    <pre>{{currentPage}}</pre>
-    <pre>{{currentPage? vm.limit*(currentPage-1) : 0}}</pre>
-
 
     <div class="col-xs-12 centered" ng-hide="vm.limit == vm.treatments.length || !vm.treatments" ng-cloak>
         <div class="panel">

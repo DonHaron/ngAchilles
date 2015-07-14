@@ -26,8 +26,8 @@
                 '<div class="input-group">' +
                 '<input rows="1" ng-model="column.content" is-open="opened" datepicker-popup="dd.MM.yy" placeholder="{{::column.placeholder}}" class="form-control">' +
                 '<span class="input-group-btn">' +
-                    '<button tabindex="-1" type="button" class="btn btn-default" ng-click="openDatepicker($event)"><i ' +
-                    ' class="glyphicon glyphicon-calendar"></i></button>' +
+                '<button tabindex="-1" type="button" class="btn btn-default" ng-click="openDatepicker($event)"><i ' +
+                ' class="glyphicon glyphicon-calendar"></i></button>' +
                 '</span>' +
                 '</div>' +
                 '</div>' +
@@ -78,7 +78,7 @@
                 if (angular.isDefined(column.options)) {
                     return templates.dropdown;
                 }
-                if(column.validation==='date'){
+                if (column.validation === 'date') {
                     return templates.datepicker;
                 }
                 if (column.wysiwyg) {
@@ -93,12 +93,12 @@
             var entryCtrl = ctrls[1];
             scope.columnClass = 'col-xs-' + attrs.width;
 
-            element.on('blur', '.ta-bind, .form-control', blur);
+            element.on('blur', '.form-control', blur);
             element.on('change', 'select.form-control', blur);
-            element.on('keydown', '.ta-bind, .form-control', keydown);
-            element.on('focus', '.ta-bind, .form-control', focus);
-            element.on('click', '.ta-bind, .form-control', click);
-            element.on('keyup', '.ta-bind, .form-control', keyup);
+            element.on('keydown', '.form-control', keydown);
+            element.on('focus', '.form-control', focus);
+            element.on('click', '.form-control', click);
+            element.on('keyup', '.form-control', keyup);
             element.on('focusout', focusout);
             attrs.$observe("editable", function (value) {
                 //console.log(value);
@@ -184,7 +184,7 @@
                     // Escape
                 } else if (e.which == 27) {
                     //console.log('escape');
-                    $timeout(function(){
+                    $timeout(function () {
                         entryCtrl.showCatalog = false;
                     });
                 } else
@@ -235,9 +235,9 @@
 
                 $timeout(function () {
                     scope.entry.focused = true;
-                    if(scope.column.wysiwyg){
+                    if (scope.column.wysiwyg) {
                         scope.entry.showToolbar = true;
-                    }else{
+                    } else {
                         scope.entry.showToolbar = false;
                     }
                 }, 250);
@@ -342,12 +342,12 @@
 
         $scope.openDatepicker = openDatepicker;
 
-        function openDatepicker($event){
-                $event.preventDefault();
-                $event.stopPropagation();
-                //$timeout.cancel(promise);
-                TreatmentRow.cancelSave($scope.row);
-                $scope.opened = true;
+        function openDatepicker($event) {
+            $event.preventDefault();
+            $event.stopPropagation();
+            //$timeout.cancel(promise);
+            TreatmentRow.cancelSave($scope.row);
+            $scope.opened = true;
         }
     }
 })();
