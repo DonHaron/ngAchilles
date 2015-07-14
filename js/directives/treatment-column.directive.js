@@ -69,6 +69,8 @@
         return directive;
 
         function getTemplate(editable, column) {
+            //return templates.readonly;
+            //console.log(editable);
             if (editable !== 'true') {
                 return templates.readonly;
             } else {
@@ -99,6 +101,7 @@
             element.on('keyup', '.ta-bind, .form-control', keyup);
             element.on('focusout', focusout);
             attrs.$observe("editable", function (value) {
+                //console.log(value);
                 setTemplate(value, scope.column);
             });
 

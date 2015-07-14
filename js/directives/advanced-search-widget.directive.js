@@ -38,7 +38,7 @@
 
         InvoiceCase.all().then(function (cases) {
             dc.cases = cases;
-            console.log(cases);
+            //console.log(cases);
         });
 
 
@@ -58,7 +58,7 @@
             if (treatments.length) {
                 dc.titles = treatments.reduce(function (t, treatment) {
                     //titles.concat(
-                    console.log(t);
+                    //console.log(t);
                     return t.concat(treatment.entries.map(function (entry) {
                         return entry.type;
                     }));

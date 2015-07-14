@@ -51,7 +51,7 @@
 
     <preset-settings-widget></preset-settings-widget>
 
-    <treatment treatment="treatment" editable="{{$index<3}}"
+    <treatment treatment="treatment" editable="{{false && (!currentPage || currentPage<2) }}" index="{{$index}}"
                ng-repeat="treatment in vm.filteredTreatments = (vm.treatments |
                             filter:vm.search.text |
                             filter:{subject:vm.search.subject} |
@@ -61,14 +61,19 @@
                             compareDate:vm.search.dateFrom:'after' |
                             compareDate:vm.search.dateTo:'before' |
                             attachments:vm.search.attachments |
-                            orderBy:[(vm.reverse?'':'-')+'date', 'id'])"
+                            orderBy:[(vm.reverse?'':'-')+'date', 'id'] |
+                            limitTo:vm.limit:(currentPage? vm.limit*(currentPage-1) : 0) ) "
                treatmentlist="vm.treatments" user="::vm.user"></treatment>
 
-    <div class="col-xs-12 centered" ng-hide="vm.treatmentCount() == vm.treatments.length || !vm.treatments" ng-cloak>
+    <pre>{{currentPage}}</pre>
+    <pre>{{currentPage? vm.limit*(currentPage-1) : 0}}</pre>
+
+
+    <div class="col-xs-12 centered" ng-hide="vm.limit == vm.treatments.length || !vm.treatments" ng-cloak>
         <div class="panel">
             <div class="panel-body">
                 <div class="btn-group">
-                    <a href class="btn" ng-class="'btn-default'" ng-click="vm.loadNext()" ng-bind="vm.getNextCaption()"></a>
+                    <pagination total-items="vm.treatments.length" items-per-page="vm.limit" ng-model="currentPage" ng-change="pageChanged()"></pagination>
                 </div>
             </div>
         </div>

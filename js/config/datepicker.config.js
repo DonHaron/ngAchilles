@@ -10,5 +10,7 @@
         datepickerConfig.startingDay = 1;
 
         datepickerPopupConfig.currentText = "Heute";
+        datepickerPopupConfig.clearText = "Zurücksetzen";
+        datepickerPopupConfig.closeText = "Schliessen";
     }
 })();

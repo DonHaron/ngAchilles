@@ -825,6 +825,10 @@ h5.list-group-item.preset {
     resize: none;
 }
 
+.treatment.empty {
+    height: 150px;
+}
+
 .treatment-column input.form-control{
     height: 30px;
 }

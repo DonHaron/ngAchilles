@@ -5,7 +5,6 @@
     angular
         .module('achilles')
         .directive('treatment', treatment);
-    //.directive('treatmentEntry', treatmentEntry)
 
     treatment.$inject = ['$timeout'];
     function treatment($timeout) {
@@ -14,7 +13,8 @@
                 treatment: '=',
                 treatments: '=treatmentlist',
                 editable: '@',
-                user: '='
+                user: '=',
+                index: '@'
             },
             restrict: 'E',
             controller: TreatmentController,
@@ -29,6 +29,14 @@
             var promise;
 
             scope.treatment.editable = scope.editable;
+
+            scope.$watch(function(){
+                return element.find('treatment').position();
+            }, function(position){
+                if(angular.isDefined(position)){
+                    console.log(position);
+                }
+            });
 
             element.on('keydown', function (e) {
                 //console.log(e.which);

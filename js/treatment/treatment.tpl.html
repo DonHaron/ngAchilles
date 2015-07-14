@@ -257,7 +257,7 @@
 </div>
 <div class="panel-body">
     <ul class="list-group">
-        <treatment-entry entry="entry" editable="{{::editable}}" treatment="treatment"
+        <treatment-entry entry="entry" editable="{{editable}}" treatment="treatment"
                          ng-repeat="entry in treatment.entries | orderBy:'type.name'"
                          permission-to-edit="dc.permissionToEdit"
                          warning="dc.warning">

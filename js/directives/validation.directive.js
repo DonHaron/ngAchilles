@@ -34,11 +34,9 @@
                     };
                     break;
                 case 'date':
+                    //this is handled in the datepicker directive already
                     break;
             }
-            //ctrl.$validators
-
-            console.log(scope.validation);
         }
     }
 })();

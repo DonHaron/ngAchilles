@@ -15,10 +15,12 @@
         vm.loadNext = loadNext;
         vm.treatmentCount = Treatment.count;
         vm.patient = achillesConfig.patient;
-        vm.getNextCaption = Treatment.getNextCaption;
+        vm.getNextCaption = getNextCaption;
 
         vm.checkEditPermission = TreatmentPermission.checkEditPermission;
         vm.reverse = false;
+
+        vm.limit = 5;
 
         vm.search = {};
         vm.entries = [];
@@ -33,6 +35,7 @@
         ];
 
         vm.loadEntries(false);
+
         loadUser();
         //loadEntryTypes();
 
@@ -50,10 +53,14 @@
         }
 
         function loadNext(){
-            Treatment.loadNext()
-                .then(function(treatments){
-                    vm.treatments = treatments;
-                });
+            vm.limit = vm.limit+5;
+        }
+
+        function getNextCaption(){
+            if(!vm.treatments){
+                return '';
+            }
+            return '+' +  (vm.treatments.length - vm.limit > 5 ? 5 : vm.treatments.length-vm.limit);
         }
 
         function loadUser() {
