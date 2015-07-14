@@ -2,16 +2,20 @@
     <div class="toolbar" ng-class="'mandator-' + vm.user.mandator.id + '-toolbar'" ng-cloak>
         <div class="row">
             <div class="col-xs-3">
-                <p ng-show="vm.treatments.length">Behandlungseinträge</p>
+                <p ng-show="vm.treatments.length">{{'TREATMENT_ENTRIES' | translate}}</p>
             </div>
             <div class="col-xs-2">
                 <p ng-show="vm.treatments.length"
-                   ng-bind="(currentPage?(currentPage-1)*vm.limit+1 : 1) + ' bis ' + (currentPage?(currentPage)*vm.limit : vm.limit) + ' von ' + vm.treatments.length"></p>
+                   translate="FROM_TO_TOTAL"
+                   translate-value-from="{{currentPage?(currentPage-1)*vm.limit+1 : 1}}"
+                   translate-value-to="{{currentPage?(currentPage)*vm.limit : vm.limit}}"
+                   translate-value-total="{{vm.treatments.length}}"
+                   ></p>
             </div>
             <div class="col-xs-2">
                 <div class="input-group">
 
-                    <input class="form-control" ng-model="vm.search.text" placeholder="Suche">
+                    <input class="form-control" ng-model="vm.search.text" placeholder="{{'SEARCH' | translate}}">
                     <span class="input-group-btn">
                         <a href class="btn btn-default btn-xs" ng-click="toolbar.showAdvancedSearch(true)"><i class="fa fa-plus"></i></a>
                     </span>

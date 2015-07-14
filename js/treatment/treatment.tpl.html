@@ -17,49 +17,48 @@
                 ng-if="::(treatment.isMandatorTreatment && !treatment.billed && !treatment.closed && user.mandator.id == treatment.mandator)
                          || (!treatment.isMandatorTreatment && user.token == treatment.userToken)">
                 <a role="menuitem"
-                   ng-href="{{::dc.baseUrl}}set/treatment/{{::treatment.id}}">Behandlung
-                    einstellen</a>
+                   ng-href="{{::dc.baseUrl}}set/treatment/{{::treatment.id}}"
+                        >{{'SET_TREATMENT' | translate}}</a>
             </li>
             <li role="presentation"
                 ng-if="::(treatment.isMandatorTreatment && !treatment.hasLaboratory && !treatment.hasDocument && !treatment.hasDisability
                     && !treatment.hasBiometric && !treatment.hasService && !treatment.hasMedication && user.mandator.id == treatment.mandator)
                     || (!treatment.isMandatorTreatment && user.token == treatment.userToken)">
                 <a role="menuitem" href
-                   ng-click="dc.deleteTreatment(treatment, treatments)">Behandlung
-                    löschen</a>
+                   ng-click="dc.deleteTreatment(treatment, treatments)"
+                        >{{'DELETE_TREATMENT' | translate}}</a>
             </li>
             <li role="presentation"
                 ng-if="::(treatment.isMandatorTreatment && user.mandator.id == treatment.mandator && !treatment.hasService && !treatment.billed)
                     || (!treatment.isMandatorTreatment && user.token == treatment.userToken)">
                 <a role="menuitem" href
-                   ng-click="dc.changeStatus(treatment)">Behandlung <span
-                        ng-hide="treatment.closed">schliessen</span>
-                    <span ng-show="treatment.closed">wieder öffnen</span></a>
+                   ng-click="dc.changeStatus(treatment)"><span
+                        ng-hide="treatment.closed">{{'CLOSE_TREATMENT' | translate}}</span>
+                    <span ng-show="treatment.closed">{{'REOPEN_TREATMENT' | translate}}</span></a>
             </li>
             <li role="presentation" class="divider"></li>
             <li role="presentation"><a role="menuitem" href
-                                       ng-click="dc.addTreatment(treatment, true, true, treatments)">Neue
-                Behandlung</a>
+                                       ng-click="dc.addTreatment(treatment, true, true, treatments)">{{'ADD_TREATMENT' | translate}}</a>
             </li>
             <li role="presentation" ng-if="::treatment.isMandatorTreatment"><a role="menuitem" href
-                                                                             ng-click="dc.copyTreatment(treatment, treatments)">Neue
-                Behandlung (Kopie)</a></li>
+                                                                             ng-click="dc.copyTreatment(treatment, treatments)"
+                    >{{'ADD_TREATMENT_COPY' | translate}}</a></li>
             <li role="presentation"><a role="menuitem" href
-                                       ng-click="dc.addTreatment(treatment, true, false, treatments)">Neue
-                Nebenbehandlung</a></li>
+                                       ng-click="dc.addTreatment(treatment, true, false, treatments)"
+                    >{{'ADD_SUBTREATMENT' | translate}}</a></li>
             <li role="presentation" class="divider"></li>
             <li role="presentation" ng-if="::!user.isMandator"><a role="menuitem" href
-                                                                ng-click="dc.addTreatment(treatment, false, true, treatments)">Neue
-                Nichtmandanten-Behandlung</a>
+                                                                ng-click="dc.addTreatment(treatment, false, true, treatments)"
+                    >{{'ADD_NONMANDATOR_TREATMENT' | translate}}</a>
             </li>
             <li role="presentation" ng-if="::!user.isMandator"><a role="menuitem" href
-                                                                ng-click="dc.addTreatment(treatment, false, false, treatments)">Neue
-                Nichtmandanten-Nebenbehandlung</a>
+                                                                ng-click="dc.addTreatment(treatment, false, false, treatments)"
+                    >{{'ADD_NONMANDATOR_SUBTREATMENT' | translate}}</a>
             </li>
             <li role="presentation" class="divider"></li>
             <li role="presentation">
-                <a href role="menuitem" ng-click="dc.createPreset(treatment)">Neue Struktur</a>
-                <a href role="menuitem" ng-click="dc.replacePreset(treatment)">Struktur ersetzen</a>
+                <a href role="menuitem" ng-click="dc.createPreset(treatment)">{{'CREATE_PRESET' | translate}}</a>
+                <a href role="menuitem" ng-click="dc.replacePreset(treatment)">{{'REPLACE_PRESET' | translate}}</a>
             </li>
         </ul>
     </div>
@@ -92,25 +91,22 @@
 <div class="col-xs-2">
     <div class="dropdown" toggle-focus dropdown>
         <a class="btn btn-default dropdown-toggle" dropdown-toggle>
-            F: {{treatment.invoiceCase.name ? treatment.invoiceCase.name : '???' }}
+            {{'CASE_SHORTHAND' | translate}}: {{treatment.invoiceCase.name ? treatment.invoiceCase.name : '???' }}
         </a>
         <ul class="dropdown-menu">
             <li ng-show="treatment.invoiceCase.name"><a
-                    ng-href="{{dc.baseUrl}}show/case/{{treatment.invoiceCase.id}}/">Fall:
-                {{treatment.invoiceCase.name}} anzeigen</a></li>
+                    ng-href="{{dc.baseUrl}}show/case/{{treatment.invoiceCase.id}}/" translate="SHOW_CASE" translate-value-name="{{treatment.invoiceCase.name}}"></a></li>
             <li ng-show="treatment.invoice.id"><a
-                    ng-href="{{dc.baseUrl}}show/invoice/{{treatment.invoice.id}}/">Rechnung:
-                {{treatment.invoice.id}} anzeigen</a></li>
+                    ng-href="{{dc.baseUrl}}show/invoice/{{treatment.invoice.id}}/" translate="SHOW_INVOICE" translate-value-id="{{treatment.invoice.id}}" ></a></li>
             <li role="presentation" class="divider"
                 ng-show="treatment.invoice.id || treatment.invoiceCase.name"></li>
             <li ng-if="treatment.mandator == user.mandator.id && !treatment.billed && !treatment.closed"><a
-                    ng-href="{{dc.baseUrl}}treatment/{{treatment.id}}/case/">Fall zuweisen...</a></li>
+                    ng-href="{{dc.baseUrl}}treatment/{{treatment.id}}/case/">{{'ASSIGN_CASE' | translate}}</a></li>
             <li ng-show="treatment.invoiceCase.name"
                 ng-if="treatment.mandator == user.mandator.id && !treatment.billed && !treatment.closed
-                && !treatment.hasService && treatment.invoiceCase.id"><a href ng-click="dc.removeCase(treatment)">Ohne
-                Fall</a></li>
+                && !treatment.hasService && treatment.invoiceCase.id"><a href ng-click="dc.removeCase(treatment)">{{'REMOVE_CASE' | translate}}</a></li>
             <li role="presentation" class="divider"></li>
-            <li><a ng-href="{{::dc.baseUrl}}goto/case">Gehe zu Fälle & Garanten</a></li>
+            <li><a ng-href="{{::dc.baseUrl}}goto/case">{{'GO_TO_CASES' | translate}}</a></li>
         </ul>
     </div>
 </div>
@@ -125,19 +121,19 @@
                         &nbsp;
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
-                        <li><a href>Medikamente</a></li>
+                        <li><a href>{{'DRUGS' | translate}}</a></li>
                         <li role="presentation" class="divider"></li>
                         <li ng-if="::!treatment.billed && !treatment.closed && treatment.mandator == user.mandator.id">
-                            <a ng-href="{{::dc.baseUrl}}treatment/{{::treatment.id}}/drug/given/">Abgeben</a>
+                            <a ng-href="{{::dc.baseUrl}}treatment/{{::treatment.id}}/drug/given/">{{'DRUG_GIVEN' | translate}}</a>
                         </li>
                         <li ng-if="::treatment.mandator == user.mandator.id">
-                            <a ng-href="{{::dc.baseUrl}}treatment/{{::treatment.id}}/drug/prescription/">Rezept</a>
+                            <a ng-href="{{::dc.baseUrl}}treatment/{{::treatment.id}}/drug/prescription/">{{'DRUG_PRESCRIPTION' | translate}}</a>
                         </li>
                         <li ng-if="::treatment.mandator == user.mandator.id">
-                            <a ng-href="{{::dc.baseUrl}}treatment/{{::treatment.id}}/drug/foreign/">Fremd</a></li>
+                            <a ng-href="{{::dc.baseUrl}}treatment/{{::treatment.id}}/drug/foreign/">{{'DRUG_FOREIGN' | translate}}</a></li>
                         <li role="presentation" class="divider"></li>
                         <li>
-                            <a ng-href="{{::dc.baseUrl}}goto/drug/">Gehe zu Medi-Listen</a>
+                            <a ng-href="{{::dc.baseUrl}}goto/drug/">{{'GO_TO_DRUGS' | translate}}</a>
                         </li>
                     </ul>
                 </div>
@@ -148,13 +144,13 @@
                         &nbsp;
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
-                        <li><a href>Labor-Resultate</a></li>
+                        <li><a href>{{'LABORATORY' | translate}}</a></li>
                         <li role="presentation" class="divider" ng-show="dc.laboratoryReports.length"></li>
                         <li ng-repeat="laboratoryReport in dc.laboratoryReports"><a
                                 ng-href="{{::dc.baseUrl}}set/laboratory/{{::laboratoryReport.id}}/">{{::laboratoryReport.name}}</a>
                         </li>
                         <li role="presentation" class="divider"></li>
-                        <li><a ng-href="{{::dc.baseUrl}}goto/laboratory/">Gehe zu Labor</a></li>
+                        <li><a ng-href="{{::dc.baseUrl}}goto/laboratory/">{{'GO_TO_LABORATORY' | translate}}</a></li>
                     </ul>
                 </div>
                 <div class="dropdown icon-dropdown" dropdown toggle-focus on-toggle="dc.loadDocuments(open)">
@@ -163,25 +159,22 @@
                         &nbsp;
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
-                        <li><a href>Briefe & Dokumente</a></li>
+                        <li><a href>{{'LETTERS_AND_DOCUMENTS' | translate}}</a></li>
                         <li role="presentation" class="divider" ng-show="dc.documents.length"></li>
                         <li ng-repeat="document in dc.documents"><a
                                 ng-href="{{::dc.baseUrl}}set/document/{{::document.id}}/">{{::document.name}}</a></li>
                         <li role="presentation" class="divider"></li>
                         <li ng-if="::treatment.mandator == user.mandator.id">
-                            <a ng-href="{{::dc.baseUrl}}treatment/{{::treatment.id}}/document/letterto/">Neuer Brief
-                                an</a>
+                            <a ng-href="{{::dc.baseUrl}}treatment/{{::treatment.id}}/document/letterto/">{{'NEW_LETTER_TO' | translate}}</a>
                         </li>
                         <li ng-if="::treatment.mandator == user.mandator.id">
-                            <a ng-href="{{::dc.baseUrl}}treatment/{{::treatment.id}}/document/letterfrom/">Neuer
-                                Brief von</a>
+                            <a ng-href="{{::dc.baseUrl}}treatment/{{::treatment.id}}/document/letterfrom/">{{'NEW_LETTER_FROM' | translate}}</a>
                         </li>
                         <li ng-if="::treatment.mandator == user.mandator.id">
-                            <a ng-href="{{::dc.baseUrl}}treatment/{{::treatment.id}}/document/document/">Neues
-                                Dokument</a>
+                            <a ng-href="{{::dc.baseUrl}}treatment/{{::treatment.id}}/document/document/">{{'NEW_DOCUMENT' | translate}}</a>
                         </li>
                         <li role="presentation" class="divider"></li>
-                        <li><a ng-href="{{::dc.baseUrl}}goto/document/">Gehe zu Briefe & Dokumente</a></li>
+                        <li><a ng-href="{{::dc.baseUrl}}goto/document/">{{'GO_TO_DOCUMENTS' | translate}}</a></li>
                     </ul>
                 </div>
             </div>
@@ -193,14 +186,13 @@
                         &nbsp;
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right" ng-if="::treatment.mandator == user.mandator.id">
-                        <li><a href>Arbeitsunfähigkeit</a></li>
+                        <li><a href>{{'DISABILITY' | translate}}</a></li>
                         <li role="presentation" class="divider" ng-show="::dc.disabilityCertificates.length"></li>
                         <li ng-repeat="disabilityCertificate in dc.disabilityCertificates">
                             <a ng-href="{{::dc.baseUrl}}set/disability/{{::disabilityCertificate.id}}/">{{::disabilityCertificate.name}}</a>
                         </li>
                         <li role="presentation" class="divider"></li>
-                        <li><a ng-href="{{::dc.baseUrl}}treatment/{{::treatment.id}}/disability/">Neue
-                            Arbeitsunfähigkeit</a></li>
+                        <li><a ng-href="{{::dc.baseUrl}}treatment/{{::treatment.id}}/disability/">{{'NEW_DISABILITY' | translate}}</a></li>
                     </ul>
                 </div>
                 <div class="dropdown icon-dropdown" dropdown toggle-focus on-toggle="dc.loadBiometrics(open)">
@@ -209,18 +201,17 @@
                         &nbsp;
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
-                        <li><a href>Biometrische Daten</a></li>
+                        <li><a href>{{'BIOMETRIC_DATA' | translate}}</a></li>
                         <li role="presentation" class="divider" ng-show="dc.biometrics.length"></li>
                         <li ng-repeat="biometric in dc.biometrics"><a
                                 ng-href="{{::dc.baseUrl}}set/biometric/{{::biometric.id}}/">{{::biometric.name}}</a>
                         </li>
                         <li role="presentation" class="divider"></li>
                         <li ng-if="treatment.mandator == user.mandator.id && !treatment.billed">
-                            <a ng-href="{{::dc.baseUrl}}treatment/{{::treatment.id}}/biometric/">Neue Biometrische
-                                Daten</a>
+                            <a ng-href="{{::dc.baseUrl}}treatment/{{::treatment.id}}/biometric/">{{'NEW_BIOMETRIC_DATA' | translate}}</a>
                         </li>
                         <li role="presentation" class="divider"></li>
-                        <li><a ng-href="{{::dc.baseUrl}}goto/biometric/">Gehe zu Biometrische Daten</a></li>
+                        <li><a ng-href="{{::dc.baseUrl}}goto/biometric/">{{'GO_TO_BIOMETRIC_DATA' | translate}}</a></li>
                     </ul>
                 </div>
                 <div class="dropdown icon-dropdown" toggle-focus dropdown>
@@ -229,22 +220,20 @@
                         &nbsp;
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
-                        <li><a href>Leistungen</a></li>
+                        <li><a href>{{'SERVICES' | translate}}</a></li>
                         <li role="presentation" class="divider"></li>
                         <li ng-if="::treatment.mandator == user.mandator.id && !treatment.billed && treatment.invoiceCase.id">
-                            <a ng-href="{{::dc.baseUrl}}treatment/{{::treatment.id}}/service/treatment/">Neue
-                                Leistungen zu Behandlung</a>
+                            <a ng-href="{{::dc.baseUrl}}treatment/{{::treatment.id}}/service/treatment/">{{'NEW_SERVICES_TREATMENT' | translate}}</a>
                         </li>
                         <li ng-if="::treatment.mandator == user.mandator.id && !treatment.billed && treatment.invoiceCase.id">
-                            <a ng-href="{{::dc.baseUrl}}treatment/{{::treatment.id}}/service/generic/">Neue
-                                Leistungen</a>
+                            <a ng-href="{{::dc.baseUrl}}treatment/{{::treatment.id}}/service/generic/">{{'NEW_SERVICES' | translate}}</a>
                         </li>
                         <li ng-if="::treatment.mandator != user.mandator.id || treatment.billed">
-                            <a ng-href="{{::dc.baseUrl}}show/service/{{::treatment.id}}/">Leistungen zeigen</a>
+                            <a ng-href="{{::dc.baseUrl}}show/service/{{::treatment.id}}/">{{'SHOW_SERVICES' | translate}}</a>
                         </li>
 
                         <li role="presentation" class="divider"></li>
-                        <li><a ng-href="{{::dc.baseUrl}}goto/invoice/">Gehe zu Rechnungen</a></li>
+                        <li><a ng-href="{{::dc.baseUrl}}goto/invoice/">{{'GO_TO_INVOICES'| translate}}</a></li>
                     </ul>
                 </div>
             </div>
@@ -267,14 +256,14 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="form-group">
-                        <input class="form-control type-and-preset-search" placeholder="Neuer Behandlungstitel (F9)"
+                        <input class="form-control type-and-preset-search" placeholder="{{'TYPE_AND_PRESET_PLACEHOLDER' | translate}}"
                                ng-model="search.term">
                     </div>
                     <div class="row list-group-row">
                         <div class="col-xs-12">
                             <div class="type-and-preset-list" ng-show="active">
                                 <div class="list-group">
-                                    <h5 class="list-group-item entry-type">Behandlungstitel</h5>
+                                    <h5 class="list-group-item entry-type">{{'ENTRY_TYPES' | translate}}</h5>
                                     <a tabindex href
                                        ng-click="dc.addEntry(treatment.id, type, treatment.entries); search.term=''"
                                        ng-repeat="type in dc.types | filter:search.term"
@@ -283,7 +272,7 @@
                                         {{::type.name}}
                                     </a>
                                     <hr>
-                                    <h5 class="list-group-item preset">Strukturen</h5>
+                                    <h5 class="list-group-item preset">{{'PRESETS' | translate}}</h5>
                                     <a tabindex href
                                        class="list-group-item preset"
                                        ng-click="dc.addPreset(treatment.id, preset, treatments); search.term=''"
@@ -298,18 +287,6 @@
             </div>
         </li>
 
-        <!--<li class="list-group-item"-->
-        <!--ng-show="(treatment.focused || select2Open || treatment.new) && dc.permissionToEdit">-->
-        <!--<div class="row">-->
-        <!--<div class="col-xs-12 type-select">-->
-        <!--<select2 placeholder="Neuer Behandlungstitel (F9)"-->
-        <!--class="form-control"-->
-        <!--ng-change="dc.addEntry(treatment.id, dc.newEntry.type, treatment.entries); dc.newEntry = {}"-->
-        <!--ng-model="dc.newEntry.type"-->
-        <!--ng-options="type as type.name group by type.name.substr(0,1) for type in dc.types track by type.id"></select2>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--</li>-->
     </ul>
 </div>
 </div>

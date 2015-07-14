@@ -8,6 +8,7 @@
                 'ngSanitize',
                 'ui.bootstrap',
                 'textAngular',
-                'monospaced.elastic'
+                'monospaced.elastic',
+                'pascalprecht.translate'
             ]);
 })();
