@@ -17,7 +17,7 @@
 
                     <input class="form-control" ng-model="vm.search.text" placeholder="{{'SEARCH' | translate}}">
                     <span class="input-group-btn">
-                        <a href class="btn btn-default btn-xs" ng-click="toolbar.showAdvancedSearch(true)"><i class="fa fa-plus"></i></a>
+                        <a tooltip="{{ 'ADVANCED_SEARCH_TOOLTIP' | translate}}" tooltip-placement="bottom" href class="btn btn-default btn-xs" ng-click="toolbar.showAdvancedSearch(true)"><i class="fa fa-plus"></i></a>
                     </span>
                 </div>
             </div>
@@ -27,35 +27,49 @@
 
                         <div class="btn-group">
                             <a ng-if="vm.user.hasGDTDevice" class="btn btn-default btn-xs gdt dropdown-toggle"
-                               dropdown-toggle>&nbsp;</a>
+                               dropdown-toggle
+                               tooltip="{{ 'GDT_TOOLTIP' | translate}}" tooltip-placement="bottom"
+                                    >&nbsp;</a>
 
-                            <a class="btn btn-default btn-xs new-treatment" title="Neue Behandlung"
+                            <a class="btn btn-default btn-xs new-treatment"
+                               tooltip="{{ 'NEW_TREATMENT_TODAY_TOOLTIP' | translate}}" tooltip-placement="bottom"
                                ng-click="toolbar.addTreatment(vm.treatments)">&nbsp;</a>
-                            <a class="btn btn-default btn-xs new-treatment-dialog" title=""
+                            <a class="btn btn-default btn-xs new-treatment-dialog"
+                               tooltip="{{ 'NEW_TREATMENT_DIALOG_TOOLTIP' | translate}}" tooltip-placement="bottom"
                                href="{{vm.baseUrl}}treatment/">
                                 &nbsp;</a>
                             <a class="btn btn-default btn-xs biometric-report"
+                               tooltip="{{ 'OPEN_BIOMETRIC_REPORT_TOOLTIP' | translate}}" tooltip-placement="bottom"
                                ng-click="toolbar.openBiometricReport()">&nbsp;</a>
                             <a class="btn btn-default btn-xs laboratory-report"
+                               tooltip="{{ 'OPEN_LABORATORY_REPORT_TOOLTIP' | translate}}" tooltip-placement="bottom"
                                ng-click="toolbar.openLaboratoryReport()">&nbsp;</a>
                             <a class="btn btn-default btn-xs treatment-report"
+                               tooltip="{{ 'OPEN_TREATMENT_REPORT_TOOLTIP' | translate}}" tooltip-placement="bottom"
                                ng-click="toolbar.openTreatmentReport(vm.treatments)">&nbsp;</a>
                             <a class="btn btn-default btn-xs search"
+                               tooltip="{{ 'ASTERISK_SEARCH_TOOLTIP' | translate}}" tooltip-placement="bottom"
                                ng-click="toolbar.asteriskSearch(vm.treatments)">&nbsp;</a>
                             <a class="btn btn-default btn-xs sort"
+                               tooltip="{{ 'REVERSE_ORDER_TOOLTIP' | translate}}" tooltip-placement="bottom"
                                ng-click="vm.reverse=!vm.reverse">&nbsp;</a>
                         </div>
 
                         <div class="btn-group">
-                            <a class="btn btn-default btn-xs appointment" href="{{vm.baseUrl}}appointment/">
+                            <a class="btn btn-default btn-xs appointment" href="{{vm.baseUrl}}appointment/"
+                               tooltip="{{ 'APPOINTMENT_TOOLTIP' | translate}}" tooltip-placement="bottom"
+                                    >
                                 &nbsp;</a>
-                            <a class="btn btn-default btn-xs recall" href="{{vm.baseUrl}}recall/">&nbsp;</a>
-                            <a class="btn btn-default btn-xs todo" href="{{vm.baseUrl}}todo/">&nbsp;</a>
+                            <a class="btn btn-default btn-xs recall" href="{{vm.baseUrl}}recall/"
+                               tooltip="{{ 'RECALL_TOOLTIP' | translate}}" tooltip-placement="bottom"
+                                    >&nbsp;</a>
+                            <a class="btn btn-default btn-xs todo" href="{{vm.baseUrl}}todo/"
+                               tooltip="{{ 'TODO_TOOLTIP' | translate}}" tooltip-placement="bottom"
+                                    >&nbsp;</a>
                         </div>
-                        <div class="btn-group">
-                            <a class="btn btn-default btn-xs"
-                               ng-hide="vm.treatmentCount() == vm.treatments.length || !vm.treatments"
-                                    ng-click="vm.loadNext()">{{vm.getNextCaption()}}</a>
+                        <div class="btn-group"
+                             tooltip="{{ 'LOAD_ENTRIES_TOOLTIP' | translate}}" tooltip-placement="bottom"
+                                >
                             <a class="btn btn-default btn-xs refresh" ng-click="vm.loadEntries(true)">&nbsp;</a>
                         </div>
                         <ul class="dropdown-menu gdt-list">
@@ -74,28 +88,30 @@
                 <div class="btn-group pull-right">
                     <div class="dropdown" toggle-focus dropdown>
 
-                        <a class="btn btn-default btn-xs dropdown-toggle" dropdown-toggle><i class="fa fa-cogs"></i></a>
+                        <a class="btn btn-default btn-xs dropdown-toggle" dropdown-toggle
+                           tooltip="{{ 'CONFIGURATION_TOOLTIP' | translate}}" tooltip-placement="bottom"
+                                ><i class="fa fa-cogs"></i></a>
                         <ul class="dropdown-menu dropdown-menu-right">
                             <li><a ng-click="marginSetting='large-margins'" href><span class="checkmark"><i
                                     class="fa fa-check" ng-show="marginSetting=='large-margins'">&nbsp;</i></span>
-                                Grosse Abstände</a></li>
+                                {{'LARGE_MARGINS' | translate}}</a></li>
                             <li><a ng-click="marginSetting='small-margins'" href><span class="checkmark"><i
                                     class="fa fa-check" ng-show="marginSetting=='small-margins' || !marginSetting">
-                                &nbsp;</i></span> Kleine Abstände</a></li>
+                                &nbsp;</i></span> {{'SMALL_MARGINS' | translate}}</a></li>
                             <li role="presentation" class="divider"></li>
                             <li><a ng-click="fontSetting='small-fonts'" href><span class="checkmark"><i
                                     class="fa fa-check" ng-show="fontSetting=='small-fonts'">&nbsp;</i></span>
-                                Kleine Schrift</a></li>
+                                {{'SMALL_FONTS' | translate}}</a></li>
                             <li><a ng-click="fontSetting='medium-fonts'" href><span class="checkmark"><i
                                     class="fa fa-check" ng-show="fontSetting=='medium-fonts' || !fontSetting">
-                                &nbsp;</i></span> Mittlere Schrift</a></li>
+                                &nbsp;</i></span> {{'MEDIUM_FONTS' | translate}}</a></li>
                             <li><a ng-click="fontSetting='large-fonts'" href><span class="checkmark"><i
                                     class="fa fa-check" ng-show="fontSetting=='large-fonts'">&nbsp;</i></span>
-                                Grosse Schrift</a></li>
+                                {{'LARGE_FONTS' | translate}}</a></li>
                             <li class="divider"></li>
-                            <li><a href ng-click="toolbar.showTitleSettingsWidget(true)">Titel zeigen</a></li>
+                            <li><a href ng-click="toolbar.showTitleSettingsWidget(true)">{{'SHOW_TITLES' | translate}}</a></li>
                             <li class="divider"></li>
-                            <li><a href ng-click="toolbar.showPresetSettingsWidget(true)">Strukturen verwalten</a></li>
+                            <li><a href ng-click="toolbar.showPresetSettingsWidget(true)">{{'SHOW_PRESETS' | translate}}</a></li>
                         </ul>
                     </div>
                 </div>

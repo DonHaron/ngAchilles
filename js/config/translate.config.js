@@ -54,7 +54,37 @@
             'SET_TREATMENT': 'Behandlung einstellen',
             'DELETE_TREATMENT': 'Behandlung löschen',
             'CLOSE_TREATMENT': 'Behandlung schliessen',
-            'REOPEN_TREATMENT': 'Behandlung wieder öffnen'
+            'REOPEN_TREATMENT': 'Behandlung wieder öffnen',
+            // Toolbar tooltips
+            'ADVANCED_SEARCH_TOOLTIP': 'Erweiterte Suche',
+            'GDT_TOOLTIP': 'GDT Untersuchung',
+            'NEW_TREATMENT_TODAY_TOOLTIP': 'Neu heute',
+            'NEW_TREATMENT_DIALOG_TOOLTIP': 'Neu mit Dialog',
+            'OPEN_BIOMETRIC_REPORT_TOOLTIP': 'Blatt mit biom. Daten',
+            'OPEN_LABORATORY_REPORT_TOOLTIP': 'Laborblatt',
+            'OPEN_TREATMENT_REPORT_TOOLTIP': 'Bericht erstellen',
+            'ASTERISK_SEARCH_TOOLTIP': '* Suchen',
+            'REVERSE_ORDER_TOOLTIP': 'Sortierung umkehren',
+            'APPOINTMENT_TOOLTIP': 'Neuer Termin',
+            'RECALL_TOOLTIP': 'Neuer Recall',
+            'TODO_TOOLTIP': 'Neue Aufgabe',
+            'LOAD_ENTRIES_TOOLTIP': 'Alle Behandlungen neu laden',
+            'CONFIGURATION_TOOLTIP': 'Konfiguration',
+            // Config
+            'LARGE_MARGINS': 'Grosse Abstände',
+            'SMALL_MARGINS': 'Kleine Abstände',
+            'SMALL_FONTS': 'Kleine Schrift',
+            'MEDIUM_FONTS': 'Mittlere Schrift',
+            'LARGE_FONTS': 'Grosse Schrift',
+            'SHOW_TITLES': 'Titel zeigen',
+            'SHOW_PRESETS': 'Strukturen verwalten',
+            // Treatment tooltips
+            'MEDICATION_TOOLTIP': 'Medikamente',
+            'LABORATORY_TOOLTIP': 'Analysen',
+            'DOCUMENT_TOOLTIP': 'Briefe',
+            'DISABILITY_TOOLTIP': 'AUF',
+            'BIOMETRIC_DATA_TOOLTIP': 'Biometrische Daten',
+            'SERVICE_TOOLTIP': 'Leistungen'
         });
 
         $translateProvider.translations('fr', {

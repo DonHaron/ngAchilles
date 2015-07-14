@@ -117,7 +117,9 @@
             <div class="dropdowns col-md-6 col-sm-12">
                 <div class="dropdown icon-dropdown" toggle-focus dropdown>
                     <a class="btn dropdown-toggle achilles-icon achilles-medication"
-                       ng-class="::{'empty': !treatment.hasMedication}" dropdown-toggle>
+                       ng-class="::{'empty': !treatment.hasMedication}"
+                       tooltip="{{'MEDICATION_TOOLTIP' | translate}}" tooltip-placement="left"
+                       dropdown-toggle>
                         &nbsp;
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
@@ -140,7 +142,9 @@
                 <div class="dropdown icon-dropdown" dropdown toggle-focus
                      on-toggle="dc.loadLaboratoryReports(open)">
                     <a class="btn dropdown-toggle achilles-icon achilles-laboratory"
-                       ng-class="::{'empty': !treatment.hasLaboratory}" dropdown-toggle>
+                       ng-class="::{'empty': !treatment.hasLaboratory}" dropdown-toggle
+                       tooltip="{{'LABORATORY_TOOLTIP' | translate}}" tooltip-placement="left"
+                            >
                         &nbsp;
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
@@ -155,7 +159,9 @@
                 </div>
                 <div class="dropdown icon-dropdown" dropdown toggle-focus on-toggle="dc.loadDocuments(open)">
                     <a class="btn dropdown-toggle achilles-icon achilles-document"
-                       ng-class="::{'empty': !treatment.hasDocument}" dropdown-toggle>
+                       ng-class="::{'empty': !treatment.hasDocument}" dropdown-toggle
+                       tooltip="{{'DOCUMENT_TOOLTIP' | translate}}" tooltip-placement="left"
+                            >
                         &nbsp;
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
@@ -180,7 +186,9 @@
             </div>
             <div class="dropdowns col-md-6 col-sm-12">
                 <div class="dropdown icon-dropdown" dropdown toggle-focus
-                     on-toggle="treatment.mandator == user.mandator.id && dc.loadDisability(open)">
+                     on-toggle="treatment.mandator == user.mandator.id && dc.loadDisability(open)"
+                     tooltip="{{'DISABILITY_TOOLTIP' | translate}}" tooltip-placement="left"
+                        >
                     <a class="btn dropdown-toggle achilles-icon achilles-auf"
                        ng-class="::{'empty': !treatment.hasDisability}" dropdown-toggle>
                         &nbsp;
@@ -197,7 +205,9 @@
                 </div>
                 <div class="dropdown icon-dropdown" dropdown toggle-focus on-toggle="dc.loadBiometrics(open)">
                     <a class="btn dropdown-toggle achilles-icon achilles-biometric"
-                       ng-class="::{'empty': !treatment.hasBiometric}" dropdown-toggle>
+                       ng-class="::{'empty': !treatment.hasBiometric}" dropdown-toggle
+                       tooltip="{{'BIOMETRIC_DATA_TOOLTIP' | translate}}" tooltip-placement="left"
+                            >
                         &nbsp;
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
@@ -216,7 +226,9 @@
                 </div>
                 <div class="dropdown icon-dropdown" toggle-focus dropdown>
                     <a class="btn dropdown-toggle achilles-icon achilles-benefit"
-                       ng-class="::{'empty': !treatment.hasService}" dropdown-toggle>
+                       ng-class="::{'empty': !treatment.hasService}" dropdown-toggle
+                       tooltip="{{'SERVICE_TOOLTIP' | translate}}" tooltip-placement="left"
+                            >
                         &nbsp;
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
