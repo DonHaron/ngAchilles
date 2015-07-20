@@ -44,7 +44,6 @@
                 }
             };
             $http(req).then(function(response){
-                console.log(response.status);
                 if(response.status == 204){
                     //console.log('lock obtained');
                     row.hasOwnLock = true;

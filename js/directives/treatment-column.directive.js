@@ -333,10 +333,14 @@
 
     }
 
-    TreatmentColumnController.$inject = ['$scope', '$sce', '$timeout', 'TreatmentRow'];
-    function TreatmentColumnController($scope, $sce, $timeout, TreatmentRow) {
+    TreatmentColumnController.$inject = ['$scope', '$sce', '$filter', 'TreatmentRow'];
+    function TreatmentColumnController($scope, $sce, $filter, TreatmentRow) {
         // we have to sanitize the content if we just want to display it with html tags
-        $scope.readonlyContent = $sce.trustAsHtml($scope.column.content);
+        if($scope.column.validation == 'date'){
+            $scope.readonlyContent = $sce.trustAsHtml($filter('date')($scope.column.content));
+        }else {
+            $scope.readonlyContent = $sce.trustAsHtml($scope.column.content);
+        }
 
         $scope.opened = false;
 
