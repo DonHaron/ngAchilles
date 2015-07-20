@@ -26,7 +26,8 @@
 
             function focusOnChanged(){
                 $timeout(function () {
-                    var textarea = element.find('.ta-bind:not(.ta-readonly)').eq(0);
+                    //var textarea = element.find('.ta-bind:not(.ta-readonly)').eq(0);
+                    var textarea = element.find('.ta-bind:not(.ta-readonly), .form-control:not(.ta-editor)').eq(0);
                     textarea.focus();
                 }, 150);
             }

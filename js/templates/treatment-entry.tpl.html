@@ -24,49 +24,56 @@
         </div>
         <div class="col-xs-8 col-sm-9 col-lg-10">
             <form name="entryform">
-                <div
-                        context-menu
-                        data-target="menu-{{ row.id }}"
-                        ng-class="{ 'highlight': highlight, 'expanded' : expanded }"
-                        keyboard-focus focusable=".catalog-entry"
-                        active="{{dc.catalog.entries.length && dc.catalog.id == row.id && dc.showCatalog}}"
-                        class="row treatment-row" treatment-row
-                        ng-repeat-start="row in entry.rows | orderBy:'id'"
-                        ng-class="{locked: row.locked}" ng-hide="row.deleted">
+                <div ng-repeat="row in entry.rows | orderBy:'id'"
+                     class="treatment-row">
+
+                    <div
+                            context-menu
+                            data-target="menu-{{ row.id }}"
+                            ng-class="{ 'highlight': highlight, 'expanded' : expanded }"
+                            keyboard-focus focusable=".catalog-entry"
+                            active="{{dc.catalog.entries.length && dc.catalog.id == row.id && dc.showCatalog}}"
+                            class="row" treatment-row
+                            ng-class="{locked: row.locked}" ng-hide="row.deleted">
                     <span class="label locked-warning" ng-class="'mandator-' + row.lockedBy.id + '-warning'"
                           ng-show="row.locked">Gesperrt von {{row.lockedBy.name}}</span>
-                    <treatment-column ng-repeat="column in row.columns"
-                                      column="column"
-                                      width="{{column.width}}"
-                                      editable="{{editable === 'true' && !column.readonly}}" treatment="treatment" warning="warning"
-                                      type="entry.type" entry="entry"
-                                      readonly="column.readonly || !permissionToEdit()" row="row"></treatment-column>
-                    <div class="catalog-list"
-                         ng-if="dc.catalog.entries.length && dc.catalog.id == row.id && dc.showCatalog">
-                        <div class="list-group">
-                            <a class="list-group-item catalog-entry"
-                               href ng-click="dc.chooseCatalogEntry(catalogEntry, row, entry)"
-                               ng-repeat="catalogEntry in dc.catalog.entries"
-                                    >
-                                <div class="row">
-                                    <div ng-repeat="column in catalogEntry.cols" ng-class="::'col-xs-' + column.width "
-                                         ng-bind-html="::column.trustedContent"></div>
-                                </div>
-                            </a>
+                        <treatment-column ng-repeat="column in row.columns"
+                                          column="column"
+                                          width="{{column.width}}"
+                                          editable="{{editable === 'true' && !column.readonly}}" treatment="treatment"
+                                          warning="warning"
+                                          type="entry.type" entry="entry"
+                                          readonly="column.readonly || !permissionToEdit()"
+                                          row="row"></treatment-column>
+                        <div class="catalog-list"
+                             ng-if="dc.catalog.entries.length && dc.catalog.id == row.id && dc.showCatalog">
+                            <div class="list-group">
+                                <a class="list-group-item catalog-entry"
+                                   href ng-click="dc.chooseCatalogEntry(catalogEntry, row, entry)"
+                                   ng-repeat="catalogEntry in dc.catalog.entries"
+                                        >
+                                    <div class="row">
+                                        <div ng-repeat="column in catalogEntry.cols"
+                                             ng-class="::'col-xs-' + column.width "
+                                             ng-bind-html="::column.trustedContent"></div>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
-                    </div>
 
+                    </div>
+                    <div class="dropdown position-fixed context-menu" id="menu-{{ row.id }}">
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a class="pointer" role="menuitem" tabindex="1"
+                                   ng-click="dc.removeRow(row, entry, treatment.entries);">
+                                    {{'DELETE_ROW' | translate}}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="dropdown position-fixed context-menu" id="menu-{{ row.id }}" ng-repeat-end>
-                    <ul class="dropdown-menu" role="menu">
-                        <li>
-                            <a class="pointer" role="menuitem" tabindex="1"
-                               ng-click="dc.removeRow(row, entry, treatment.entries);">
-                                {{'DELETE_ROW' | translate}}
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+
             </form>
         </div>
     </div>

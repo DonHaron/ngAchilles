@@ -165,10 +165,11 @@
                 // Ctrl + Shift + Backspace
                 if (e.ctrlKey && e.shiftKey && e.which == 8) {
                     //see if there is a previous textarea element in the same entry. If there is, focus on it
-                    var prevRow = element.parents('.row').prev().find('.ta-bind:not(:disabled), .form-control:not(:disabled)');
-                    var nextRow = element.parents('.row').next().find('.ta-bind:not(:disabled), .form-control:not(:disabled)');
-                    var prevEntry = element.parents('treatment-entry').prev().find('.ta-bind:not(:disabled), .form-control:not(:disabled)');
-                    var nextEntry = element.parents('treatment-entry').next().find('.ta-bind:not(:disabled), .form-control:not(:disabled)');
+                    var prevRow = element.parents('.treatment-row').prev().find('.ta-bind:not(:disabled), .form-control:not(:disabled):not(.ta-editor)');
+                    var nextRow = element.parents('.treatment-row').next().find('.ta-bind:not(:disabled), .form-control:not(:disabled):not(.ta-editor)');
+                    var prevEntry = element.parents('treatment-entry').prev().find('.ta-bind:not(:disabled), .form-control:not(:disabled):not(.ta-editor)');
+                    var nextEntry = element.parents('treatment-entry').next().find('.ta-bind:not(:disabled), .form-control:not(:disabled):not(.ta-editor)');
+                    //debugger;
                     $timeout(function () {
                         if (prevRow.length) {
                             prevRow.eq(0).focus();
