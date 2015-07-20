@@ -9,7 +9,7 @@
                    translate="FROM_TO_TOTAL"
                    translate-value-from="{{currentPage?(currentPage-1)*vm.limit+1 : 1}}"
                    translate-value-to="{{currentPage?(currentPage)*vm.limit : vm.limit}}"
-                   translate-value-total="{{vm.treatments.length}}"
+                   translate-value-total="{{vm.filteredTreatments.length}}"
                    ></p>
             </div>
             <div class="col-xs-2">
