@@ -850,7 +850,9 @@ h5.list-group-item.preset {
     color: rgba(0, 0, 0, 0.3);
 }
 
-
+.context-menu {
+    z-index: 99;
+}
 
 @media (min-width: 1060px) {
     .container-fluid {

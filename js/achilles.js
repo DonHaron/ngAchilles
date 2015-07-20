@@ -9,6 +9,7 @@
                 'ui.bootstrap',
                 'textAngular',
                 'monospaced.elastic',
-                'pascalprecht.translate'
+                'pascalprecht.translate',
+                'ng-context-menu'
             ]);
 })();

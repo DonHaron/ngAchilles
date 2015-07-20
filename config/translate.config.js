@@ -84,7 +84,8 @@
             'DOCUMENT_TOOLTIP': 'Briefe',
             'DISABILITY_TOOLTIP': 'AUF',
             'BIOMETRIC_DATA_TOOLTIP': 'Biometrische Daten',
-            'SERVICE_TOOLTIP': 'Leistungen'
+            'SERVICE_TOOLTIP': 'Leistungen',
+            'DELETE_ROW': 'Eintrag löschen'
         });
 
         $translateProvider.translations('fr', {

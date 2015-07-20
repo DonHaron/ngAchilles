@@ -9,6 +9,7 @@ module.exports = function (grunt) {
                     'bower_components/angular-resource/angular-resource.js',
                     'bower_components/angular-sanitize/angular-sanitize.js',
                     'bower_components/angular-translate/angular-translate.min.js',
+                    'bower_components/ng-context-menu/dist/ng-context-menu.min.js',
                     'bower_components/ngLocale/angular-locale_de-ch.js',
                     'bower_components/angular-bootstrap/ui-bootstrap.js',
                     'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
