@@ -44,12 +44,13 @@
                 }
             };
             $http(req).then(function(response){
+                console.log(response.status);
                 if(response.status == 204){
                     //console.log('lock obtained');
                     row.hasOwnLock = true;
                 }else{
                     //console.log('no lock for you');
-                    row.lock = true;
+                    row.locked = true;
                     row.lockedBy = response.data.lockedBy;
                 }
             });
