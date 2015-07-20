@@ -209,7 +209,7 @@
             }
 
             function keyup(e) {
-                if (isModifyingInput(e) && e.which != 13 && scope.column.content && !(scope.column.content instanceof Date)) { // exclude enter key & dates
+                if (isModifyingInput(e) && e.which != 13 && angular.isDefined(scope.column.content) && !(scope.column.content instanceof Date)) { // exclude enter key & dates
                     entryCtrl.lookupCatalogEntries(scope.column.content.replace(/<[^>]*>/gm, ''), scope.row, scope.column);
                 }
                 CurrentFocus.setCurrentCursor();
