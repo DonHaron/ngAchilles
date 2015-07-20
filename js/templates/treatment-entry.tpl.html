@@ -33,7 +33,6 @@
                         class="row treatment-row" treatment-row
                         ng-repeat-start="row in entry.rows | orderBy:'id'"
                         ng-class="{locked: row.locked}" ng-hide="row.deleted">
-                    <pre>{{row.id}}</pre>
                     <span class="label locked-warning" ng-class="'mandator-' + row.lockedBy.id + '-warning'"
                           ng-show="row.locked">Gesperrt von {{row.lockedBy.name}}</span>
                     <treatment-column ng-repeat="column in row.columns"
