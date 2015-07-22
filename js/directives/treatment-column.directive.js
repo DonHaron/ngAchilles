@@ -18,7 +18,7 @@
                 '</div>',
             input: '<div ng-class="::columnClass" class="treatment-column" catalog-prompt>' +
                 '<div class="form-group">' +
-                '<textarea rows="1" msd-elastic validation="{{::column.validation}}" ng-model="column.content" placeholder="{{::column.placeholder}}" class="form-control"></textarea>' +
+                '<textarea rows="1" msd-elastic ng-class="[column.validation]" validation="{{::column.validation}}" ng-model="column.content" placeholder="{{::column.placeholder}}" class="form-control"></textarea>' +
                 '</div>' +
                 '</div>',
             datepicker: '<div ng-class="::columnClass" class="treatment-column">' +
