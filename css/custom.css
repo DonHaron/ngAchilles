@@ -860,8 +860,11 @@ h5.list-group-item.preset {
 .treatment-column .read-only-content {
     height: auto;
     min-height: 30px;
-    padding: 3px 6px;
-    background-color: rgba(250, 250, 250, 0.9);
+    /*padding: 3px 6px;*/
+    /*background-color: rgba(250, 250, 250, 0.9);*/
+    border: 0;
+    box-shadow: none;
+    padding: 0px 6px;
 }
 
 .placeholder-text::before {

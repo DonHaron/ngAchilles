@@ -92,21 +92,21 @@
                            tooltip="{{ 'CONFIGURATION_TOOLTIP' | translate}}" tooltip-placement="bottom"
                                 ><i class="fa fa-cogs"></i></a>
                         <ul class="dropdown-menu dropdown-menu-right">
-                            <li><a ng-click="marginSetting='large-margins'" href><span class="checkmark"><i
-                                    class="fa fa-check" ng-show="marginSetting=='large-margins'">&nbsp;</i></span>
+                            <li><a ng-click="toolbar.changeMargins('large-margins')" href><span class="checkmark"><i
+                                    class="fa fa-check" ng-show="vm.user.margins=='large-margins'">&nbsp;</i></span>
                                 {{'LARGE_MARGINS' | translate}}</a></li>
-                            <li><a ng-click="marginSetting='small-margins'" href><span class="checkmark"><i
-                                    class="fa fa-check" ng-show="marginSetting=='small-margins' || !marginSetting">
+                            <li><a ng-click="toolbar.changeMargins('small-margins')" href><span class="checkmark"><i
+                                    class="fa fa-check" ng-show="vm.user.margins=='small-margins' || !vm.user.margins">
                                 &nbsp;</i></span> {{'SMALL_MARGINS' | translate}}</a></li>
                             <li role="presentation" class="divider"></li>
-                            <li><a ng-click="fontSetting='small-fonts'" href><span class="checkmark"><i
-                                    class="fa fa-check" ng-show="fontSetting=='small-fonts'">&nbsp;</i></span>
+                            <li><a ng-click="toolbar.changeFontSize('small-fonts')" href><span class="checkmark"><i
+                                    class="fa fa-check" ng-show="vm.user.fontSize=='small-fonts'">&nbsp;</i></span>
                                 {{'SMALL_FONTS' | translate}}</a></li>
-                            <li><a ng-click="fontSetting='medium-fonts'" href><span class="checkmark"><i
-                                    class="fa fa-check" ng-show="fontSetting=='medium-fonts' || !fontSetting">
+                            <li><a ng-click="toolbar.changeFontSize('medium-fonts')" href><span class="checkmark"><i
+                                    class="fa fa-check" ng-show="vm.user.fontSize=='medium-fonts' || !vm.user.fontSize">
                                 &nbsp;</i></span> {{'MEDIUM_FONTS' | translate}}</a></li>
-                            <li><a ng-click="fontSetting='large-fonts'" href><span class="checkmark"><i
-                                    class="fa fa-check" ng-show="fontSetting=='large-fonts'">&nbsp;</i></span>
+                            <li><a ng-click="toolbar.changeFontSize('large-fonts')" href><span class="checkmark"><i
+                                    class="fa fa-check" ng-show="vm.user.fontSize=='large-fonts'">&nbsp;</i></span>
                                 {{'LARGE_FONTS' | translate}}</a></li>
                             <li class="divider"></li>
                             <li><a href ng-click="toolbar.showTitleSettingsWidget(true)">{{'SHOW_TITLES' | translate}}</a></li>

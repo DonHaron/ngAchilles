@@ -13,6 +13,13 @@
 
         return service;
 
+        /*
+         * This function looks for the next '*' character in the editable columns and focuses on the next one,
+         *     if found
+         *
+         * It only works with columns that have no nested html code, i.e. are stored as plaintext or only have a <p>
+         *     around them
+         */
         function search(treatments){
             //TODO: look for the next entry with an asterisk, starting from the current focus
             var currentlyFocusedRow,

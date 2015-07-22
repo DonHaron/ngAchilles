@@ -14,6 +14,8 @@
             promise;
 
         var service = {
+            changeFontSize: changeFontSize,
+            changeMargins: changeMargins,
             get: get,
             setVisibleEntryTypes: setVisibleEntryTypes,
             changeVisibility: changeVisibility
@@ -21,6 +23,20 @@
         };
 
         return service;
+
+        function changeFontSize(font){
+            currentUser.fontSize = font;
+            $http.post(urls.user('put'), currentUser).then(function(response){
+                console.log(response);
+            });
+        }
+
+        function changeMargins(margins){
+            currentUser.margins = margins;
+            $http.post(urls.user('put'), currentUser).then(function(response){
+                console.log(response);
+            });
+        }
 
         function get() {
             var deferred = $q.defer();
@@ -88,6 +104,7 @@
             // If a request is already starting, cancel it. The last request is always the most current one, and
             // contains all the previous information as well
             if(promise && promise.$$state.status === 0){
+
                 $timeout.cancel(promise);
             }
             // Save the current user object, so the hidden entry types are saved for the next page load.

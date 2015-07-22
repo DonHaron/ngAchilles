@@ -37,7 +37,7 @@
 </div>
 <div class="container-fluid">
     <div class="row-fluid">
-        <div class="col-sm-8 treatments" ng-class="[marginSetting, fontSetting]" ng-controller="MainController as vm">
+        <div class="col-sm-8 treatments" ng-class="[vm.user.margins, vm.user.fontSize]" ng-controller="MainController as vm">
             <div class="panel panel-default">
 
                 <treatment-toolbar></treatment-toolbar>

@@ -31,7 +31,7 @@
         vm.fontSizes = [
             {class: 'large-fonts', label: 'Gross'},
             {class: 'medium-fonts', label: 'Mittel'},
-            {class: 'small-fonts', label: 'Klein'},
+            {class: 'small-fonts', label: 'Klein'}
         ];
 
         vm.loadEntries(false);
