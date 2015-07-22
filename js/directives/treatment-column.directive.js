@@ -137,6 +137,11 @@
             });
 
             function setTemplate(editable, column) {
+                // this replaces too much
+//                var html = getTemplate(editable, column);
+//                var e = $compile(html)(scope);
+//                element.replaceWith(e).show();
+
                 element.html(getTemplate(editable, column)).show();
                 $compile(element.contents())(scope);
             }

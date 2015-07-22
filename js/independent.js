@@ -19,9 +19,6 @@ toastr.options = {
     "positionClass": "toast-top-full-width"
 };
 
-window.onbeforeunload = function(){
-    return 'Are you sure you want to quit?';
-};
 
 //var log = console.log;
 //function onPaste(e){
