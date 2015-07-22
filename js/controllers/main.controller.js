@@ -39,8 +39,10 @@
         loadUser();
         //loadEntryTypes();
 
-        console.log('maincontroller line 34');
+        console.log('maincontroller line 42');
 
+        // for if we wanna use the Math functions, not really all that clean tbh. A filter would be much cleaner
+        $scope.Math = window.Math;
         $scope.$on('updateTreatment', function(event, treatment){
             Treatment.update(treatment, vm.treatments);
             $scope.$apply();
