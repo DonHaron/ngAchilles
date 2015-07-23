@@ -2,12 +2,16 @@
     color: black;
 }
 
+.container-fluid {
+    padding-top: 15px;
+}
+
 .hiddenRow2 {
     padding: 4px !important;
 }
 
 .treatments {
-    padding-left: 0px;
+    padding-left: 15px;
     padding-right: 0px;
     padding-top: 70px;
     height: 100%;
@@ -16,6 +20,7 @@
 
 .treatments > .panel {
     padding-right: 15px;
+    margin-bottom: 0;
 }
 
 html, body, .container-fluid, .container-fluid > .row-fluid {
@@ -29,6 +34,10 @@ html, body, .container-fluid, .container-fluid > .row-fluid {
 .treatment .form-control.ng-invalid,
 .treatment .form-control.ng-invalid:focus {
     border-color: red;
+}
+
+.form-control.numeric {
+    text-align: right;
 }
 
 .centered {
@@ -69,11 +78,13 @@ html, body, .container-fluid, .container-fluid > .row-fluid {
 }
 
 .toolbar-wrapper {
-    top: 0;
+    top: 15px;
     position: fixed;
     width: 66.66%;
     z-index: 99;
     background-color: white;
+    padding-right: 15px;
+    margin-left: -1px;
 }
 
 .toolbar {
@@ -883,13 +894,20 @@ treatment-column:last-of-type .treatment-column{
     /*min-height: 30px;*/
     /*padding: 3px 6px;*/
     /*background-color: rgba(250, 250, 250, 0.9);*/
-    border: 0;
+    border-width: 0;
     box-shadow: none;
     padding: 0px 6px;
 }
 
 .treatment-column:first-child  .read-only-content{
     padding-left: 0;
+}
+
+treatment.editable .treatment-column .read-only-content{
+    border-width: 1px;
+    padding: 3px 6px;
+    min-height: 30px;
+    background-color: rgba(250, 250, 250, 0.9);
 }
 
 .placeholder-text::before {

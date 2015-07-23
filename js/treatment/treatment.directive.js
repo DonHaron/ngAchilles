@@ -65,6 +65,8 @@
             element.on('focusout', function () {
                 promise = $timeout(function () {
                     scope.treatment.focused = false;
+                    //scope.editable = false;
+                    //scope.treatment.editable = false;
                 }, 300);
             });
         }
