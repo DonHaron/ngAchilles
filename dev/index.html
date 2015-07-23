@@ -38,7 +38,8 @@
 </div>
 <div class="container-fluid">
     <div class="row-fluid">
-        <div class="col-sm-8 treatments" ng-class="[vm.user.margins, vm.user.fontSize]" ng-controller="MainController as vm">
+        <div class="col-sm-8 treatments" ng-class="[vm.user.margins, vm.user.fontSize]"
+             ng-controller="MainController as vm">
             <div class="panel panel-default">
 
                 <treatment-toolbar></treatment-toolbar>
@@ -73,7 +74,8 @@
 
                 <div class="row">
 
-                    <div class="col-xs-12 centered" ng-hide="vm.limit == vm.filteredTreatments.length || !vm.filteredTreatments"
+                    <div class="col-xs-12 centered"
+                         ng-hide="vm.limit == vm.filteredTreatments.length || !vm.filteredTreatments"
                          ng-cloak>
                         <div class="panel">
                             <div class="panel-body">
@@ -92,13 +94,44 @@
         </div>
         <div class="col-sm-4 sidebar">
             <div class="row">
+
                 <div class="col-sm-12" ng-controller="MedicationController as vm">
-                    <div class="panel panel-default">
-                        <ul class="list-group">
-                            <li class="list-group-item" ng-repeat="medication in vm.medicationList">
-                                {{medication.name}}
-                            </li>
-                        </ul>
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h4>Mediplan</h4>
+                        </div>
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>Medikament</th>
+                                <th>Einnahme</th>
+                                <th>Indikation</th>
+                                <th>von / bis</th>
+                            </tr>
+                            </thead>
+                            <tbody ng-repeat="medication in vm.medicationList">
+                            <tr data-toggle="collapse" data-target="#demo{{$index}}" class="accordion-toggle">
+                                <td>{{medication.name}}</td>
+                                <td>{{medication.taking}}</td>
+                                <td>{{medication.indication}}</td>
+                                <td>{{medication.date}}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" class="hiddenRow2">
+                                    <div class="accordian-body collapse" id="demo{{$index}}">
+                                        <table class="table table-striped">
+                                            <tr ng-repeat="history in medication.history">
+                                                <td>{{history.name}}</td>
+                                                <td>{{history.taking}}</td>
+                                                <td>{{history.indication}}</td>
+                                                <td>{{history.date}}</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -223,6 +256,7 @@
 <script type="text/javascript" src="../js/services/url.service.js"></script>
 <script type="text/javascript" src="../js/services/user.service.js"></script>
 <script type="text/javascript" src="../js/services/widget-visibility.service.js"></script>
+<script type="text/javascript" src="../js/services/medication.service.js"></script>
 
 <script type="text/javascript" src="../js/preset/preset.service.js"></script>
 <script type="text/javascript" src="../js/preset/create-preset-widget.directive.js"></script>

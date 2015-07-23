@@ -2,6 +2,10 @@
     color: black;
 }
 
+.hiddenRow2 {
+    padding: 4px !important;
+}
+
 .treatments {
     padding-left: 0px;
     padding-right: 0px;
