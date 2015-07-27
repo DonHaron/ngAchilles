@@ -28,7 +28,7 @@
             load: load,
             loadNext: loadNext,
             openReport: openReport,
-            setCurrent: setCurrent,
+            //setCurrent: setCurrent,
             removeCase: removeCase,
             removeEntry: removeEntry,
             update: update
