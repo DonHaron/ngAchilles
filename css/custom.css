@@ -14,7 +14,7 @@
 }
 
 .treatments > .panel {
-    /*padding-right: 15px;*/
+    padding-right: 15px;
     margin-bottom: 0;
     height: 85%;
 }
@@ -566,6 +566,10 @@ span.checkmark {
     padding: 0;
     background-color: white;
     border-radius: 5px;
+}
+
+.achilles-widget .panel {
+    margin-bottom: 0;
 }
 
 .advanced-search-widget {

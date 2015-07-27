@@ -38,7 +38,7 @@
 </div>
 <div class="container-fluid">
     <div class="row-fluid">
-        <div class="col-sm-8 treatments" ng-class="[vm.user.margins, vm.user.fontSize]"
+        <div class="col-sm-11 col-md-8 treatments" ng-class="[vm.user.margins, vm.user.fontSize]"
              ng-controller="MainController as vm">
             <div class="panel panel-default">
 
@@ -147,20 +147,28 @@
 
 
         </div>
-        <div class="col-sm-4 sidebar">
+        <div class="col-sm-1 hidden-md hidden-lg">
+            <div class="btn-group">
+                <a class="btn btn-default" id="show-medication-widget" ng-click="vm.showMedicationWidget=!vm.showMedicationWidget">M</a>
+            </div>
+            <div class="btn-group">
+                <a class="btn btn-danger">B</a>
+            </div>
+            <div class="btn-group">
+                <a class="btn btn-info">L</a>
+            </div>
+            <div achilles-widget
+                 widget-width="30%"
+                 widget-align-element="#show-medication-widget"
+                 ng-show="vm.showMedicationWidget">
+                <medication-widget></medication-widget>
+            </div>
+        </div>
+        <div class="col-md-4 hidden-sm hidden-xs sidebar">
             <div class="row">
                 <div class="col-sm-12">
-                    <div class="panel panel-primary ">
-                        <div class="panel-heading">
-                            <h4>Medi-Liste</h4>
-                        </div>
-                        <div class="list-group">
-                            <a href class="list-group-item">Ein Medi</a>
-                            <a href class="list-group-item">Ein anderes Medi</a>
-                            <a href class="list-group-item">Ein drittes Medi</a>
+                    <medication-widget></medication-widget>
 
-                        </div>
-                    </div>
                 </div>
             </div>
             <div class="row">
@@ -245,6 +253,8 @@
 <script type="text/javascript" src="../js/controllers/modal.controllers.js"></script>
 
 <script type="text/javascript" src="../js/directives/advanced-search-widget.directive.js"></script>
+<script type="text/javascript" src="../js/directives/medication-widget.directive.js"></script>
+<script type="text/javascript" src="../js/directives/achilles-widget.directive.js"></script>
 <script type="text/javascript" src="../js/treatment/treatment.directive.js"></script>
 <script type="text/javascript" src="../js/directives/treatment-entry.directive.js"></script>
 <script type="text/javascript" src="../js/directives/treatment-row.directive.js"></script>
