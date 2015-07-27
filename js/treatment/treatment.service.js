@@ -11,7 +11,8 @@
         var next,
             allCount = 0,
             nextCaption = '',
-            treatments = [];
+            treatments = [],
+            currentTreatment;
 
         var service = {
             addEntry: addEntry,
@@ -27,6 +28,7 @@
             load: load,
             loadNext: loadNext,
             openReport: openReport,
+            setCurrent: setCurrent,
             removeCase: removeCase,
             removeEntry: removeEntry,
             update: update

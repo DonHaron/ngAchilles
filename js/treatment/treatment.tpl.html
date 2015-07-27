@@ -283,42 +283,7 @@
         </treatment-entry>
 
 
-        <li class="list-group-item type-and-preset" type-and-preset
-            ng-show="(treatment.focused || treatment.new) && dc.permissionToEdit">
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="form-group">
-                        <input class="form-control type-and-preset-search"
-                               placeholder="{{'TYPE_AND_PRESET_PLACEHOLDER' | translate}}"
-                               ng-model="search.term">
-                    </div>
-                    <div class="row list-group-row">
-                        <div class="col-xs-12">
-                            <div class="type-and-preset-list" ng-show="active">
-                                <div class="list-group">
-                                    <h5 class="list-group-item entry-type">{{'ENTRY_TYPES' | translate}}</h5>
-                                    <a tabindex href
-                                       ng-click="dc.addEntry(treatment.id, type, treatment.entries); search.term=''"
-                                       ng-repeat="type in dc.types | filter:search.term"
-                                       class="list-group-item entry-type"
-                                       ng-class="::'level-' + (type.level ? type.level : '1' ) ">
-                                        {{::type.name}}
-                                    </a>
-                                    <hr>
-                                    <h5 class="list-group-item preset">{{'PRESETS' | translate}}</h5>
-                                    <a tabindex href
-                                       class="list-group-item preset"
-                                       ng-click="dc.addPreset(treatment.id, preset, treatments); search.term=''"
-                                       ng-repeat="preset in dc.presets | filter:search.term">
-                                        {{::preset.name}}
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </li>
+
 
     </ul>
 </div>

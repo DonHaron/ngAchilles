@@ -107,18 +107,11 @@
 
         dc.removeEntry = Treatment.removeEntry;
 
-        EntryType.all()
-            .then(function (types) {
-                dc.types = types;
-            });
         Subject.all()
             .then(function (subjects) {
                 dc.subjects = subjects;
             });
-        Preset.all()
-            .then(function (presets) {
-                dc.presets = presets;
-            });
+
 
         $scope.$watch(Preset.hasUpdated, function (newVal) {
             if (newVal === true) {
