@@ -41,7 +41,8 @@
             lock: 'treatmententryrow/lock/:row',
             user: 'user',
             textblock: 'textblock',
-            presetList: 'treatmentpreset'
+            presetList: 'treatmentpreset',
+            medication: 'patient/:patient/medication'
         };
 
         var service = {
@@ -75,7 +76,8 @@
             lock: lock,
             user: user,
             textblock: textblock,
-            presetList: presetList
+            presetList: presetList,
+            medication: medication
         };
 
         return service;
@@ -235,6 +237,10 @@
 
         function user(method){
             return baseUrlComponent() + (method ? method + '/' : '') + routes.user  + '/';
+        }
+
+        function medication(patientId) {
+            return baseUrlComponent() + routes.medication.replace(/:([a-z]\w*)/gi, patientId) + '/';
         }
     }
 })();

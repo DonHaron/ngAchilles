@@ -15,7 +15,7 @@
 
         /* list by treatment */
         function all(){
-            return $http.get(urls.disabilityList()).then(function(response){
+            return $http.get(urls.medication(achillesConfig.patient)).then(function(response){
                 return response.data;
             });
         }

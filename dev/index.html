@@ -112,20 +112,20 @@
                             </thead>
                             <tbody ng-repeat="medication in vm.medicationList">
                             <tr data-toggle="collapse" data-target="#demo{{$index}}" class="accordion-toggle">
-                                <td>{{medication.name}}</td>
-                                <td>{{medication.taking}}</td>
+                                <td>{{medication.productName}}</td>
+                                <td>{{medication.dosage}}</td>
                                 <td>{{medication.indication}}</td>
-                                <td>{{medication.date}}</td>
+                                <td>{{medication.medicationDate}}</td>
                             </tr>
                             <tr>
                                 <td colspan="4" class="hiddenRow2">
                                     <div class="accordian-body collapse" id="demo{{$index}}">
                                         <table class="table table-striped">
                                             <tr ng-repeat="history in medication.history">
-                                                <td>{{history.name}}</td>
-                                                <td>{{history.taking}}</td>
+                                                <td>{{history.productName}}</td>
+                                                <td>{{history.dosage}}</td>
                                                 <td>{{history.indication}}</td>
-                                                <td>{{history.date}}</td>
+                                                <td>{{history.medicationDate}}</td>
                                             </tr>
                                         </table>
                                     </div>
