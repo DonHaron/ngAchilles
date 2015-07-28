@@ -20,7 +20,7 @@
 .treatments > .panel {
     padding-right: 15px;
     margin-bottom: 0;
-    height: 85%;
+    height: 100%;
 }
 
 .treatments > .panel > .row {
@@ -28,10 +28,15 @@
     position: relative;
 }
 
-.treatments-container {
+.limit-height {
     height: 100%;
+}
+
+.treatments-container {
+    height: 90%;
     overflow-y: auto;
-    padding-right: 15px;
+    /*padding-right: 15px;*/
+    overflow-x: hidden;
 }
 
 .treatment-sidebar {
@@ -42,8 +47,13 @@
     right: 10px;
 }
 
-html, body, .container-fluid, .container-fluid > .row-fluid {
+html, body,  .container-fluid > .row-fluid {
     height: 100%;
+}
+
+.container-fluid {
+    height: 98%;
+    overflow: hidden;
 }
 
 .sidebar {
@@ -117,6 +127,7 @@ html, body, .container-fluid, .container-fluid > .row-fluid {
     -webkit-box-shadow: none;
     box-shadow: none;
     padding: 5px 15px;
+    margin-right: -15px;
 }
 
 .toolbar p {
@@ -544,7 +555,7 @@ span.checkmark {
 .editor-toolbar {
     position: absolute;
     z-index: 90;
-    right: 15px;
+    left: 3px;
 }
 
 .entry-toolbar .btn-group,
@@ -558,7 +569,7 @@ span.checkmark {
 }
 
 .editor-toolbar {
-    bottom: -31px;
+    bottom: -34px;
     width: 530px;
 }
 
@@ -788,6 +799,15 @@ p:last-child {
     position: relative;
 }
 
+.type-and-preset.inactive:before {
+    content: ' ';
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255,255,255,0.4);
+    position: absolute;
+    z-index: 999;
+}
+
 .type-and-preset-list {
     /*position: absolute;*/
     /*padding-right: 15px;*/
@@ -958,4 +978,25 @@ treatment.editable .treatment-column .read-only-content{
     .treatments {
         /*padding-top: 50px;*/
     }
+}
+
+.type-and-preset-trigger-button {
+    position: absolute;
+    right: 0;
+    width: 20px;
+    height: 100%;
+    border-left: 1px solid rgba(0, 0, 0, 0.16);
+    z-index: 99;
+    background-color: white;
+}
+
+.type-and-preset-trigger-button a {
+    height: 200px;
+    width: 200px;
+    -webkit-transform: rotate(-90deg);
+    display: block;
+}
+
+.type-and-preset-trigger-button a:hover {
+    text-decoration: none;
 }

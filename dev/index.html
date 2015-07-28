@@ -36,189 +36,8 @@
         </div>
     </div>
 </div>
-<div class="container-fluid">
-    <div class="row-fluid">
-        <div class="col-sm-11 col-md-8 treatments" ng-class="[vm.user.margins, vm.user.fontSize]"
-             ng-controller="MainController as vm">
-            <div class="panel panel-default">
+<main></main>
 
-                <treatment-toolbar></treatment-toolbar>
-
-                <title-settings-widget></title-settings-widget>
-
-                <advanced-search-widget search="vm.search"></advanced-search-widget>
-
-                <text-block-widget></text-block-widget>
-
-                <create-preset-widget></create-preset-widget>
-
-                <replace-preset-widget></replace-preset-widget>
-
-                <preset-settings-widget></preset-settings-widget>
-
-                <div class="row">
-
-                    <div class="treatments-container col-sm-12">
-
-
-                        <treatment treatment="treatment" editable="{{false && (!currentPage || currentPage<2) }}"
-                                   index="{{$index}}"
-                                   ng-class="{'editable': treatment.editable===true}"
-                                   ng-repeat="treatment in vm.filteredTreatments = (vm.treatments |
-                            filter:vm.search.text |
-                            filter:{subject:vm.search.subject} |
-                            filter:{userToken:vm.search.user} |
-                            title:vm.search.title |
-                            invoiceCase:vm.search.case |
-                            compareDate:vm.search.dateFrom:'after' |
-                            compareDate:vm.search.dateTo:'before' |
-                            attachments:vm.search.attachments |
-                            orderBy:[(vm.reverse?'':'-')+'date', 'id']) |
-                            limitTo:vm.limit:(currentPage? vm.limit*(currentPage-1) : 0) "
-                                   treatmentlist="vm.treatments" user="::vm.user"></treatment>
-
-
-                        <div class="row">
-
-                            <div class="col-xs-12 centered"
-                                 ng-hide="vm.limit == vm.filteredTreatments.length || !vm.filteredTreatments"
-                                 ng-cloak>
-                                <div class="panel">
-                                    <div class="panel-body">
-                                        <div class="btn-group">
-                                            <pagination total-items="vm.filteredTreatments.length"
-                                                        items-per-page="vm.limit"
-                                                        ng-model="currentPage" ng-change="pageChanged()"></pagination>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="treatment-sidebar">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                Hello
-                            </div>
-                            <div class="panel-body">
-                                <div class="type-and-preset" type-and-preset>
-                                    <div class="row">
-                                        <div class="col-xs-12">
-                                            <div class="form-group">
-                                                <input class="form-control type-and-preset-search"
-                                                       placeholder="{{'TYPE_AND_PRESET_PLACEHOLDER' | translate}}"
-                                                       ng-model="search.term">
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-xs-12">
-                                                    <div class="type-and-preset-list">
-                                                        <div class="list-group">
-                                                            <h5 class="list-group-item entry-type">{{'ENTRY_TYPES' | translate}}</h5>
-                                                            <a tabindex href
-                                                               ng-click="dc.addEntry(treatment.id, type, treatment.entries); search.term=''"
-                                                               ng-repeat="type in vm.types | filter:search.term"
-                                                               class="list-group-item entry-type"
-                                                               ng-class="::'level-' + (type.level ? type.level : '1' ) ">
-                                                                {{::type.name}}
-                                                            </a>
-                                                            <hr>
-                                                            <h5 class="list-group-item preset">{{'PRESETS' | translate}}</h5>
-                                                            <a tabindex href
-                                                               class="list-group-item preset"
-                                                               ng-click="dc.addPreset(treatment.id, preset, treatments); search.term=''"
-                                                               ng-repeat="preset in vm.presets | filter:search.term">
-                                                                {{::preset.name}}
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
-
-
-        </div>
-        <div class="col-sm-1 hidden-md hidden-lg">
-            <div class="btn-group">
-                <a class="btn btn-default" id="show-medication-widget" ng-click="vm.showMedicationWidget=!vm.showMedicationWidget">M</a>
-            </div>
-            <div class="btn-group">
-                <a class="btn btn-danger">B</a>
-            </div>
-            <div class="btn-group">
-                <a class="btn btn-info">L</a>
-            </div>
-            <div achilles-widget
-                 widget-width="30%"
-                 widget-align-element="#show-medication-widget"
-                 ng-show="vm.showMedicationWidget">
-                <medication-widget></medication-widget>
-            </div>
-        </div>
-        <div class="col-md-4 hidden-sm hidden-xs sidebar">
-            <div class="row">
-                <div class="col-sm-12">
-                    <medication-widget></medication-widget>
-
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="panel panel-info">
-                        <div class="panel-heading">
-                            <h4>Biometrische Daten</h4>
-                        </div>
-                        <div class="list-group">
-                            <a href class="list-group-item">
-                                <div class="row">
-                                    <div class="col-xs-6">
-                                        <p>Puls</p>
-                                    </div>
-                                    <div class="col-xs-6">
-                                        <p>normal</p>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href class="list-group-item">
-                                <div class="row">
-                                    <div class="col-xs-6">
-                                        <p>Blutdruck</p>
-                                    </div>
-                                    <div class="col-xs-6">
-                                        <p>zu tief</p>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href class="list-group-item">
-                                <div class="row">
-                                    <div class="col-xs-6">
-                                        <p>Cholesterin</p>
-                                    </div>
-                                    <div class="col-xs-6">
-                                        <p>Homer Simpson!</p>
-                                    </div>
-                                </div>
-                            </a>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-    </div>
-
-</div>
 
 <!-- Placed at the end of the document so the pages load faster -->
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -249,7 +68,6 @@
 
 <script type="text/javascript" src="../js/achilles.js"></script>
 
-<script type="text/javascript" src="../js/controllers/main.controller.js"></script>
 <script type="text/javascript" src="../js/controllers/modal.controllers.js"></script>
 
 <script type="text/javascript" src="../js/directives/advanced-search-widget.directive.js"></script>
@@ -264,10 +82,11 @@
 <script type="text/javascript" src="../js/directives/title-settings-widget.directive.js"></script>
 <script type="text/javascript" src="../js/directives/draggable.directive.js"></script>
 <script type="text/javascript" src="../js/directives/textblock-widget.directive.js"></script>
-<script type="text/javascript" src="../js/directives/type-and-preset.directive.js"></script>
+<script type="text/javascript" src="../js/directives/type-and-preset-widget.directive.js"></script>
 <script type="text/javascript" src="../js/directives/keyboard-focus.directive.js"></script>
 <script type="text/javascript" src="../js/directives/restricted-scroll.directive.js"></script>
 <script type="text/javascript" src="../js/directives/validation.directive.js"></script>
+<script type="text/javascript" src="../js/directives/main.directive.js"></script>
 
 <script type="text/javascript" src="../js/services/advanced-search-widget.service.js"></script>
 <script type="text/javascript" src="../js/services/asterisk-search.service.js"></script>

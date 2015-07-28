@@ -5,6 +5,9 @@
         .module('achilles')
         .factory('WidgetVisibility', WidgetVisibility);
 
+    /*
+     *  todo: refactor this, not useful anymore
+     */
     function WidgetVisibility(){
         var isTitleSettingsWidgetVisible = false;
 

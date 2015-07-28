@@ -88,11 +88,11 @@
             $timeout.cancel(currentLookupPromise);
 
             currentLookupPromise = $timeout(function(){
-                console.time('lookup');
+                //console.time('lookup');
                 CatalogEntry.lookup(term, row, column)
                     .then(function(catalogEntries){
                         //console.log('returning now', catalogEntries.length);
-                        console.timeEnd('lookup');
+                        //console.timeEnd('lookup');
                         dc.showCatalog = true;
                         setCatalog(row, catalogEntries);
                     });

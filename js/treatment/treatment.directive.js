@@ -6,8 +6,8 @@
         .module('achilles')
         .directive('treatment', treatment);
 
-    treatment.$inject = ['$timeout'];
-    function treatment($timeout) {
+    treatment.$inject = ['$timeout', 'Treatment'];
+    function treatment($timeout, Treatment) {
         var directive = {
             scope: {
                 treatment: '=',
@@ -30,26 +30,12 @@
 
             scope.treatment.editable = scope.editable;
 
-            scope.$watch(function(){
+            scope.$watch(function () {
                 return element.find('treatment').position();
-            }, function(position){
-                if(angular.isDefined(position)){
+            }, function (position) {
+                if (angular.isDefined(position)) {
                     console.log(position);
                 }
-            });
-
-            element.on('keydown', function (e) {
-                //console.log(e.which);
-                //F9
-                if (e.which == 120) {
-                    if (ctrl.permissionToEdit) {
-                        //element.find('.type-select input').select2('open');
-                        element.find('.type-and-preset-search').focus();
-                    }
-                }
-//                if (e.which == 121) {
-//                    ctrl.testModal();
-//                }
             });
 
             element.on('focusin', function () {
@@ -57,6 +43,7 @@
                     scope.treatment.focused = true;
                     scope.editable = true;
                     scope.treatment.editable = true;
+                    Treatment.setCurrent(scope.treatment);
                 });
 
                 //scope.$apply();
@@ -83,8 +70,8 @@
             type: null
         };
 
-        dc.addEntry = addEntry;
-        dc.addPreset = Treatment.addPreset;
+        //dc.addEntry = addEntry;
+        //dc.addPreset = Treatment.addPreset;
         dc.createPreset = createPreset;
         dc.loadDocuments = loadDocuments;
         dc.loadLaboratoryReports = loadLaboratoryReports;
@@ -130,12 +117,6 @@
             dc.permissionToEdit = TreatmentPermission.checkEditPermission(user, $scope.treatment);
         });
 
-        function addEntry(treatmentId, type, entries) {
-            Treatment.addEntry(treatmentId, type, entries)
-                .then(function () {
-                    $scope.active = false;
-                });
-        }
 
         function createPreset(treatment) {
             CreatePresetWidget.getName().then(function (name) {

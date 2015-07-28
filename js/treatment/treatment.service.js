@@ -24,11 +24,12 @@
             changeSubject: changeSubject,
             count: count,
             deleteTreatment: deleteTreatment,
+            getCurrent: getCurrent,
             getNextCaption: getNextCaption,
             load: load,
             loadNext: loadNext,
             openReport: openReport,
-            //setCurrent: setCurrent,
+            setCurrent: setCurrent,
             removeCase: removeCase,
             removeEntry: removeEntry,
             update: update
@@ -159,6 +160,10 @@
             });
         }
 
+        function getCurrent(){
+            return currentTreatment;
+        }
+
         function getNextCaption(){
             return nextCaption;
         }
@@ -239,6 +244,10 @@
                     break;
                 }
             }
+        }
+
+        function setCurrent(treatment){
+            currentTreatment = treatment;
         }
 
         function update(treatment, treatments) {

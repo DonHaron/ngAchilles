@@ -1,0 +1,35 @@
+<div class="type-and-preset inactive">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="form-group">
+                <input class="form-control type-and-preset-search"
+                       placeholder="{{'TYPE_AND_PRESET_PLACEHOLDER' | translate}}"
+                       ng-model="search.term">
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="type-and-preset-list">
+                        <div class="list-group">
+                            <h5 class="list-group-item entry-type">{{'ENTRY_TYPES' | translate}}</h5>
+                            <a tabindex href
+                               ng-click="vm.addEntry(type); search.term=''"
+                               ng-repeat="type in vm.types | filter:search.term"
+                               class="list-group-item entry-type"
+                               ng-class="::'level-' + (type.level ? type.level : '1' ) ">
+                                {{::type.name}}
+                            </a>
+                            <hr>
+                            <h5 class="list-group-item preset">{{'PRESETS' | translate}}</h5>
+                            <a tabindex href
+                               class="list-group-item preset"
+                               ng-click="vm.addPreset(preset); search.term=''"
+                               ng-repeat="preset in vm.presets | filter:search.term">
+                                {{::preset.name}}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

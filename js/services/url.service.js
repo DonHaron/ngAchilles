@@ -5,6 +5,10 @@
         .module('achilles')
         .factory('urls', urls);
 
+    /*
+     * todo: this grew too much, find a more elegant solution for this class
+     * todo: if the web server can do put and delete requests again, update some methods here
+     */
     function urls() {
         var protocol = "http://";
         //var baseUrl = "localhost";
