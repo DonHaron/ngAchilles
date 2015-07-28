@@ -12,7 +12,8 @@
             link: link,
             controller: MainController,
             controllerAs: 'vm',
-            templateUrl: '../js/templates/main.tpl.html'
+            templateUrl: '../js/templates/main.tpl.html',
+            replace: true
         };
 
         return directive;
@@ -24,7 +25,7 @@
                 //console.log(e.which);
                 //F9
                 if (e.which == 120) {
-                    console.log('focusing');
+                    //console.log('focusing');
                     ctrl.temporarilyShowTypeAndPresetWidget = true;
                     scope.$apply();
                     $timeout(function(){
@@ -69,9 +70,8 @@
         loadUser();
         //loadEntryTypes();
 
-        console.log('maincontroller line 42');
-
-        // for if we wanna use the Math functions, not really all that clean tbh. A filter would be much cleaner
+        // for if we wanna use the Math functions, not really all that clean tbh. A filter would be much cleaner.
+        // But who has time for that? ;)
         $scope.Math = window.Math;
         $scope.$on('updateTreatment', function(event, treatment){
             Treatment.update(treatment, vm.treatments);

@@ -23,6 +23,12 @@
                         <div class="row limit-height">
 
                             <div class="treatments-container col-sm-12 col-md-8">
+                                <div class="type-and-preset-trigger-button">
+                                    <a href ng-click="vm.showTypeAndPresetWidget = !vm.showTypeAndPresetWidget"
+                                            >Behandlungstitel
+                                        & Strukturen</a>
+
+                                </div>
 
 
                                 <treatment treatment="treatment"
@@ -72,9 +78,10 @@
 
                             </div>
                             <div class="hidden-md hidden-lg">
-                                <div ng-show="vm.showTypeAndPresetWidget || vm.temporarilyShowTypeAndPresetWidget" achilles-widget
+                                <div ng-show="vm.showTypeAndPresetWidget || vm.temporarilyShowTypeAndPresetWidget"
+                                     achilles-widget
                                      widget-width="300"
-                                     widget-position-right="10"
+                                     widget-position-right="25"
                                      widget-position="absolute">
                                     <type-and-preset-widget></type-and-preset-widget>
                                 </div>

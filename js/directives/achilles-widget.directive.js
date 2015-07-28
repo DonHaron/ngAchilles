@@ -18,7 +18,6 @@
 
             if(attrs.widgetWidth){
                 if(attrs.widgetWidth.indexOf('%')>-1){
-                    console.log('%');
                     element.css('width', attrs.widgetWidth);
                 }else{
                     element.css('width', attrs.widgetWidth + 'px');
@@ -52,10 +51,8 @@
 
             function setPosition(){
                 var position = angular.element(attrs.widgetAlignToElement).offset();
-                console.log('setting position');
                 element.css('top', position.top);
                 element.css('left', position.left-element.width());
-                console.log(element.width());
             }
 
         }

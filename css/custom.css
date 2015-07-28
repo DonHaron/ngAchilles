@@ -32,6 +32,7 @@
     height: 90%;
     overflow-y: auto;
     /*padding-right: 15px;*/
+    overflow-x: hidden;
 }
 
 .treatment-sidebar {
@@ -973,4 +974,25 @@ treatment.editable .treatment-column .read-only-content{
     .treatments {
         /*padding-top: 50px;*/
     }
+}
+
+.type-and-preset-trigger-button {
+    position: absolute;
+    right: 0;
+    width: 20px;
+    height: 100%;
+    border-left: 1px solid rgba(0, 0, 0, 0.16);
+    z-index: 99;
+    background-color: white;
+}
+
+.type-and-preset-trigger-button a {
+    height: 200px;
+    width: 200px;
+    -webkit-transform: rotate(-90deg);
+    display: block;
+}
+
+.type-and-preset-trigger-button a:hover {
+    text-decoration: none;
 }

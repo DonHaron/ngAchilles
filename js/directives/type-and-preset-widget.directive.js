@@ -30,7 +30,6 @@
 
             scope.$watch(Treatment.getCurrent, function(treatment){
                 if(angular.isDefined(treatment)){
-                    console.log('hooray');
                     element.find('.inactive').removeClass('inactive');
                 }
             });
