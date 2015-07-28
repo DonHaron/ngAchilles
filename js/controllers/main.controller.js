@@ -5,9 +5,9 @@
         .module('achilles')
         .controller('MainController', MainController);
 
-    MainController.$inject = ['$scope', 'urls', 'User', 'Treatment', 'TreatmentPermission', 'EntryType', 'Preset'];
+    MainController.$inject = ['$scope', 'urls', 'User', 'Treatment', 'TreatmentPermission'];
 
-    function MainController($scope, urls, User, Treatment, TreatmentPermission, EntryType, Preset) {
+    function MainController($scope, urls, User, Treatment, TreatmentPermission) {
         var vm = this;
 
         vm.baseUrl = urls.baseUrl();
@@ -19,6 +19,7 @@
 
         vm.checkEditPermission = TreatmentPermission.checkEditPermission;
         vm.reverse = false;
+        vm.showTypeAndPresetWidget = false;
 
         vm.limit = 5;
 
@@ -35,15 +36,6 @@
         ];
 
         vm.loadEntries(false);
-
-        EntryType.all()
-            .then(function (types) {
-                vm.types = types;
-            });
-        Preset.all()
-            .then(function (presets) {
-                vm.presets = presets;
-            });
 
         loadUser();
         //loadEntryTypes();

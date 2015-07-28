@@ -62,6 +62,7 @@ module.exports = function (grunt) {
                 dest: '<%= paths.dest.jsVendorMin %>'
             }
         },
+        clean: ['<%= paths.dest.jsVendorMin %>*', '<%= paths.dest.jsAchillesMin %>*'],
         concat: {
             options: {
                 separator: '\n',
@@ -84,7 +85,8 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.registerTask('default', ['jshint']);
     grunt.registerTask('build-achilles', ['jshint', 'uglify:achilles', 'concat']);
-    grunt.registerTask('build', ['jshint', 'uglify', 'concat']);
+    grunt.registerTask('build', ['jshint', 'uglify', 'concat', 'clean']);
 }
