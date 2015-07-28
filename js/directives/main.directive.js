@@ -1,12 +1,41 @@
-(function () {
+(function(){
     "use strict";
 
     angular
         .module('achilles')
-        .controller('MainController', MainController);
+        .directive('main', main);
+
+    main.$inject = ['$timeout'];
+    function main($timeout){
+        var directive = {
+            restrict: 'E',
+            link: link,
+            controller: MainController,
+            controllerAs: 'vm',
+            templateUrl: '../js/templates/main.tpl.html'
+        };
+
+        return directive;
+
+        function link(scope, element, attrs, ctrl){
+            element.on('keydown', focusTypeAndPreset);
+
+            function focusTypeAndPreset(e) {
+                //console.log(e.which);
+                //F9
+                if (e.which == 120) {
+                    console.log('focusing');
+                    ctrl.temporarilyShowTypeAndPresetWidget = true;
+                    scope.$apply();
+                    $timeout(function(){
+                        element.find('.type-and-preset-search:visible').focus();
+                    }, 300);
+                }
+            }
+        }
+    }
 
     MainController.$inject = ['$scope', 'urls', 'User', 'Treatment', 'TreatmentPermission'];
-
     function MainController($scope, urls, User, Treatment, TreatmentPermission) {
         var vm = this;
 

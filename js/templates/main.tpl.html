@@ -1,0 +1,167 @@
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="col-sm-11 col-md-9 treatments" ng-class="[vm.user.margins, vm.user.fontSize]">
+
+            <div class="panel panel-default">
+
+                <treatment-toolbar></treatment-toolbar>
+
+                <title-settings-widget></title-settings-widget>
+
+                <advanced-search-widget search="vm.search"></advanced-search-widget>
+
+                <text-block-widget></text-block-widget>
+
+                <create-preset-widget></create-preset-widget>
+
+                <replace-preset-widget></replace-preset-widget>
+
+                <preset-settings-widget></preset-settings-widget>
+
+                <div class="row limit-height">
+                    <div class="col-sm-12 limit-height">
+                        <div class="row limit-height">
+
+                            <div class="treatments-container col-sm-12 col-md-8">
+
+
+                                <treatment treatment="treatment"
+                                           editable="{{false && (!currentPage || currentPage<2) }}"
+                                           index="{{$index}}"
+                                           ng-class="{'editable': treatment.editable===true}"
+                                           ng-repeat="treatment in vm.filteredTreatments = (vm.treatments |
+                            filter:vm.search.text |
+                            filter:{subject:vm.search.subject} |
+                            filter:{userToken:vm.search.user} |
+                            title:vm.search.title |
+                            invoiceCase:vm.search.case |
+                            compareDate:vm.search.dateFrom:'after' |
+                            compareDate:vm.search.dateTo:'before' |
+                            attachments:vm.search.attachments |
+                            orderBy:[(vm.reverse?'':'-')+'date', 'id']) |
+                            limitTo:vm.limit:(currentPage? vm.limit*(currentPage-1) : 0) "
+                                           treatmentlist="vm.treatments" user="::vm.user"></treatment>
+
+
+                                <div class="row">
+
+                                    <div class="col-xs-12 centered"
+                                         ng-hide="vm.limit == vm.filteredTreatments.length || !vm.filteredTreatments"
+                                         ng-cloak>
+                                        <div class="panel">
+                                            <div class="panel-body">
+                                                <div class="btn-group">
+                                                    <pagination total-items="vm.filteredTreatments.length"
+                                                                items-per-page="vm.limit"
+                                                                ng-model="currentPage"
+                                                                ng-change="pageChanged()"></pagination>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="hidden-xs hidden-sm col-md-4">
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">
+                                        Menu
+                                    </div>
+                                    <type-and-preset-widget></type-and-preset-widget>
+                                </div>
+
+                            </div>
+                            <div class="hidden-md hidden-lg">
+                                <div ng-show="vm.showTypeAndPresetWidget || vm.temporarilyShowTypeAndPresetWidget" achilles-widget
+                                     widget-width="300"
+                                     widget-position-right="10"
+                                     widget-position="absolute">
+                                    <type-and-preset-widget></type-and-preset-widget>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+        <div class="col-sm-1 hidden-md hidden-lg">
+            <div class="btn-group">
+                <a class="btn btn-default" id="show-medication-widget"
+                   ng-click="vm.showMedicationWidget=!vm.showMedicationWidget">M</a>
+            </div>
+            <div class="btn-group">
+                <a class="btn btn-danger">B</a>
+            </div>
+            <div class="btn-group">
+                <a class="btn btn-info">L</a>
+            </div>
+            <div class="btn-group">
+                <a class="btn btn-info" ng-click="vm.showTypeAndPresetWidget = !vm.showTypeAndPresetWidget">T&P</a>
+            </div>
+            <div achilles-widget
+                 widget-width="30%"
+                 widget-align-to-element="#show-medication-widget"
+                 ng-show="vm.showMedicationWidget || false">
+                <medication-widget></medication-widget>
+            </div>
+        </div>
+        <div class="col-md-3 hidden-sm hidden-xs sidebar">
+            <div class="row">
+                <div class="col-sm-12">
+                    <medication-widget></medication-widget>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h4>Biometrische Daten</h4>
+                        </div>
+                        <div class="list-group">
+                            <a href class="list-group-item">
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <p>Puls</p>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <p>normal</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href class="list-group-item">
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <p>Blutdruck</p>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <p>zu tief</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href class="list-group-item">
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <p>Cholesterin</p>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <p>Homer Simpson!</p>
+                                    </div>
+                                </div>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>

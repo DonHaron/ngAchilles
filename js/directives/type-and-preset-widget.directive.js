@@ -10,6 +10,7 @@
         var directive = {
             templateUrl: '../js/templates/type-and-preset-widget.tpl.html',
             restrict: 'E',
+            require: '^main',
             link: link,
             scope: {},
             controller: TypeAndPresetController,
@@ -18,9 +19,10 @@
 
         return directive;
 
-        function link(scope, element, attrs) {
+        function link(scope, element, attrs, main) {
             element.on('blur', setInactive);
             element.on('focusin', setActive);
+            element.on('focusout', hide);
             //element.on('keydown', focusSearch);
 
             element.find('.type-and-preset-search').on('blur', setInactive);
@@ -32,6 +34,12 @@
                     element.find('.inactive').removeClass('inactive');
                 }
             });
+
+            function hide(){
+                $timeout(function(){
+                    main.temporarilyShowTypeAndPresetWidget = false;
+                }, 350);
+            }
 
             function setActive() {
                 //console.log('focusin');
