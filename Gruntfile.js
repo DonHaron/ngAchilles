@@ -87,6 +87,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.registerTask('default', ['jshint']);
-    grunt.registerTask('build-achilles', ['jshint', 'uglify:achilles', 'concat']);
+    //grunt.registerTask('build-achilles', ['jshint', 'uglify:achilles', 'concat']);
     grunt.registerTask('build', ['jshint', 'uglify', 'concat', 'clean']);
 }
