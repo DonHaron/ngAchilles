@@ -979,9 +979,11 @@ treatment.editable .treatment-column .read-only-content{
 .type-and-preset-trigger-button {
     position: absolute;
     right: 0;
+    top: 35px;
     width: 20px;
     height: 100%;
     border-left: 1px solid rgba(0, 0, 0, 0.16);
+    border-top: 1px solid rgba(0, 0, 0, 0.16);
     z-index: 99;
     background-color: white;
 }
@@ -995,4 +997,10 @@ treatment.editable .treatment-column .read-only-content{
 
 .type-and-preset-trigger-button a:hover {
     text-decoration: none;
+}
+
+@media (max-width: 991px) {
+    .treatments > .panel > .row {
+        padding-right: 25px;
+    }
 }
