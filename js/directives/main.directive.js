@@ -80,6 +80,7 @@
 
         function loadEntries(all) {
             Treatment.load(all).then(function(treatments){
+                console.log('treatments loaded');
                 vm.treatments = treatments;
             });
         }
