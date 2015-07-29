@@ -11,14 +11,15 @@
             <th>Medikament</th>
             <th>Dosierung und Einnahme</th>
             <th>Von Bis</th>
-            <th>Art der Medikation</th>
+            <th class="hidden-sm hidden-xs">Art der Medikation</th>
             <th>Indikation</th>
             <th>Verordnet</th>
-            <th>Verabreichung</th>
+            <th class="hidden-sm hidden-xs">Verabreichung</th>
+            <th class="hidden-sm hidden-xs"></th>
         </tr>
         </thead>
         <tbody ng-repeat="medication in vm.medicationList">
-            <tr data-toggle="collapse" data-target="#demo{{$index}}" class="accordion-toggle">
+            <tr>
             <!--<tr>-->
                 <td><input class="checkbox" type="checkbox" value=""></td>
                 <td>
@@ -30,21 +31,23 @@
                     <div><small>{{medication.intake}}</small></div>
                 </td>
                 <td>{{medication.duration}}</td>
-                <td>{{medication.type}}</td>
+                <td class="hidden-sm hidden-xs">{{medication.type}}</td>
                 <td>{{medication.indication}}</td>
                 <td>{{medication.who}}</td>
-                <td>
+                <td class="hidden-sm hidden-xs">
                     <div>{{medication.giving}}</div>
                     <div><small>{{medication.valid}}</small></div>
                 </td>
+                <td class="hidden-sm hidden-xs" ng-click="goCats = !goCats">
+                    <i ng-show="medication.history.length > 0" class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': goCats, 'glyphicon-chevron-left': !goCats}"></i>
+                </td>
             </tr>
 
-            <tr>
-                <td colspan="8" class="hiddenRow2">
-                    <div class="accordion-body collapse" id="demo{{$index}}">
+            <tr ng-show="goCats">
+                <td colspan="9">
                         <table class="table table-striped">
                             <tr ng-repeat="history in medication.history">
-
+                                <td></td>
                                 <td>
                                     <div>{{medication.name}}</div>
                                     <div><small>{{medication.substance}}</small></div>
@@ -54,16 +57,16 @@
                                     <div><small>{{medication.intake}}</small></div>
                                 </td>
                                 <td>{{medication.duration}}</td>
-                                <td>{{medication.type}}</td>
+                                <td hidden-sm hidden-xs>{{medication.type}}</td>
                                 <td>{{medication.indication}}</td>
                                 <td>{{medication.who}}</td>
-                                <td>
+                                <td hidden-sm hidden-xs>
                                     <div>{{medication.giving}}</div>
                                     <div><small>{{medication.valid}}</small></div>
                                 </td>
+                                <td hidden-sm hidden-xs></td>
                             </tr>
                         </table>
-                    </div>
                 </td>
             </tr>
 
