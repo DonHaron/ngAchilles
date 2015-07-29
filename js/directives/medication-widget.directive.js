@@ -9,7 +9,8 @@
         var directive = {
             templateUrl: '../js/templates/medication-widget.tpl.html',
             controller: MedicationWidgetController,
-            controllerAs: 'vm'
+            controllerAs: 'vm',
+            scope: {}
         };
 
         return directive;

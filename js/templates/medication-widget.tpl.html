@@ -1,40 +1,73 @@
 <div class="panel panel-info">
+
     <div class="panel-heading">
         <h4>Mediplan</h4>
     </div>
-    <table class="table table-hover">
+    <small>
+    <table class="table table-hover table-condensed">
         <thead>
         <tr>
+            <th>Auswahl</th>
             <th>Medikament</th>
-            <th>Dosierung</th>
-            <th>von / bis</th>
-            <th>Einnahmetext</th>
+            <th>Dosierung und Einnahme</th>
+            <th>Von Bis</th>
+            <th>Art der Medikation</th>
             <th>Indikation</th>
-            <th>Typ</th>
-            <th>Verordnet durch</th>
+            <th>Verordnet</th>
+            <th>Verabreichung</th>
         </tr>
         </thead>
         <tbody ng-repeat="medication in vm.medicationList">
-        <tr data-toggle="collapse" data-target="#demo{{$index}}" class="accordion-toggle">
-            <td>{{medication.productName}}</td>
-            <td>{{medication.dosage}}</td>
-            <td>{{medication.indication}}</td>
-            <td>{{medication.medicationDate}}</td>
-        </tr>
-        <tr>
-            <td colspan="4" class="hiddenRow2">
-                <div class="accordion-body collapse" id="demo{{$index}}">
-                    <table class="table table-striped">
-                        <tr ng-repeat="history in medication.history">
-                            <td>{{history.productName}}</td>
-                            <td>{{history.dosage}}</td>
-                            <td>{{history.indication}}</td>
-                            <td>{{history.medicationDate}}</td>
-                        </tr>
-                    </table>
-                </div>
-            </td>
-        </tr>
+            <tr data-toggle="collapse" data-target="#demo{{$index}}" class="accordion-toggle">
+            <!--<tr>-->
+                <td><input class="checkbox" type="checkbox" value=""></td>
+                <td>
+                    <div>{{medication.name}}</div>
+                    <div><small>{{medication.substance}}</small></div>
+                </td>
+                <td>
+                    <div>{{medication.dosage}}</div>
+                    <div><small>{{medication.intake}}</small></div>
+                </td>
+                <td>{{medication.duration}}</td>
+                <td>{{medication.type}}</td>
+                <td>{{medication.indication}}</td>
+                <td>{{medication.who}}</td>
+                <td>
+                    <div>{{medication.giving}}</div>
+                    <div><small>{{medication.valid}}</small></div>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="8" class="hiddenRow2">
+                    <div class="accordion-body collapse" id="demo{{$index}}">
+                        <table class="table table-striped">
+                            <tr ng-repeat="history in medication.history">
+
+                                <td>
+                                    <div>{{medication.name}}</div>
+                                    <div><small>{{medication.substance}}</small></div>
+                                </td>
+                                <td>
+                                    <div>{{medication.dosage}}</div>
+                                    <div><small>{{medication.intake}}</small></div>
+                                </td>
+                                <td>{{medication.duration}}</td>
+                                <td>{{medication.type}}</td>
+                                <td>{{medication.indication}}</td>
+                                <td>{{medication.who}}</td>
+                                <td>
+                                    <div>{{medication.giving}}</div>
+                                    <div><small>{{medication.valid}}</small></div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+
         </tbody>
     </table>
+    </small>
 </div>
