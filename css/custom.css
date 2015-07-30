@@ -1,3 +1,7 @@
+body {
+    background: #eeeeee !important;
+}
+
 .form-control {
     color: black;
 }
