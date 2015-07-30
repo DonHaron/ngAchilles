@@ -1,21 +1,27 @@
-<div class="panel panel-info">
+<div class="panel panel-default">
 
-    <div class="panel-heading">
-        <h4>Mediplan</h4>
+
+    <div class="toolbar-wrapper">
+        <div class="toolbar" ng-class="'mandator-' + vm.user.mandator.id + '-toolbar'" ng-cloak>
+            <div class="row">
+                <div class="col-xs-12"><p>Medikamentenplan</p></div>
+            </div>
+        </div>
     </div>
+
     <small>
     <table class="table table-hover table-condensed">
         <thead>
         <tr>
-            <th>Auswahl</th>
+            <th><input class="checkbox" type="checkbox" value=""></th>
             <th>Medikament</th>
             <th>Dosierung und Einnahme</th>
             <th>Von Bis</th>
-            <th class="hidden-sm hidden-xs">Art der Medikation</th>
+            <th>Art der Medikation</th>
             <th>Indikation</th>
             <th>Verordnet</th>
-            <th class="hidden-sm hidden-xs">Verabreichung</th>
-            <th class="hidden-sm hidden-xs"></th>
+            <th>Verabreichung</th>
+            <th></th>
         </tr>
         </thead>
         <tbody ng-repeat="medication in vm.medicationList">
@@ -31,21 +37,21 @@
                     <div><small>{{medication.intake}}</small></div>
                 </td>
                 <td>{{medication.duration}}</td>
-                <td class="hidden-sm hidden-xs">{{medication.type}}</td>
+                <td>{{medication.type}}</td>
                 <td>{{medication.indication}}</td>
                 <td>{{medication.who}}</td>
-                <td class="hidden-sm hidden-xs">
+                <td>
                     <div>{{medication.giving}}</div>
                     <div><small>{{medication.valid}}</small></div>
                 </td>
-                <td class="hidden-sm hidden-xs" ng-click="goCats = !goCats">
-                    <i ng-show="medication.history.length > 0" class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': goCats, 'glyphicon-chevron-left': !goCats}"></i>
+                <td ng-click="goCat = !goCat">
+                    <i ng-show="medication.history.length > 0" class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': goCat, 'glyphicon-chevron-left': !goCat}"></i>
                 </td>
             </tr>
 
-            <tr ng-show="goCats">
+            <tr ng-show="goCat">
                 <td colspan="9">
-                        <table class="table table-striped">
+                        <table class="table table-condensed">
                             <tr ng-repeat="history in medication.history">
                                 <td></td>
                                 <td>
@@ -57,19 +63,18 @@
                                     <div><small>{{medication.intake}}</small></div>
                                 </td>
                                 <td>{{medication.duration}}</td>
-                                <td hidden-sm hidden-xs>{{medication.type}}</td>
+                                <td>{{medication.type}}</td>
                                 <td>{{medication.indication}}</td>
                                 <td>{{medication.who}}</td>
-                                <td hidden-sm hidden-xs>
+                                <td>
                                     <div>{{medication.giving}}</div>
                                     <div><small>{{medication.valid}}</small></div>
                                 </td>
-                                <td hidden-sm hidden-xs></td>
+                                <td></td>
                             </tr>
                         </table>
                 </td>
             </tr>
-
         </tbody>
     </table>
     </small>

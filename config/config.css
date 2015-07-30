@@ -9,12 +9,12 @@
 .mandator-0-warning,
 .mandator-0-toolbar,
 .mandator-0:before {
-    background-color: pink;
+    background-color: blue;
 }
 
 .mandator-2-warning,
 .mandator-2-toolbar,
 .mandator-2:before {
-    background-color: pink;
-    color: black;
+    background-color: darkolivegreen;
+    color: #ffffff;
 }
