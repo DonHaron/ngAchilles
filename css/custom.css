@@ -2,6 +2,11 @@ body {
     background: #eeeeee !important;
 }
 
+.main-column {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
 .form-control {
     color: black;
 }
@@ -11,21 +16,12 @@ body {
 }
 
 .treatments {
-    padding-left: 15px;
-    padding-right: 0px;
-    /*padding-top: 70px;*/
     height: 100%;
 }
 
 .treatments > .panel {
-    padding-right: 15px;
     margin-bottom: 0;
     height: 100%;
-}
-
-.treatments > .panel > .row {
-    height: 100%;
-    position: relative;
 }
 
 .limit-height {
@@ -33,10 +29,14 @@ body {
 }
 
 .treatments-container {
-    height: 90%;
+    height: 100%;
     overflow-y: auto;
-    /*padding-right: 15px;*/
+    border: 1px solid #bbb;
     overflow-x: hidden;
+    margin-left: 6px;
+    margin-right: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
 }
 
 .treatment-sidebar {
@@ -107,11 +107,6 @@ html, body,  .container-fluid > .row-fluid {
 }
 
 .toolbar-wrapper {
-    /*position: fixed;*/
-    /*width: 66.66%;*/
-    z-index: 99;
-    background-color: white;
-    /*padding-right: 15px;*/
     margin-left: -1px;
     margin-right: -1px;
     margin-top: -1px;
@@ -119,19 +114,9 @@ html, body,  .container-fluid > .row-fluid {
 }
 
 .toolbar {
-    /*margin: 5px 15px;*/
-    margin: 0;
-    background-color: #fff;
-    border: 1px solid #bbb;
-    /*border-radius: 4px;*/
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    padding: 2px 10px;
-    /*margin-right: -15px;*/
-}
-
-.toolbar p {
-    margin-bottom: 0;
+    border-bottom: 1px solid #bbb;
+    border-top: 1px solid #bbb;
+    padding: 1px 10px;
 }
 
 .toolbar .form-group {
@@ -140,6 +125,8 @@ html, body,  .container-fluid > .row-fluid {
 
 .toolbar .form-control {
     height: 22px;
+    border-radius: 3px;
+    font-size: 12px;
 }
 
 .toolbar .btn-xs {
@@ -241,7 +228,7 @@ html, body,  .container-fluid > .row-fluid {
 .treatment .panel {
     border: 0;
     border-radius: 0;
-    margin-bottom: 5px;
+    margin-bottom: 2px;
 }
 
 .large-margins .treatment .panel {
@@ -334,7 +321,7 @@ html, body,  .container-fluid > .row-fluid {
 }
 
 .treatment-entry.list-group-item{
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 
@@ -903,7 +890,7 @@ h5.list-group-item.preset {
 }
 
 treatment-column:first-of-type .treatment-column{
-    padding-left: 15px;
+    padding-left: 3px;
 }
 
 treatment-column:last-of-type .treatment-column{
@@ -980,20 +967,8 @@ treatment-column:last-of-type .treatment-column{
     }
 }
 
-/*.type-and-preset-trigger-button {*/
-    /*position: absolute;*/
-    /*right: 0;*/
-    /*top: 35px;*/
-    /*width: 20px;*/
-    /*height: 100%;*/
-    /*border-left: 1px solid rgba(0, 0, 0, 0.16);*/
-    /*border-top: 1px solid rgba(0, 0, 0, 0.16);*/
-    /*z-index: 99;*/
-    /*background-color: white;*/
-/*}*/
-
 .type-and-preset-trigger-button {
-    -webkit-transform: rotate(90deg) translate(-34px,0);
+    -webkit-transform: rotate(90deg) translate(-28px,0);
     -webkit-transform-origin: 0% 100%
 }
 

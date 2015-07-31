@@ -11,7 +11,7 @@
 
         $translateProvider.translations('de', {
             'TREATMENT_ENTRIES': 'Behandlungseinträge',
-            'FROM_TO_TOTAL': '{{from}} bis {{to}} von {{total}}',
+            'FROM_TO_TOTAL': '<small>{{from}} bis {{to}} von {{total}}</small>',
             'SEARCH': 'Suche',
             'PRESETS': 'Strukturen',
             'ENTRY_TYPES': 'Behandlungstitel',

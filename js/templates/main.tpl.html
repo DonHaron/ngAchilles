@@ -1,16 +1,10 @@
 <div class="container-fluid">
     <div class="row-fluid">
-        <div class="col-sm-23 col-md-14 treatments" ng-class="[vm.user.margins, vm.user.fontSize]">
+        <div class="col-sm-23 col-md-15 treatments main-column" ng-class="[vm.user.margins, vm.user.fontSize]">
 
             <div class="panel panel-default">
 
-                <!--<div class="type-and-preset-trigger-button hidden-md hidden-lg">-->
-                    <!--<a href ng-click="vm.showTypeAndPresetWidget = !vm.showTypeAndPresetWidget">-->
-                        <!--<span>Behandlungstitel & Strukturen</span></a>-->
-                <!--</div>-->
-
                 <treatment-toolbar></treatment-toolbar>
-
 
                 <title-settings-widget></title-settings-widget>
 
@@ -28,8 +22,8 @@
                     <div class="col-sm-24 limit-height">
                         <!--<div class="treatment-main-row limit-height">-->
                         <div class="row limit-height">
-                            <div class="treatments-container col-xs-23 col-lg-18">
-
+                            <div class="col-xs-23 col-lg-18 limit-height">
+                            <div class="treatments-container">
 
 
                                 <treatment treatment="treatment"
@@ -69,12 +63,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="hidden-xs hidden-sm hidden-md col-lg-6">
+                            </div>
+                                <div class="hidden-xs hidden-sm hidden-md col-lg-6">
                                 <div class="panel panel-default">
                                     <div class="toolbar-wrapper">
                                         <div class="toolbar" ng-class="'mandator-' + vm.user.mandator.id + '-toolbar'" ng-cloak>
                                             <div class="row">
-                                                <div class="col-xs-24"><p>Titel & Strukturen</p></div>
+                                                <div class="col-xs-24"><small><strong>Titel & Strukturen</strong></small></div>
                                             </div>
                                         </div>
                                     </div>
@@ -83,11 +78,9 @@
 
                             </div>
 
-
-                            <!-- TODO dirty styles in HTML, wie soll ich das besser machen? -->
-                            <div class="hidden-lg col-xs-1" style="padding: 0px">
+                            <div class="hidden-lg col-xs-1">
                                 <a class="btn btn-default type-and-preset-trigger-button" ng-click="vm.showTypeAndPresetWidget = !vm.showTypeAndPresetWidget">
-                                    <span>Titel & Strukturen</span>
+                                    <span class="small-fonts"><strong>Titel & Strukturen (F9)</strong></span>
                                 </a>
                                 <div ng-show="vm.showTypeAndPresetWidget || vm.temporarilyShowTypeAndPresetWidget"
                                      achilles-widget
@@ -108,85 +101,43 @@
 
 
         </div>
-        <div class="col-sm-1 hidden-md hidden-lg">
-            <div class="btn-group">
-                <a class="btn btn-default" id="show-medication-widget"
-                   ng-click="vm.showMedicationWidget=!vm.showMedicationWidget">M</a>
-            </div>
-            <!--<div class="btn-group">-->
-                <!--<a class="btn btn-danger">B</a>-->
-            <!--</div>-->
-            <!--<div class="btn-group">-->
-                <!--<a class="btn btn-info">L</a>-->
-            <!--</div>-->
-            <!--<div class="btn-group">-->
-                <!--<a class="btn btn-info" ng-click="vm.showTypeAndPresetWidget = !vm.showTypeAndPresetWidget">T&P</a>-->
+        <div class="col-sm-1 hidden-md hidden-lg main-column">
+
+            <!--<div class="toolbar-wrapper">-->
+                <!--<div class="toolbar" ng-class="'mandator-' + vm.user.mandator.id + '-toolbar'" ng-cloak>-->
+                    <!--<div class="row">-->
+                        <!--<div class="col-xs-24"><p><small><strong>Ausgeblendete</strong></small></p></div>-->
+                    <!--</div>-->
+                <!--</div>-->
             <!--</div>-->
 
 
+            <a class="btn btn-default type-and-preset-trigger-button" id="show-medication-widget" ng-click="vm.showMedicationWidget=!vm.showMedicationWidget">
+                <span class="small-fonts"><strong>Mediplan</strong></span>
+            </a>
+
+            <!--<div class="btn-group">-->
+                <!--<a class="btn btn-default" id="show-medication-widget"-->
+                   <!--ng-click="vm.showMedicationWidget=!vm.showMedicationWidget">M</a>-->
+            <!--</div>-->
                  <!--widget-width="80%"-->
                  <!--widget-align-to-element="#show-medication-widget"-->
             <div achilles-widget
                  widget-width="800"
-                 widget-position-left="-790"
+                 widget-position-left="-800"
                  widget-position-top="0"
                  widget-position="absolute"
                  ng-show="vm.showMedicationWidget || false">
                 <medication-widget></medication-widget>
             </div>
         </div>
-        <div class="col-md-10 hidden-sm hidden-xs">
+        <div class="col-md-9 hidden-sm hidden-xs main-column">
             <div class="row">
                 <div class="col-sm-24">
                     <medication-widget></medication-widget>
-
                 </div>
             </div>
-            <!--<div class="row">-->
-                <!--<div class="col-sm-24">-->
-                    <!--<div class="panel panel-info">-->
-                        <!--<div class="panel-heading">-->
-                            <!--<h4>Biometrische Daten</h4>-->
-                        <!--</div>-->
-                        <!--<div class="list-group">-->
-                            <!--<a href class="list-group-item">-->
-                                <!--<div class="row">-->
-                                    <!--<div class="col-xs-6">-->
-                                        <!--<p>Puls</p>-->
-                                    <!--</div>-->
-                                    <!--<div class="col-xs-6">-->
-                                        <!--<p>normal</p>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                            <!--</a>-->
-                            <!--<a href class="list-group-item">-->
-                                <!--<div class="row">-->
-                                    <!--<div class="col-xs-6">-->
-                                        <!--<p>Blutdruck</p>-->
-                                    <!--</div>-->
-                                    <!--<div class="col-xs-6">-->
-                                        <!--<p>zu tief</p>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                            <!--</a>-->
-                            <!--<a href class="list-group-item">-->
-                                <!--<div class="row">-->
-                                    <!--<div class="col-xs-6">-->
-                                        <!--<p>Cholesterin</p>-->
-                                    <!--</div>-->
-                                    <!--<div class="col-xs-6">-->
-                                        <!--<p>Homer Simpson!</p>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                            <!--</a>-->
-
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
         </div>
-
-
     </div>
 
 </div>
