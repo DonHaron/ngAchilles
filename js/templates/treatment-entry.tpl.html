@@ -1,7 +1,7 @@
 <li class="list-group-item treatment-entry" ng-hide="dc.isHidden(entry.type)">
     <div class="entry-toolbar" ng-show="entry.focused && entry.type.hasTextBlock">
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-xs-24">
                 <div class="btn-group"><a href class="btn btn-default"
                                           ng-click="dc.showTextBlockWidget(true, entry.type)"><i
                         class="fa fa-list-alt"></i></a></div>
@@ -10,13 +10,13 @@
     </div>
     <div class="editor-toolbar" ng-show="entry.focused && entry.showToolbar">
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-xs-24">
                 <text-angular-toolbar name="toolbar-{{entry.treatmentId}}-{{entry.type.id}}"></text-angular-toolbar>
             </div>
         </div>
     </div>
     <div class="row">
-        <div class="col-xs-12">
+        <div class="col-xs-24">
             <div class="form-group">
                 <span class="entry-type-name">{{entry.type.name}}</span>
             </div>
@@ -24,7 +24,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-xs-12">
+        <div class="col-xs-24">
             <form name="entryform">
                 <div ng-repeat="row in entry.rows | orderBy:'id'"
                      class="treatment-row">

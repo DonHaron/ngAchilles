@@ -1,10 +1,11 @@
 <div class="toolbar-wrapper">
-    <div class="toolbar" ng-class="'mandator-' + vm.user.mandator.id + '-toolbar'" ng-cloak>
+    <!-- TODO wieso brauche ich hier eine Margin von -15 -->
+    <div class="toolbar" style="margin-right: -15px" ng-class="'mandator-' + vm.user.mandator.id + '-toolbar'" ng-cloak>
         <div class="row">
-            <div class="col-xs-2">
-                <p ng-show="vm.treatments.length">{{'TREATMENT_ENTRIES' | translate}}</p>
+            <div class="col-xs-4">
+                <p ng-show="vm.treatments.length"><strong>{{'TREATMENT_ENTRIES' | translate}}</strong></p>
             </div>
-            <div class="col-xs-2">
+            <div class="col-xs-4">
                 <p ng-show="vm.treatments.length"
                    translate="FROM_TO_TOTAL"
                    translate-value-from="{{currentPage?(currentPage-1)*vm.limit+1 : 1}}"
@@ -12,7 +13,7 @@
                    translate-value-total="{{vm.filteredTreatments.length}}"
                    ></p>
             </div>
-            <div class="col-xs-2">
+            <div class="col-xs-6">
                 <div class="input-group">
 
                     <input class="form-control" ng-model="vm.search.text" placeholder="{{'SEARCH' | translate}}">
@@ -21,7 +22,7 @@
                     </span>
                 </div>
             </div>
-            <div class="col-xs-5">
+            <div class="col-xs-9">
                 <div class="btn-toolbar pull-right">
                     <div class="dropdown icon-dropdown" toggle-focus dropdown>
 

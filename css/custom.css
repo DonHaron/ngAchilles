@@ -7,7 +7,7 @@ body {
 }
 
 .container-fluid {
-    padding-top: 15px;
+    padding-top: 0px;
 }
 
 .treatments {
@@ -18,7 +18,7 @@ body {
 }
 
 .treatments > .panel {
-    /*padding-right: 15px;*/
+    padding-right: 15px;
     margin-bottom: 0;
     height: 100%;
 }
@@ -115,7 +115,7 @@ html, body,  .container-fluid > .row-fluid {
     margin-left: -1px;
     margin-right: -1px;
     margin-top: -1px;
-    margin-bottom: 15px;
+    margin-bottom: 8px;
 }
 
 .toolbar {
@@ -381,12 +381,12 @@ html, body,  .container-fluid > .row-fluid {
 }
 
 .treatment .achilles-icon {
-    width: 34px;
+    width: 30px;
     display: inline-block;
     vertical-align: middle;
     background-repeat: no-repeat;
     background-position: center center;
-    background-size: 20px 20px;
+    background-size: 19px 19px;
 }
 
 .treatment .achilles-icon:active {
@@ -948,7 +948,7 @@ treatment-column:last-of-type .treatment-column{
     padding-left: 0;
 }
 
-treatment.editable .treatment-column .read-only-content{
+.treatment-editable .treatment-column .read-only-content{
     border-width: 1px;
     padding: 3px 6px;
     min-height: 30px;
@@ -992,13 +992,9 @@ treatment.editable .treatment-column .read-only-content{
     /*background-color: white;*/
 /*}*/
 
-.type-and-preset-trigger-button-span {
-    height: 200px;
-    width: 200px;
-    -webkit-transform: translate(20px,0) rotate(90deg);
-    display: block;
-    transform-origin: 0 0;
-    margin-top: 10px;
+.type-and-preset-trigger-button {
+    -webkit-transform: rotate(90deg) translate(-34px,0);
+    -webkit-transform-origin: 0% 100%
 }
 
 .type-and-preset-trigger-button a:hover,
@@ -1013,4 +1009,9 @@ treatment.editable .treatment-column .read-only-content{
     .treatments > .panel > .row {
         padding-right: 25px;
     }
+}
+
+.treatment-main-row {
+    margin-left: -6px;
+    margin-right: -19px;
 }
