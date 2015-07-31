@@ -5,6 +5,13 @@
         <div class="toolbar" ng-class="'mandator-' + vm.user.mandator.id + '-toolbar'" ng-cloak>
             <div class="row">
                 <div class="col-xs-12"><p><strong>Medikamentenplan</strong></p></div>
+                <div class="col-xs-12">
+                    <div class="btn-group pull-right">
+                        <a class="btn btn-default btn-xs treatment-report"
+                           tooltip="{{ 'NEW_TREATMENT_TODAY_TOOLTIP' | translate}}" tooltip-placement="bottom"
+                           ng-click="toolbar.addTreatment(vm.treatments)">&nbsp;</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
